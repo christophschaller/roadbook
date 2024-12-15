@@ -1,0 +1,27 @@
+---
+import Map from "./Map.astro";
+import TrackEditor from "./TrackEditor.astro";
+---
+
+<html>
+    <head>
+        <title>Track Viewer</title>
+    </head>
+    <body class="flex">
+        <!-- Track Editor -->
+        <div class="w-1/4">
+            <TrackEditor />
+        </div>
+
+        <!-- Map -->
+        <div class="">
+            <Map />
+        </div>
+    </body>
+</html>
+
+<style>
+    body {
+        height: 100vh;
+    }
+</style>
