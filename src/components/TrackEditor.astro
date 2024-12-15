@@ -1,0 +1,27 @@
+---
+import TopBar from "./TopBar";
+import SideBar from "./SideBar";
+---
+
+<div class="flex flex-col h-screen">
+    <!-- Top Bar -->
+    <!-- <div class="flex-shrink-0">
+        <TopBar />
+    </div> -->
+
+    <!-- Sidebar -->
+    <div class="flex-grow flex">
+        <div class="w-64 bg-gray-200">
+            <SideBar client:load />
+        </div>
+        <div class="flex-grow bg-gray-100">
+            <!-- Placeholder for any additional content -->
+        </div>
+    </div>
+</div>
+
+<style>
+    .h-screen {
+        height: 100vh;
+    }
+</style>
