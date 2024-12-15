@@ -108,7 +108,7 @@ const MapView = () => {
             data: poiData,
             getPosition: (d: any) => [d.lon, d.lat],
             getIcon: (d: any) => ({
-                url: `/map-pin.svg`,
+                url: `map-pin.svg`,
                 width: 128,
                 height: 128,
                 anchorY: 128,
