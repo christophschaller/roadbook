@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import maplibregl from 'maplibre-gl';
-import { Map } from 'react-map-gl/maplibre';
+import { Map } from 'react-map-gl/dist/es5/exports-maplibre.js';
 import DeckGL from '@deck.gl/react';
 import { PathLayer, PolygonLayer, IconLayer } from '@deck.gl/layers'
 import { DataFilterExtension } from '@deck.gl/extensions';
