@@ -48,7 +48,10 @@ export default function UploadButton() {
             .then((pois: Poi[]) => {
                 pois.forEach(poi => {
                     poi.trackDistance = turf.pointToLineDistance(turf.point([poi.lon, poi.lat]), linestring2d, { units: "meters" })
-                    poi.categories = Object.entries(poi.tags).map(([key, value]) => `${key}_${value}`)
+                    // poi.categories = Object.entries(poi.tags).map(([key, value]) => `${key}_${value}`)
+                    poi.categories = Object.entries(poi.tags)
+                        .filter(([key, value]) => selectors.some(([selKey, selValue]) => selKey === key && selValue === value))
+                        .map(([key, value]) => `${key}_${value}`);
                 });
                 poiStore.set({ pois: pois })
             })

@@ -18,6 +18,8 @@ const MapView = () => {
     const area = useStore(areaStore);
     const pois = useStore(poiStore);
 
+    const basePath = import.meta.env.GITHUB_BASE_PATH || import.meta.env.PUBLIC_BASE_PATH || '/';
+
     const [viewState, setViewState] = useState({
         longitude: -0.09,
         latitude: 51.505,
@@ -108,7 +110,7 @@ const MapView = () => {
             data: poiData,
             getPosition: (d: any) => [d.lon, d.lat],
             getIcon: (d: any) => ({
-                url: `map-pin.svg`,
+                url: `${basePath}/map-pin.svg`,
                 width: 128,
                 height: 128,
                 anchorY: 128,
