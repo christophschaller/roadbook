@@ -110,7 +110,7 @@ const MapView = () => {
             data: poiData,
             getPosition: (d: any) => [d.lon, d.lat],
             getIcon: (d: any) => ({
-                url: `${basePath}/map-pin.svg`,
+                url: "https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
                 width: 128,
                 height: 128,
                 anchorY: 128,
