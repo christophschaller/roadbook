@@ -6,7 +6,8 @@ import { parseGPX, type GeoJSON } from "@we-gold/gpxjs";
 import { Button } from '@/components/ui/button'
 import { createBoundingBox, constructOverpassQuery } from '@/lib/overpass_helpers';
 import { trackStore } from '@/stores/trackStore';
-import { poiStore, type Poi } from '@/stores/poiStore';
+import { poiStore } from '@/stores/poiStore';
+import type { PointOfInterest } from '@/types';
 import { type LineString } from 'geojson'
 import * as turf from '@turf/turf'
 
@@ -32,10 +33,10 @@ export default function UploadButton() {
 
         const selectors = [
             ["amenity", "drinking_water"],
-            ["man_made", "water_tap"],
-            ["natural", "spring"],
+            //    ["man_made", "water_tap"],
+            //    ["natural", "spring"],
             ["man_made", "water_well"],
-            ["man_made", "water_point"],
+            //    ["man_made", "water_point"],
             ["amenity", "toilets"],
         ]
 
@@ -45,7 +46,7 @@ export default function UploadButton() {
         const linestring2d = turf.lineString(lineString.coordinates.map((coord: number[]) => [coord[0], coord[1]]))
 
         queryOverpass(query)
-            .then((pois: Poi[]) => {
+            .then((pois: PointOfInterest[]) => {
                 pois.forEach(poi => {
                     poi.trackDistance = turf.pointToLineDistance(turf.point([poi.lon, poi.lat]), linestring2d, { units: "meters" })
                     // poi.categories = Object.entries(poi.tags).map(([key, value]) => `${key}_${value}`)

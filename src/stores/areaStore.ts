@@ -1,11 +1,7 @@
 import { atom } from 'nanostores';
+import type { Area } from '@/types';
 
-interface AreaStore {
-    distance: number;
-    activeTags: string[];
-}
-
-export const areaStore = atom<AreaStore>({
+export const areaStore = atom<Area>({
     distance: 500,
     activeTags: [],
 })

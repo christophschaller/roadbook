@@ -6,11 +6,12 @@ import { PathLayer, PolygonLayer, IconLayer } from '@deck.gl/layers'
 import { DataFilterExtension } from '@deck.gl/extensions';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import * as turf from '@turf/turf'
-import { trackStore } from '../stores/trackStore';
-import { areaStore } from '../stores/areaStore';
-import { poiStore, type Poi } from '../stores/poiStore';
+import { trackStore } from '@/stores/trackStore';
+import { areaStore } from '@/stores/areaStore';
+import { poiStore } from '@/stores/poiStore';
 import { useStore } from '@nanostores/react';
 import { type LineString, type Polygon } from 'geojson';
+import type { PointOfInterest } from '@/types';
 
 const MapView = () => {
     const mapRef = useRef(null);
@@ -29,10 +30,8 @@ const MapView = () => {
     })
     const [trackData, setTrackData] = useState<LineString | null>(null)
     const [simpleTrackData, setSimpleTrackData] = useState<LineString | null>(null)
-    const [areaSize, setAreaSize] = useState<number>(500)
-    const [areaTags, setAreaTags] = useState<string[]>([])
     const [areaData, setAreaData] = useState<Polygon | null>(null)
-    const [poiData, setPoiData] = useState<Poi[] | null>(null)
+    const [poiData, setPoiData] = useState<PointOfInterest[] | null>(null)
 
 
     useEffect(() => {
@@ -56,12 +55,7 @@ const MapView = () => {
         }
     }, [track])
 
-    useEffect(() => {
-        setAreaSize(area.distance)
-        setAreaTags(area.activeTags)
-    }, [area])
-
-    useEffect(() => {
+    useMemo(() => {
         if (simpleTrackData) {
             const buffered = turf.buffer(simpleTrackData, area.distance, { units: "meters" });
             setAreaData(buffered)
@@ -75,8 +69,8 @@ const MapView = () => {
     }, [pois])
 
     console.log(poiData)
-    console.log(areaSize)
-    console.log(areaTags)
+    console.log(area.distance)
+    console.log(area.activeTags)
 
     const layers = useMemo(() => [
         trackData && new PathLayer({
@@ -123,18 +117,19 @@ const MapView = () => {
                     console.log(`Clicked POI: ${info.object.id}`)
                     console.log("trackDistance:", info.object.trackDistance)
                     console.log("categories:", info.object.categories)
+                    console.log("poi object:", info.object)
                 }
             },
             // props added by DataFilterExtension
-            getFilterValue: (d: Poi) => d.trackDistance,
-            filterRange: [0, areaSize,], // TODO: maybe filterSoftRange would look nice? if the pois fade after hitting the max distance
+            getFilterValue: (d: PointOfInterest) => d.trackDistance,
+            filterRange: [0, area.distance,], // TODO: maybe filterSoftRange would look nice? if the pois fade after hitting the max distance
 
-            getFilterCategory: (d: Poi) => d.categories,
-            filterCategories: areaTags,
+            getFilterCategory: (d: PointOfInterest) => d.categories,
+            filterCategories: area.activeTags,
             // Define extensions
             extensions: [new DataFilterExtension({ filterSize: 1, categorySize: 1 })]
         })
-    ], [trackData, simpleTrackData, areaData, poiData, areaSize, areaTags])
+    ], [trackData, simpleTrackData, areaData, poiData, area])
 
     return (
         <div ref={mapRef} style={{ width: '100%', height: '400px' }}>

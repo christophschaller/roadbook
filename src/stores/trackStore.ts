@@ -1,12 +1,8 @@
 import { atom } from 'nanostores';
-import { type GeoJSON } from '@we-gold/gpxjs';
+import type { Track } from '@/types'
 
-interface TrackStore {
-    name: string;
-    data: GeoJSON | null;
-}
 
-export const trackStore = atom<TrackStore>({
+export const trackStore = atom<Track>({
     name: '',
     data: null,
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from '@nanostores/react';
-import { trackStore } from '../stores/trackStore';
+import { trackStore } from '@/stores/trackStore';
 
 const TopBar: React.FC = () => {
     const track = useStore(trackStore);
