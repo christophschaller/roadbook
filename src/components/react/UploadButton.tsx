@@ -10,35 +10,16 @@ import { poiStore } from '@/stores/poiStore';
 import type { PointOfInterest } from '@/types';
 import { type LineString } from 'geojson'
 import * as turf from '@turf/turf'
+import { poiTypes } from '@/lib/data';
 
 
 export default function UploadButton() {
 
     const fetchPOIsAlongRoute = (lineString: LineString, bufferMeters: number) => {
 
-        // Primary sources
-        // node["amenity"="drinking_water"]
-        // node["man_made"="water_tap"]
-        // node["natural"="spring"]
-
-        // Secondary sources
-        // node["man_made"="water_well"]
-        // node["man_made"="water_point"]
-
-        // Potential sources
-        // node["amenity"="toilets"]
-        // node["tourism"="camp_site"]
-        // way["tourism"="camp_site"]  // TODO: not sure how to encode the type in the selector - triples? - or are some tuples shared between types?
-        // way["landuse"="cemetery"]
-
-        const selectors = [
-            ["amenity", "drinking_water"],
-            //    ["man_made", "water_tap"],
-            //    ["natural", "spring"],
-            ["man_made", "water_well"],
-            //    ["man_made", "water_point"],
-            ["amenity", "toilets"],
-        ]
+        const selectors = Object.values(poiTypes[0].categories)
+            .flatMap(category => category.tags)
+            .map(selector => [selector[0], selector[1]]);
 
         const bbox = createBoundingBox(lineString, bufferMeters);
         const query = constructOverpassQuery(bbox, selectors);
@@ -49,10 +30,15 @@ export default function UploadButton() {
             .then((pois: PointOfInterest[]) => {
                 pois.forEach(poi => {
                     poi.trackDistance = turf.pointToLineDistance(turf.point([poi.lon, poi.lat]), linestring2d, { units: "meters" })
-                    // poi.categories = Object.entries(poi.tags).map(([key, value]) => `${key}_${value}`)
-                    poi.categories = Object.entries(poi.tags)
-                        .filter(([key, value]) => selectors.some(([selKey, selValue]) => selKey === key && selValue === value))
-                        .map(([key, value]) => `${key}_${value}`);
+
+                    const category = poiTypes[0].categories.find(category =>
+                        category.tags.some(([key, value]) =>
+                            poi.tags[key] === value
+                        ))
+                    poi.category = category?.id || 'unknown'
+                    poi.icon = category?.icon
+                    poi.color = poiTypes[0].color
+
                 });
                 poiStore.set({ pois: pois })
             })
