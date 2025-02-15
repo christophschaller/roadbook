@@ -3,5 +3,5 @@ import type { Area } from '@/types';
 
 export const areaStore = atom<Area>({
     distance: 500,
-    activeTags: [],
+    activeTags: ["potable", "filter"],
 })
