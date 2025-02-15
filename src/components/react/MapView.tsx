@@ -68,10 +68,6 @@ const MapView = () => {
         }
     }, [pois])
 
-    console.log(poiData)
-    console.log(area.distance)
-    console.log(area.activeTags)
-
     const layers = useMemo(() => [
         trackData && new PathLayer({
             id: 'track',
@@ -81,14 +77,14 @@ const MapView = () => {
             getWidth: 3,
             widthMinPixels: 2,
         }),
-        simpleTrackData && new PathLayer({
-            id: 'simpleTrack',
-            data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
-            getPath: (d: any) => d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
-            getColor: [0, 255, 0],
-            getWidth: 3,
-            widthMinPixels: 2,
-        }),
+        // simpleTrackData && new PathLayer({
+        //     id: 'simpleTrack',
+        //     data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
+        //     getPath: (d: any) => d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
+        //     getColor: [0, 255, 0],
+        //     getWidth: 3,
+        //     widthMinPixels: 2,
+        // }),
         areaData && new PolygonLayer({
             id: 'buffer',
             data: areaData ? [areaData] : [],
@@ -101,22 +97,22 @@ const MapView = () => {
         }),
         poiData && new IconLayer({
             id: 'pois',
-            data: poiData,
+            data: poiData.filter((d: PointOfInterest) => area.activeTags.includes(d.category)),
             getPosition: (d: any) => [d.lon, d.lat],
-            getIcon: (d: any) => ({
-                url: "https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
-                width: 128,
-                height: 128,
-                anchorY: 128,
+            getIcon: (d: PointOfInterest) => ({
+                url: d.icon, //"https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
+                width: 256,
+                height: 256,
+                mask: true,
             }),
             getSize: 24,
-            getColor: [0, 0, 255], // TODO: no effect?
+            getColor: (d: PointOfInterest) => d.color, // White background circle
             pickable: true,
             onClick: (info: any) => {
                 if (info.object) {
                     console.log(`Clicked POI: ${info.object.id}`)
                     console.log("trackDistance:", info.object.trackDistance)
-                    console.log("categories:", info.object.categories)
+                    console.log("category:", info.object.category)
                     console.log("poi object:", info.object)
                 }
             },
@@ -124,10 +120,8 @@ const MapView = () => {
             getFilterValue: (d: PointOfInterest) => d.trackDistance,
             filterRange: [0, area.distance,], // TODO: maybe filterSoftRange would look nice? if the pois fade after hitting the max distance
 
-            getFilterCategory: (d: PointOfInterest) => d.categories,
-            filterCategories: area.activeTags,
             // Define extensions
-            extensions: [new DataFilterExtension({ filterSize: 1, categorySize: 1 })]
+            extensions: [new DataFilterExtension({ filterSize: 1 })]
         })
     ], [trackData, simpleTrackData, areaData, poiData, area])
 
