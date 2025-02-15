@@ -11,10 +11,11 @@ export interface OverpassNode {
 export interface PointOfInterest extends OverpassNode {
     name?: string
     icon?: string
+    color?: number[]
     address?: string
     url?: string
     trackDistance?: number // distance to nearest point on track for filtering
-    categories?: string[] // string concatenation of OverpassNode.tags for filtering
+    category?: string
 }
 
 export interface Pois {
@@ -23,6 +24,7 @@ export interface Pois {
 
 export interface Category {
     name: string,
+    id: string,
     icon?: LucideIcon,
     active: boolean,
     tags: string[][]

@@ -20,51 +20,21 @@ import {
 } from "@/components/ui/accordion"
 import UploadButton from "@/components/react/UploadButton"
 import AreaDefinition from '@/components/react/AreaDefinition';
-import { areaStore } from '@/stores/areaStore';
-
-const categories = [
-    {
-        name: "Primary Sources",
-        // TODO: icon
-        active: true,
-        tags: [
-            ["amenity", "drinking_water"],
-            //            ["man_made", "water_tap"],
-            //            ["natural", "spring"],
-        ],
-    },
-    {
-        name: "Secondary Sources",
-        // TODO: icon
-        active: true,
-        tags: [
-            ["man_made", "water_well"],
-            //           ["man_made", "water_point"],
-        ],
-    },
-    {
-        name: "Tertiary Sources",
-        // TODO: icon
-        active: true,
-        tags: [
-            ["amenity", "toilets"],
-        ],
-    },
-]
+import { poiTypes } from '@/lib/data';
 
 const SideBar: React.FC = () => {
 
-    useEffect(() => {
-        const activeTags = categories
-            .filter(cat => cat.active) // Filter active categories
-            .flatMap(cat => cat.tags) // Extract tags arrays
-            .map(tag => `${tag[0]}_${tag[1]}`); // Concatenate each tag
+    // useEffect(() => {
+    //     const activeTags = categories
+    //         .filter(cat => cat.active) // Filter active categories
+    //         .flatMap(cat => cat.tags) // Extract tags arrays
+    //         .map(tag => `${tag[0]}_${tag[1]}`); // Concatenate each tag
 
-        areaStore.set({
-            ...areaStore.get(),
-            activeTags: activeTags,
-        });
-    }, [categories]);
+    //     areaStore.set({
+    //         ...areaStore.get(),
+    //         activeTags: activeTags,
+    //     });
+    // }, [categories]);
 
     return (
         <SidebarProvider>
@@ -79,21 +49,23 @@ const SideBar: React.FC = () => {
                         <SidebarGroupLabel>Points of Interest</SidebarGroupLabel>
                         <SidebarGroupContent>
                             <Accordion type="single" collapsible>
-                                <AccordionItem value="item-1">
-                                    <AccordionTrigger>
-                                        <SidebarMenuButton asChild>
-                                            <a href="#">
-                                                <Droplet color='blue' />
-                                                <span>Water</span>
-                                            </a>
-                                        </SidebarMenuButton>
-                                    </AccordionTrigger>
-                                    <AccordionContent>
-                                        <AreaDefinition
-                                            categories={categories}
-                                        />
-                                    </AccordionContent>
-                                </AccordionItem>
+                                {poiTypes.map((poiType, index) => (
+                                    <AccordionItem key={`accordion-item-${index}`} value={`item-${index}`}>
+                                        <AccordionTrigger>
+                                            <SidebarMenuButton asChild>
+                                                <a href="#">
+                                                    <poiType.icon color={`rgb(${poiType.color.join(',')})`} />
+                                                    <span >{poiType.name}</span>
+                                                </a>
+                                            </SidebarMenuButton>
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <AreaDefinition
+                                                categories={poiType.categories}
+                                            />
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                ))}
                             </Accordion>
                         </SidebarGroupContent>
                     </SidebarGroup>

@@ -45,9 +45,8 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
 
             // Compute activeCategories based on updated data
             const activeTags = updatedData
-                .filter(cat => cat.active) // Filter active categories
-                .flatMap(cat => cat.tags) // Extract tags arrays
-                .map(tag => `${tag[0]}_${tag[1]}`); // Concatenate each tag
+                .filter(cat => cat.active)
+                .map(cat => cat.id);
 
             areaStore.set({
                 ...areaStore.get(),
