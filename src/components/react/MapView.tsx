@@ -10,16 +10,19 @@ import { trackStore } from '@/stores/trackStore';
 import { areaStore } from '@/stores/areaStore';
 import { poiStore } from '@/stores/poiStore';
 import { useStore } from '@nanostores/react';
-import { type LineString, type Polygon } from 'geojson';
+import { type Feature, type LineString, type Polygon } from 'geojson';
 import type { PointOfInterest } from '@/types';
+
+type TypeArea = {
+    typeId: string,
+    area: Feature,
+}
 
 const MapView = () => {
     const mapRef = useRef(null);
     const track = useStore(trackStore);
     const area = useStore(areaStore);
     const pois = useStore(poiStore);
-
-    const basePath = import.meta.env.GITHUB_BASE_PATH || import.meta.env.PUBLIC_BASE_PATH || '/';
 
     const [viewState, setViewState] = useState({
         longitude: -0.09,
@@ -30,8 +33,10 @@ const MapView = () => {
     })
     const [trackData, setTrackData] = useState<LineString | null>(null)
     const [simpleTrackData, setSimpleTrackData] = useState<LineString | null>(null)
-    const [areaData, setAreaData] = useState<Polygon | null>(null)
+    const [areaData, setAreaData] = useState<[string, Polygon][] | null>(null)
     const [poiData, setPoiData] = useState<PointOfInterest[] | null>(null)
+    const [visibleCategories, setVisibleCategories] = useState<string[]>([])
+    const [typeAreas, setTypeAreas] = useState<TypeArea[] | null>(null)
 
 
     useEffect(() => {
@@ -55,18 +60,30 @@ const MapView = () => {
         }
     }, [track])
 
-    useMemo(() => {
+
+
+    useEffect(() => {
         if (simpleTrackData) {
-            const buffered = turf.buffer(simpleTrackData, area.distance, { units: "meters" });
-            setAreaData(buffered)
+            const buffers: TypeArea[] = [];
+            Object.entries(area.poiTypeMap).forEach(([id, poiType]) => {
+                const buffered = turf.buffer(simpleTrackData, poiType.distance, { units: "meters" });
+                buffers.push({
+                    typeId: id,
+                    area: buffered,
+                });
+            });
+            setTypeAreas(buffers);
         }
-    }, [simpleTrackData, area])
+    }, [simpleTrackData, area]);
 
     useEffect(() => {
         if (pois.pois) {
             setPoiData(pois.pois)
         }
     }, [pois])
+
+    //console.log(area)
+    console.log("typeAreas:", typeAreas)
 
     const layers = useMemo(() => [
         trackData && new PathLayer({
@@ -85,44 +102,44 @@ const MapView = () => {
         //     getWidth: 3,
         //     widthMinPixels: 2,
         // }),
-        areaData && new PolygonLayer({
-            id: 'buffer',
-            data: areaData ? [areaData] : [],
-            getPolygon: (d: any) => d.geometry.coordinates,
-            getFillColor: [0, 0, 255, 50],
-            getLineColor: [0, 0, 255, 255],
-            getLineWidth: 2,
-            lineWidthMinPixels: 1,
+        typeAreas && new PolygonLayer({
+            id: 'typeAreas',
+            data: typeAreas ? typeAreas : [],
+            getPolygon: (d: TypeArea) => d.area.geometry.coordinates,
+            getLineColor: (d: TypeArea) => [...area.poiTypeMap[d.typeId].color, 150],
+            getFillColor: (d: TypeArea) => [...area.poiTypeMap[d.typeId].color, area.poiTypeMap[d.typeId].active ? 30 : 0],
+            getLineWidth: 4,
+            lineWidthMinPixels: 2,
             pickable: true,
         }),
-        poiData && new IconLayer({
-            id: 'pois',
-            data: poiData.filter((d: PointOfInterest) => area.activeTags.includes(d.category)),
-            getPosition: (d: any) => [d.lon, d.lat],
-            getIcon: (d: PointOfInterest) => ({
-                url: d.icon, //"https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
-                width: 256,
-                height: 256,
-                mask: true,
-            }),
-            getSize: 24,
-            getColor: (d: PointOfInterest) => d.color, // White background circle
-            pickable: true,
-            onClick: (info: any) => {
-                if (info.object) {
-                    console.log(`Clicked POI: ${info.object.id}`)
-                    console.log("trackDistance:", info.object.trackDistance)
-                    console.log("category:", info.object.category)
-                    console.log("poi object:", info.object)
-                }
-            },
-            // props added by DataFilterExtension
-            getFilterValue: (d: PointOfInterest) => d.trackDistance,
-            filterRange: [0, area.distance,], // TODO: maybe filterSoftRange would look nice? if the pois fade after hitting the max distance
+        // poiData && new IconLayer({
+        //     id: 'pois',
+        //     data: poiData.filter((d: PointOfInterest) => area.activeTags.includes(d.category)),
+        //     getPosition: (d: any) => [d.lon, d.lat],
+        //     getIcon: (d: PointOfInterest) => ({
+        //         url: d.icon, //"https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
+        //         width: 256,
+        //         height: 256,
+        //         mask: true,
+        //     }),
+        //     getSize: 24,
+        //     getColor: (d: PointOfInterest) => d.color, // White background circle
+        //     pickable: true,
+        //     onClick: (info: any) => {
+        //         if (info.object) {
+        //             console.log(`Clicked POI: ${info.object.id}`)
+        //             console.log("trackDistance:", info.object.trackDistance)
+        //             console.log("category:", info.object.category)
+        //             console.log("poi object:", info.object)
+        //         }
+        //     },
+        //     // props added by DataFilterExtension
+        //     getFilterValue: (d: PointOfInterest) => d.trackDistance,
+        //     filterRange: [0, area.distance,], // TODO: maybe filterSoftRange would look nice? if the pois fade after hitting the max distance
 
-            // Define extensions
-            extensions: [new DataFilterExtension({ filterSize: 1 })]
-        })
+        //     // Define extensions
+        //     extensions: [new DataFilterExtension({ filterSize: 1 })]
+        // })
     ], [trackData, simpleTrackData, areaData, poiData, area])
 
     return (

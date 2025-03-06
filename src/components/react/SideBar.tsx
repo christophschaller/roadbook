@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Droplet } from "lucide-react"
 import {
     SidebarProvider,
@@ -23,18 +23,9 @@ import AreaDefinition from '@/components/react/AreaDefinition';
 import { poiTypes } from '@/lib/data';
 
 const SideBar: React.FC = () => {
+    const [activeType, setActiveType] = useState<string>("")
 
-    // useEffect(() => {
-    //     const activeTags = categories
-    //         .filter(cat => cat.active) // Filter active categories
-    //         .flatMap(cat => cat.tags) // Extract tags arrays
-    //         .map(tag => `${tag[0]}_${tag[1]}`); // Concatenate each tag
-
-    //     areaStore.set({
-    //         ...areaStore.get(),
-    //         activeTags: activeTags,
-    //     });
-    // }, [categories]);
+    console.log(activeType);
 
     return (
         <SidebarProvider>
@@ -48,9 +39,9 @@ const SideBar: React.FC = () => {
                     <SidebarGroup>
                         <SidebarGroupLabel>Points of Interest</SidebarGroupLabel>
                         <SidebarGroupContent>
-                            <Accordion type="single" collapsible>
-                                {poiTypes.map((poiType, index) => (
-                                    <AccordionItem key={`accordion-item-${index}`} value={`item-${index}`}>
+                            <Accordion type="single" collapsible value={activeType} onValueChange={setActiveType}>
+                                {poiTypes.map((poiType) => (
+                                    <AccordionItem key={poiType.id} value={poiType.id}>
                                         <AccordionTrigger>
                                             <SidebarMenuButton asChild>
                                                 <a href="#">
@@ -61,7 +52,7 @@ const SideBar: React.FC = () => {
                                         </AccordionTrigger>
                                         <AccordionContent>
                                             <AreaDefinition
-                                                categories={poiType.categories}
+                                                poiType={poiType}
                                             />
                                         </AccordionContent>
                                     </AccordionItem>
