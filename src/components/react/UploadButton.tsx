@@ -17,7 +17,8 @@ export default function UploadButton() {
 
     const fetchPOIsAlongRoute = (lineString: LineString, bufferMeters: number) => {
 
-        const selectors = Object.values(poiTypes[0].categories)
+        const selectors = Object.values(poiTypes)
+            .flatMap(poiType => Object.values(poiType.categories))
             .flatMap(category => category.tags)
             .map(selector => [selector[0], selector[1]]);
 
@@ -31,10 +32,13 @@ export default function UploadButton() {
                 pois.forEach(poi => {
                     poi.trackDistance = turf.pointToLineDistance(turf.point([poi.lon, poi.lat]), linestring2d, { units: "meters" })
 
-                    const category = poiTypes[0].categories.find(category =>
-                        category.tags.some(([key, value]) =>
-                            poi.tags[key] === value
-                        ))
+                    const category = Object.values(poiTypes).reduce((found, poiType) => {
+                        if (found) return found;
+                        return Object.values(poiType.categories).find(category =>
+                            category.tags.some(([key, value]) =>
+                                poi.tags[key] === value
+                            ));
+                    }, null);
                     poi.category = category?.id || 'unknown'
                     poi.icon = category?.icon
                     poi.color = poiTypes[0].color

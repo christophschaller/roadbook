@@ -1,59 +1,67 @@
 import React, { useState, useEffect } from 'react';
+import { type LucideIcon, icons } from 'lucide-react';
 import { Slider } from "@/components/ui/slider"
 import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import { Label } from "@/components/ui/label"
 import { areaStore } from '@/stores/areaStore';
-import type { Category } from '@/types';
+import type { Category, PoiType } from '@/types';
 
 export interface AreaDefinitionProps {
-    categories: Category[]; // List of categories to display
-    minDistance?: number; // slider min
-    maxDistance?: number; // slider max
-    stepDistance?: number; // slider step
-    initialDistance?: number; // slider start
+    poiType: PoiType; // Type of POI
     onDistanceChange?: (distance: number) => void;
     onCategoryChange?: (categories: Category[]) => void;
 }
 
 const AreaDefinition: React.FC<AreaDefinitionProps> = ({
-    categories,
-    minDistance = 500,
-    maxDistance = 2500,
-    stepDistance = 50,
-    initialDistance = 500,
+    poiType,
     onDistanceChange,
     onCategoryChange,
 }) => {
-    const [categoryData, setCategoryData] = useState<Category[]>(categories)
-
+    const stepDistance = 50
+    const [categoryData, setCategoryData] = useState<{ [key: string]: Category }>(poiType.categories)
 
     const handleSliderChange = (value: number) => {
         const distance = value;
+        const currentStore = areaStore.get();
         areaStore.set({
-            ...areaStore.get(),
-            distance,
+            ...currentStore,
+            poiTypeMap: {
+                ...currentStore.poiTypeMap,
+                [poiType.id]: {
+                    ...currentStore.poiTypeMap[poiType.id],
+                    distance,
+                }
+            }
         });
         onDistanceChange?.(distance);
     };
 
-    const handleOnCheckedChange = (index: number, checked: boolean) => {
+    const handleOnCheckedChange = (catId: string, checked: boolean) => {
         setCategoryData(prevData => {
-            const updatedData = prevData.map((cat, i) =>
-                i === index ? { ...cat, active: checked } : cat
-            );
+            const updatedData = {
+                ...prevData,
+                [catId]: { ...prevData[catId], active: checked }
+            };
 
             // Compute activeCategories based on updated data
-            const activeTags = updatedData
+            const activeTags = Object.values(updatedData)
                 .filter(cat => cat.active)
                 .map(cat => cat.id);
 
+            const currentStore = areaStore.get();
             areaStore.set({
-                ...areaStore.get(),
-                activeTags: activeTags,
+                ...currentStore,
+                poiTypeMap: {
+                    ...currentStore.poiTypeMap,
+                    [poiType.id]: {
+                        ...currentStore.poiTypeMap[poiType.id],
+                        categories: updatedData
+                    }
+                }
             });
 
-            onCategoryChange?.(updatedData);
+            onCategoryChange?.(Object.values(updatedData));
             return updatedData;
         });
     };
@@ -62,9 +70,9 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
         <div className='p-2'>
             <div className="flex items-center space-x-2 py-2">
                 <Slider
-                    defaultValue={[initialDistance]}
-                    min={minDistance}
-                    max={maxDistance}
+                    defaultValue={[poiType.distance]}
+                    min={poiType.minDistance}
+                    max={poiType.maxDistance}
                     step={stepDistance}
                     onValueChange={(value) => { handleSliderChange(value[0]) }}
                 />
@@ -72,12 +80,13 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
             </div>
             <Separator />
             <div className='py-2'>
-                {categoryData.map((cat, index) => (
-                    < div className="flex items-center space-x-2 py-2">
+                {Object.entries(categoryData).map(([id, cat]) => (
+                    < div className="flex items-center space-x-2 py-2" key={id} >
+                        <cat.icon color={`rgb(${poiType.color.join(',')})`} />
                         <Switch
                             id={cat.name}
                             checked={cat.active}
-                            onCheckedChange={(checked) => handleOnCheckedChange(index, checked)}
+                            onCheckedChange={(checked) => handleOnCheckedChange(id, checked)}
                         />
                         <Label>{cat.name}</Label>
                     </div>
