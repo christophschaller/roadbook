@@ -52,6 +52,7 @@ const SideBar: React.FC = () => {
                         <a href="#">
                           <poiType.icon
                             color={`rgb(${poiType.color.join(",")})`}
+                            fill={`rgb(${poiType.color.join(",")})`}
                           />
                           <span>{poiType.name}</span>
                         </a>

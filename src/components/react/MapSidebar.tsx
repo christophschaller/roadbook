@@ -7,7 +7,6 @@ import { useState, useRef, useEffect } from "react";
 import { poiTypes } from "@/lib/data";
 import AreaDefinition from "@/components/react/AreaDefinition";
 import UploadButton from "@/components/react/UploadButton";
-import { GripVertical } from "lucide-react";
 
 type TypeArea = {
   typeId: string;
@@ -154,6 +153,7 @@ export function MapSidebar({
                     <poiType.icon
                       className="w-5 h-5"
                       color={`rgb(${poiType.color.join(",")})`}
+                      fill={`rgb(${poiType.color.join(",")})`}
                     />
                     <span className="text-sm text-primary">{poiType.name}</span>
                   </button>
