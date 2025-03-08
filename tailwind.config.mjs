@@ -60,6 +60,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "off-white": {
+          DEFAULT: "hsl(var(--off-white))",
+          foreground: "hsl(var(--off-white-foreground))",
+        },
       },
       keyframes: {
         "accordion-down": {
