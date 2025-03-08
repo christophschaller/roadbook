@@ -1,26 +1,24 @@
-
 import "maplibre-gl/dist/maplibre-gl.css";
 import { areaStore } from "@/stores/areaStore";
 import { useStore } from "@nanostores/react";
 import { type Feature, type LineString, type Polygon } from "geojson";
-
 
 type TypeArea = {
   typeId: string;
   area: Feature;
 };
 
-export function MapSidebar ({
+export function MapSidebar({
   trackData,
   typeAreas,
   area,
-}:{
+}: {
   trackData: LineString | null;
   typeAreas: TypeArea[] | null;
   area: ReturnType<typeof useStore<typeof areaStore>>;
 }) {
   return (
-    <div className="absolute top-[50px] left-[50px] h-[calc(100%-100px)] w-64 bg-white/40 backdrop-blur-sm shadow-lg p-4">
+    <div className="absolute bottom-0 left-0 w-full md:w-64 md:left-[50px] md:top-[50px] md:h-[calc(100%-100px)] h-1/2 bg-white/40 backdrop-blur-sm shadow-lg p-4">
       <h2 className="text-xl font-semibold mb-4">Map Controls</h2>
       <div className="space-y-4">
         <div className="space-y-2">
@@ -55,4 +53,4 @@ export function MapSidebar ({
       </div>
     </div>
   );
-};
+}
