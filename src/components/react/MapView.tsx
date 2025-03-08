@@ -12,11 +12,13 @@ import { poiStore } from "@/stores/poiStore";
 import { useStore } from "@nanostores/react";
 import { type Feature, type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
+import { MapSidebar } from "./MapSidebar";
 
 type TypeArea = {
   typeId: string;
   area: Feature;
 };
+
 
 const MapView = () => {
   const mapRef = useRef(null);
@@ -159,13 +161,18 @@ const MapView = () => {
   );
 
   return (
-    <div ref={mapRef} style={{ width: "100%", height: "400px" }}>
+    <div
+      ref={mapRef}
+      style={{ width: "100%", height: "400px" }}
+      className="relative"
+    >
       <DeckGL initialViewState={viewState} controller={true} layers={layers}>
         <Map
           mapStyle="https://tiles.stadiamaps.com/styles/outdoors.json"
           mapLib={maplibregl}
         />
       </DeckGL>
+      <MapSidebar trackData={trackData} typeAreas={typeAreas} area={area} />
     </div>
   );
 };
