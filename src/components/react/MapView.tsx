@@ -19,7 +19,6 @@ type TypeArea = {
   area: Feature;
 };
 
-
 const MapView = () => {
   const mapRef = useRef(null);
   const track = useStore(trackStore);
@@ -163,7 +162,7 @@ const MapView = () => {
   return (
     <div
       ref={mapRef}
-      style={{ width: "100%", height: "400px" }}
+      style={{ width: "100%", height: "100vh" }}
       className="relative"
     >
       <DeckGL initialViewState={viewState} controller={true} layers={layers}>
