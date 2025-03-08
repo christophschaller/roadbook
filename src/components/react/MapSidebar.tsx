@@ -3,10 +3,11 @@ import { areaStore } from "@/stores/areaStore";
 import { trackStore } from "@/stores/trackStore";
 import { useStore } from "@nanostores/react";
 import { type Feature, type LineString, type Polygon } from "geojson";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { poiTypes } from "@/lib/data";
 import AreaDefinition from "@/components/react/AreaDefinition";
 import UploadButton from "@/components/react/UploadButton";
+import { GripVertical } from "lucide-react";
 
 type TypeArea = {
   typeId: string;
@@ -24,6 +25,64 @@ export function MapSidebar({
 }) {
   const [activeType, setActiveType] = useState<string>("");
   const track = useStore(trackStore);
+  const [height, setHeight] = useState("50%");
+  const [isDragging, setIsDragging] = useState(false);
+  const [startY, setStartY] = useState(0);
+  const [startHeight, setStartHeight] = useState(0);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handleDragStart = (e: React.TouchEvent | React.MouseEvent) => {
+    if (!isMobile) return;
+    setIsDragging(true);
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+    setStartY(clientY);
+    setStartHeight(sidebarRef.current?.offsetHeight || 0);
+  };
+
+  const handleDragMove = (e: TouchEvent | MouseEvent) => {
+    if (!isDragging || !sidebarRef.current || !isMobile) return;
+
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+    const deltaY = startY - clientY;
+    const newHeight = startHeight + deltaY;
+    const windowHeight = window.innerHeight;
+    const heightPercentage = (newHeight / windowHeight) * 100;
+
+    // Constrain height between 25% and 100% of window height
+    setHeight(`${Math.max(25, Math.min(100, heightPercentage))}%`);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    if (isDragging && isMobile) {
+      window.addEventListener("mousemove", handleDragMove);
+      window.addEventListener("mouseup", handleDragEnd);
+      window.addEventListener("touchmove", handleDragMove);
+      window.addEventListener("touchend", handleDragEnd);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleDragMove);
+      window.removeEventListener("mouseup", handleDragEnd);
+      window.removeEventListener("touchmove", handleDragMove);
+      window.removeEventListener("touchend", handleDragEnd);
+    };
+  }, [isDragging, isMobile]);
 
   return (
     <>
@@ -33,8 +92,21 @@ export function MapSidebar({
       </div>
 
       {/* Sidebar */}
-      <div className="absolute bottom-0 left-0 w-full md:w-64 md:left-[50px] md:top-[50px] md:h-[calc(100%-100px)] h-1/2 bg-white/80 backdrop-blur-md shadow-lg p-4 overflow-y-auto rounded-t-2xl md:rounded-2xl">
-        <div className="space-y-4">
+      <div
+        ref={sidebarRef}
+        className="absolute bottom-0 left-0 w-full md:w-64 md:left-[50px] md:top-[50px] md:h-[calc(100%-100px)] bg-white/80 backdrop-blur-md shadow-lg p-4 overflow-y-auto rounded-t-2xl md:rounded-2xl transition-transform duration-200"
+        style={{ height: isMobile ? height : undefined }}
+      >
+        {/* Drag Handle */}
+        <div
+          className="absolute top-0 left-0 right-0 h-8 flex items-center justify-center cursor-grab active:cursor-grabbing md:hidden"
+          onMouseDown={handleDragStart}
+          onTouchStart={handleDragStart}
+        >
+          <div className="w-12 h-1.5 bg-gray-300 rounded-full" />
+        </div>
+
+        <div className="space-y-4 mt-8 md:mt-0">
           {/* Upload Button (Desktop only) */}
           <div className="hidden md:flex flex-col space-y-4">
             <UploadButton />
