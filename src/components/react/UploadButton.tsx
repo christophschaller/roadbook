@@ -1,6 +1,6 @@
 "use client";
 
-import { Upload } from "lucide-react";
+import { Plus, RefreshCw } from "lucide-react";
 import queryOverpass from "@derhuerst/query-overpass";
 import { parseGPX, type GeoJSON } from "@we-gold/gpxjs";
 import { Button } from "@/components/ui/button";
@@ -14,8 +14,15 @@ import type { PointOfInterest } from "@/types";
 import { type LineString } from "geojson";
 import * as turf from "@turf/turf";
 import { poiTypes } from "@/lib/data";
+import { useStore } from "@nanostores/react";
 
-export default function UploadButton() {
+export default function UploadButton({
+  className = "",
+}: {
+  className?: string;
+}) {
+  const track = useStore(trackStore);
+
   const fetchPOIsAlongRoute = (
     lineString: LineString,
     bufferMeters: number,
@@ -93,12 +100,18 @@ export default function UploadButton() {
 
   return (
     <Button
-      variant="outline"
-      className="w-full"
+      variant={track.data ? "outline" : "default"}
+      className={`${className} md:w-full`}
       onClick={() => document.getElementById("file-upload")?.click()}
     >
-      <Upload className="mr-2 h-4 w-4" />
-      Upload GPX Track
+      {track.data ? (
+        <RefreshCw className="h-4 w-4 md:mr-2" />
+      ) : (
+        <Plus className="h-4 w-4 md:mr-2" />
+      )}
+      <span className="hidden md:inline">
+        {track.data ? "Upload New Track" : "Upload GPX Track"}
+      </span>
       <input
         id="file-upload"
         type="file"
