@@ -140,7 +140,9 @@ export function MapSidebar({
 
           {/* Points of Interest */}
           <div className="space-y-2">
-            <h3 className="font-medium text-primary">Points of Interest</h3>
+            <h3 className="font-medium text-lg md:text-base text-primary">
+              Points of Interest
+            </h3>
             <div className="space-y-2">
               {poiTypes.map((poiType) => (
                 <div key={poiType.id} className="space-y-2">
@@ -150,11 +152,17 @@ export function MapSidebar({
                     }
                     className="w-full flex items-center space-x-2 p-2 rounded-md hover:bg-white/50 transition-colors"
                   >
-                    <poiType.icon
-                      className="w-5 h-5"
-                      color={`rgb(${poiType.color.join(",")})`}
-                    />
-                    <span className="text-sm text-primary">{poiType.name}</span>
+                    <div
+                      className="w-8 h-8 rounded-full flex items-center justify-center"
+                      style={{
+                        backgroundColor: `rgb(${poiType.color.join(",")})`,
+                      }}
+                    >
+                      <poiType.icon className="w-5 h-5" color="white" />
+                    </div>
+                    <span className="text-base md:text-sm text-primary">
+                      {poiType.name}
+                    </span>
                   </button>
                   {activeType === poiType.id && (
                     <div className="ml-4">
@@ -168,7 +176,9 @@ export function MapSidebar({
 
           {/* Active Areas */}
           <div className="space-y-2">
-            <h3 className="font-medium text-primary">Active Areas</h3>
+            <h3 className="font-medium text-lg md:text-base text-primary">
+              Active Areas
+            </h3>
             <div className="space-y-2">
               {typeAreas?.map((typeArea) => (
                 <div
@@ -181,7 +191,7 @@ export function MapSidebar({
                       backgroundColor: `rgb(${area.poiTypeMap[typeArea.typeId].color.join(",")})`,
                     }}
                   />
-                  <span className="text-sm text-primary">
+                  <span className="text-base md:text-sm text-primary">
                     {area.poiTypeMap[typeArea.typeId].name}
                   </span>
                 </div>

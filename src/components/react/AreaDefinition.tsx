@@ -80,19 +80,26 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
             handleSliderChange(value[0]);
           }}
         />
-        <Label>Distance</Label>
+        <Label className="text-base md:text-sm">Distance</Label>
       </div>
       <Separator />
       <div className="py-2">
         {Object.entries(categoryData).map(([id, cat]) => (
           <div className="flex items-center space-x-2 py-2" key={id}>
-            <cat.icon color={`rgb(${poiType.color.join(",")})`} />
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center"
+              style={{
+                backgroundColor: `rgb(${poiType.color.join(",")})`,
+              }}
+            >
+              <cat.icon className="w-4 h-4" color="white" />
+            </div>
             <Switch
               id={cat.name}
               checked={cat.active}
               onCheckedChange={(checked) => handleOnCheckedChange(id, checked)}
             />
-            <Label>{cat.name}</Label>
+            <Label className="text-base md:text-sm">{cat.name}</Label>
           </div>
         ))}
       </div>

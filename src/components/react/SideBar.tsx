@@ -37,7 +37,9 @@ const SideBar: React.FC = () => {
         <SidebarSeparator />
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>Points of Interest</SidebarGroupLabel>
+            <SidebarGroupLabel className="text-lg md:text-base">
+              Points of Interest
+            </SidebarGroupLabel>
             <SidebarGroupContent>
               <Accordion
                 type="single"
@@ -50,10 +52,12 @@ const SideBar: React.FC = () => {
                     <AccordionTrigger>
                       <SidebarMenuButton asChild>
                         <a href="#">
-                          <poiType.icon
-                            color={`rgb(${poiType.color.join(",")})`}
-                          />
-                          <span>{poiType.name}</span>
+                          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                            <poiType.icon color="white" />
+                          </div>
+                          <span className="text-base md:text-sm">
+                            {poiType.name}
+                          </span>
                         </a>
                       </SidebarMenuButton>
                     </AccordionTrigger>
