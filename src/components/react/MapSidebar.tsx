@@ -110,8 +110,8 @@ export function MapSidebar({
           <div className="hidden md:flex flex-col space-y-4">
             <UploadButton />
             {!track.data && (
-              <p className="text-sm text-primary/60 max-w-[200px]">
-                Just upload your GPX route, and we'll show you handy OSM-based
+              <p className="text text-primary/60 max-w-[200px]">
+                Upload your GPX route, and we'll show you handy OSM-based
                 stops—like water refill points, coffee spots, and a place to
                 rest if you need it. Think of it as your reliable guide for
                 those well-deserved breaks along the ride.
@@ -143,7 +143,7 @@ export function MapSidebar({
             <h3 className="font-medium text-lg md:text-base text-primary">
               Points of Interest
             </h3>
-            <div className="space-y-2">
+            <div className="">
               {poiTypes.map((poiType) => (
                 <div key={poiType.id} className="space-y-2">
                   <button

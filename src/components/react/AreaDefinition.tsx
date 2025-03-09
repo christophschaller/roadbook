@@ -68,8 +68,8 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
   };
 
   return (
-    <div className="p-2">
-      <div className="flex items-center space-x-2 py-2">
+    <div className="pl-2">
+      <div className="flex items-center space-x-2">
         <Slider
           defaultValue={[poiType.distance]}
           min={poiType.minDistance}
@@ -82,9 +82,9 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
         <Label className="text-base md:text-sm">Distance</Label>
       </div>
       <Separator />
-      <div className="py-2">
+      <div className="py-1">
         {Object.entries(categoryData).map(([id, cat]) => (
-          <div className="flex items-center space-x-2 py-2" key={id}>
+          <div className="flex items-center space-x-2 py-1" key={id}>
             <TailwindSwitch
               checked={cat.active}
               onChange={(checked: boolean) =>
