@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { areaStore } from "@/stores/areaStore";
 import type { Category, PoiType } from "@/types";
-import { TailwindSwitch } from "./TailwindSwitch";
+import { TailwindSwitch } from "./utilities/TailwindSwitch";
 
 export interface AreaDefinitionProps {
   poiType: PoiType; // Type of POI
