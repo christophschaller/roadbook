@@ -6,17 +6,15 @@ import { areaStore } from "@/stores/areaStore";
 import type { Category, PoiType } from "@/types";
 import { TailwindSwitch } from "./utilities/TailwindSwitch";
 
-export interface AreaDefinitionProps {
-  poiType: PoiType; // Type of POI
-  onDistanceChange?: (distance: number) => void;
-  onCategoryChange?: (categories: Category[]) => void;
-}
-
-const AreaDefinition: React.FC<AreaDefinitionProps> = ({
+export function AreaDefinition({
   poiType,
   onDistanceChange,
   onCategoryChange,
-}) => {
+}: {
+  poiType: PoiType; // Type of POI
+  onDistanceChange?: (distance: number) => void;
+  onCategoryChange?: (categories: Category[]) => void;
+}) {
   const stepDistance = 50;
   const [categoryData, setCategoryData] = useState<{ [key: string]: Category }>(
     poiType.categories,
@@ -99,6 +97,4 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
       </div>
     </div>
   );
-};
-
-export default AreaDefinition;
+}
