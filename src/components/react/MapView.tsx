@@ -12,12 +12,8 @@ import { poiStore } from "@/stores/poiStore";
 import { useStore } from "@nanostores/react";
 import { type Feature, type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
+import type { TypeArea } from "@/types/area.types";
 import { MapSidebar } from "./MapSidebar";
-
-type TypeArea = {
-  typeId: string;
-  area: Feature;
-};
 
 const MapView = () => {
   const mapRef = useRef(null);

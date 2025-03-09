@@ -5,13 +5,10 @@ import { useStore } from "@nanostores/react";
 import { type Feature, type LineString, type Polygon } from "geojson";
 import { useState, useRef, useEffect } from "react";
 import { poiTypes } from "@/lib/data";
-import AreaDefinition from "@/components/react/AreaDefinition";
-import UploadButton from "@/components/react/UploadButton";
+import { AreaDefinition } from "@/components/react/AreaDefinition";
+import UploadButton from "@/components/react/utilities/UploadButton";
+import type { TypeArea } from "@/types/area.types";
 
-type TypeArea = {
-  typeId: string;
-  area: Feature;
-};
 
 export function MapSidebar({
   trackData,
