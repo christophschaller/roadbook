@@ -1,23 +1,20 @@
-import React from "react";
 import type { LucideIcon } from "lucide-react";
 
-interface CustomSwitchProps {
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  disabled?: boolean;
-  className?: string;
-  icon?: LucideIcon;
-  color?: number[];
-}
-
-const CustomSwitch: React.FC<CustomSwitchProps> = ({
+export function TailwindSwitch({
   checked,
   onChange,
   disabled = false,
   className = "",
   icon: Icon,
   color = [107, 114, 128], // Default gray color
-}) => {
+}: {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  disabled?: boolean;
+  className?: string;
+  icon?: LucideIcon;
+  color?: number[];
+}) {
   return (
     <button
       role="switch"
@@ -50,6 +47,4 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
       </span>
     </button>
   );
-};
-
-export default CustomSwitch;
+}

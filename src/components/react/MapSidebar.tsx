@@ -160,7 +160,7 @@ export function MapSidebar({
                     >
                       <poiType.icon className="w-5 h-5" color="white" />
                     </div>
-                    <span className="text-base md:text-sm text-primary">
+                    <span className="text-base md:text text-primary">
                       {poiType.name}
                     </span>
                   </button>

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { type LucideIcon, icons } from "lucide-react";
+import React, { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { areaStore } from "@/stores/areaStore";
 import type { Category, PoiType } from "@/types";
-import CustomSwitch from "./CustomSwitch";
+import { TailwindSwitch } from "./TailwindSwitch";
 
 export interface AreaDefinitionProps {
   poiType: PoiType; // Type of POI
@@ -86,10 +85,11 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
       <div className="py-2">
         {Object.entries(categoryData).map(([id, cat]) => (
           <div className="flex items-center space-x-2 py-2" key={id}>
-
-            <CustomSwitch
+            <TailwindSwitch
               checked={cat.active}
-              onChange={(checked) => handleOnCheckedChange(id, checked)}
+              onChange={(checked: boolean) =>
+                handleOnCheckedChange(id, checked)
+              }
               icon={cat.icon}
               color={poiType.color}
             />
