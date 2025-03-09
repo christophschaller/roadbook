@@ -86,10 +86,7 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
       <div className="py-2">
         {Object.entries(categoryData).map(([id, cat]) => (
           <div className="flex items-center space-x-2 py-2" key={id}>
-            <cat.icon
-              color={`rgb(${poiType.color.join(",")})`}
-              fill={`rgb(${poiType.color.join(",")})`}
-            />
+            <cat.icon color={`rgb(${poiType.color.join(",")})`} />
             <Switch
               id={cat.name}
               checked={cat.active}

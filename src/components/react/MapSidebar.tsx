@@ -153,7 +153,6 @@ export function MapSidebar({
                     <poiType.icon
                       className="w-5 h-5"
                       color={`rgb(${poiType.color.join(",")})`}
-                      fill={`rgb(${poiType.color.join(",")})`}
                     />
                     <span className="text-sm text-primary">{poiType.name}</span>
                   </button>
