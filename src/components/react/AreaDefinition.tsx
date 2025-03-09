@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { type LucideIcon, icons } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { areaStore } from "@/stores/areaStore";
 import type { Category, PoiType } from "@/types";
+import CustomSwitch from "./CustomSwitch";
 
 export interface AreaDefinitionProps {
   poiType: PoiType; // Type of POI
@@ -86,18 +86,12 @@ const AreaDefinition: React.FC<AreaDefinitionProps> = ({
       <div className="py-2">
         {Object.entries(categoryData).map(([id, cat]) => (
           <div className="flex items-center space-x-2 py-2" key={id}>
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{
-                backgroundColor: `rgb(${poiType.color.join(",")})`,
-              }}
-            >
-              <cat.icon className="w-4 h-4" color="white" />
-            </div>
-            <Switch
-              id={cat.name}
+
+            <CustomSwitch
               checked={cat.active}
-              onCheckedChange={(checked) => handleOnCheckedChange(id, checked)}
+              onChange={(checked) => handleOnCheckedChange(id, checked)}
+              icon={cat.icon}
+              color={poiType.color}
             />
             <Label className="text-base md:text-sm">{cat.name}</Label>
           </div>
