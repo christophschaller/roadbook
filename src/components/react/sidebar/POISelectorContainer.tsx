@@ -5,10 +5,9 @@ import { useStore } from "@nanostores/react";
 import { type Feature, type LineString, type Polygon } from "geojson";
 import { useState, useRef, useEffect } from "react";
 import { poiTypes } from "@/lib/data";
-import { AreaDefinition } from "@/components/react/AreaDefinition";
-import UploadButton from "@/components/react/utilities/UploadButton";
+import { POISelectorContainer } from "@/components/react/sidebar/AreaDefinition";
+import UploadButton from "@/components/react/sidebar/UploadButton";
 import type { TypeArea } from "@/types/area.types";
-
 
 export function MapSidebar({
   trackData,
@@ -163,7 +162,7 @@ export function MapSidebar({
                   </button>
                   {activeType === poiType.id && (
                     <div className="ml-4">
-                      <AreaDefinition poiType={poiType} />
+                      <POISelectorContainer poiType={poiType} />
                     </div>
                   )}
                 </div>

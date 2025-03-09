@@ -4,14 +4,14 @@ import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { areaStore } from "@/stores/areaStore";
 import type { Category, PoiType } from "@/types";
-import { TailwindSwitch } from "./utilities/TailwindSwitch";
+import { TailwindSwitch } from "./TailwindSwitch";
 
-export function AreaDefinition({
+export function POISelectorContainer({
   poiType,
   onDistanceChange,
   onCategoryChange,
 }: {
-  poiType: PoiType; // Type of POI
+  poiType: PoiType;
   onDistanceChange?: (distance: number) => void;
   onCategoryChange?: (categories: Category[]) => void;
 }) {

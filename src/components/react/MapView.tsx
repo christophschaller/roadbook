@@ -13,7 +13,7 @@ import { useStore } from "@nanostores/react";
 import { type Feature, type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { TypeArea } from "@/types/area.types";
-import { MapSidebar } from "./MapSidebar";
+import { MapSidebar } from "./sidebar/POISelectorContainer";
 
 const MapView = () => {
   const mapRef = useRef(null);
