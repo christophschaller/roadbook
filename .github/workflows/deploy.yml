@@ -5,7 +5,9 @@ on:
     branches:
       - main
       - dev
-      - 'feature/*'
+  pull_request:
+    branches:
+      - '**'
   workflow_dispatch:
 
 permissions:
@@ -22,15 +24,19 @@ jobs:
 
       - name: Set base path environment variable
         run: |
-          branch=${GITHUB_REF#refs/heads/}
+          # If this is a pull_request event, use GITHUB_HEAD_REF; otherwise, use the pushed branch name.
+          if [ -n "$GITHUB_HEAD_REF" ]; then
+            branch="$GITHUB_HEAD_REF"
+          else
+            branch=${GITHUB_REF#refs/heads/}
+          fi
           echo "Detected branch: $branch"
           if [ "$branch" = "main" ]; then
             echo "GITHUB_BASE_PATH=/roadbook" >> $GITHUB_ENV
           elif [ "$branch" = "dev" ]; then
             echo "GITHUB_BASE_PATH=/roadbook/dev" >> $GITHUB_ENV
-          elif [[ "$branch" == feature/* ]]; then
-            feature=${branch#feature/}
-            echo "GITHUB_BASE_PATH=/roadbook/feature/$feature" >> $GITHUB_ENV
+          else
+            echo "GITHUB_BASE_PATH=/roadbook/$branch" >> $GITHUB_ENV
           fi
 
       - name: Install, build, and upload your site
