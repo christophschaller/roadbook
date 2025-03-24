@@ -1,14 +1,13 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
   push:
-    branches: [main]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
+    branches:
+      - main
+      - dev
+      - 'feature/*'
   workflow_dispatch:
 
-# Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
   pages: write
@@ -20,14 +19,24 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+
+      - name: Set base path environment variable
+        run: |
+          branch=${GITHUB_REF#refs/heads/}
+          echo "Detected branch: $branch"
+          if [ "$branch" = "main" ]; then
+            echo "GITHUB_BASE_PATH=/roadbook" >> $GITHUB_ENV
+          elif [ "$branch" = "dev" ]; then
+            echo "GITHUB_BASE_PATH=/roadbook/dev" >> $GITHUB_ENV
+          elif [[ "$branch" == feature/* ]]; then
+            feature=${branch#feature/}
+            echo "GITHUB_BASE_PATH=/roadbook/feature/$feature" >> $GITHUB_ENV
+          fi
+
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         env:
-          GITHUB_BASE_PATH: /roadbook
-        # with:
-        # path: . # The root location of your Astro project inside the repository. (optional)
-        # node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)
-        # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+          GITHUB_BASE_PATH: ${{ env.GITHUB_BASE_PATH }}
 
   deploy:
     needs: build
