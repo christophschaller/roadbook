@@ -9,7 +9,7 @@ import { POISelectorContainer } from "@/components/react/sidebar/AreaDefinition"
 import UploadButton from "@/components/react/sidebar/UploadButton";
 import type { TypeArea } from "@/types/area.types";
 
-export function MapSidebar({
+export function TrackEditor({
   trackData,
   typeAreas,
   area,

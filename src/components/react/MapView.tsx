@@ -13,7 +13,24 @@ import { useStore } from "@nanostores/react";
 import { type Feature, type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { TypeArea } from "@/types/area.types";
-import { MapSidebar } from "./sidebar/POISelectorContainer";
+import { TrackEditor } from "./sidebar/TrackEditor";
+
+// Color legend component to explain elevation change colors
+const ElevationLegend = () => {
+  return (
+    <div className="absolute bottom-8 right-8 bg-white p-3 rounded-md shadow-md z-10">
+      <h3 className="text-sm font-semibold mb-2">Elevation Change</h3>
+      <div className="flex items-center mb-1">
+        <div className="w-6 h-3 bg-gradient-to-r from-green-500 to-yellow-400 mr-2"></div>
+        <span className="text-xs">Downhill</span>
+      </div>
+      <div className="flex items-center">
+        <div className="w-6 h-3 bg-gradient-to-r from-yellow-400 to-red-500 mr-2"></div>
+        <span className="text-xs">Uphill</span>
+      </div>
+    </div>
+  );
+};
 
 const MapView = () => {
   const mapRef = useRef(null);
@@ -43,7 +60,7 @@ const MapView = () => {
       setTrackData(lineString);
 
       const simpleLineString = turf.simplify(lineString, {
-        tolerance: 0.001,
+        tolerance: 0.005,
         highQuality: false,
       });
       setSimpleTrackData(simpleLineString);
@@ -68,10 +85,12 @@ const MapView = () => {
         const buffered = turf.buffer(simpleTrackData, poiType.distance, {
           units: "meters",
         });
-        buffers.push({
-          typeId: id,
-          area: buffered,
-        });
+        if (buffered) {
+          buffers.push({
+            typeId: id,
+            area: buffered,
+          });
+        }
       });
       setTypeAreas(buffers);
     }
@@ -82,6 +101,20 @@ const MapView = () => {
       setPoiData(pois.pois);
     }
   }, [pois]);
+
+  useEffect(() => {
+    if (poiData) {
+      console.log("POI Data updated:", {
+        totalPOIs: poiData.length,
+        poiDetails: poiData.map((poi) => ({
+          id: poi.id,
+          category: poi.category,
+          position: [poi.lon, poi.lat],
+          trackDistance: poi.trackDistance,
+        })),
+      });
+    }
+  }, [poiData]);
 
   //console.log(area)
   console.log("typeAreas:", typeAreas);
@@ -94,18 +127,19 @@ const MapView = () => {
           data: trackData ? [{ path: trackData.coordinates }] : [],
           getPath: (d: any) =>
             d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
-          getColor: [0, 0, 0],
+          //getColor: [0, 0, 0],
+          getColor: [255, 0, 0],
           getWidth: 3,
           widthMinPixels: 2,
         }),
-      // simpleTrackData && new PathLayer({
-      //     id: 'simpleTrack',
-      //     data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
-      //     getPath: (d: any) => d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
-      //     getColor: [0, 255, 0],
-      //     getWidth: 3,
-      //     widthMinPixels: 2,
-      // }),
+      simpleTrackData && new PathLayer({
+          id: 'simpleTrack',
+          data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
+          getPath: (d: any) => d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
+          getColor: [0, 255, 0],
+          getWidth: 3,
+          widthMinPixels: 2,
+        }),
       typeAreas &&
         new PolygonLayer({
           id: "typeAreas",
@@ -123,34 +157,48 @@ const MapView = () => {
           lineWidthMinPixels: 2,
           pickable: true,
         }),
-      // poiData && new IconLayer({
-      //     id: 'pois',
-      //     data: poiData.filter((d: PointOfInterest) => area.activeTags.includes(d.category)),
-      //     getPosition: (d: any) => [d.lon, d.lat],
-      //     getIcon: (d: PointOfInterest) => ({
-      //         url: d.icon, //"https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
-      //         width: 256,
-      //         height: 256,
-      //         mask: true,
-      //     }),
-      //     getSize: 24,
-      //     getColor: (d: PointOfInterest) => d.color, // White background circle
-      //     pickable: true,
-      //     onClick: (info: any) => {
-      //         if (info.object) {
-      //             console.log(`Clicked POI: ${info.object.id}`)
-      //             console.log("trackDistance:", info.object.trackDistance)
-      //             console.log("category:", info.object.category)
-      //             console.log("poi object:", info.object)
-      //         }
-      //     },
-      //     // props added by DataFilterExtension
-      //     getFilterValue: (d: PointOfInterest) => d.trackDistance,
-      //     filterRange: [0, area.distance,], // TODO: maybe filterSoftRange would look nice? if the pois fade after hitting the max distance
+      poiData &&
+        new IconLayer({
+          id: "pois",
+          data: poiData.filter((d: PointOfInterest) => {
+            console.log("poid d:", d);
+            // Find the POI type and category for this POI
+            const poiType = Object.values(area.poiTypeMap).find((type) =>
+              Object.values(type.categories).some(
+                (cat) => cat.id === d.category,
+              ),
+            );
+            // Only show POIs for active types
 
-      //     // Define extensions
-      //     extensions: [new DataFilterExtension({ filterSize: 1 })]
-      // })
+            return poiType?.active ?? false;
+          }),
+          getPosition: (d: PointOfInterest) => [d.lon, d.lat],
+          getIcon: (d: PointOfInterest) => ({
+            url: "https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
+            width: 256,
+            height: 256,
+            mask: true,
+          }),
+          getSize: 24,
+          getColor: (d: PointOfInterest) => d.color || [255, 255, 255],
+          pickable: true,
+          onClick: (info: any) => {
+            if (info.object) {
+              console.log(`Clicked POI: ${info.object.id}`);
+              console.log("trackDistance:", info.object.trackDistance);
+              console.log("category:", info.object.category);
+              console.log("poi object:", info.object);
+            }
+          },
+          // props added by DataFilterExtension
+          getFilterValue: (d: PointOfInterest) => d.trackDistance,
+          filterRange: [
+            0,
+            Math.max(...Object.values(area.poiTypeMap).map((t) => t.distance)),
+          ],
+          // Define extensions
+          extensions: [new DataFilterExtension({ filterSize: 1 })],
+        }),
     ],
     [trackData, simpleTrackData, areaData, poiData, area],
   );
@@ -167,7 +215,8 @@ const MapView = () => {
           mapLib={maplibregl}
         />
       </DeckGL>
-      <MapSidebar trackData={trackData} typeAreas={typeAreas} area={area} />
+      <TrackEditor trackData={trackData} typeAreas={typeAreas} area={area} />
+      <ElevationLegend />
     </div>
   );
 };
