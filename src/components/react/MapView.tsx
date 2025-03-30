@@ -14,6 +14,7 @@ import { type Feature, type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { TypeArea } from "@/types/area.types";
 import { TrackEditor } from "./sidebar/TrackEditor";
+import { MainControlsBar } from "./sidebar/MainControlsBar";
 
 // Color legend component to explain elevation change colors
 const ElevationLegend = () => {
@@ -215,7 +216,7 @@ const MapView = () => {
           mapLib={maplibregl}
         />
       </DeckGL>
-      <TrackEditor trackData={trackData} typeAreas={typeAreas} area={area} />
+      <MainControlsBar/>
       <ElevationLegend />
     </div>
   );
