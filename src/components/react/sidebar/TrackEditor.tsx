@@ -25,22 +25,18 @@ export function TrackEditor({
 
   return (
     <>
-      {/* Mobile Upload Button */}
-      <div className="fixed bottom-4 left-4 z-50 md:hidden">
-        <UploadButton className="rounded-full p-2 shadow-lg" />
-      </div>
 
       {/* Sidebar */}
       <div
         ref={sidebarRef}
         className="absolute bottom-0 left-0 w-full md:w-64 md:left-[50px] md:top-[50px] md:h-[calc(100%-100px)] bg-white/80 backdrop-blur-md shadow-lg p-4 overflow-y-auto rounded-t-2xl md:rounded-2xl transition-transform duration-200"
       >
-        <div className="space-y-4 mt-8 md:mt-0">
+        <div className="space-y-4 md:mt-0">
           {/* Upload Button (Desktop only) */}
-          <div className="hidden md:flex flex-col space-y-4">
+          <div className="flex flex-col space-y-4">
             <UploadButton />
             {!track.data && (
-              <p className="text text-primary/60 max-w-[200px]">
+              <p className="text text-primary/60">
                 Upload your GPX route, and we'll show you handy OSM-based
                 stops—like water refill points, coffee spots, and a place to
                 rest if you need it. Think of it as your reliable guide for
