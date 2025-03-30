@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 
-export function TailwindSwitch({
+export function IconSwitch({
   checked,
   onChange,
   disabled = false,

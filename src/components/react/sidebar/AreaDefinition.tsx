@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { areaStore } from "@/stores/areaStore";
 import type { Category, PoiType } from "@/types";
-import { TailwindSwitch } from "./TailwindSwitch";
+import { IconSwitch } from "../../ui/IconSwitch";
 
 export function POISelectorContainer({
   poiType,
@@ -83,7 +83,7 @@ export function POISelectorContainer({
       <div className="py-1">
         {Object.entries(categoryData).map(([id, cat]) => (
           <div className="flex items-center space-x-2 py-1" key={id}>
-            <TailwindSwitch
+            <IconSwitch
               checked={cat.active}
               onChange={(checked: boolean) =>
                 handleOnCheckedChange(id, checked)
