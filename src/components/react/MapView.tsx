@@ -13,8 +13,8 @@ import { useStore } from "@nanostores/react";
 import { type Feature, type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { TypeArea } from "@/types/area.types";
-import { TrackEditor } from "./sidebar/TrackEditor";
-import { MainControlsBar } from "./sidebar/MainControlsBar";
+import { TrackEditor } from "./MainControlsBar/TrackEditor";
+import { MainControlsBar } from "./MainControlsBar/MainControlsBar";
 
 // Color legend component to explain elevation change colors
 const ElevationLegend = () => {
@@ -133,10 +133,12 @@ const MapView = () => {
           getWidth: 3,
           widthMinPixels: 2,
         }),
-      simpleTrackData && new PathLayer({
-          id: 'simpleTrack',
+      simpleTrackData &&
+        new PathLayer({
+          id: "simpleTrack",
           data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
-          getPath: (d: any) => d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
+          getPath: (d: any) =>
+            d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
           getColor: [0, 255, 0],
           getWidth: 3,
           widthMinPixels: 2,
@@ -216,7 +218,7 @@ const MapView = () => {
           mapLib={maplibregl}
         />
       </DeckGL>
-      <MainControlsBar/>
+      <MainControlsBar />
       <ElevationLegend />
     </div>
   );

@@ -5,11 +5,12 @@ import { TrackEditor } from "./TrackEditor";
 import UploadButton from "./UploadButton";
 import type { LineString } from "geojson";
 import { areaStore } from "@/stores/areaStore";
+import { TrackInformation } from "./TrackInformation";
 
 export function MainControlsBar() {
   const track = useStore(trackStore);
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const lineString = track.data
+  const trackData = track.data
     ? (track.data.features[0].geometry as LineString)
     : null;
   const area = useStore(areaStore);
@@ -33,7 +34,10 @@ export function MainControlsBar() {
             )}
           </div>
         </div>
-        <TrackEditor track={track} trackData={lineString} typeAreas={[]} area={area} />
+        {track && trackData && (
+          <TrackInformation track={track} trackData={trackData} />
+        )}
+        <TrackEditor typeAreas={[]} area={area} />
       </div>
     </>
   );

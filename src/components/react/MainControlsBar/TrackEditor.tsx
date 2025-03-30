@@ -2,48 +2,23 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { areaStore } from "@/stores/areaStore";
 import { trackStore } from "@/stores/trackStore";
 import { useStore } from "@nanostores/react";
-import { type Feature, type LineString, type Polygon } from "geojson";
-import { useState, useRef, useEffect } from "react";
+import { type LineString } from "geojson";
+import { useState } from "react";
 import { poiTypes } from "@/lib/data";
-import { POISelectorContainer } from "@/components/react/sidebar/AreaDefinition";
-import UploadButton from "@/components/react/sidebar/UploadButton";
+import { POISelectorContainer } from "@/components/react/MainControlsBar/AreaDefinition";
 import type { TypeArea } from "@/types/area.types";
 
 export function TrackEditor({
-  track,
-  trackData,
   typeAreas,
   area,
 }: {
-  track: ReturnType<typeof useStore<typeof trackStore>> | null;
-  trackData: LineString | null;
   typeAreas: TypeArea[] | null;
   area: ReturnType<typeof useStore<typeof areaStore>>;
 }) {
   const [activeType, setActiveType] = useState<string>("");
-  
 
   return (
     <div className="space-y-4 md:mt-0">
-      {/* Track Information */}
-      {track?.data && trackData && (
-        <div className="space-y-2">
-          <h3 className="font-medium text-primary">Track Information</h3>
-          <div className="space-y-1">
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-primary/60">Track name:</span>
-              <p className="text-sm text-primary/80">{track.name}</p>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-primary/60">GPX points:</span>
-              <p className="text-sm text-primary/80">
-                {trackData.coordinates.length}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Points of Interest */}
       <div className="space-y-2">
         <h3 className="font-medium text-lg md:text-base text-primary">
