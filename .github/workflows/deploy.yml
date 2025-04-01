@@ -2,6 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
+    branches: [main]
     branches:
       - main
       - dev
@@ -13,11 +14,7 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
+@@ -20,14 +21,28 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
@@ -38,10 +35,10 @@ jobs:
           else
             echo "GITHUB_BASE_PATH=/roadbook/$branch" >> $GITHUB_ENV
           fi
-
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         env:
+          GITHUB_BASE_PATH: /roadbook
           GITHUB_BASE_PATH: ${{ env.GITHUB_BASE_PATH }}
 
   deploy:
