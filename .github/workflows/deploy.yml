@@ -38,7 +38,6 @@ permissions:
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         env:
-          GITHUB_BASE_PATH: /roadbook
           GITHUB_BASE_PATH: ${{ env.GITHUB_BASE_PATH }}
 
   deploy:
