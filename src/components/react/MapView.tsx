@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import maplibregl from "maplibre-gl";
 import { Map } from "react-map-gl/dist/es5/exports-maplibre.js";
 import DeckGL from "@deck.gl/react";
@@ -10,28 +10,10 @@ import { trackStore } from "@/stores/trackStore";
 import { areaStore } from "@/stores/areaStore";
 import { poiStore } from "@/stores/poiStore";
 import { useStore } from "@nanostores/react";
-import { type Feature, type LineString, type Polygon } from "geojson";
+import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { TypeArea } from "@/types/area.types";
-import { TrackEditor } from "./MainControlsBar/TrackEditor";
 import { MainControlsBar } from "./MainControlsBar/MainControlsBar";
-
-// Color legend component to explain elevation change colors
-const ElevationLegend = () => {
-  return (
-    <div className="absolute bottom-8 right-8 bg-white p-3 rounded-md shadow-md z-10">
-      <h3 className="text-sm font-semibold mb-2">Elevation Change</h3>
-      <div className="flex items-center mb-1">
-        <div className="w-6 h-3 bg-gradient-to-r from-green-500 to-yellow-400 mr-2"></div>
-        <span className="text-xs">Downhill</span>
-      </div>
-      <div className="flex items-center">
-        <div className="w-6 h-3 bg-gradient-to-r from-yellow-400 to-red-500 mr-2"></div>
-        <span className="text-xs">Uphill</span>
-      </div>
-    </div>
-  );
-};
 
 const MapView = () => {
   const mapRef = useRef(null);
@@ -52,7 +34,6 @@ const MapView = () => {
   );
   const [areaData, setAreaData] = useState<[string, Polygon][] | null>(null);
   const [poiData, setPoiData] = useState<PointOfInterest[] | null>(null);
-  const [visibleCategories, setVisibleCategories] = useState<string[]>([]);
   const [typeAreas, setTypeAreas] = useState<TypeArea[] | null>(null);
 
   useEffect(() => {
@@ -219,7 +200,6 @@ const MapView = () => {
         />
       </DeckGL>
       <MainControlsBar />
-      <ElevationLegend />
     </div>
   );
 };
