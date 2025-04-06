@@ -56,13 +56,14 @@ type CustomElement = {
   name: string;
   color: string;
   geometry: GeoJSONGeometry;
+  // icon?
 };
 
 type CustomElementGroup = {
   groupName: string;
   color: string;
-  groupCoord: [number, number];
   elements: CustomElement[];
+  // icon?
 };
 
 type RouteData = {
