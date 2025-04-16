@@ -13,7 +13,7 @@ import { poiStore } from "@/stores/poiStore";
 import type { PointOfInterest } from "@/types";
 import { type LineString } from "geojson";
 import * as turf from "@turf/turf";
-import { poiTypes } from "@/lib/data";
+import { areaStore } from "@/stores/areaStore";
 import { useStore } from "@nanostores/react";
 
 export default function UploadButton({
@@ -21,13 +21,14 @@ export default function UploadButton({
 }: {
   className?: string;
 }) {
+  const area = useStore(areaStore);
   const track = useStore(trackStore);
 
   const fetchPOIsAlongRoute = (
     lineString: LineString,
     bufferMeters: number,
   ) => {
-    const selectors = Object.values(poiTypes)
+    const selectors = Object.values(area.poiTypeMap)
       .flatMap((poiType) => Object.values(poiType.categories))
       .flatMap((category) => category.tags)
       .map((selector) => [selector[0], selector[1]]);
@@ -48,15 +49,22 @@ export default function UploadButton({
             { units: "meters" },
           );
 
-          const category = Object.values(poiTypes).reduce((found, poiType) => {
-            if (found) return found;
-            return Object.values(poiType.categories).find((category) =>
+          const poiTypeCat = Object.entries(area.poiTypeMap)
+            .flatMap(([poiTypeId, poiType]) =>
+              Object.values(poiType.categories).map((category) => ({
+                category,
+                poiTypeId,
+              })),
+            )
+            .find(({ category }) =>
               category.tags.some(([key, value]) => poi.tags[key] === value),
             );
-          }, null);
-          poi.category = category?.id || "unknown";
-          poi.icon = category?.icon;
-          poi.color = poiTypes[0].color;
+          poi.category = poiTypeCat?.category?.id || "unknown";
+          poi.icon = poiTypeCat?.category?.icon;
+          poi.color =
+            poiTypeCat
+              ? area.poiTypeMap[poiTypeCat.poiTypeId].color
+              : [0, 0, 0];
         });
         poiStore.set({ pois: pois });
       })

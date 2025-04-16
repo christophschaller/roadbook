@@ -29,11 +29,7 @@ const MapView = () => {
     bearing: 0,
   });
   const [trackData, setTrackData] = useState<LineString | null>(null);
-  const [simpleTrackData, setSimpleTrackData] = useState<LineString | null>(
-    null,
-  );
-  const [areaData, setAreaData] = useState<[string, Polygon][] | null>(null);
-  const [poiData, setPoiData] = useState<PointOfInterest[] | null>(null);
+  const [simpleTrackData, setSimpleTrackData] = useState<LineString | null>(null);
   const [typeAreas, setTypeAreas] = useState<TypeArea[] | null>(null);
 
   useEffect(() => {
@@ -79,16 +75,10 @@ const MapView = () => {
   }, [simpleTrackData, area]);
 
   useEffect(() => {
-    if (pois.pois) {
-      setPoiData(pois.pois);
-    }
-  }, [pois]);
-
-  useEffect(() => {
-    if (poiData) {
+    if (pois) {
       console.log("POI Data updated:", {
-        totalPOIs: poiData.length,
-        poiDetails: poiData.map((poi) => ({
+        totalPOIs: pois?.pois?.length,
+        poiDetails: pois?.pois?.map((poi) => ({
           id: poi.id,
           category: poi.category,
           position: [poi.lon, poi.lat],
@@ -96,95 +86,94 @@ const MapView = () => {
         })),
       });
     }
-  }, [poiData]);
+  }, [pois]);
 
-  //console.log(area)
+  console.log("area:", area)
   console.log("typeAreas:", typeAreas);
 
   const layers = useMemo(
     () => [
       trackData &&
-        new PathLayer({
-          id: "track",
-          data: trackData ? [{ path: trackData.coordinates }] : [],
-          getPath: (d: any) =>
-            d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
-          //getColor: [0, 0, 0],
-          getColor: [255, 0, 0],
-          getWidth: 3,
-          widthMinPixels: 2,
-        }),
+      new PathLayer({
+        id: "track",
+        data: trackData ? [{ path: trackData.coordinates }] : [],
+        getPath: (d: any) =>
+          d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
+        getColor: [0, 0, 0],
+        getWidth: 3,
+        widthMinPixels: 2,
+      }),
       simpleTrackData &&
-        new PathLayer({
-          id: "simpleTrack",
-          data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
-          getPath: (d: any) =>
-            d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
-          getColor: [0, 255, 0],
-          getWidth: 3,
-          widthMinPixels: 2,
-        }),
+      new PathLayer({
+        id: "simpleTrack",
+        data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
+        getPath: (d: any) =>
+          d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
+        getColor: [0, 255, 0],
+        getWidth: 3,
+        widthMinPixels: 2,
+      }),
       typeAreas &&
-        new PolygonLayer({
-          id: "typeAreas",
-          data: typeAreas ? typeAreas : [],
-          getPolygon: (d: TypeArea) => d.area.geometry.coordinates,
-          getLineColor: (d: TypeArea) => [
-            ...area.poiTypeMap[d.typeId].color,
-            150,
-          ],
-          getFillColor: (d: TypeArea) => [
-            ...area.poiTypeMap[d.typeId].color,
-            area.poiTypeMap[d.typeId].active ? 30 : 0,
-          ],
-          getLineWidth: 4,
-          lineWidthMinPixels: 2,
-          pickable: true,
-        }),
-      poiData &&
-        new IconLayer({
-          id: "pois",
-          data: poiData.filter((d: PointOfInterest) => {
-            console.log("poid d:", d);
-            // Find the POI type and category for this POI
-            const poiType = Object.values(area.poiTypeMap).find((type) =>
-              Object.values(type.categories).some(
-                (cat) => cat.id === d.category,
-              ),
-            );
-            // Only show POIs for active types
+      new PolygonLayer({
+        id: "typeAreas",
+        data: typeAreas ? typeAreas : [],
+        getPolygon: (d: TypeArea) => d.area.geometry.coordinates,
+        getLineColor: (d: TypeArea) => [
+          ...area.poiTypeMap[d.typeId].color,
+          150,
+        ],
+        getFillColor: (d: TypeArea) => [
+          ...area.poiTypeMap[d.typeId].color,
+          area.poiTypeMap[d.typeId].active ? 30 : 0,
+        ],
+        getLineWidth: 4,
+        lineWidthMinPixels: 2,
+        pickable: true,
+      }),
+      pois.pois &&
+      new IconLayer({
+        id: "pois",
+        data: pois.pois.filter((d: PointOfInterest) => {
+          console.log("poid d:", d);
+          // Find the POI type and category for this POI
+          const poiType = Object.values(area.poiTypeMap).find((type) =>
+            Object.values(type.categories).some(
+              (cat) => cat.id === d.category,
+            ),
+          );
+          // Only show POIs for active types
 
-            return poiType?.active ?? false;
-          }),
-          getPosition: (d: PointOfInterest) => [d.lon, d.lat],
-          getIcon: (d: PointOfInterest) => ({
-            url: "https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
-            width: 256,
-            height: 256,
-            mask: true,
-          }),
-          getSize: 24,
-          getColor: (d: PointOfInterest) => d.color || [255, 255, 255],
-          pickable: true,
-          onClick: (info: any) => {
-            if (info.object) {
-              console.log(`Clicked POI: ${info.object.id}`);
-              console.log("trackDistance:", info.object.trackDistance);
-              console.log("category:", info.object.category);
-              console.log("poi object:", info.object);
-            }
-          },
-          // props added by DataFilterExtension
-          getFilterValue: (d: PointOfInterest) => d.trackDistance,
-          filterRange: [
-            0,
-            Math.max(...Object.values(area.poiTypeMap).map((t) => t.distance)),
-          ],
-          // Define extensions
-          extensions: [new DataFilterExtension({ filterSize: 1 })],
+          return poiType?.active ?? false;
         }),
+        getPosition: (d: PointOfInterest) => [d.lon, d.lat],
+        getIcon: (d: PointOfInterest) => ({
+          url: "https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
+          width: 256,
+          height: 256,
+          mask: true,
+        }),
+        getSize: 24,
+        getColor: (d: PointOfInterest) => d.color || [255, 255, 255],
+        pickable: true,
+        onClick: (info: any) => {
+          if (info.object) {
+            console.log(`Clicked POI: ${info.object.id}`);
+            console.log("trackDistance:", info.object.trackDistance);
+            console.log("category:", info.object.category);
+            console.log("poi object:", info.object);
+          }
+        },
+        // props added by DataFilterExtension
+        getFilterValue: (d: PointOfInterest) => d.trackDistance,
+        filterRange: [
+          0,
+          Math.max(...Object.values(area.poiTypeMap).map((t) => t.distance)),
+        ],
+        // Define extensions
+        extensions: [new DataFilterExtension({ filterSize: 1 })],
+      }),
     ],
-    [trackData, simpleTrackData, areaData, poiData, area],
+    [trackData, simpleTrackData, pois, area],
   );
 
   return (

@@ -4,7 +4,6 @@ import { trackStore } from "@/stores/trackStore";
 import { useStore } from "@nanostores/react";
 import { type LineString } from "geojson";
 import { useState } from "react";
-import { poiTypes } from "@/lib/data";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/AreaDefinition";
 import type { TypeArea } from "@/types/area.types";
 
@@ -17,6 +16,24 @@ export function TrackEditor({
 }) {
   const [activeType, setActiveType] = useState<string>("");
 
+  const handleTypeChange = (id: string) => {
+    setActiveType(id);
+    const currentStore = areaStore.get();
+    const updatedPoiTypeMap = Object.fromEntries(
+      Object.entries(currentStore.poiTypeMap).map(([typeId, typeData]) => [
+        typeId,
+        {
+          ...typeData,
+          active: typeId === id,
+        },
+      ])
+    );
+    areaStore.set({
+      ...currentStore,
+      poiTypeMap: updatedPoiTypeMap,
+    });
+  };
+
   return (
     <div className="space-y-4 md:mt-0">
       {/* Points of Interest */}
@@ -25,11 +42,11 @@ export function TrackEditor({
           Points of Interest
         </h3>
         <div className="">
-          {poiTypes.map((poiType) => (
+          {Object.values(area.poiTypeMap).map((poiType) => (
             <div key={poiType.id} className="space-y-2">
               <button
                 onClick={() =>
-                  setActiveType(activeType === poiType.id ? "" : poiType.id)
+                  handleTypeChange(activeType === poiType.id ? "" : poiType.id)
                 }
                 className="w-full flex items-center space-x-2 p-2 rounded-md hover:bg-white/50 transition-colors"
               >
@@ -56,7 +73,7 @@ export function TrackEditor({
       </div>
 
       {/* Active Areas */}
-      <div className="space-y-2">
+      {/* <div className="space-y-2">
         <h3 className="font-medium text-lg md:text-base text-primary">
           Active Areas
         </h3>
@@ -75,7 +92,7 @@ export function TrackEditor({
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
