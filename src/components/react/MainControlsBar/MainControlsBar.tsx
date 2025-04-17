@@ -38,7 +38,7 @@ export function MainControlsBar() {
         {track && trackData && (
           <TrackInformation track={track} trackData={trackData} />
         )}
-        <TrackEditor resourceAreas={[]} area={area} />
+        <TrackEditor area={area} />
       </div>
     </>
   );
