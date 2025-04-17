@@ -1,11 +1,12 @@
+import { useRef } from "react";
+import type { LineString } from "geojson";
+
 import { trackStore } from "@/stores/trackStore";
 import { useStore } from "@nanostores/react";
-import { useRef } from "react";
-import { TrackEditor } from "./TrackEditor";
-import UploadButton from "./UploadButton";
-import type { LineString } from "geojson";
+import { TrackEditor } from "@/components/react/MainControlsBar/TrackEditor";
+import UploadButton from "@/components/react/MainControlsBar/UploadButton";
 import { areaStore } from "@/stores/areaStore";
-import { TrackInformation } from "./TrackInformation";
+import { TrackInformation } from "@/components/react/MainControlsBar/TrackInformation";
 
 export function MainControlsBar() {
   const track = useStore(trackStore);
