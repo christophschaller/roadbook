@@ -4,7 +4,7 @@ import { trackStore } from "@/stores/trackStore";
 import { useStore } from "@nanostores/react";
 import { type LineString } from "geojson";
 import { useState } from "react";
-import { POISelectorContainer } from "@/components/react/MainControlsBar/AreaDefinition";
+import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
 import type { ResourceArea } from "@/types/area.types";
 
 export function TrackEditor({
