@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { areaStore } from "@/stores/areaStore";
 import type { ResourceCategory, Resource } from "@/types";
-import { IconSwitch } from "../../ui/IconSwitch";
+import { IconSwitch } from "@/components/ui/IconSwitch";
 
 export function POISelectorContainer({
   resource,
@@ -16,9 +16,9 @@ export function POISelectorContainer({
   onCategoryChange?: (categories: ResourceCategory[]) => void;
 }) {
   const stepDistance = 50;
-  const [categoryData, setCategoryData] = useState<{ [key: string]: ResourceCategory }>(
-    resource.categories,
-  );
+  const [categoryData, setCategoryData] = useState<{
+    [key: string]: ResourceCategory;
+  }>(resource.categories);
 
   const handleSliderChange = (value: number) => {
     const distance = value;
