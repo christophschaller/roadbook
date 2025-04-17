@@ -13,7 +13,7 @@ import { useStore } from "@nanostores/react";
 import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
-import { MainControlsBar } from "./MainControlsBar/MainControlsBar";
+import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
