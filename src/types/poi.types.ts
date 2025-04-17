@@ -15,14 +15,11 @@ export interface PointOfInterest extends OverpassNode {
   address?: string;
   url?: string;
   trackDistance?: number; // distance to nearest point on track for filtering
-  category?: string;
+  resourceId?: string
+  resourceCategoryId?: string;
 }
 
-export interface Pois {
-  pois: PointOfInterest[] | null;
-}
-
-export interface Category {
+export interface ResourceCategory {
   name: string;
   id: string;
   description?: string;
@@ -31,7 +28,7 @@ export interface Category {
   tags: string[][];
 }
 
-export interface PoiType {
+export interface Resource {
   name: string;
   id: string;
   icon: LucideIcon;
@@ -40,5 +37,5 @@ export interface PoiType {
   distance: number;
   minDistance: number;
   maxDistance: number;
-  categories: { [key: string]: Category };
+  categories: { [key: string]: ResourceCategory };
 }

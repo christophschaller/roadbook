@@ -6,9 +6,9 @@ import {
   Store,
   ShoppingCart,
 } from "lucide-react";
-import type { Category, PoiType } from "@/types/poi.types";
+import type { ResourceCategory, Resource } from "@/types/poi.types";
 
-const waterCategories: { [key: string]: Category } = {
+const waterCategories: { [key: string]: ResourceCategory } = {
   potable: {
     name: "Potable Water",
     id: "potable",
@@ -65,7 +65,7 @@ const waterCategories: { [key: string]: Category } = {
   },
 };
 
-const foodCategories: { [key: string]: Category } = {
+const foodCategories: { [key: string]: ResourceCategory } = {
   supermarket: {
     name: "Food Markets",
     id: "supermarket",
@@ -120,7 +120,7 @@ const foodCategories: { [key: string]: Category } = {
   },
 };
 
-export const poiTypes: PoiType[] = [
+export const Resources: Resource[] = [
   {
     name: "Water",
     id: "water",

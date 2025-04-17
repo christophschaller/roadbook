@@ -5,32 +5,32 @@ import { useStore } from "@nanostores/react";
 import { type LineString } from "geojson";
 import { useState } from "react";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/AreaDefinition";
-import type { TypeArea } from "@/types/area.types";
+import type { ResourceArea } from "@/types/area.types";
 
 export function TrackEditor({
-  typeAreas,
+  resourceAreas,
   area,
 }: {
-  typeAreas: TypeArea[] | null;
+  resourceAreas: ResourceArea[] | null;
   area: ReturnType<typeof useStore<typeof areaStore>>;
 }) {
-  const [activeType, setActiveType] = useState<string>("");
+  const [activeResource, setActiveResource] = useState<string>("");
 
-  const handleTypeChange = (id: string) => {
-    setActiveType(id);
+  const handleResourceChange = (id: string) => {
+    setActiveResource(id);
     const currentStore = areaStore.get();
-    const updatedPoiTypeMap = Object.fromEntries(
-      Object.entries(currentStore.poiTypeMap).map(([typeId, typeData]) => [
-        typeId,
+    const updatedResourceMap = Object.fromEntries(
+      Object.entries(currentStore.ResourceMap).map(([resourceId, resourceData]) => [
+        resourceId,
         {
-          ...typeData,
-          active: typeId === id,
+          ...resourceData,
+          active: resourceId === id,
         },
       ])
     );
     areaStore.set({
       ...currentStore,
-      poiTypeMap: updatedPoiTypeMap,
+      ResourceMap: updatedResourceMap,
     });
   };
 
@@ -42,29 +42,29 @@ export function TrackEditor({
           Points of Interest
         </h3>
         <div className="">
-          {Object.values(area.poiTypeMap).map((poiType) => (
-            <div key={poiType.id} className="space-y-2">
+          {Object.values(area.ResourceMap).map((resource) => (
+            <div key={resource.id} className="space-y-2">
               <button
                 onClick={() =>
-                  handleTypeChange(activeType === poiType.id ? "" : poiType.id)
+                  handleResourceChange(activeResource === resource.id ? "" : resource.id)
                 }
                 className="w-full flex items-center space-x-2 p-2 rounded-md hover:bg-white/50 transition-colors"
               >
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center"
                   style={{
-                    backgroundColor: `rgb(${poiType.color.join(",")})`,
+                    backgroundColor: `rgb(${resource.color.join(",")})`,
                   }}
                 >
-                  <poiType.icon className="w-5 h-5" color="white" />
+                  <resource.icon className="w-5 h-5" color="white" />
                 </div>
                 <span className="text-base md:text text-primary">
-                  {poiType.name}
+                  {resource.name}
                 </span>
               </button>
-              {activeType === poiType.id && (
+              {activeResource === resource.id && (
                 <div className="ml-4">
-                  <POISelectorContainer poiType={poiType} />
+                  <POISelectorContainer resource={resource} />
                 </div>
               )}
             </div>

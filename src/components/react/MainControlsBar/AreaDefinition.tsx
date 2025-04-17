@@ -3,21 +3,21 @@ import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { areaStore } from "@/stores/areaStore";
-import type { Category, PoiType } from "@/types";
+import type { ResourceCategory, Resource } from "@/types";
 import { IconSwitch } from "../../ui/IconSwitch";
 
 export function POISelectorContainer({
-  poiType,
+  resource,
   onDistanceChange,
   onCategoryChange,
 }: {
-  poiType: PoiType;
+  resource: Resource;
   onDistanceChange?: (distance: number) => void;
-  onCategoryChange?: (categories: Category[]) => void;
+  onCategoryChange?: (categories: ResourceCategory[]) => void;
 }) {
   const stepDistance = 50;
-  const [categoryData, setCategoryData] = useState<{ [key: string]: Category }>(
-    poiType.categories,
+  const [categoryData, setCategoryData] = useState<{ [key: string]: ResourceCategory }>(
+    resource.categories,
   );
 
   const handleSliderChange = (value: number) => {
@@ -25,10 +25,10 @@ export function POISelectorContainer({
     const currentStore = areaStore.get();
     areaStore.set({
       ...currentStore,
-      poiTypeMap: {
-        ...currentStore.poiTypeMap,
-        [poiType.id]: {
-          ...currentStore.poiTypeMap[poiType.id],
+      ResourceMap: {
+        ...currentStore.ResourceMap,
+        [resource.id]: {
+          ...currentStore.ResourceMap[resource.id],
           distance,
         },
       },
@@ -51,10 +51,10 @@ export function POISelectorContainer({
       const currentStore = areaStore.get();
       areaStore.set({
         ...currentStore,
-        poiTypeMap: {
-          ...currentStore.poiTypeMap,
-          [poiType.id]: {
-            ...currentStore.poiTypeMap[poiType.id],
+        ResourceMap: {
+          ...currentStore.ResourceMap,
+          [resource.id]: {
+            ...currentStore.ResourceMap[resource.id],
             categories: updatedData,
           },
         },
@@ -69,9 +69,9 @@ export function POISelectorContainer({
     <div className="pl-2">
       <div className="flex items-center space-x-2">
         <Slider
-          defaultValue={[poiType.distance]}
-          min={poiType.minDistance}
-          max={poiType.maxDistance}
+          defaultValue={[resource.distance]}
+          min={resource.minDistance}
+          max={resource.maxDistance}
           step={stepDistance}
           onValueChange={(value) => {
             handleSliderChange(value[0]);
@@ -89,7 +89,7 @@ export function POISelectorContainer({
                 handleOnCheckedChange(id, checked)
               }
               icon={cat.icon}
-              color={poiType.color}
+              color={resource.color}
             />
             <Label className="text-base md:text-sm">{cat.name}</Label>
           </div>

@@ -3,7 +3,6 @@ export type { Area } from "./area.types";
 export type {
   OverpassNode,
   PointOfInterest,
-  Pois,
-  Category,
-  PoiType,
+  ResourceCategory,
+  Resource,
 } from "./poi.types";

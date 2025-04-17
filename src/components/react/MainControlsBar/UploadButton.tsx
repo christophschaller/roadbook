@@ -28,8 +28,8 @@ export default function UploadButton({
     lineString: LineString,
     bufferMeters: number,
   ) => {
-    const selectors = Object.values(area.poiTypeMap)
-      .flatMap((poiType) => Object.values(poiType.categories))
+    const selectors = Object.values(area.ResourceMap)
+      .flatMap((resource) => Object.values(resource.categories))
       .flatMap((category) => category.tags)
       .map((selector) => [selector[0], selector[1]]);
 
@@ -49,24 +49,25 @@ export default function UploadButton({
             { units: "meters" },
           );
 
-          const poiTypeCat = Object.entries(area.poiTypeMap)
-            .flatMap(([poiTypeId, poiType]) =>
-              Object.values(poiType.categories).map((category) => ({
+          const resourceIdAndCategory = Object.entries(area.ResourceMap)
+            .flatMap(([resourceId, resource]) =>
+              Object.values(resource.categories).map((category) => ({
+                resourceId,
                 category,
-                poiTypeId,
               })),
             )
             .find(({ category }) =>
               category.tags.some(([key, value]) => poi.tags[key] === value),
             );
-          poi.category = poiTypeCat?.category?.id || "unknown";
-          poi.icon = poiTypeCat?.category?.icon;
+          poi.resourceId = resourceIdAndCategory?.resourceId;
+          poi.resourceCategoryId = resourceIdAndCategory?.category?.id || "unknown";
+          poi.icon = resourceIdAndCategory?.category?.icon;
           poi.color =
-            poiTypeCat
-              ? area.poiTypeMap[poiTypeCat.poiTypeId].color
+            resourceIdAndCategory
+              ? area.ResourceMap[resourceIdAndCategory.resourceId].color
               : [0, 0, 0];
         });
-        poiStore.set({ pois: pois });
+        poiStore.set(pois);
       })
       .catch(console.error);
   };

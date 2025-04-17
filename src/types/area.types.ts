@@ -1,13 +1,11 @@
-import { type PoiType } from "@/types/poi.types";
+import { type Resource } from "@/types/poi.types";
 import { type Feature, type Polygon, type MultiPolygon } from "geojson";
 
 export interface Area {
-  //distance: number;
-  //activeTags: string[];
-  poiTypeMap: { [key: string]: PoiType };
+  ResourceMap: { [key: string]: Resource };
 }
 
-export type TypeArea = {
-  typeId: string;
+export type ResourceArea = {
+  resourceId: string;
   area: Feature<Polygon | MultiPolygon>;
 };

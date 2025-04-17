@@ -12,8 +12,15 @@ import { poiStore } from "@/stores/poiStore";
 import { useStore } from "@nanostores/react";
 import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
-import type { TypeArea } from "@/types/area.types";
+import type { ResourceArea } from "@/types/area.types";
 import { MainControlsBar } from "./MainControlsBar/MainControlsBar";
+
+const getLucideSvgUrl = (componentName: string) => {
+  const kebabCaseName = componentName
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .toLowerCase();
+  return `https://unpkg.com/lucide-static@0.469.0/icons/${kebabCaseName}.svg`;
+}
 
 const MapView = () => {
   const mapRef = useRef(null);
@@ -30,7 +37,7 @@ const MapView = () => {
   });
   const [trackData, setTrackData] = useState<LineString | null>(null);
   const [simpleTrackData, setSimpleTrackData] = useState<LineString | null>(null);
-  const [typeAreas, setTypeAreas] = useState<TypeArea[] | null>(null);
+  const [resourceAreas, setResourceAreas] = useState<ResourceArea[] | null>(null);
 
   useEffect(() => {
     if (track.data) {
@@ -38,7 +45,7 @@ const MapView = () => {
       setTrackData(lineString);
 
       const simpleLineString = turf.simplify(lineString, {
-        tolerance: 0.005,
+        tolerance: 0.003,
         highQuality: false,
       });
       setSimpleTrackData(simpleLineString);
@@ -58,38 +65,21 @@ const MapView = () => {
 
   useEffect(() => {
     if (simpleTrackData) {
-      const buffers: TypeArea[] = [];
-      Object.entries(area.poiTypeMap).forEach(([id, poiType]) => {
-        const buffered = turf.buffer(simpleTrackData, poiType.distance, {
+      const buffers: ResourceArea[] = [];
+      Object.entries(area.ResourceMap).forEach(([id, resource]) => {
+        const buffered = turf.buffer(simpleTrackData, resource.distance, {
           units: "meters",
         });
         if (buffered) {
           buffers.push({
-            typeId: id,
+            resourceId: id,
             area: buffered,
           });
         }
       });
-      setTypeAreas(buffers);
+      setResourceAreas(buffers);
     }
   }, [simpleTrackData, area]);
-
-  useEffect(() => {
-    if (pois) {
-      console.log("POI Data updated:", {
-        totalPOIs: pois?.pois?.length,
-        poiDetails: pois?.pois?.map((poi) => ({
-          id: poi.id,
-          category: poi.category,
-          position: [poi.lon, poi.lat],
-          trackDistance: poi.trackDistance,
-        })),
-      });
-    }
-  }, [pois]);
-
-  console.log("area:", area)
-  console.log("typeAreas:", typeAreas);
 
   const layers = useMemo(
     () => [
@@ -104,50 +94,46 @@ const MapView = () => {
         widthMinPixels: 2,
       }),
       simpleTrackData &&
-      new PathLayer({
-        id: "simpleTrack",
-        data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
-        getPath: (d: any) =>
-          d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
-        getColor: [0, 255, 0],
-        getWidth: 3,
-        widthMinPixels: 2,
-      }),
-      typeAreas &&
+      // new PathLayer({
+      //   id: "simpleTrack",
+      //   data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
+      //   getPath: (d: any) =>
+      //     d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
+      //   getColor: [0, 255, 0],
+      //   getWidth: 3,
+      //   widthMinPixels: 2,
+      // }),
+      resourceAreas &&
       new PolygonLayer({
-        id: "typeAreas",
-        data: typeAreas ? typeAreas : [],
-        getPolygon: (d: TypeArea) => d.area.geometry.coordinates,
-        getLineColor: (d: TypeArea) => [
-          ...area.poiTypeMap[d.typeId].color,
+        id: "resourceAreas",
+        data: resourceAreas ? resourceAreas : [],
+        getPolygon: (d: ResourceArea) => d.area.geometry.coordinates,
+        getLineColor: (d: ResourceArea) => [
+          ...area.ResourceMap[d.resourceId].color,
           150,
         ],
-        getFillColor: (d: TypeArea) => [
-          ...area.poiTypeMap[d.typeId].color,
-          area.poiTypeMap[d.typeId].active ? 30 : 0,
+        getFillColor: (d: ResourceArea) => [
+          ...area.ResourceMap[d.resourceId].color,
+          area.ResourceMap[d.resourceId].active ? 30 : 0,
         ],
         getLineWidth: 4,
         lineWidthMinPixels: 2,
         pickable: true,
       }),
-      pois.pois &&
+      pois &&
       new IconLayer({
         id: "pois",
-        data: pois.pois.filter((d: PointOfInterest) => {
-          console.log("poid d:", d);
-          // Find the POI type and category for this POI
-          const poiType = Object.values(area.poiTypeMap).find((type) =>
-            Object.values(type.categories).some(
-              (cat) => cat.id === d.category,
-            ),
-          );
-          // Only show POIs for active types
-
-          return poiType?.active ?? false;
+        data: pois.filter((d: PointOfInterest) => {
+          // Only show POIs for active resource categories
+          const resource = area.ResourceMap[d.resourceId || ""];
+          if (!resource || !resource.active) return false;
+          const resourceCategory = resource.categories[d.resourceCategoryId || ""]
+          return resourceCategory?.active ?? false;
         }),
         getPosition: (d: PointOfInterest) => [d.lon, d.lat],
         getIcon: (d: PointOfInterest) => ({
-          url: "https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
+          //url: "https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
+          url: getLucideSvgUrl(area.ResourceMap[d.resourceId || ""].categories[d.resourceCategoryId || ""].icon.render.name),
           width: 256,
           height: 256,
           mask: true,
@@ -167,13 +153,13 @@ const MapView = () => {
         getFilterValue: (d: PointOfInterest) => d.trackDistance,
         filterRange: [
           0,
-          Math.max(...Object.values(area.poiTypeMap).map((t) => t.distance)),
+          Math.max(...Object.values(area.ResourceMap).map((t) => t.distance)),
         ],
         // Define extensions
         extensions: [new DataFilterExtension({ filterSize: 1 })],
       }),
     ],
-    [trackData, simpleTrackData, pois, area],
+    [trackData, simpleTrackData, resourceAreas, pois, area],
   );
 
   return (
