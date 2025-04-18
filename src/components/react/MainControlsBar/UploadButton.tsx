@@ -8,7 +8,7 @@ import { trackStore } from "@/stores/trackStore";
 import { type LineString } from "geojson";
 import { resourceStore } from "@/stores/resourceStore";
 import { useStore } from "@nanostores/react";
-import { fetchPOIsAlongRoute } from "@/lib/dataFetching/fetchOverPassPOIsAlongRoute";
+import { fetchOverPassPOIsAlongRoute } from "@/lib/dataFetching/fetchOverPassPOIsAlongRoute";
 
 export default function UploadButton({
   className = "",
@@ -32,7 +32,7 @@ export default function UploadButton({
             name: geojson.properties.name || file.name,
             data: geojson, // Store raw GPX or process into a desired format (e.g., GeoJSON)
           });
-          fetchPOIsAlongRoute({
+          fetchOverPassPOIsAlongRoute({
             resources,
             lineString: geojson.features[0].geometry as LineString,
             bufferMeters: 2500,
