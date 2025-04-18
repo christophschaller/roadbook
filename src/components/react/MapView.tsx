@@ -93,16 +93,6 @@ const MapView = () => {
         getWidth: 3,
         widthMinPixels: 2,
       }),
-      simpleTrackData &&
-      // new PathLayer({
-      //   id: "simpleTrack",
-      //   data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
-      //   getPath: (d: any) =>
-      //     d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
-      //   getColor: [0, 255, 0],
-      //   getWidth: 3,
-      //   widthMinPixels: 2,
-      // }),
       resourceAreas &&
       new PolygonLayer({
         id: "resourceAreas",
