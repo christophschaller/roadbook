@@ -21,9 +21,10 @@ function enrichPOI(
   resourceId: string,
   resource: Resource
 ): PointOfInterest {
-  // Calculate distance to route
-  poi.trackDistance = turf.pointToLineDistance(
-    turf.point([poi.lon, poi.lat]),
+  try {
+    // Calculate distance to route
+    poi.trackDistance = turf.pointToLineDistance(
+      turf.point([poi.lon, poi.lat]),
     linestring2d,
     { units: "meters" },
   );
@@ -43,7 +44,12 @@ function enrichPOI(
   poi.icon = category.icon;
   poi.color = resource.color;
 
-  return poi;
+    return poi;
+  } catch (error) {
+    const errorMessage = `Error enriching POI ${poi.id}: ${error}`;
+    console.error(errorMessage);
+    throw new Error(errorMessage);
+  }
 }
 
 async function fetchPOIsForResource(
@@ -51,14 +57,20 @@ async function fetchPOIsForResource(
   resourceId: string,
   resource: Resource
 ): Promise<PointOfInterest[]> {
-  // Extract selectors from the resource
-  const selectors = Object.values(resource.categories)
-    .flatMap(category => category.osmTags)
+  try {
+    // Extract selectors from the resource
+    const selectors = Object.values(resource.categories)
+      .flatMap(category => category.osmTags)
     .map(selector => [selector[0], selector[1]]);
   
   // Create and execute query
   const query = constructOverpassQuery(bbox, selectors);
   return queryOverpass(query);
+  } catch (error) {
+    const errorMessage = `Error fetching POIs for resource ${resourceId}: ${error}`;
+    console.error(errorMessage);
+    throw new Error(errorMessage);
+  }
 }
 
 async function fetchAndEnrichPOIsForResource(
@@ -67,9 +79,15 @@ async function fetchAndEnrichPOIsForResource(
   resource: Resource,
   linestring2d: Feature<LineString>
 ): Promise<PointOfInterest[]> {
-  const pois = await fetchPOIsForResource(bbox, resourceId, resource);
-  const enrichedPois = pois.map(poi => enrichPOI(poi, linestring2d, resourceId, resource));
-  return enrichedPois;
+  try {
+    const pois = await fetchPOIsForResource(bbox, resourceId, resource);
+    const enrichedPois = pois.map(poi => enrichPOI(poi, linestring2d, resourceId, resource));
+    return enrichedPois;
+  } catch (error) {
+    const errorMessage = `Error fetching and enriching POIs for resource ${resourceId}: ${error}`;
+    console.error(errorMessage);
+    throw new Error(errorMessage);
+  }
 }
 
 export async function fetchOverPassPOIsAlongRoute({
@@ -106,6 +124,8 @@ export async function fetchOverPassPOIsAlongRoute({
     // Update the store with all POIs
     poiStore.set(Array.from(uniquePOIs.values()));
   } catch (error) {
-    console.error("Error fetching POIs:", error);
+    const errorMessage = `Error fetching POIs: ${error}`;
+    console.error(errorMessage);
+    throw new Error(errorMessage);
   }
 }
