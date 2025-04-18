@@ -181,7 +181,7 @@ export const Resources: Resource[] = [
     maxDistance: 5000,
     categories: foodCategories,
   },
-  {
+  /*{
     name: "Sleep",
     id: "sleep",
     icon: Bed,
@@ -189,7 +189,7 @@ export const Resources: Resource[] = [
     minDistance: 500,
     maxDistance: 5000,
     categories: sleepCategories,
-  },
+  },*/
 ];
 
 
