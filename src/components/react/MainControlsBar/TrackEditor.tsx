@@ -1,26 +1,21 @@
 import "maplibre-gl/dist/maplibre-gl.css";
-import { areaStore } from "@/stores/areaStore";
-import { trackStore } from "@/stores/trackStore";
-import { useStore } from "@nanostores/react";
-import { type LineString } from "geojson";
+import { resourceStateStore } from "@/stores/resourceStore";
+import type { ResourceView } from "@/types"
 import { useState } from "react";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/AreaDefinition";
-import type { ResourceArea } from "@/types/area.types";
 
 export function TrackEditor({
-  resourceAreas,
-  area,
+  resources,
 }: {
-  resourceAreas: ResourceArea[] | null;
-  area: ReturnType<typeof useStore<typeof areaStore>>;
+  resources: Record<string, ResourceView>;
 }) {
   const [activeResource, setActiveResource] = useState<string>("");
 
   const handleResourceChange = (id: string) => {
     setActiveResource(id);
-    const currentStore = areaStore.get();
+    const currentStore = resourceStateStore.get();
     const updatedResourceMap = Object.fromEntries(
-      Object.entries(currentStore.ResourceMap).map(([resourceId, resourceData]) => [
+      Object.entries(currentStore).map(([resourceId, resourceData]) => [
         resourceId,
         {
           ...resourceData,
@@ -28,10 +23,7 @@ export function TrackEditor({
         },
       ])
     );
-    areaStore.set({
-      ...currentStore,
-      ResourceMap: updatedResourceMap,
-    });
+    resourceStateStore.set(updatedResourceMap);
   };
 
   return (
@@ -42,7 +34,7 @@ export function TrackEditor({
           Points of Interest
         </h3>
         <div className="">
-          {Object.values(area.ResourceMap).map((resource) => (
+          {Object.values(resources).map((resource) => (
             <div key={resource.id} className="space-y-2">
               <button
                 onClick={() =>

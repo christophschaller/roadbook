@@ -13,7 +13,7 @@ import { poiStore } from "@/stores/poiStore";
 import type { PointOfInterest } from "@/types";
 import { type LineString } from "geojson";
 import * as turf from "@turf/turf";
-import { areaStore } from "@/stores/areaStore";
+import { resourceStore } from "@/stores/resourceStore";
 import { useStore } from "@nanostores/react";
 
 export default function UploadButton({
@@ -21,16 +21,17 @@ export default function UploadButton({
 }: {
   className?: string;
 }) {
-  const area = useStore(areaStore);
+  const resources = useStore(resourceStore);
+
   const track = useStore(trackStore);
 
   const fetchPOIsAlongRoute = (
     lineString: LineString,
     bufferMeters: number,
   ) => {
-    const selectors = Object.values(area.ResourceMap)
+    const selectors = Object.values(resources)
       .flatMap((resource) => Object.values(resource.categories))
-      .flatMap((category) => category.tags)
+      .flatMap((category) => category.osmTags)
       .map((selector) => [selector[0], selector[1]]);
 
     const bbox = createBoundingBox(lineString, bufferMeters);
@@ -49,7 +50,7 @@ export default function UploadButton({
             { units: "meters" },
           );
 
-          const resourceIdAndCategory = Object.entries(area.ResourceMap)
+          const resourceIdAndCategory = Object.entries(resources)
             .flatMap(([resourceId, resource]) =>
               Object.values(resource.categories).map((category) => ({
                 resourceId,
@@ -57,14 +58,14 @@ export default function UploadButton({
               })),
             )
             .find(({ category }) =>
-              category.tags.some(([key, value]) => poi.tags[key] === value),
+              category.osmTags.some(([key, value]) => poi.tags[key] === value),
             );
           poi.resourceId = resourceIdAndCategory?.resourceId;
           poi.resourceCategoryId = resourceIdAndCategory?.category?.id || "unknown";
           poi.icon = resourceIdAndCategory?.category?.icon;
           poi.color =
             resourceIdAndCategory
-              ? area.ResourceMap[resourceIdAndCategory.resourceId].color
+              ? resources[resourceIdAndCategory.resourceId].color
               : [0, 0, 0];
         });
         poiStore.set(pois);

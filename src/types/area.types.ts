@@ -1,4 +1,4 @@
-import { type Resource } from "@/types/poi.types";
+import { type Resource } from "@/types/resource.types";
 import { type Feature, type Polygon, type MultiPolygon } from "geojson";
 
 export interface Area {

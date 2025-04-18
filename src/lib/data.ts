@@ -6,15 +6,16 @@ import {
   Store,
   ShoppingCart,
 } from "lucide-react";
-import type { ResourceCategory, Resource } from "@/types/poi.types";
+import type { ResourceCategory, Resource, ResourceCategoryState, ResourceState } from "@/types/resource.types";
 
+// --- static data ---
 const waterCategories: { [key: string]: ResourceCategory } = {
   potable: {
     name: "Potable Water",
     id: "potable",
     icon: Droplet,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["amenity", "drinking_water"],
       ["man_made", "water_tap"],
       ["man_made", "drinking_fountain"],
@@ -27,8 +28,8 @@ const waterCategories: { [key: string]: ResourceCategory } = {
     name: "Filter Sources",
     id: "filter",
     icon: Filter,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["man_made", "water_well"],
       ["natural", "spring"],
       ["water", "cenote"],
@@ -39,8 +40,8 @@ const waterCategories: { [key: string]: ResourceCategory } = {
     name: "Risky Sources",
     id: "risky",
     icon: TriangleAlert,
-    active: false,
-    tags: [
+    // active: false,
+    osmTags: [
       ["amenity", "toilets"],
       ["waterway", "river"],
       ["waterway", "stream"],
@@ -70,8 +71,8 @@ const foodCategories: { [key: string]: ResourceCategory } = {
     name: "Food Markets",
     id: "supermarket",
     icon: ShoppingCart,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["shop", "supermarket"],
       ["shop", "grocery"],
       ["shop", "hypermarket"],
@@ -91,8 +92,8 @@ const foodCategories: { [key: string]: ResourceCategory } = {
     name: "Quick Bites",
     id: "eat",
     icon: Utensils,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["amenity", "restaurant"],
       ["amenity", "fast_food"],
       ["amenity", "cafe"],
@@ -108,8 +109,8 @@ const foodCategories: { [key: string]: ResourceCategory } = {
     name: "Mini-Marts",
     id: "convenience",
     icon: Store,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["shop", "convenience"],
       ["shop", "kiosk"],
       ["shop", "mini_mart"],
@@ -126,8 +127,8 @@ export const Resources: Resource[] = [
     id: "water",
     icon: Droplet,
     color: [64, 153, 255],
-    active: true,
-    distance: 500,
+    // active: true,
+    //distance: 500,
     minDistance: 500,
     maxDistance: 5000,
     categories: waterCategories,
@@ -137,10 +138,45 @@ export const Resources: Resource[] = [
     id: "food",
     icon: ShoppingCart,
     color: [255, 171, 64],
-    active: false,
-    distance: 500,
+    // active: false,
+    // distance: 500,
     minDistance: 500,
     maxDistance: 5000,
     categories: foodCategories,
   },
 ];
+
+
+// --- defaults for user state ---
+export const DefaultResourceState: Record<string, ResourceState> = {
+  water: {
+    active: true,
+    distance: 600,
+    categoryStates: {
+      potable: {
+        active: true
+      },
+      filter: {
+        active: true
+      },
+      risky: {
+        active: false
+      },
+    }
+  },
+  food: {
+    active: false,
+    distance: 500,
+    categoryStates: {
+      supermarket: {
+        active: true
+      },
+      eat: {
+        active: true
+      },
+      convenience: {
+        active: true
+      },
+    }
+  },
+}

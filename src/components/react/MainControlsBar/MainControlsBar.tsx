@@ -1,10 +1,10 @@
 import { trackStore } from "@/stores/trackStore";
 import { useStore } from "@nanostores/react";
 import { useRef } from "react";
+import { resourceViewStore } from "@/stores/resourceStore";
 import { TrackEditor } from "./TrackEditor";
 import UploadButton from "./UploadButton";
 import type { LineString } from "geojson";
-import { areaStore } from "@/stores/areaStore";
 import { TrackInformation } from "./TrackInformation";
 
 export function MainControlsBar() {
@@ -13,7 +13,7 @@ export function MainControlsBar() {
   const trackData = track.data
     ? (track.data.features[0].geometry as LineString)
     : null;
-  const area = useStore(areaStore);
+  const resourceView = useStore(resourceViewStore);
 
   return (
     <>
@@ -37,7 +37,7 @@ export function MainControlsBar() {
         {track && trackData && (
           <TrackInformation track={track} trackData={trackData} />
         )}
-        <TrackEditor resourceAreas={[]} area={area} />
+        <TrackEditor resources={resourceView} />
       </div>
     </>
   );

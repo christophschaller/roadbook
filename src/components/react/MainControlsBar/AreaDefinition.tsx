@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
-import { areaStore } from "@/stores/areaStore";
-import type { ResourceCategory, Resource } from "@/types";
+import { resourceStateStore } from "@/stores/resourceStore";
+import type { ResourceCategory, ResourceView } from "@/types";
 import { IconSwitch } from "../../ui/IconSwitch";
 
 export function POISelectorContainer({
@@ -11,57 +10,38 @@ export function POISelectorContainer({
   onDistanceChange,
   onCategoryChange,
 }: {
-  resource: Resource;
+  resource: ResourceView;
   onDistanceChange?: (distance: number) => void;
   onCategoryChange?: (categories: ResourceCategory[]) => void;
 }) {
-  const stepDistance = 50;
-  const [categoryData, setCategoryData] = useState<{ [key: string]: ResourceCategory }>(
-    resource.categories,
-  );
-
+  const stepDistance = 50; // TODO: define in Resource
   const handleSliderChange = (value: number) => {
     const distance = value;
-    const currentStore = areaStore.get();
-    areaStore.set({
+    const currentStore = resourceStateStore.get();
+    resourceStateStore.set({
       ...currentStore,
-      ResourceMap: {
-        ...currentStore.ResourceMap,
-        [resource.id]: {
-          ...currentStore.ResourceMap[resource.id],
-          distance,
-        },
+      [resource.id]: {
+        ...currentStore[resource.id],
+        distance,
       },
     });
     onDistanceChange?.(distance);
   };
 
   const handleOnCheckedChange = (catId: string, checked: boolean) => {
-    setCategoryData((prevData) => {
-      const updatedData = {
-        ...prevData,
-        [catId]: { ...prevData[catId], active: checked },
-      };
-
-      // Compute activeCategories based on updated data
-      const activeTags = Object.values(updatedData)
-        .filter((cat) => cat.active)
-        .map((cat) => cat.id);
-
-      const currentStore = areaStore.get();
-      areaStore.set({
-        ...currentStore,
-        ResourceMap: {
-          ...currentStore.ResourceMap,
-          [resource.id]: {
-            ...currentStore.ResourceMap[resource.id],
-            categories: updatedData,
+    const currentStore = resourceStateStore.get();
+    resourceStateStore.set({
+      ...currentStore,
+      [resource.id]: {
+        ...currentStore[resource.id],
+        categoryStates: {
+          ...currentStore[resource.id].categoryStates,
+          [catId]: {
+            ...currentStore[resource.id].categoryStates[catId],
+            active: checked,
           },
         },
-      });
-
-      onCategoryChange?.(Object.values(updatedData));
-      return updatedData;
+      },
     });
   };
 
@@ -81,7 +61,7 @@ export function POISelectorContainer({
       </div>
       <Separator />
       <div className="py-1">
-        {Object.entries(categoryData).map(([id, cat]) => (
+        {Object.entries(resource.categories).map(([id, cat]) => (
           <div className="flex items-center space-x-2 py-1" key={id}>
             <IconSwitch
               checked={cat.active}

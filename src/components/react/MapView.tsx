@@ -7,7 +7,7 @@ import { DataFilterExtension } from "@deck.gl/extensions";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
 import { trackStore } from "@/stores/trackStore";
-import { areaStore } from "@/stores/areaStore";
+import { resourceViewStore } from "@/stores/resourceStore";
 import { poiStore } from "@/stores/poiStore";
 import { useStore } from "@nanostores/react";
 import { type LineString, type Polygon } from "geojson";
@@ -25,7 +25,7 @@ const getLucideSvgUrl = (componentName: string) => {
 const MapView = () => {
   const mapRef = useRef(null);
   const track = useStore(trackStore);
-  const area = useStore(areaStore);
+  const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
 
   const [viewState, setViewState] = useState({
@@ -66,7 +66,7 @@ const MapView = () => {
   useEffect(() => {
     if (simpleTrackData) {
       const buffers: ResourceArea[] = [];
-      Object.entries(area.ResourceMap).forEach(([id, resource]) => {
+      Object.entries(resourceView).forEach(([id, resource]) => {
         const buffered = turf.buffer(simpleTrackData, resource.distance, {
           units: "meters",
         });
@@ -79,7 +79,7 @@ const MapView = () => {
       });
       setResourceAreas(buffers);
     }
-  }, [simpleTrackData, area]);
+  }, [simpleTrackData, resourceView]);
 
   const layers = useMemo(
     () => [
@@ -109,12 +109,12 @@ const MapView = () => {
         data: resourceAreas ? resourceAreas : [],
         getPolygon: (d: ResourceArea) => d.area.geometry.coordinates,
         getLineColor: (d: ResourceArea) => [
-          ...area.ResourceMap[d.resourceId].color,
+          ...resourceView[d.resourceId].color,
           150,
         ],
         getFillColor: (d: ResourceArea) => [
-          ...area.ResourceMap[d.resourceId].color,
-          area.ResourceMap[d.resourceId].active ? 30 : 0,
+          ...resourceView[d.resourceId].color,
+          resourceView[d.resourceId].active ? 30 : 0,
         ],
         getLineWidth: 4,
         lineWidthMinPixels: 2,
@@ -125,7 +125,7 @@ const MapView = () => {
         id: "pois",
         data: pois.filter((d: PointOfInterest) => {
           // Only show POIs for active resource categories
-          const resource = area.ResourceMap[d.resourceId || ""];
+          const resource = resourceView[d.resourceId || ""];
           if (!resource || !resource.active) return false;
           const resourceCategory = resource.categories[d.resourceCategoryId || ""]
           return resourceCategory?.active ?? false;
@@ -133,7 +133,7 @@ const MapView = () => {
         getPosition: (d: PointOfInterest) => [d.lon, d.lat],
         getIcon: (d: PointOfInterest) => ({
           //url: "https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
-          url: getLucideSvgUrl(area.ResourceMap[d.resourceId || ""].categories[d.resourceCategoryId || ""].icon.render.name),
+          url: getLucideSvgUrl(resourceView[d.resourceId || ""].categories[d.resourceCategoryId || ""].icon.render.name),
           width: 256,
           height: 256,
           mask: true,
@@ -153,13 +153,13 @@ const MapView = () => {
         getFilterValue: (d: PointOfInterest) => d.trackDistance,
         filterRange: [
           0,
-          Math.max(...Object.values(area.ResourceMap).map((t) => t.distance)),
+          Math.max(...Object.values(resourceView).map((t) => t.distance)),
         ],
         // Define extensions
         extensions: [new DataFilterExtension({ filterSize: 1 })],
       }),
     ],
-    [trackData, simpleTrackData, resourceAreas, pois, area],
+    [trackData, simpleTrackData, resourceAreas, pois, resourceView],
   );
 
   return (
