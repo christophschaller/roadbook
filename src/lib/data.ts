@@ -5,6 +5,10 @@ import {
   Utensils,
   Store,
   ShoppingCart,
+  Hotel,
+  Tent,
+  House,
+  Bed,
 } from "lucide-react";
 import type { ResourceCategory, Resource, ResourceCategoryState, ResourceState } from "@/types/resource.types";
 
@@ -121,14 +125,49 @@ const foodCategories: { [key: string]: ResourceCategory } = {
   },
 };
 
+
+const sleepCategories: { [key: string]: ResourceCategory } = {
+  hotel: {
+    name: "Hotels",
+    id: "hotel",
+    icon: Hotel,
+    osmTags: [
+      ["tourism", "hotel"],
+      ["tourism", "motel"],
+      ["tourism", "hostel"],
+      ["tourism", "guest_house"],
+      ["tourism", "apartment"],
+      ["tourism", "chalet"],
+      ["tourism", "alpine_hut"],
+    ],
+  },
+  campground: {
+    name: "Campgrounds",
+    id: "campground",
+    icon: Tent,
+    osmTags: [
+      ["amenity", "campground"],
+      ["amenity", "camp_site"],
+      ["amenity", "camping"],
+    ],
+  },
+  shelter: {
+    name: "Shelters",
+    id: "shelter",
+    icon: House,
+    osmTags: [
+      ["amenity", "shelter"],
+      ["tourism", "wilderness_hut"]
+    ],
+  },
+};
+
 export const Resources: Resource[] = [
   {
     name: "Water",
     id: "water",
     icon: Droplet,
     color: [64, 153, 255],
-    // active: true,
-    //distance: 500,
     minDistance: 500,
     maxDistance: 5000,
     categories: waterCategories,
@@ -138,11 +177,18 @@ export const Resources: Resource[] = [
     id: "food",
     icon: ShoppingCart,
     color: [255, 171, 64],
-    // active: false,
-    // distance: 500,
     minDistance: 500,
     maxDistance: 5000,
     categories: foodCategories,
+  },
+  {
+    name: "Sleep",
+    id: "sleep",
+    icon: Bed,
+    color: [0, 128, 0],
+    minDistance: 500,
+    maxDistance: 5000,
+    categories: sleepCategories,
   },
 ];
 
@@ -176,6 +222,21 @@ export const DefaultResourceState: Record<string, ResourceState> = {
       },
       convenience: {
         active: true
+      },
+    }
+  },
+  sleep: {
+    active: false,
+    distance: 500,
+    categoryStates: {
+      hotel: {
+        active: true
+      },
+      campground: {
+        active: true
+      },
+      shelter: {
+        active: false
       },
     }
   },
