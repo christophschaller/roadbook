@@ -4,7 +4,7 @@ import {
   constructOverpassQuery,
 } from "@/lib/overpass_helpers";
 import { poiStore } from "@/stores/poiStore";
-import type { PointOfInterest, Resource } from "@/types";
+import type { PointOfInterest, Resource, ResourceCategory } from "@/types";
 import { type LineString, type Feature, type BBox } from "geojson";
 import * as turf from "@turf/turf";
 
@@ -29,14 +29,18 @@ function enrichPOI(
   );
 
   // Find matching category
-  const category = Object.values(resource.categories).find(category =>
+  const category: ResourceCategory | undefined = Object.values(resource.categories).find(category =>
     category.osmTags.some(([key, value]) => poi.tags[key] === value)
   );
 
+  if (!category) {
+    throw new Error(`No category found for POI ${poi.id}`);
+  }
+
   // Assign resource information
   poi.resourceId = resourceId;
-  poi.resourceCategoryId = category?.id || "unknown";
-  poi.icon = category?.icon;
+  poi.resourceCategoryId = category.id;
+  poi.icon = category.icon;
   poi.color = resource.color;
 
   return poi;

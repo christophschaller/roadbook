@@ -8,13 +8,13 @@ export interface OverpassNode {
   type: string;
 }
 
-export interface PointOfInterest extends OverpassNode { // TODO: make optionals required
+export interface PointOfInterest extends OverpassNode {
   name?: string;
-  icon?: LucideIcon;
-  color?: [number, number, number];
+  icon: LucideIcon;
+  color: [number, number, number];
   address?: string;
   url?: string;
   trackDistance?: number; // distance to nearest point on track for filtering
-  resourceId?: string
-  resourceCategoryId?: string;
+  resourceId: string
+  resourceCategoryId: string;
 }
