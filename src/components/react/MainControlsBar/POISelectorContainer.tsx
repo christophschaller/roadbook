@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { resourceStateStore } from "@/stores/resourceStore";
 import type { ResourceCategory, ResourceView } from "@/types";
-import { IconSwitch } from "../../ui/IconSwitch";
+import { IconSwitch } from "@/components/ui/IconSwitch";
 
 export function POISelectorContainer({
   resource,

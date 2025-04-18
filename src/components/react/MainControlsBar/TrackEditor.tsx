@@ -2,7 +2,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { resourceStateStore } from "@/stores/resourceStore";
 import type { ResourceView } from "@/types"
 import { useState } from "react";
-import { POISelectorContainer } from "@/components/react/MainControlsBar/AreaDefinition";
+import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
 
 export function TrackEditor({
   resources,
@@ -63,28 +63,6 @@ export function TrackEditor({
           ))}
         </div>
       </div>
-
-      {/* Active Areas */}
-      {/* <div className="space-y-2">
-        <h3 className="font-medium text-lg md:text-base text-primary">
-          Active Areas
-        </h3>
-        <div className="space-y-2">
-          {typeAreas?.map((typeArea) => (
-            <div key={typeArea.typeId} className="flex items-center space-x-2">
-              <div
-                className="w-4 h-4 rounded-full"
-                style={{
-                  backgroundColor: `rgb(${area.poiTypeMap[typeArea.typeId].color.join(",")})`,
-                }}
-              />
-              <span className="text-base md:text-sm text-primary">
-                {area.poiTypeMap[typeArea.typeId].name}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 }
