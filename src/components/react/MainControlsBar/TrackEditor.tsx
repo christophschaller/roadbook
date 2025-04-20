@@ -68,7 +68,7 @@ export function TrackEditor({
         <h3 className="font-medium text-lg md:text-base text-primary">
           Points of Interest
         </h3>
-        <div className="">
+        <div>
           {Object.values(resources).map((resource) => (
             <ResourceContainer
               key={resource.id}
