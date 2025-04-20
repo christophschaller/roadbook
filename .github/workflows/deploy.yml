@@ -53,4 +53,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          destination_dir: ${{ needs.build.outputs.FULL_PAGE_PATH }}
+          destination_dir: .${{ needs.build.outputs.FULL_PAGE_PATH }}
