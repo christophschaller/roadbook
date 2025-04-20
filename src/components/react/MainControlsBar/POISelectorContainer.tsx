@@ -44,7 +44,7 @@ export function POISelectorContainer({
   };
 
   return (
-    <div className="pl-2">
+    <>
       <div className="flex items-center space-x-2">
         <Slider
           defaultValue={[resource.distance]}
@@ -74,6 +74,6 @@ export function POISelectorContainer({
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
