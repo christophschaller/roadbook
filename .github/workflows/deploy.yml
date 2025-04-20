@@ -51,7 +51,7 @@ jobs:
         id: deployment
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           destination_dir: .${{ needs.build.outputs.FULL_PAGE_PATH }}
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           external_repository: christophschaller/christophschaller.github.io
