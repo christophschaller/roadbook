@@ -1,6 +1,6 @@
 "use client";
 
-import { Upload } from "lucide-react";
+import { Plus, RefreshCw } from "lucide-react";
 import queryOverpass from "@derhuerst/query-overpass";
 import { parseGPX, type GeoJSON } from "@we-gold/gpxjs";
 import { Button } from "@/components/ui/button";
@@ -13,16 +13,25 @@ import { poiStore } from "@/stores/poiStore";
 import type { PointOfInterest } from "@/types";
 import { type LineString } from "geojson";
 import * as turf from "@turf/turf";
-import { poiTypes } from "@/lib/data";
+import { resourceStore } from "@/stores/resourceStore";
+import { useStore } from "@nanostores/react";
 
-export default function UploadButton() {
+export default function UploadButton({
+  className = "",
+}: {
+  className?: string;
+}) {
+  const resources = useStore(resourceStore);
+
+  const track = useStore(trackStore);
+
   const fetchPOIsAlongRoute = (
     lineString: LineString,
     bufferMeters: number,
   ) => {
-    const selectors = Object.values(poiTypes)
-      .flatMap((poiType) => Object.values(poiType.categories))
-      .flatMap((category) => category.tags)
+    const selectors = Object.values(resources)
+      .flatMap((resource) => Object.values(resource.categories))
+      .flatMap((category) => category.osmTags)
       .map((selector) => [selector[0], selector[1]]);
 
     const bbox = createBoundingBox(lineString, bufferMeters);
@@ -41,17 +50,25 @@ export default function UploadButton() {
             { units: "meters" },
           );
 
-          const category = Object.values(poiTypes).reduce((found, poiType) => {
-            if (found) return found;
-            return Object.values(poiType.categories).find((category) =>
-              category.tags.some(([key, value]) => poi.tags[key] === value),
+          const resourceIdAndCategory = Object.entries(resources)
+            .flatMap(([resourceId, resource]) =>
+              Object.values(resource.categories).map((category) => ({
+                resourceId,
+                category,
+              })),
+            )
+            .find(({ category }) =>
+              category.osmTags.some(([key, value]) => poi.tags[key] === value),
             );
-          }, null);
-          poi.category = category?.id || "unknown";
-          poi.icon = category?.icon;
-          poi.color = poiTypes[0].color;
+          poi.resourceId = resourceIdAndCategory?.resourceId;
+          poi.resourceCategoryId =
+            resourceIdAndCategory?.category?.id || "unknown";
+          poi.icon = resourceIdAndCategory?.category?.icon;
+          poi.color = resourceIdAndCategory
+            ? resources[resourceIdAndCategory.resourceId].color
+            : [0, 0, 0];
         });
-        poiStore.set({ pois: pois });
+        poiStore.set(pois);
       })
       .catch(console.error);
   };
@@ -93,12 +110,18 @@ export default function UploadButton() {
 
   return (
     <Button
-      variant="outline"
-      className="w-full"
+      variant={track.data ? "outline" : "default"}
+      className={`${className} md:w-full`}
       onClick={() => document.getElementById("file-upload")?.click()}
     >
-      <Upload className="mr-2 h-4 w-4" />
-      Upload GPX Track
+      {track.data ? (
+        <RefreshCw className="h-4 w-4 md:mr-2" />
+      ) : (
+        <Plus className="h-4 w-4 md:mr-2" />
+      )}
+      <span className="inline">
+        {track.data ? "Upload New Track" : "Upload GPX Track"}
+      </span>
       <input
         id="file-upload"
         type="file"

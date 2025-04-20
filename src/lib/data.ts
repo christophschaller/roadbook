@@ -5,16 +5,26 @@ import {
   Utensils,
   Store,
   ShoppingCart,
+  Hotel,
+  Tent,
+  House,
+  Bed,
 } from "lucide-react";
-import type { Category, PoiType } from "@/types/poi.types";
+import type {
+  ResourceCategory,
+  Resource,
+  ResourceCategoryState,
+  ResourceState,
+} from "@/types/resource.types";
 
-const waterCategories: { [key: string]: Category } = {
+// --- static data ---
+const waterCategories: { [key: string]: ResourceCategory } = {
   potable: {
     name: "Potable Water",
     id: "potable",
     icon: Droplet,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["amenity", "drinking_water"],
       ["man_made", "water_tap"],
       ["man_made", "drinking_fountain"],
@@ -27,8 +37,8 @@ const waterCategories: { [key: string]: Category } = {
     name: "Filter Sources",
     id: "filter",
     icon: Filter,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["man_made", "water_well"],
       ["natural", "spring"],
       ["water", "cenote"],
@@ -39,8 +49,8 @@ const waterCategories: { [key: string]: Category } = {
     name: "Risky Sources",
     id: "risky",
     icon: TriangleAlert,
-    active: false,
-    tags: [
+    // active: false,
+    osmTags: [
       ["amenity", "toilets"],
       ["waterway", "river"],
       ["waterway", "stream"],
@@ -65,13 +75,13 @@ const waterCategories: { [key: string]: Category } = {
   },
 };
 
-const foodCategories: { [key: string]: Category } = {
+const foodCategories: { [key: string]: ResourceCategory } = {
   supermarket: {
     name: "Food Markets",
     id: "supermarket",
     icon: ShoppingCart,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["shop", "supermarket"],
       ["shop", "grocery"],
       ["shop", "hypermarket"],
@@ -91,8 +101,8 @@ const foodCategories: { [key: string]: Category } = {
     name: "Quick Bites",
     id: "eat",
     icon: Utensils,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["amenity", "restaurant"],
       ["amenity", "fast_food"],
       ["amenity", "cafe"],
@@ -108,8 +118,8 @@ const foodCategories: { [key: string]: Category } = {
     name: "Mini-Marts",
     id: "convenience",
     icon: Store,
-    active: true,
-    tags: [
+    // active: true,
+    osmTags: [
       ["shop", "convenience"],
       ["shop", "kiosk"],
       ["shop", "mini_mart"],
@@ -120,14 +130,48 @@ const foodCategories: { [key: string]: Category } = {
   },
 };
 
-export const poiTypes: PoiType[] = [
+const sleepCategories: { [key: string]: ResourceCategory } = {
+  hotel: {
+    name: "Hotels",
+    id: "hotel",
+    icon: Hotel,
+    osmTags: [
+      ["tourism", "hotel"],
+      ["tourism", "motel"],
+      ["tourism", "hostel"],
+      ["tourism", "guest_house"],
+      ["tourism", "apartment"],
+      ["tourism", "chalet"],
+      ["tourism", "alpine_hut"],
+    ],
+  },
+  campground: {
+    name: "Campgrounds",
+    id: "campground",
+    icon: Tent,
+    osmTags: [
+      ["amenity", "campground"],
+      ["amenity", "camp_site"],
+      ["amenity", "camping"],
+    ],
+  },
+  shelter: {
+    name: "Shelters",
+    id: "shelter",
+    icon: House,
+    osmTags: [
+      ["amenity", "shelter"],
+      ["tourism", "wilderness_hut"],
+    ],
+  },
+};
+
+export const Resources: Resource[] = [
   {
     name: "Water",
     id: "water",
     icon: Droplet,
-    color: [94, 129, 255],
-    active: true,
-    distance: 500,
+    color: [64, 153, 255],
     minDistance: 500,
     maxDistance: 5000,
     categories: waterCategories,
@@ -136,11 +180,67 @@ export const poiTypes: PoiType[] = [
     name: "Food",
     id: "food",
     icon: ShoppingCart,
-    color: [255, 225, 53],
-    active: false,
-    distance: 500,
+    color: [255, 171, 64],
     minDistance: 500,
     maxDistance: 5000,
     categories: foodCategories,
   },
+  /*{
+    name: "Sleep",
+    id: "sleep",
+    icon: Bed,
+    color: [0, 128, 0],
+    minDistance: 500,
+    maxDistance: 5000,
+    categories: sleepCategories,
+  },*/
 ];
+
+// --- defaults for user state ---
+export const DefaultResourceState: Record<string, ResourceState> = {
+  water: {
+    active: true,
+    distance: 600,
+    categoryStates: {
+      potable: {
+        active: true,
+      },
+      filter: {
+        active: true,
+      },
+      risky: {
+        active: false,
+      },
+    },
+  },
+  food: {
+    active: false,
+    distance: 500,
+    categoryStates: {
+      supermarket: {
+        active: true,
+      },
+      eat: {
+        active: true,
+      },
+      convenience: {
+        active: true,
+      },
+    },
+  },
+  sleep: {
+    active: false,
+    distance: 500,
+    categoryStates: {
+      hotel: {
+        active: true,
+      },
+      campground: {
+        active: true,
+      },
+      shelter: {
+        active: false,
+      },
+    },
+  },
+};

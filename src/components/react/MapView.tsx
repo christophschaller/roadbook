@@ -1,28 +1,41 @@
-import React, { useRef, useEffect, useState, useMemo } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import maplibregl from "maplibre-gl";
 import { Map } from "react-map-gl/dist/es5/exports-maplibre.js";
 import DeckGL from "@deck.gl/react";
+import { type PickingInfo } from "@deck.gl/core";
 import { PathLayer, PolygonLayer, IconLayer } from "@deck.gl/layers";
 import { DataFilterExtension } from "@deck.gl/extensions";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
 import { trackStore } from "@/stores/trackStore";
-import { areaStore } from "@/stores/areaStore";
+import { resourceViewStore } from "@/stores/resourceStore";
 import { poiStore } from "@/stores/poiStore";
 import { useStore } from "@nanostores/react";
-import { type Feature, type LineString, type Polygon } from "geojson";
+import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
+import type { ResourceArea } from "@/types/area.types";
+import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
+import IconWithBackgroundLayer from "@/components/react/IconWithBackgroundLayer";
 
-type TypeArea = {
-  typeId: string;
-  area: Feature;
+const getLucideSvgUrl = (componentName: string) => {
+  const kebabCaseName = componentName
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .toLowerCase();
+  return `https://unpkg.com/lucide-static@0.469.0/icons/${kebabCaseName}.svg`;
+};
+
+const tooltipStyle: React.CSSProperties = {
+  position: "absolute",
+  zIndex: 1,
+  pointerEvents: "none",
 };
 
 const MapView = () => {
   const mapRef = useRef(null);
   const track = useStore(trackStore);
-  const area = useStore(areaStore);
+  const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
+  const [hoverInfo, setHoverInfo] = useState<PickingInfo<PointOfInterest>>();
 
   const [viewState, setViewState] = useState({
     longitude: -0.09,
@@ -35,10 +48,9 @@ const MapView = () => {
   const [simpleTrackData, setSimpleTrackData] = useState<LineString | null>(
     null,
   );
-  const [areaData, setAreaData] = useState<[string, Polygon][] | null>(null);
-  const [poiData, setPoiData] = useState<PointOfInterest[] | null>(null);
-  const [visibleCategories, setVisibleCategories] = useState<string[]>([]);
-  const [typeAreas, setTypeAreas] = useState<TypeArea[] | null>(null);
+  const [resourceAreas, setResourceAreas] = useState<ResourceArea[] | null>(
+    null,
+  );
 
   useEffect(() => {
     if (track.data) {
@@ -46,7 +58,7 @@ const MapView = () => {
       setTrackData(lineString);
 
       const simpleLineString = turf.simplify(lineString, {
-        tolerance: 0.001,
+        tolerance: 0.003,
         highQuality: false,
       });
       setSimpleTrackData(simpleLineString);
@@ -66,28 +78,21 @@ const MapView = () => {
 
   useEffect(() => {
     if (simpleTrackData) {
-      const buffers: TypeArea[] = [];
-      Object.entries(area.poiTypeMap).forEach(([id, poiType]) => {
-        const buffered = turf.buffer(simpleTrackData, poiType.distance, {
+      const buffers: ResourceArea[] = [];
+      Object.entries(resourceView).forEach(([id, resource]) => {
+        const buffered = turf.buffer(simpleTrackData, resource.distance, {
           units: "meters",
         });
-        buffers.push({
-          typeId: id,
-          area: buffered,
-        });
+        if (buffered) {
+          buffers.push({
+            resourceId: id,
+            area: buffered,
+          });
+        }
       });
-      setTypeAreas(buffers);
+      setResourceAreas(buffers);
     }
-  }, [simpleTrackData, area]);
-
-  useEffect(() => {
-    if (pois.pois) {
-      setPoiData(pois.pois);
-    }
-  }, [pois]);
-
-  //console.log(area)
-  console.log("typeAreas:", typeAreas);
+  }, [simpleTrackData, resourceView]);
 
   const layers = useMemo(
     () => [
@@ -101,71 +106,81 @@ const MapView = () => {
           getWidth: 3,
           widthMinPixels: 2,
         }),
-      // simpleTrackData && new PathLayer({
-      //     id: 'simpleTrack',
-      //     data: simpleTrackData ? [{ path: simpleTrackData.coordinates }] : [],
-      //     getPath: (d: any) => d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
-      //     getColor: [0, 255, 0],
-      //     getWidth: 3,
-      //     widthMinPixels: 2,
-      // }),
-      typeAreas &&
+      resourceAreas &&
         new PolygonLayer({
-          id: "typeAreas",
-          data: typeAreas ? typeAreas : [],
-          getPolygon: (d: TypeArea) => d.area.geometry.coordinates,
-          getLineColor: (d: TypeArea) => [
-            ...area.poiTypeMap[d.typeId].color,
+          id: "resourceAreas",
+          data: resourceAreas ? resourceAreas : [],
+          getPolygon: (d: ResourceArea) => d.area.geometry.coordinates,
+          getLineColor: (d: ResourceArea) => [
+            ...resourceView[d.resourceId].color,
             150,
           ],
-          getFillColor: (d: TypeArea) => [
-            ...area.poiTypeMap[d.typeId].color,
-            area.poiTypeMap[d.typeId].active ? 30 : 0,
+          getFillColor: (d: ResourceArea) => [
+            ...resourceView[d.resourceId].color,
+            resourceView[d.resourceId].active ? 30 : 0,
           ],
           getLineWidth: 4,
           lineWidthMinPixels: 2,
           pickable: true,
         }),
-      // poiData && new IconLayer({
-      //     id: 'pois',
-      //     data: poiData.filter((d: PointOfInterest) => area.activeTags.includes(d.category)),
-      //     getPosition: (d: any) => [d.lon, d.lat],
-      //     getIcon: (d: PointOfInterest) => ({
-      //         url: d.icon, //"https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
-      //         width: 256,
-      //         height: 256,
-      //         mask: true,
-      //     }),
-      //     getSize: 24,
-      //     getColor: (d: PointOfInterest) => d.color, // White background circle
-      //     pickable: true,
-      //     onClick: (info: any) => {
-      //         if (info.object) {
-      //             console.log(`Clicked POI: ${info.object.id}`)
-      //             console.log("trackDistance:", info.object.trackDistance)
-      //             console.log("category:", info.object.category)
-      //             console.log("poi object:", info.object)
-      //         }
-      //     },
-      //     // props added by DataFilterExtension
-      //     getFilterValue: (d: PointOfInterest) => d.trackDistance,
-      //     filterRange: [0, area.distance,], // TODO: maybe filterSoftRange would look nice? if the pois fade after hitting the max distance
-
-      //     // Define extensions
-      //     extensions: [new DataFilterExtension({ filterSize: 1 })]
-      // })
+      pois &&
+        new IconWithBackgroundLayer({
+          id: "pois",
+          data: pois.filter((d: PointOfInterest) => {
+            // Only show POIs for active resource categories
+            const resource = resourceView[d.resourceId || ""];
+            if (!resource || !resource.active) return false;
+            const resourceCategory =
+              resource.categories[d.resourceCategoryId || ""];
+            return resourceCategory?.active ?? false;
+          }),
+          getPosition: (d: PointOfInterest) => [d.lon, d.lat],
+          getIcon: (d: PointOfInterest) => ({
+            url: getLucideSvgUrl(
+              resourceView[d.resourceId || ""].categories[
+                d.resourceCategoryId || ""
+              ].icon.render.name,
+            ),
+            width: 256,
+            height: 256,
+            mask: true,
+          }),
+          getSize: 24,
+          getColor: (d: PointOfInterest) => d.color || [255, 255, 255],
+          pickable: true,
+          onHover: (info) => setHoverInfo(info),
+          //onHover: handleClick,
+          // props added by DataFilterExtension
+          getFilterValue: (d: PointOfInterest) => d.trackDistance,
+          filterRange: [
+            0,
+            Math.max(...Object.values(resourceView).map((t) => t.distance)),
+          ],
+          // Define extensions
+          extensions: [new DataFilterExtension({ filterSize: 1 })],
+        }),
     ],
-    [trackData, simpleTrackData, areaData, poiData, area],
+    [trackData, simpleTrackData, resourceAreas, pois, resourceView],
   );
 
   return (
-    <div ref={mapRef} style={{ width: "100%", height: "400px" }}>
+    <div
+      ref={mapRef}
+      style={{ width: "100%", height: "100vh" }}
+      className="relative"
+    >
       <DeckGL initialViewState={viewState} controller={true} layers={layers}>
         <Map
           mapStyle="https://tiles.stadiamaps.com/styles/outdoors.json"
           mapLib={maplibregl}
         />
+        {hoverInfo?.object && (
+          <div style={{ ...tooltipStyle, left: hoverInfo.x, top: hoverInfo.y }}>
+            {hoverInfo.object.resourceId}
+          </div>
+        )}
       </DeckGL>
+      <MainControlsBar />
     </div>
   );
 };

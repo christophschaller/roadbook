@@ -9,36 +9,13 @@ export interface OverpassNode {
 }
 
 export interface PointOfInterest extends OverpassNode {
+  // TODO: make optionals required
   name?: string;
   icon?: LucideIcon;
   color?: [number, number, number];
   address?: string;
   url?: string;
   trackDistance?: number; // distance to nearest point on track for filtering
-  category?: string;
-}
-
-export interface Pois {
-  pois: PointOfInterest[] | null;
-}
-
-export interface Category {
-  name: string;
-  id: string;
-  description?: string;
-  icon: LucideIcon;
-  active: boolean;
-  tags: string[][];
-}
-
-export interface PoiType {
-  name: string;
-  id: string;
-  icon: LucideIcon;
-  color: [number, number, number];
-  active: boolean;
-  distance: number;
-  minDistance: number;
-  maxDistance: number;
-  categories: { [key: string]: Category };
+  resourceId?: string;
+  resourceCategoryId?: string;
 }
