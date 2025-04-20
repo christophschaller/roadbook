@@ -14,6 +14,7 @@ import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
 import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
+import IconWithBackgroundLayer from '@/components/react/IconWithBackgroundLayer';
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -111,7 +112,7 @@ const MapView = () => {
         pickable: true,
       }),
       pois &&
-      new IconLayer({
+      new IconWithBackgroundLayer({
         id: "pois",
         data: pois.filter((d: PointOfInterest) => {
           // Only show POIs for active resource categories
@@ -122,7 +123,6 @@ const MapView = () => {
         }),
         getPosition: (d: PointOfInterest) => [d.lon, d.lat],
         getIcon: (d: PointOfInterest) => ({
-          //url: "https://unpkg.com/lucide-static@0.469.0/icons/map-pin.svg",
           url: getLucideSvgUrl(resourceView[d.resourceId || ""].categories[d.resourceCategoryId || ""].icon.render.name),
           width: 256,
           height: 256,
