@@ -3,6 +3,7 @@ import { resourceStateStore } from "@/stores/resourceStore";
 import type { ResourceView } from "@/types";
 import { useState } from "react";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
+import { handleResourceChange } from "./handleResourceChange";
 
 function ResourceContainer({
   resource,
@@ -47,19 +48,9 @@ export function TrackEditor({
 }) {
   const [activeResource, setActiveResource] = useState<string>("");
 
-  const handleResourceChange = (id: string) => {
+  const handleChange = (id: string) => {
     setActiveResource(id);
-    const currentStore = resourceStateStore.get();
-    const updatedResourceMap = Object.fromEntries(
-      Object.entries(currentStore).map(([resourceId, resourceData]) => [
-        resourceId,
-        {
-          ...resourceData,
-          active: resourceId === id,
-        },
-      ]),
-    );
-    resourceStateStore.set(updatedResourceMap);
+    handleResourceChange(id);
   };
 
   return (
@@ -74,7 +65,7 @@ export function TrackEditor({
               key={resource.id}
               resource={resource}
               activeResource={activeResource}
-              onResourceChange={handleResourceChange}
+              onResourceChange={handleChange}
             />
           ))}
         </div>

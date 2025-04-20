@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { resourceViewStore } from "@/stores/resourceStore";
+import { resourceStateStore, resourceViewStore } from "@/stores/resourceStore";
 import { useStore } from "@nanostores/react";
 import type { ResourceView } from "@/types";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
 import { UploadContainer } from "./UploadContainer";
 import { trackStore } from "@/stores/trackStore";
 import type { LineString } from "geojson";
+import { handleResourceChange } from "./handleResourceChange";
 
 function ResourceContainer({ resource }: { resource: ResourceView }) {
   return (
@@ -38,7 +39,10 @@ function MobileMenu() {
 
   const chevronLeftButton = (
     <button
-      onClick={() => setActiveResourceIndex(activeResourceIndex - 1)}
+      onClick={() => {
+        setActiveResourceIndex(activeResourceIndex - 1);
+        handleResourceChange(resources[activeResourceIndex - 1].id);
+      }}
       disabled={activeResourceIndex === 0}
       className={cn(
         "absolute left-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",
@@ -53,7 +57,10 @@ function MobileMenu() {
 
   const chevronRightButton = (
     <button
-      onClick={() => setActiveResourceIndex(activeResourceIndex + 1)}
+      onClick={() => {
+        setActiveResourceIndex(activeResourceIndex + 1);
+        handleResourceChange(resources[activeResourceIndex + 1].id);
+      }}
       disabled={activeResourceIndex === resources.length - 1}
       className={cn(
         "absolute right-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",

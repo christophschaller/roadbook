@@ -13,8 +13,8 @@ import { useStore } from "@nanostores/react";
 import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
-import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
 import IconWithBackgroundLayer from '@/components/react/IconWithBackgroundLayer';
+import { MainControls } from "./MainControlsBar/MainControls";
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -164,7 +164,7 @@ const MapView = () => {
           mapLib={maplibregl}
         />
       </DeckGL>
-      <MainControlsBar />
+      <MainControls />
     </div>
   );
 };
