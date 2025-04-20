@@ -1,5 +1,4 @@
 import "maplibre-gl/dist/maplibre-gl.css";
-import { resourceStateStore } from "@/stores/resourceStore";
 import type { ResourceView } from "@/types";
 import { useState } from "react";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
