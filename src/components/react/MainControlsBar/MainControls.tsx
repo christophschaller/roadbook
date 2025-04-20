@@ -1,6 +1,6 @@
 import { useIsMobile } from "@/hooks/use-mobile";
-import { MainControlsMobile } from "./MainControlsMobile";
-import { MainControlsDesktop } from "./MainControlsDesktop";
+import { MainControlsMobile } from "@/components/react/MainControlsBar/MainControlsMobile";
+import { MainControlsDesktop } from "@/components/react/MainControlsBar/MainControlsDesktop";
 
 export function MainControls() {
   const isMobile = useIsMobile();

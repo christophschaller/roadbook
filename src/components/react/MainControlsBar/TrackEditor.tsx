@@ -2,7 +2,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import type { ResourceView } from "@/types";
 import { useState } from "react";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
-import { handleResourceChange } from "./handleResourceChange";
+import { handleResourceChange } from "@/components/react/MainControlsBar/handleResourceChange";
 
 function ResourceContainer({
   resource,

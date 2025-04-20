@@ -5,10 +5,10 @@ import { resourceStateStore, resourceViewStore } from "@/stores/resourceStore";
 import { useStore } from "@nanostores/react";
 import type { ResourceView } from "@/types";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
-import { UploadContainer } from "./UploadContainer";
+import { UploadContainer } from "@/components/react/MainControlsBar/UploadContainer";
 import { trackStore } from "@/stores/trackStore";
 import type { LineString } from "geojson";
-import { handleResourceChange } from "./handleResourceChange";
+import { handleResourceChange } from "@/components/react/MainControlsBar/handleResourceChange";
 
 function ResourceContainer({ resource }: { resource: ResourceView }) {
   return (

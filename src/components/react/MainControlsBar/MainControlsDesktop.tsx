@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import type { LineString } from "geojson";
 import { trackStore } from "@/stores/trackStore";
 import { useStore } from "@nanostores/react";
 import { resourceViewStore } from "@/stores/resourceStore";
 import { TrackEditor } from "@/components/react/MainControlsBar/TrackEditor";
 import { TrackInformation } from "@/components/react/MainControlsBar/TrackInformation";
-import { UploadContainer } from "./UploadContainer";
+import { UploadContainer } from "@/components/react/MainControlsBar/UploadContainer";
 
 export function MainControlsDesktop() {
   const track = useStore(trackStore);
