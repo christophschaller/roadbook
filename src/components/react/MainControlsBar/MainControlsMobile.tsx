@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { resourceViewStore, resourceStateStore } from "@/stores/resourceStore";
+import { resourceViewStore } from "@/stores/resourceStore";
 import { useStore } from "@nanostores/react";
 import type { ResourceView } from "@/types";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
+import { UploadContainer } from "./UploadContainer";
+import { trackStore } from "@/stores/trackStore";
+import type { LineString } from "geojson";
 
 function ResourceContainer({ resource }: { resource: ResourceView }) {
   return (
@@ -35,9 +38,7 @@ function MobileMenu() {
 
   const chevronLeftButton = (
     <button
-      onClick={() =>
-        setActiveResourceIndex(activeResourceIndex - 1)
-      }
+      onClick={() => setActiveResourceIndex(activeResourceIndex - 1)}
       disabled={activeResourceIndex === 0}
       className={cn(
         "absolute left-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",
@@ -52,9 +53,7 @@ function MobileMenu() {
 
   const chevronRightButton = (
     <button
-      onClick={() =>
-        setActiveResourceIndex(activeResourceIndex + 1)
-      }
+      onClick={() => setActiveResourceIndex(activeResourceIndex + 1)}
       disabled={activeResourceIndex === resources.length - 1}
       className={cn(
         "absolute right-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",
@@ -68,16 +67,31 @@ function MobileMenu() {
   );
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-1/3 overflow-hidden flex items-center justify-center">
+    <>
       {chevronLeftButton}
       <div className="w-full p-5 m-10 rounded-2xl bg-white/80 backdrop-blur-md">
         <ResourceContainer resource={resources[activeResourceIndex]} />
       </div>
       {chevronRightButton}
-    </div>
+    </>
   );
 }
 
 export function MainControlsMobile() {
-  return <MobileMenu />;
+  const track = useStore(trackStore);
+  const trackData = track.data
+    ? (track.data.features[0].geometry as LineString)
+    : null;
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 h-1/3 overflow-hidden flex items-center justify-center">
+      {trackData ? (
+        <MobileMenu />
+      ) : (
+        <div className="w-full p-5 m-10 rounded-2xl bg-white/80 backdrop-blur-md">
+          <UploadContainer />
+        </div>
+      )}
+    </div>
+  );
 }
