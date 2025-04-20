@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> & {
+  Omit<React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>, "color"> & {
     color?: [number, number, number];
   }
 >(({ className, color = [107, 114, 128], ...props }, ref) => (
