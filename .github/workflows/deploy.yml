@@ -24,7 +24,7 @@ jobs:
 
       # 2. Enable Pages and grab metadata
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5 :contentReference[oaicite:0]{index=0}
+        uses: actions/configure-pages@v5
 
       # 3. Compute branch subpath ("" for main, "dev", "feature/…", etc.)
       - name: Determine branch subpath
@@ -41,8 +41,7 @@ jobs:
       - name: Install & build with Astro
         uses: withastro/action@v4
         env:
-          # Ensure your site links resolve correctly under /dev, /feature/…, etc.
-          PUBLIC_BASE_PATH: "/${{ steps.set-path.outputs.subpath }}" :contentReference[oaicite:1]{index=1}
+          PUBLIC_BASE_PATH: "/${{ steps.set-path.outputs.subpath }}"
 
       # 5. Wrap `dist/` into the computed folder
       - name: Prepare Pages content
@@ -59,7 +58,7 @@ jobs:
 
       # 6. Upload as the Pages artifact
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3 :contentReference[oaicite:2]{index=2}
+        uses: actions/upload-pages-artifact@v3
         with:
           path: out
 
@@ -68,11 +67,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pages: write
-      id-token: write :contentReference[oaicite:3]{index=3}
+      id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }} :contentReference[oaicite:4]{index=4}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 :contentReference[oaicite:5]{index=5}
+        uses: actions/deploy-pages@v4
