@@ -45,7 +45,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           publish_dir: ./dist
-          destination_dir: .${{ needs.build.outputs.FULL_PAGE_PATH }}
+          destination_dir: .${{ steps.set-path.outputs.fullPath }}
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           external_repository: christophschaller/christophschaller.github.io
           publish_branch: main
