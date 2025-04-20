@@ -11,6 +11,6 @@ const basePath = process.env.PUBLIC_BASE_PATH || "/";
 export default defineConfig({
   integrations: [react(), tailwind({ applyBaseStyles: false })],
   site: "https://christophschaller.github.io",
-  base: basePath + "/",
+  base: basePath,
   adapter: vercel(),
 });
