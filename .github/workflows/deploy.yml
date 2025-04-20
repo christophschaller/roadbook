@@ -55,3 +55,4 @@ jobs:
           destination_dir: .${{ needs.build.outputs.FULL_PAGE_PATH }}
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           external_repository: christophschaller/christophschaller.github.io
+          publish_branch: main
