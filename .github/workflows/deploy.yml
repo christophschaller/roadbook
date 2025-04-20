@@ -1,8 +1,10 @@
-name: Deploy to GitHub Pages
-
+# .github/workflows/deploy-pages.yml
 on:
   push:
-    branches: [main, dev, "feature/*"]
+    branches:
+      - main
+      - dev
+      - 'feature/*'
   workflow_dispatch:
 
 permissions:
@@ -10,42 +12,67 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  GITHUB_ROOT_PATH: /roadbook
-
 jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      # expose the full site prefix for the deploy job
-      FULL_PAGE_PATH: ${{ steps.set-path.outputs.fullPath }}
+      subpath: ${{ steps.set-path.outputs.subpath }}
     steps:
+      # 1. Get your code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Determine branch sub‑folder
+      # 2. Enable Pages and grab metadata
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5 :contentReference[oaicite:0]{index=0}
+
+      # 3. Compute branch subpath ("" for main, "dev", "feature/…", etc.)
+      - name: Determine branch subpath
         id: set-path
         run: |
-          BRANCH=${GITHUB_REF##*/}
-          if [[ "$BRANCH" == "main" ]]; then
-            SUFFIX=""
+          BR=${GITHUB_REF##*/}
+          if [[ "$BR" == "main" ]]; then
+            echo "subpath=" >> $GITHUB_OUTPUT
           else
-            SUFFIX="/${BRANCH}"
+            echo "subpath=$BR" >> $GITHUB_OUTPUT
           fi
-          # fullPath is e.g. "/roadbook" or "/roadbook/dev" or "/roadbook/feature/foo"
-          echo "fullPath=${GITHUB_ROOT_PATH}${SUFFIX}" >> $GITHUB_OUTPUT
 
+      # 4. Build with Astro, injecting the proper base path
       - name: Install & build with Astro
+        uses: withastro/action@v4
         env:
-          PUBLIC_BASE_PATH: ${{ steps.set-path.outputs.fullPath }}
-        uses: withastro/action@v3
+          # Ensure your site links resolve correctly under /dev, /feature/…, etc.
+          PUBLIC_BASE_PATH: "/${{ steps.set-path.outputs.subpath }}" :contentReference[oaicite:1]{index=1}
 
+      # 5. Wrap `dist/` into the computed folder
+      - name: Prepare Pages content
+        run: |
+          mkdir out
+          if [[ -z "${{ steps.set-path.outputs.subpath }}" ]]; then
+            # main → root
+            cp -a dist/* out/
+          else
+            # other branches → subfolder
+            mkdir -p out/${{ steps.set-path.outputs.subpath }}
+            cp -a dist/* out/${{ steps.set-path.outputs.subpath }}/
+          fi
+
+      # 6. Upload as the Pages artifact
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3 :contentReference[oaicite:2]{index=2}
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write :contentReference[oaicite:3]{index=3}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} :contentReference[oaicite:4]{index=4}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          publish_dir: ./dist
-          destination_dir: .${{ steps.set-path.outputs.fullPath }}
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          external_repository: christophschaller/christophschaller.github.io
-          publish_branch: main
+        uses: actions/deploy-pages@v4 :contentReference[oaicite:5]{index=5}
