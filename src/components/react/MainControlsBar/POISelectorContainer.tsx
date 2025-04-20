@@ -2,7 +2,7 @@ import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { resourceStateStore } from "@/stores/resourceStore";
-import type { ResourceCategory, ResourceView } from "@/types";
+import type { ResourceView } from "@/types";
 import { IconSwitch } from "@/components/ui/IconSwitch";
 
 export function POISelectorContainer({
@@ -51,6 +51,7 @@ export function POISelectorContainer({
           min={resource.minDistance}
           max={resource.maxDistance}
           step={stepDistance}
+          color={resource.color}
           onValueChange={(value) => {
             handleSliderChange(value[0]);
           }}
