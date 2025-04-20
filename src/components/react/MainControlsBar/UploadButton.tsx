@@ -61,12 +61,12 @@ export default function UploadButton({
               category.osmTags.some(([key, value]) => poi.tags[key] === value),
             );
           poi.resourceId = resourceIdAndCategory?.resourceId;
-          poi.resourceCategoryId = resourceIdAndCategory?.category?.id || "unknown";
+          poi.resourceCategoryId =
+            resourceIdAndCategory?.category?.id || "unknown";
           poi.icon = resourceIdAndCategory?.category?.icon;
-          poi.color =
-            resourceIdAndCategory
-              ? resources[resourceIdAndCategory.resourceId].color
-              : [0, 0, 0];
+          poi.color = resourceIdAndCategory
+            ? resources[resourceIdAndCategory.resourceId].color
+            : [0, 0, 0];
         });
         poiStore.set(pois);
       })

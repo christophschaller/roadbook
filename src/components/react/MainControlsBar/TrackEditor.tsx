@@ -1,6 +1,6 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 import { resourceStateStore } from "@/stores/resourceStore";
-import type { ResourceView } from "@/types"
+import type { ResourceView } from "@/types";
 import { useState } from "react";
 import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
 
@@ -21,7 +21,7 @@ export function TrackEditor({
           ...resourceData,
           active: resourceId === id,
         },
-      ])
+      ]),
     );
     resourceStateStore.set(updatedResourceMap);
   };
@@ -38,7 +38,9 @@ export function TrackEditor({
             <div key={resource.id} className="space-y-2">
               <button
                 onClick={() =>
-                  handleResourceChange(activeResource === resource.id ? "" : resource.id)
+                  handleResourceChange(
+                    activeResource === resource.id ? "" : resource.id,
+                  )
                 }
                 className="w-full flex items-center space-x-2 p-2 rounded-md hover:bg-white/50 transition-colors"
               >
