@@ -1,7 +1,4 @@
-"use client";
-
-import type React from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { resourceViewStore, resourceStateStore } from "@/stores/resourceStore";
