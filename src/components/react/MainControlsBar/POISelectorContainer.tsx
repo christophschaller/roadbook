@@ -8,11 +8,9 @@ import { IconSwitch } from "@/components/ui/IconSwitch";
 export function POISelectorContainer({
   resource,
   onDistanceChange,
-  onCategoryChange,
 }: {
   resource: ResourceView;
   onDistanceChange?: (distance: number) => void;
-  onCategoryChange?: (categories: ResourceCategory[]) => void;
 }) {
   const stepDistance = 50; // TODO: define in Resource
   const handleSliderChange = (value: number) => {

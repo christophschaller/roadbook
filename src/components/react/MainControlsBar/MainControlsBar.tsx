@@ -8,9 +8,14 @@ import { TrackEditor } from "@/components/react/MainControlsBar/TrackEditor";
 import UploadButton from "@/components/react/MainControlsBar/UploadButton";
 import { TrackInformation } from "@/components/react/MainControlsBar/TrackInformation";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { MainControlsMobile } from "./MainControlsMobile";
 
 export function MainControlsBar() {
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    console.log("Is mobile:", isMobile);
+  }, [isMobile]);
 
   return isMobile ? <MainControlsMobile /> : <MainControlsDesktop />;
 }
@@ -18,13 +23,9 @@ export function MainControlsBar() {
 function MainControlsDesktop() {
   return (
     <div className="absolute bottom-0 left-0 w-full md:w-64 md:left-[50px] md:top-[50px] md:h-[calc(100%-100px)] bg-white/80 backdrop-blur-md shadow-lg p-4 overflow-y-auto rounded-t-2xl md:rounded-2xl transition-transform duration-200">
-        <MainControlsContent />
+      <MainControlsContent />
     </div>
   );
-}
-
-function MainControlsMobile() {
-  return <MainControlsContent />;
 }
 
 function MainControlsContent() {
