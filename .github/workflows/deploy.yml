@@ -40,13 +40,6 @@ jobs:
           PUBLIC_BASE_PATH: ${{ steps.set-path.outputs.fullPath }}
         uses: withastro/action@v3
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: peaceiris/actions-gh-pages@v4
