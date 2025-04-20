@@ -1,4 +1,5 @@
 import { Plus, RefreshCw } from "lucide-react";
+import queryOverpass from "@derhuerst/query-overpass";
 import { parseGPX } from "@we-gold/gpxjs";
 import { Button } from "@/components/ui/button";
 import { trackStore } from "@/stores/trackStore";
