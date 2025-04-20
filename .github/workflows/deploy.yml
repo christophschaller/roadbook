@@ -47,6 +47,8 @@ jobs:
       - name: Install & build with Astro
         env:
           PUBLIC_BASE_PATH: ${{ steps.set-path.outputs.fullPath }}
+          SKIP_OVERPASS: "1"
+          BUILD_ROUTES_ONLY_MISSING: "1"
         uses: withastro/action@v3
 
       - name: Deploy to GitHub Pages
