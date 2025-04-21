@@ -2,50 +2,50 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
-      - dev
-  pull_request:
-    branches:
-      - '**'
+    branches: [main, dev, "feature/*"]
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
-@@ -20,14 +21,28 @@ jobs:
+  id-token: write
+
+env:
+  GITHUB_ROOT_PATH: /roadbook
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      # expose the full site prefix for the deploy job
+      FULL_PAGE_PATH: ${{ steps.set-path.outputs.fullPath }}
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set base path environment variable
+      - name: Determine branch sub‑folder
+        id: set-path
         run: |
-          # If this is a pull_request event, use GITHUB_HEAD_REF; otherwise, use the pushed branch name.
-          if [ -n "$GITHUB_HEAD_REF" ]; then
-            branch="$GITHUB_HEAD_REF"
+          BRANCH=${GITHUB_REF##*/}
+          if [[ "$BRANCH" == "main" ]]; then
+            SUFFIX=""
           else
-            branch=${GITHUB_REF#refs/heads/}
+            SUFFIX="/${BRANCH}"
           fi
-          echo "Detected branch: $branch"
-          if [ "$branch" = "main" ]; then
-            echo "GITHUB_BASE_PATH=/roadbook" >> $GITHUB_ENV
-          elif [ "$branch" = "dev" ]; then
-            echo "GITHUB_BASE_PATH=/roadbook/dev" >> $GITHUB_ENV
-          else
-            echo "GITHUB_BASE_PATH=/roadbook/$branch" >> $GITHUB_ENV
-          fi
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
-        env:
-          GITHUB_BASE_PATH: ${{ env.GITHUB_BASE_PATH }}
+          # fullPath is e.g. "/roadbook" or "/roadbook/dev" or "/roadbook/feature/foo"
+          echo "fullPath=${GITHUB_ROOT_PATH}${SUFFIX}" >> $GITHUB_OUTPUT
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
+      - name: Install & build with Astro
+        env:
+          PUBLIC_BASE_PATH: ${{ steps.set-path.outputs.fullPath }}
+        uses: withastro/action@v3
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          publish_dir: ./dist
+          destination_dir: .${{ steps.set-path.outputs.fullPath }}
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: christophschaller/christophschaller.github.io
+          publish_branch: main
