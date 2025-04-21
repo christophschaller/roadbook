@@ -5,8 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel";
 
 // Determine the base path dynamically
-const basePath =
-  process.env.GITHUB_BASE_PATH || process.env.PUBLIC_BASE_PATH || "/";
+const basePath = process.env.PUBLIC_BASE_PATH || "/";
 
 // https://astro.build/config
 export default defineConfig({

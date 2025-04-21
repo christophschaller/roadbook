@@ -10,7 +10,12 @@ import {
   House,
   Bed,
 } from "lucide-react";
-import type { ResourceCategory, Resource, ResourceCategoryState, ResourceState } from "@/types/resource.types";
+import type {
+  ResourceCategory,
+  Resource,
+  ResourceCategoryState,
+  ResourceState,
+} from "@/types/resource.types";
 
 // --- static data ---
 const waterCategories: { [key: string]: ResourceCategory } = {
@@ -125,7 +130,6 @@ const foodCategories: { [key: string]: ResourceCategory } = {
   },
 };
 
-
 const sleepCategories: { [key: string]: ResourceCategory } = {
   hotel: {
     name: "Hotels",
@@ -157,7 +161,7 @@ const sleepCategories: { [key: string]: ResourceCategory } = {
     icon: House,
     osmTags: [
       ["amenity", "shelter"],
-      ["tourism", "wilderness_hut"]
+      ["tourism", "wilderness_hut"],
     ],
   },
 };
@@ -192,7 +196,6 @@ export const Resources: Resource[] = [
   }
 ];
 
-
 // --- defaults for user state ---
 export const DefaultResourceState: Record<string, ResourceState> = {
   water: {
@@ -200,44 +203,44 @@ export const DefaultResourceState: Record<string, ResourceState> = {
     distance: 600,
     categoryStates: {
       potable: {
-        active: true
+        active: true,
       },
       filter: {
-        active: true
+        active: true,
       },
       risky: {
-        active: false
+        active: false,
       },
-    }
+    },
   },
   food: {
     active: false,
     distance: 500,
     categoryStates: {
       supermarket: {
-        active: true
+        active: true,
       },
       eat: {
-        active: true
+        active: true,
       },
       convenience: {
-        active: true
+        active: true,
       },
-    }
+    },
   },
   sleep: {
     active: false,
     distance: 500,
     categoryStates: {
       hotel: {
-        active: true
+        active: true,
       },
       campground: {
-        active: true
+        active: true,
       },
       shelter: {
-        active: false
+        active: false,
       },
-    }
+    },
   },
-}
+};

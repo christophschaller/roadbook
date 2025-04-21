@@ -1,5 +1,3 @@
-"use client";
-
 import { Plus, RefreshCw } from "lucide-react";
 import { parseGPX } from "@we-gold/gpxjs";
 import { Button } from "@/components/ui/button";
