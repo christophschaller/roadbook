@@ -9,6 +9,7 @@ export interface OverpassNode {
 }
 
 export interface PointOfInterest extends OverpassNode {
+  // TODO: make optionals required
   name?: string;
   icon: LucideIcon;
   color: [number, number, number];

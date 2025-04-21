@@ -16,7 +16,6 @@ export default function UploadButton({
   const resources = useStore(resourceStore);
 
   const track = useStore(trackStore);
-
   const handleFileUpload = (file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => {
