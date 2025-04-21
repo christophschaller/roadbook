@@ -2,7 +2,7 @@ import type { trackStore } from "@/stores/trackStore";
 import type { useStore } from "@nanostores/react";
 import type { LineString } from "geojson";
 
-export function TrackInformation({
+export function TrackInformationSection({
   track,
   trackData,
 }: {

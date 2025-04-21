@@ -1,8 +1,8 @@
 import { useStore } from "@nanostores/react";
-import UploadButton from "@/components/react/MainControlsBar/UploadButton";
+import UploadButton from "@/components/react/MainControlsBar/sections/UploadButton";
 import { trackStore } from "@/stores/trackStore";
 
-export function UploadContainer() {
+export function UploadSection() {
   const track = useStore(trackStore);
   return (
     <div className="space-y-4 md:mt-0">

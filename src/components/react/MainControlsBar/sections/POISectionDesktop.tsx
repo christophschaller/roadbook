@@ -1,8 +1,8 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { ResourceView } from "@/types";
 import { useState } from "react";
-import { POISelectorContainer } from "@/components/react/MainControlsBar/POISelectorContainer";
-import { handleResourceChange } from "@/components/react/MainControlsBar/handleResourceChange";
+import { handleResourceChange } from "@/components/react/MainControlsBar/utils/handleResourceChange";
+import { POISelectorContainer } from "../POISelectorContainer";
 
 function ResourceContainer({
   resource,
@@ -40,7 +40,7 @@ function ResourceContainer({
   );
 }
 
-export function TrackEditor({
+export function POISectionDesktop({
   resources,
 }: {
   resources: Record<string, ResourceView>;
