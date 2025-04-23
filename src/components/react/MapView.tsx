@@ -168,24 +168,14 @@ const MapView = () => {
         initialViewState={viewState}
         controller={true}
         layers={layers}
+        onViewStateChange={({ viewState }) => {
+          console.log(viewState)
+          // Update viewport when map is moved
+          setViewState(viewState);
+        }}
         onClick={(info) => {
           if (info && info.object) {
-            // Get screen coordinates from the POI's geographical position
-            if (info.viewport) {
-              const screenCoords = info.viewport.project([
-                info.object.lon,
-                info.object.lat
-              ]);
-              
-              // Create a modified picking info with screen coordinates from the POI position
-              const modifiedInfo = {
-                ...info,
-                x: screenCoords[0],
-                y: screenCoords[1]
-              };
-              
-              setHoverInfo(modifiedInfo);
-            }
+              setHoverInfo(info);
           } else {
             setHoverInfo(null);
           }
@@ -198,7 +188,16 @@ const MapView = () => {
         {hoverInfo?.object && (
           <PoiTooltip
             poi={hoverInfo.object as PointOfInterest}
-            style={{ left: hoverInfo.x, top: hoverInfo.y }}
+            style={{
+              left: hoverInfo.viewport?.project([
+                hoverInfo.object.lon,
+                hoverInfo.object.lat,
+              ])?.[0] ?? 0,
+              top: hoverInfo.viewport?.project([
+                hoverInfo.object.lon,
+                hoverInfo.object.lat,
+              ])?.[1] ?? 0,
+            }}
             onClose={() => setHoverInfo(null)}
           />
         )}
