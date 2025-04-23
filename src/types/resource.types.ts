@@ -4,7 +4,7 @@ import type { LucideIcon } from "lucide-react";
 export interface ResourceCategory {
   name: string;
   id: string;
-  description?: string;
+  description: string;
   icon: LucideIcon;
   // active: boolean;
   osmTags: string[][];
