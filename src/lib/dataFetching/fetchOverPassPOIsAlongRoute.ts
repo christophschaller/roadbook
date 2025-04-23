@@ -8,11 +8,43 @@ import type { PointOfInterest, Resource, ResourceCategory } from "@/types";
 import { type LineString, type Feature, type BBox } from "geojson";
 import * as turf from "@turf/turf";
 
-
 function create2DLineString(lineString: LineString): Feature<LineString> {
   return turf.lineString(
     lineString.coordinates.map((coord: number[]) => [coord[0], coord[1]]),
   );
+}
+
+export function formatPoiAddress(poi: PointOfInterest): string | null {
+  const tags = poi.tags;
+  const street = tags["addr:street"];
+  const houseNumber = tags["addr:housenumber"];
+  const postcode = tags["addr:postcode"];
+  const city = tags["addr:city"];
+
+  // If we don't have a street, we can't form a valid address
+  if (!street) {
+    return null;
+  }
+
+  // Build the first part of the address (street + optional house number)
+  let address = street;
+  if (houseNumber) {
+    address += ` ${houseNumber}`;
+  }
+
+  // Add postcode and city if either exists
+  if (postcode || city) {
+    address += ",";
+    if (postcode && city) {
+      address += ` ${postcode} ${city}`;
+    } else if (city) {
+      address += ` ${city}`;
+    } else if (postcode) {
+      address += ` ${postcode}`;
+    }
+  }
+
+  return address;
 }
 
 function enrichPOI(
@@ -43,8 +75,18 @@ function enrichPOI(
   poi.resourceCategoryId = category.id;
   poi.icon = category.icon;
   poi.color = resource.color;
+  if ("name" in poi.tags) {
+    poi.name = poi.tags["name"];
+  }
+  if ("website" in poi.tags) {
+    poi.website = poi.tags["website"];
+  }
+  if ("phone" in poi.tags) {
+    poi.phone = poi.tags["phone"];
+  }
+  poi.address = formatPoiAddress(poi) ?? "";
 
-    return poi;
+  return poi;
   } catch (error) {
     const errorMessage = `Error enriching POI ${poi.id}: ${error}`;
     console.error(errorMessage);
