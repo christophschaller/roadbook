@@ -169,9 +169,23 @@ const MapView = () => {
         controller={true}
         layers={layers}
         onClick={(info) => {
-          // If a POI is clicked, info.object is defined.
           if (info && info.object) {
-            setHoverInfo(info);
+            // Get screen coordinates from the POI's geographical position
+            if (info.viewport) {
+              const screenCoords = info.viewport.project([
+                info.object.lon,
+                info.object.lat
+              ]);
+              
+              // Create a modified picking info with screen coordinates from the POI position
+              const modifiedInfo = {
+                ...info,
+                x: screenCoords[0],
+                y: screenCoords[1]
+              };
+              
+              setHoverInfo(modifiedInfo);
+            }
           } else {
             setHoverInfo(null);
           }
