@@ -154,7 +154,7 @@ const MapView = () => {
           getFilterValue: (d: PointOfInterest) => d.trackDistance,
           filterRange: [
             0,
-            Object.values(resourceView).find((t) => t.active)?.distance ?? 0,
+            Object.values(resourceView).find((t) => t.active)?.distance || 0,
           ],
           // Define extensions
           extensions: [new DataFilterExtension({ filterSize: 1 })],
