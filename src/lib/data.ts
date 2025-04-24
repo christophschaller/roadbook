@@ -134,7 +134,8 @@ const sleepCategories: { [key: string]: ResourceCategory } = {
     name: "Hotels",
     id: "hotel",
     icon: Hotel,
-    description: "A roof over your head, a bed to sleep in, maybe even a hot shower.",
+    description:
+      "A roof over your head, a bed to sleep in, maybe even a hot shower.",
     osmTags: [
       ["tourism", "hotel"],
       ["tourism", "motel"],
@@ -160,7 +161,8 @@ const sleepCategories: { [key: string]: ResourceCategory } = {
     name: "Shelters",
     id: "shelter",
     icon: House,
-    description: "It looks like there is some kind of shelter here. Make sure your are allowed to sleep in it!",
+    description:
+      "It looks like there is some kind of shelter here. Make sure your are allowed to sleep in it!",
     osmTags: [
       ["amenity", "shelter"],
       ["tourism", "wilderness_hut"],
@@ -195,7 +197,7 @@ export const Resources: Resource[] = [
     minDistance: 500,
     maxDistance: 5000,
     categories: sleepCategories,
-  }
+  },
 ];
 
 // --- defaults for user state ---

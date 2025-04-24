@@ -30,7 +30,8 @@ const MapView = () => {
   const track = useStore(trackStore);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
-  const [hoverInfo, setHoverInfo] = useState<PickingInfo<PointOfInterest> | null>();
+  const [hoverInfo, setHoverInfo] =
+    useState<PickingInfo<PointOfInterest> | null>();
 
   const [viewState, setViewState] = useState({
     longitude: -0.09,
@@ -169,13 +170,12 @@ const MapView = () => {
         controller={true}
         layers={layers}
         onViewStateChange={({ viewState }) => {
-          console.log(viewState)
           // Update viewport when map is moved
           setViewState(viewState);
         }}
         onClick={(info) => {
           if (info && info.object) {
-              setHoverInfo(info);
+            setHoverInfo(info);
           } else {
             setHoverInfo(null);
           }
@@ -189,14 +189,16 @@ const MapView = () => {
           <PoiTooltip
             poi={hoverInfo.object as PointOfInterest}
             style={{
-              left: hoverInfo.viewport?.project([
-                hoverInfo.object.lon,
-                hoverInfo.object.lat,
-              ])?.[0] ?? 0,
-              top: hoverInfo.viewport?.project([
-                hoverInfo.object.lon,
-                hoverInfo.object.lat,
-              ])?.[1] ?? 0,
+              left:
+                hoverInfo.viewport?.project([
+                  hoverInfo.object.lon,
+                  hoverInfo.object.lat,
+                ])?.[0] ?? 0,
+              top:
+                hoverInfo.viewport?.project([
+                  hoverInfo.object.lon,
+                  hoverInfo.object.lat,
+                ])?.[1] ?? 0,
             }}
             onClose={() => setHoverInfo(null)}
           />

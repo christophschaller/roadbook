@@ -48,45 +48,47 @@ export function formatPoiAddress(poi: PointOfInterest): string | null {
 }
 
 function enrichPOI(
-  poi: PointOfInterest, 
+  poi: PointOfInterest,
   linestring2d: Feature<LineString>,
   resourceId: string,
-  resource: Resource
+  resource: Resource,
 ): PointOfInterest {
   try {
     // Calculate distance to route
     poi.trackDistance = turf.pointToLineDistance(
       turf.point([poi.lon, poi.lat]),
-    linestring2d,
-    { units: "meters" },
-  );
+      linestring2d,
+      { units: "meters" },
+    );
 
-  // Find matching category
-  const category: ResourceCategory | undefined = Object.values(resource.categories).find(category =>
-    category.osmTags.some(([key, value]) => poi.tags[key] === value)
-  );
+    // Find matching category
+    const category: ResourceCategory | undefined = Object.values(
+      resource.categories,
+    ).find((category) =>
+      category.osmTags.some(([key, value]) => poi.tags[key] === value),
+    );
 
-  if (!category) {
-    throw new Error(`No category found for POI ${poi.id}`);
-  }
+    if (!category) {
+      throw new Error(`No category found for POI ${poi.id}`);
+    }
 
-  // Assign resource information
-  poi.resourceId = resourceId;
-  poi.resourceCategoryId = category.id;
-  poi.icon = category.icon;
-  poi.color = resource.color;
-  if ("name" in poi.tags) {
-    poi.name = poi.tags["name"];
-  }
-  if ("website" in poi.tags) {
-    poi.website = poi.tags["website"];
-  }
-  if ("phone" in poi.tags) {
-    poi.phone = poi.tags["phone"];
-  }
-  poi.address = formatPoiAddress(poi) ?? "";
+    // Assign resource information
+    poi.resourceId = resourceId;
+    poi.resourceCategoryId = category.id;
+    poi.icon = category.icon;
+    poi.color = resource.color;
+    if ("name" in poi.tags) {
+      poi.name = poi.tags["name"];
+    }
+    if ("website" in poi.tags) {
+      poi.website = poi.tags["website"];
+    }
+    if ("phone" in poi.tags) {
+      poi.phone = poi.tags["phone"];
+    }
+    poi.address = formatPoiAddress(poi) ?? "";
 
-  return poi;
+    return poi;
   } catch (error) {
     const errorMessage = `Error enriching POI ${poi.id}: ${error}`;
     console.error(errorMessage);
@@ -97,17 +99,17 @@ function enrichPOI(
 async function fetchPOIsForResource(
   bbox: BBox,
   resourceId: string,
-  resource: Resource
+  resource: Resource,
 ): Promise<PointOfInterest[]> {
   try {
     // Extract selectors from the resource
     const selectors = Object.values(resource.categories)
-      .flatMap(category => category.osmTags)
-    .map(selector => [selector[0], selector[1]]);
-  
-  // Create and execute query
-  const query = constructOverpassQuery(bbox, selectors);
-  return queryOverpass(query);
+      .flatMap((category) => category.osmTags)
+      .map((selector) => [selector[0], selector[1]]);
+
+    // Create and execute query
+    const query = constructOverpassQuery(bbox, selectors);
+    return queryOverpass(query);
   } catch (error) {
     const errorMessage = `Error fetching POIs for resource ${resourceId}: ${error}`;
     console.error(errorMessage);
@@ -119,11 +121,13 @@ async function fetchAndEnrichPOIsForResource(
   bbox: BBox,
   resourceId: string,
   resource: Resource,
-  linestring2d: Feature<LineString>
+  linestring2d: Feature<LineString>,
 ): Promise<PointOfInterest[]> {
   try {
     const pois = await fetchPOIsForResource(bbox, resourceId, resource);
-    const enrichedPois = pois.map(poi => enrichPOI(poi, linestring2d, resourceId, resource));
+    const enrichedPois = pois.map((poi) =>
+      enrichPOI(poi, linestring2d, resourceId, resource),
+    );
     return enrichedPois;
   } catch (error) {
     const errorMessage = `Error fetching and enriching POIs for resource ${resourceId}: ${error}`;
@@ -145,24 +149,25 @@ export async function fetchOverPassPOIsAlongRoute({
     // Create bounding box and lineString
     const bbox = createBoundingBox(lineString, bufferMeters);
     const linestring2d = create2DLineString(lineString);
-    
+
     // Fetch and enrich POIs for each resource in parallel
-    const poiPromises = Object.entries(resources).map(([resourceId, resource]) => 
-      fetchAndEnrichPOIsForResource(bbox, resourceId, resource, linestring2d)
+    const poiPromises = Object.entries(resources).map(
+      ([resourceId, resource]) =>
+        fetchAndEnrichPOIsForResource(bbox, resourceId, resource, linestring2d),
     );
-    
+
     // Wait for all queries to complete
     const poiResults = await Promise.all(poiPromises);
-    
+
     // Flatten and deduplicate POIs (in case a POI matches multiple resources)
     const uniquePOIs = new Map<string, PointOfInterest>();
-    
-    poiResults.flat().forEach(poi => {
+
+    poiResults.flat().forEach((poi) => {
       // Use a unique identifier for each POI (id or coordinates)
       const poiId = poi.id ? String(poi.id) : `${poi.lat},${poi.lon}`;
       uniquePOIs.set(poiId, poi);
     });
-    
+
     // Update the store with all POIs
     poiStore.set(Array.from(uniquePOIs.values()));
   } catch (error) {

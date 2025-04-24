@@ -51,11 +51,19 @@ export function PoiTooltip({
         )}
       </div>
       <div className="pt-10 space-y-2">
-        {poi.name != null && poi.name !== "" && <p className="justify-self-center text-center font-medium text-lg">{poi.name}</p>}
+        {poi.name != null && poi.name !== "" && (
+          <p className="justify-self-center text-center font-medium text-lg">
+            {poi.name}
+          </p>
+        )}
         {poi.website != null && poi.website !== "" && (
           <div>
             <a
-              href={poi.website.startsWith("http") ? poi.website : `https://${poi.website}`}
+              href={
+                poi.website.startsWith("http")
+                  ? poi.website
+                  : `https://${poi.website}`
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline break-all"
