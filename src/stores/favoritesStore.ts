@@ -20,18 +20,30 @@ favoritesStore.subscribe((favorites) => {
 
 // Helper functions to manage favorites
 export const addFavorite = (poi: PointOfInterest) => {
+  if (!poi?.id) {
+    console.warn("Cannot add favorite: POI ID is undefined", poi);
+    return;
+  }
   const currentFavorites = favoritesStore.get();
-  if (!currentFavorites.some((f) => f.id === poi.id)) {
+  if (!currentFavorites.some((f) => f.id?.toString() === poi.id.toString())) {
     favoritesStore.set([...currentFavorites, poi]);
   }
 };
 
 export const removeFavorite = (poiId: string) => {
+  if (!poiId) {
+    console.warn("Cannot remove favorite: POI ID is undefined");
+    return;
+  }
   const currentFavorites = favoritesStore.get();
-  favoritesStore.set(currentFavorites.filter((f) => f.id !== poiId));
+  favoritesStore.set(currentFavorites.filter((f) => f.id?.toString() !== poiId));
 };
 
 export const isFavorite = (poiId: string): boolean => {
+  if (!poiId) {
+    console.warn("Cannot check favorite status: POI ID is undefined");
+    return false;
+  }
   const currentFavorites = favoritesStore.get();
-  return currentFavorites.some((f) => f.id === poiId);
+  return currentFavorites.some((f) => f.id?.toString() === poiId);
 }; 
