@@ -138,6 +138,7 @@ const MapView = () => {
             url: getLucideSvgUrl(
               resourceView[d.resourceId || ""].categories[
                 d.resourceCategoryId || ""
+                // @ts-ignore render error from lucide-react
               ].icon.render.name,
             ),
             width: 256,
@@ -167,6 +168,7 @@ const MapView = () => {
             url: getLucideSvgUrl(
               resourceView[d.resourceId || ""].categories[
                 d.resourceCategoryId || ""
+                // @ts-ignore render error from lucide-react
               ].icon.render.name,
             ),
             width: 256,

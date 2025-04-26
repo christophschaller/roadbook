@@ -47,8 +47,8 @@ export function PoiTooltip({
     const resource = resourceView[poi.resourceId];
     const resourceCategory = resource.categories[poi.resourceCategoryId];
 
-    // @ts-ignore render error from lucide-react
     const IconComponent = (LucideIcons as any)[
+      // @ts-ignore render error from lucide-react
       resourceCategory.icon.render.name
     ];
     const iconColor = Array.isArray(resource.color)
