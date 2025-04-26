@@ -179,7 +179,7 @@ const MapView = () => {
           getColor: [255, 255, 255],
           getBackgroundColor: (d: PointOfInterest) =>
             d.color || [255, 255, 255],
-          getBackgroundRadius: 20,
+          getBackgroundRadius: 20, // favourite circles are a bit bigger than the poi circles
           pickable: true,
           onClick: (info) => setHoverInfo(info),
         }),
