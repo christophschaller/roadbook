@@ -185,24 +185,18 @@ const MapView = () => {
           mapStyle="https://tiles.stadiamaps.com/styles/outdoors.json"
           mapLib={maplibregl}
         />
-        {hoverInfo?.object && (
-          <PoiTooltip
-            poi={hoverInfo.object as PointOfInterest}
-            style={{
-              left:
-                hoverInfo.viewport?.project([
-                  hoverInfo.object.lon,
-                  hoverInfo.object.lat,
-                ])?.[0] ?? 0,
-              top:
-                hoverInfo.viewport?.project([
-                  hoverInfo.object.lon,
-                  hoverInfo.object.lat,
-                ])?.[1] ?? 0,
-            }}
-            onClose={() => setHoverInfo(null)}
-          />
-        )}
+        {hoverInfo?.object &&
+          hoverInfo.viewport &&
+          (() => {
+            const poi = hoverInfo.object as PointOfInterest;
+            return (
+              <PoiTooltip
+                poi={poi}
+                viewport={hoverInfo.viewport}
+                onClose={() => setHoverInfo(null)}
+              />
+            );
+          })()}
       </DeckGL>
       <MainControlsBar />
     </div>

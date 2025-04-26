@@ -35,9 +35,9 @@ export function MainControlsBar() {
             )}
           </div>
         </div>
-        {track && trackData && (
+        {/* {track && trackData && (
           <TrackInformation track={track} trackData={trackData} />
-        )}
+        )} */}
         <TrackEditor resources={resourceView} />
       </div>
     </>
