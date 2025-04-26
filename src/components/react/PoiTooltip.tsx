@@ -33,8 +33,6 @@ export function PoiTooltip({
       }
       const favoriteStatus = isFavorite(poi.id.toString());
       setIsFavorited(favoriteStatus);
-      console.log("POI ID:", poi.id.toString());
-      console.log("Is favorite:", favoriteStatus);
     }, [poi?.id]);
 
     useEffect(() => {
