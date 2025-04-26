@@ -10,6 +10,7 @@ import * as turf from "@turf/turf";
 import { trackStore } from "@/stores/trackStore";
 import { resourceViewStore } from "@/stores/resourceStore";
 import { poiStore } from "@/stores/poiStore";
+import { favoritesStore } from "@/stores/favoritesStore";
 import { useStore } from "@nanostores/react";
 import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
@@ -17,6 +18,7 @@ import type { ResourceArea } from "@/types/area.types";
 import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
 import IconWithBackgroundLayer from "@/components/react/IconWithBackgroundLayer";
 import { PoiTooltip } from "@/components/react/PoiTooltip";
+import type { MapViewState } from "@deck.gl/core";
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -30,10 +32,11 @@ const MapView = () => {
   const track = useStore(trackStore);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
+  const favorites = useStore(favoritesStore);
   const [hoverInfo, setHoverInfo] =
     useState<PickingInfo<PointOfInterest> | null>();
 
-  const [viewState, setViewState] = useState({
+  const [viewState, setViewState] = useState<MapViewState>({
     longitude: -0.09,
     latitude: 51.505,
     zoom: 13,
@@ -62,7 +65,7 @@ const MapView = () => {
       // Set initial view to fit the track
       if (lineString.coordinates.length > 0) {
         const [minLng, minLat, maxLng, maxLat] = turf.bbox(lineString);
-        setViewState((prev) => ({
+        setViewState((prev: MapViewState) => ({
           ...prev,
           longitude: (minLng + maxLng) / 2,
           latitude: (minLat + maxLat) / 2,
@@ -155,8 +158,31 @@ const MapView = () => {
           // Define extensions
           extensions: [new DataFilterExtension({ filterSize: 1 })],
         }),
+      favorites &&
+        new IconWithBackgroundLayer({
+          id: "favorites",
+          data: favorites,
+          getPosition: (d: PointOfInterest) => [d.lon, d.lat],
+          getIcon: (d: PointOfInterest) => ({
+            url: getLucideSvgUrl(
+              resourceView[d.resourceId || ""].categories[
+                d.resourceCategoryId || ""
+              ].icon.render.name,
+            ),
+            width: 256,
+            height: 256,
+            mask: true,
+          }),
+          getSize: 24,
+          getColor: [255, 255, 255],
+          getBackgroundColor: (d: PointOfInterest) =>
+            d.color || [255, 255, 255],
+          getBackgroundRadius: 20,
+          pickable: true,
+          onClick: (info) => setHoverInfo(info),
+        }),
     ],
-    [trackData, simpleTrackData, resourceAreas, pois, resourceView],
+    [trackData, simpleTrackData, resourceAreas, pois, favorites, resourceView],
   );
 
   return (
@@ -169,9 +195,8 @@ const MapView = () => {
         initialViewState={viewState}
         controller={true}
         layers={layers}
-        onViewStateChange={({ viewState }) => {
-          // Update viewport when map is moved
-          setViewState(viewState);
+        onViewStateChange={({ viewState: newViewState }) => {
+          setViewState(newViewState as MapViewState);
         }}
         onClick={(info) => {
           if (info && info.object) {

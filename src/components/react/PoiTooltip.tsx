@@ -1,10 +1,15 @@
 import { useRef, useEffect, useState } from "react";
 import type { PointOfInterest } from "@/types";
 import * as LucideIcons from "lucide-react";
-import { X, Link, Phone } from "lucide-react";
+import { X, Link, Phone, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { resourceViewStore } from "@/stores/resourceStore";
 import { useStore } from "@nanostores/react";
+import {
+  addFavorite,
+  removeFavorite,
+  isFavorite,
+} from "@/stores/favoritesStore";
 
 export function PoiTooltip({
   poi,
@@ -18,6 +23,11 @@ export function PoiTooltip({
   const ref = useRef<HTMLDivElement>(null);
   const resourceView = useStore(resourceViewStore);
   const [isMobile, setIsMobile] = useState(true);
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  useEffect(() => {
+    setIsFavorited(isFavorite(poi.id.toString()));
+  }, [poi.id]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -38,6 +48,15 @@ export function PoiTooltip({
     : resource.color;
 
   const [x, y] = viewport.project([poi.lon, poi.lat]);
+
+  const handleFavoriteClick = () => {
+    if (isFavorited) {
+      removeFavorite(poi.id.toString());
+    } else {
+      addFavorite(poi);
+    }
+    setIsFavorited(!isFavorited);
+  };
 
   return (
     <div
@@ -108,6 +127,20 @@ export function PoiTooltip({
                 </a>
               </Button>
             )}
+            <Button
+              variant="outline"
+              size="sm"
+              className={`h-8 w-8 p-0 rounded-full ${
+                isFavorited ? iconColor : ""
+              }`}
+              onClick={handleFavoriteClick}
+            >
+              <Star
+                className="h-5 w-5"
+                color={iconColor}
+                fill={isFavorited ? iconColor : "none"}
+              />
+            </Button>
           </div>
           {(!poi.website || poi.website === "") &&
             (!poi.phone || poi.phone === "") && (
