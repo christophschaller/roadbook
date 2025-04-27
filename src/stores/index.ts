@@ -7,3 +7,4 @@ export {
 } from "./resourceStore";
 export { riderStore } from "./riderStore";
 export { trackStore } from "./trackStore";
+export { favoritesStore } from "./favoritesStore";
