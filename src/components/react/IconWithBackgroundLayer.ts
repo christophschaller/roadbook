@@ -11,8 +11,8 @@ interface IconWithBackgroundProps extends CompositeLayerProps {
   getColor?: (d: any) => [number, number, number, number];
   getBackgroundRadius?: (d: any) => number;
   getBackgroundColor?: (d: any) => [number, number, number, number];
-  getLineColor?: any,
-  getLineWidth?: any,
+  getLineColor?: any;
+  getLineWidth?: any;
   // getFilterValue?: (d: any) => any;
   // filterRange?: (d: any) => any;
 }
@@ -38,7 +38,7 @@ export default class IconWithBackgroundLayer extends CompositeLayer<IconWithBack
     // === Background Circle Props ===
     getBackgroundRadius: { type: "accessor", value: 16 },
     getBackgroundColor: { type: "accessor", value: [255, 255, 255] },
-    getLineColor: {type: "accessor", value: [255, 255, 255]},
+    getLineColor: { type: "accessor", value: [255, 255, 255] },
     getLineWidth: { type: "accessor", value: 0 },
   };
 
