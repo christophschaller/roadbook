@@ -23,6 +23,8 @@ interface IconClusterLayerProps {
   getPosition: (d: any) => [number, number];
   getBackgroundRadius?: (d: ClusterFeature) => number;
   getBackgroundColor?: (d: ClusterFeature) => [number, number, number, number];
+  getLineColor?: any;
+  getLineWidth?: any;
   onClusterClick?: (info: any, expansionZoom: number) => void;
   clusterRadius?: number;
   minZoom?: number;
@@ -120,7 +122,7 @@ export default class ClusterIconLayer<
     const { clusters } = this.state;
     if (!clusters || !Array.isArray(clusters)) return null;
 
-    const { getBackgroundRadius, getBackgroundColor } = this.props;
+    const { getBackgroundRadius, getBackgroundColor, getLineColor, getLineWidth } = this.props;
 
     const nonClustered = clusters.filter((c) => !c.properties.cluster);
     const clustered = clusters.filter((c) => c.properties.cluster);
@@ -145,6 +147,8 @@ export default class ClusterIconLayer<
           radiusUnits: "pixels",
           getRadius: getBackgroundRadius,
           getFillColor: getBackgroundColor,
+          // getLineColor: [0, 255, 255],
+          // getLineWidth: 30,
           stroked: false,
           onClick: (info) => {
             if (this.props.onClusterClick) {
@@ -175,6 +179,7 @@ export default class ClusterIconLayer<
           sizeUnits: "pixels",
           getTextAnchor: "middle",
           getAlignmentBaseline: "center",
+          getPixelOffset: [0, 1],
         }),
       ),
     ];

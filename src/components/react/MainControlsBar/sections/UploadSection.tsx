@@ -1,14 +1,14 @@
+
 import { Plus, RefreshCw } from "lucide-react";
 import { parseGPX } from "@we-gold/gpxjs";
 import { Button } from "@/components/ui/button";
 import { trackStore } from "@/stores/trackStore";
-
 import { type LineString } from "geojson";
 import { resourceStore } from "@/stores/resourceStore";
 import { useStore } from "@nanostores/react";
 import { fetchOverPassPOIsAlongRoute } from "@/lib/dataFetching/fetchOverPassPOIsAlongRoute";
 
-export default function UploadButton({
+function UploadButton({
   className = "",
 }: {
   className?: string;
@@ -16,6 +16,7 @@ export default function UploadButton({
   const resources = useStore(resourceStore);
 
   const track = useStore(trackStore);
+
   const handleFileUpload = (file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -77,5 +78,24 @@ export default function UploadButton({
         onChange={handleFileChange}
       />
     </Button>
+  );
+}
+
+export function UploadSection() {
+  const track = useStore(trackStore);
+  return (
+    <div className="space-y-4 md:mt-0">
+      <div className="flex flex-col space-y-4">
+        <UploadButton />
+        {!track.data && (
+          <p className="text text-primary/60">
+            Upload your GPX route, and we'll show you handy OSM-based stops—like
+            water refill points, coffee spots, and a place to rest if you need
+            it. Think of it as your reliable guide for those well-deserved
+            breaks along the ride.
+          </p>
+        )}
+      </div>
+    </div>
   );
 }

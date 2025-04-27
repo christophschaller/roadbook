@@ -46,13 +46,14 @@ export function POISelectorContainer({
   };
 
   return (
-    <div className="pl-2">
+    <>
       <div className="flex items-center space-x-2">
         <Slider
           defaultValue={[resource.distance]}
           min={resource.minDistance}
           max={resource.maxDistance}
           step={stepDistance}
+          color={resource.color}
           onValueChange={(value) => {
             handleSliderChange(value[0]);
           }}
@@ -75,6 +76,6 @@ export function POISelectorContainer({
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
