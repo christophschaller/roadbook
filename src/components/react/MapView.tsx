@@ -10,6 +10,7 @@ import * as turf from "@turf/turf";
 import { trackStore } from "@/stores/trackStore";
 import { resourceViewStore } from "@/stores/resourceStore";
 import { poiStore } from "@/stores/poiStore";
+import { favoritesStore } from "@/stores/favoritesStore";
 import { useStore } from "@nanostores/react";
 import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
@@ -17,6 +18,7 @@ import type { ResourceArea } from "@/types/area.types";
 import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
 import { PoiTooltip } from "@/components/react/PoiTooltip";
 import ClusterIconLayer from "./IconClusterLayer";
+import type { MapViewState } from "@deck.gl/core";
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -30,10 +32,11 @@ const MapView = () => {
   const track = useStore(trackStore);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
+  const favorites = useStore(favoritesStore);
   const [poiInfo, setPoiInfo] =
     useState<PickingInfo<PointOfInterest> | null>();
 
-  const [viewState, setViewState] = useState({
+  const [viewState, setViewState] = useState<MapViewState>({
     longitude: -0.09,
     latitude: 51.505,
     zoom: 13,
@@ -63,7 +66,7 @@ const MapView = () => {
       // Set initial view to fit the track
       if (lineString.coordinates.length > 0) {
         const [minLng, minLat, maxLng, maxLat] = turf.bbox(lineString);
-        setViewState((prev) => ({
+        setViewState((prev: MapViewState) => ({
           ...prev,
           longitude: (minLng + maxLng) / 2,
           latitude: (minLat + maxLat) / 2,
@@ -124,13 +127,13 @@ const MapView = () => {
         new ClusterIconLayer({
           id: "pois",
           data: pois.filter((d: PointOfInterest) => {
+            if (favorites.some((f) => f.toString() === d.id.toString())) return true;
             const resource = resourceView[d.resourceId || ""];
             if (!resource || !resource.active) return false;
             const resourceCategory =
               resource.categories[d.resourceCategoryId || ""];
             return (
-              (resourceCategory?.active &&
-                d.trackDistance <= resource.distance) ??
+              (resourceCategory?.active && typeof d.trackDistance === "number" && d.trackDistance <= resource.distance) ??
               false
             );
           }),
@@ -139,27 +142,30 @@ const MapView = () => {
             url: getLucideSvgUrl(
               resourceView[d.resourceId || ""].categories[
                 d.resourceCategoryId || ""
-              ].icon.render.name,
-            ),
-            width: 256,
-            height: 256,
-            mask: true,
-          }),
-          getSize: 24,
-          getColor: (d: PointOfInterest) => d.color || [255, 255, 255],
-          pickable: true,
-          getFilterValue: (d: PointOfInterest) => d.trackDistance,
-          filterRange: [
-            0,
-            Object.values(resourceView).find((t) => t.active)?.distance || 0,
-          ],
-          extensions: [new DataFilterExtension({ filterSize: 1 })],
+                // @ts-ignore render error from lucide-react
+                ].icon.render.name,
+              ),
+              width: 256,
+              height: 256,
+              mask: true,
+              }),
+              getSize: 24,
+              getColor: (d: PointOfInterest) =>
+                favorites.some((f) => f.toString() === d.id.toString()) ? [255, 255, 255] : d.color,
+              getBackgroundRadius: (d: PointOfInterest) =>
+              favorites.some((f) => f.toString() === d.id.toString()) ? 20 : 16,
+              getBackgroundColor: (d: PointOfInterest) =>
+                favorites.some((f) => f.toString() === d.id.toString()) ? d.color : [255, 255, 255],
+              getLineColor: [255, 255, 255],
+              getLineWidth: (d: PointOfInterest) =>
+                favorites.some((f) => f.toString() === d.id.toString()) ? 4 : 0,
+              pickable: true,
           clusterRadius: 40,
           minZoom: 0,
           maxZoom: 16,
         }),
     ],
-    [trackData, simpleTrackData, resourceAreas, pois, resourceView],
+    [trackData, simpleTrackData, resourceAreas, pois, resourceView, favorites],
   );
 
   return (
@@ -184,9 +190,7 @@ const MapView = () => {
               "cluster" in info.object["properties"] &&
               info.object["properties"]["cluster"]
             ) {
-              console.log("cluster:", info.object)
               const clusterId = info.object.properties.cluster_id;
-              console.log("clusterId:",clusterId)
             }
           }
           setPoiInfo(null);
