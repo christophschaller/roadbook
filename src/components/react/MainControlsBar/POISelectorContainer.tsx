@@ -2,15 +2,17 @@ import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { resourceStateStore } from "@/stores/resourceStore";
-import type { ResourceView } from "@/types";
+import type { ResourceCategory, ResourceView } from "@/types";
 import { IconSwitch } from "@/components/ui/IconSwitch";
 
 export function POISelectorContainer({
   resource,
   onDistanceChange,
+  onCategoryChange,
 }: {
   resource: ResourceView;
   onDistanceChange?: (distance: number) => void;
+  onCategoryChange?: (categories: ResourceCategory[]) => void;
 }) {
   const stepDistance = 50; // TODO: define in Resource
   const handleSliderChange = (value: number) => {
@@ -74,6 +76,6 @@ export function POISelectorContainer({
           </div>
         ))}
       </div>
-    </>
+    <>
   );
 }

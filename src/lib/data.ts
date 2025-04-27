@@ -10,7 +10,11 @@ import {
   House,
   Bed,
 } from "lucide-react";
-import type { ResourceCategory, Resource, ResourceCategoryState, ResourceState } from "@/types/resource.types";
+import type {
+  ResourceCategory,
+  Resource,
+  ResourceState,
+} from "@/types/resource.types";
 
 // --- static data ---
 const waterCategories: { [key: string]: ResourceCategory } = {
@@ -18,7 +22,7 @@ const waterCategories: { [key: string]: ResourceCategory } = {
     name: "Potable Water",
     id: "potable",
     icon: Droplet,
-    // active: true,
+    description: "You should find potable water here.",
     osmTags: [
       ["amenity", "drinking_water"],
       ["man_made", "water_tap"],
@@ -32,7 +36,7 @@ const waterCategories: { [key: string]: ResourceCategory } = {
     name: "Filter Sources",
     id: "filter",
     icon: Filter,
-    // active: true,
+    description: "Filter or cook this water before drinking it!",
     osmTags: [
       ["man_made", "water_well"],
       ["natural", "spring"],
@@ -44,7 +48,7 @@ const waterCategories: { [key: string]: ResourceCategory } = {
     name: "Risky Sources",
     id: "risky",
     icon: TriangleAlert,
-    // active: false,
+    description: "This water is not safe to drink!",
     osmTags: [
       ["amenity", "toilets"],
       ["waterway", "river"],
@@ -75,7 +79,7 @@ const foodCategories: { [key: string]: ResourceCategory } = {
     name: "Food Markets",
     id: "supermarket",
     icon: ShoppingCart,
-    // active: true,
+    description: "This place sells a variety of foods.",
     osmTags: [
       ["shop", "supermarket"],
       ["shop", "grocery"],
@@ -96,7 +100,7 @@ const foodCategories: { [key: string]: ResourceCategory } = {
     name: "Quick Bites",
     id: "eat",
     icon: Utensils,
-    // active: true,
+    description: "The right place to get a fresh meal or snack.",
     osmTags: [
       ["amenity", "restaurant"],
       ["amenity", "fast_food"],
@@ -113,7 +117,7 @@ const foodCategories: { [key: string]: ResourceCategory } = {
     name: "Mini-Marts",
     id: "convenience",
     icon: Store,
-    // active: true,
+    description: "You will probably find some small snacks here.",
     osmTags: [
       ["shop", "convenience"],
       ["shop", "kiosk"],
@@ -125,12 +129,13 @@ const foodCategories: { [key: string]: ResourceCategory } = {
   },
 };
 
-
 const sleepCategories: { [key: string]: ResourceCategory } = {
   hotel: {
     name: "Hotels",
     id: "hotel",
     icon: Hotel,
+    description:
+      "A roof over your head, a bed to sleep in, maybe even a hot shower.",
     osmTags: [
       ["tourism", "hotel"],
       ["tourism", "motel"],
@@ -145,6 +150,7 @@ const sleepCategories: { [key: string]: ResourceCategory } = {
     name: "Campgrounds",
     id: "campground",
     icon: Tent,
+    description: "A comfy place to pitch your tent.",
     osmTags: [
       ["amenity", "campground"],
       ["amenity", "camp_site"],
@@ -155,9 +161,11 @@ const sleepCategories: { [key: string]: ResourceCategory } = {
     name: "Shelters",
     id: "shelter",
     icon: House,
+    description:
+      "It looks like there is some kind of shelter here. Make sure your are allowed to sleep in it!",
     osmTags: [
       ["amenity", "shelter"],
-      ["tourism", "wilderness_hut"]
+      ["tourism", "wilderness_hut"],
     ],
   },
 };
@@ -189,55 +197,54 @@ export const Resources: Resource[] = [
     minDistance: 500,
     maxDistance: 5000,
     categories: sleepCategories,
-  }
+  },
 ];
-
 
 // --- defaults for user state ---
 export const DefaultResourceState: Record<string, ResourceState> = {
   water: {
     active: true,
-    distance: 600,
+    distance: 700,
     categoryStates: {
       potable: {
-        active: true
+        active: true,
       },
       filter: {
-        active: true
+        active: true,
       },
       risky: {
-        active: false
+        active: false,
       },
-    }
+    },
   },
   food: {
     active: false,
-    distance: 500,
+    distance: 600,
     categoryStates: {
       supermarket: {
-        active: true
+        active: true,
       },
       eat: {
-        active: true
+        active: true,
       },
       convenience: {
-        active: true
+        active: true,
       },
-    }
+    },
   },
   sleep: {
     active: false,
     distance: 500,
     categoryStates: {
       hotel: {
-        active: true
+        active: true,
       },
       campground: {
-        active: true
+        active: true,
       },
       shelter: {
-        active: false
+        active: false,
       },
-    }
+    },
   },
-}
+};
