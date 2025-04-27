@@ -199,18 +199,7 @@ const MapView = () => {
         {poiInfo?.object && (
           <PoiTooltip
             poi={poiInfo.object as PointOfInterest}
-            style={{
-              left:
-                (poiInfo.viewport?.project([
-                  poiInfo.object.lon,
-                  poiInfo.object.lat,
-                ])?.[0] ?? 0) - 16,
-              top:
-                (poiInfo.viewport?.project([
-                  poiInfo.object.lon,
-                  poiInfo.object.lat,
-                ])?.[1] ?? 0) - 16,
-            }}
+            viewport={poiInfo.viewport}
             onClose={() => setPoiInfo(null)}
           />
         )}
