@@ -149,21 +149,21 @@ export async function fetchOverPassPOIsAlongRoute({
     // Create bounding box and lineString
     const bbox = createBoundingBox(lineString, bufferMeters);
     const linestring2d = create2DLineString(lineString);
-
+    
     // Fetch and enrich POIs for each resource in parallel
-    const poiPromises = Object.entries(resources).map(
-      ([resourceId, resource]) =>
-        fetchAndEnrichPOIsForResource(bbox, resourceId, resource, linestring2d),
+    const poiPromises = Object.entries(resources).map(([resourceId, resource]) => 
+      fetchAndEnrichPOIsForResource(bbox, resourceId, resource, linestring2d)
     );
-
+    
     // Wait for all queries to complete
     const poiResults = await Promise.all(poiPromises);
-
+    
     // Flatten and deduplicate POIs (in case a POI matches multiple resources)
     const uniquePOIs = new Map<string, PointOfInterest>();
-
-    poiResults.flat().forEach((poi) => {
+    
+    poiResults.flat().forEach(poi => {
       // Use a unique identifier for each POI (id or coordinates)
+      // TODO: rework fallback id or add additional identifier for all objects based on location and cat
       const poiId = poi.id ? String(poi.id) : `${poi.lat},${poi.lon}`;
       uniquePOIs.set(poiId, poi);
     });
