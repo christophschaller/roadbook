@@ -16,6 +16,7 @@ import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
 import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
 import IconWithBackgroundLayer from "@/components/react/IconWithBackgroundLayer";
+import { PoiTooltip } from "@/components/react/PoiTooltip";
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -24,18 +25,13 @@ const getLucideSvgUrl = (componentName: string) => {
   return `https://unpkg.com/lucide-static@0.469.0/icons/${kebabCaseName}.svg`;
 };
 
-const tooltipStyle: React.CSSProperties = {
-  position: "absolute",
-  zIndex: 1,
-  pointerEvents: "none",
-};
-
 const MapView = () => {
   const mapRef = useRef(null);
   const track = useStore(trackStore);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
-  const [hoverInfo, setHoverInfo] = useState<PickingInfo<PointOfInterest>>();
+  const [hoverInfo, setHoverInfo] =
+    useState<PickingInfo<PointOfInterest> | null>();
 
   const [viewState, setViewState] = useState({
     longitude: -0.09,
@@ -148,7 +144,7 @@ const MapView = () => {
           getSize: 24,
           getColor: (d: PointOfInterest) => d.color || [255, 255, 255],
           pickable: true,
-          onHover: (info) => setHoverInfo(info),
+          onClick: (info) => setHoverInfo(info),
           //onHover: handleClick,
           // props added by DataFilterExtension
           getFilterValue: (d: PointOfInterest) => d.trackDistance,
@@ -169,16 +165,38 @@ const MapView = () => {
       style={{ width: "100%", height: "100vh" }}
       className="relative"
     >
-      <DeckGL initialViewState={viewState} controller={true} layers={layers}>
+      <DeckGL
+        initialViewState={viewState}
+        controller={true}
+        layers={layers}
+        onViewStateChange={({ viewState }) => {
+          // Update viewport when map is moved
+          setViewState(viewState);
+        }}
+        onClick={(info) => {
+          if (info && info.object) {
+            setHoverInfo(info);
+          } else {
+            setHoverInfo(null);
+          }
+        }}
+      >
         <Map
           mapStyle="https://tiles.stadiamaps.com/styles/outdoors.json"
           mapLib={maplibregl}
         />
-        {hoverInfo?.object && (
-          <div style={{ ...tooltipStyle, left: hoverInfo.x, top: hoverInfo.y }}>
-            {hoverInfo.object.resourceId}
-          </div>
-        )}
+        {hoverInfo?.object &&
+          hoverInfo.viewport &&
+          (() => {
+            const poi = hoverInfo.object as PointOfInterest;
+            return (
+              <PoiTooltip
+                poi={poi}
+                viewport={hoverInfo.viewport}
+                onClose={() => setHoverInfo(null)}
+              />
+            );
+          })()}
       </DeckGL>
       <MainControlsBar />
     </div>

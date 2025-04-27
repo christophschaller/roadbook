@@ -14,8 +14,9 @@ export interface PointOfInterest extends OverpassNode {
   icon: LucideIcon;
   color: [number, number, number];
   address?: string;
-  url?: string;
+  website?: string;
+  phone?: string;
   trackDistance?: number; // distance to nearest point on track for filtering
-  resourceId: string
+  resourceId: string;
   resourceCategoryId: string;
 }
