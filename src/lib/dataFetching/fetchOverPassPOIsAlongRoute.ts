@@ -52,7 +52,6 @@ function enrichPOI(
   linestring2d: Feature<LineString>,
   resourceId: string,
   resource: Resource,
-
 ): PointOfInterest {
   try {
     // Calculate distance to route
@@ -168,7 +167,7 @@ export async function fetchOverPassPOIsAlongRoute({
       const poiId = poi.id ? String(poi.id) : `${poi.lat},${poi.lon}`;
       uniquePOIs.set(poiId, poi);
     });
-    
+
     // Update the store with all POIs
     poiStore.set(Array.from(uniquePOIs.values()));
   } catch (error) {
