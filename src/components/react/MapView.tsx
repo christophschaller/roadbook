@@ -16,9 +16,8 @@ import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
 import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
-import IconWithBackgroundLayer from "@/components/react/IconWithBackgroundLayer";
 import { PoiTooltip } from "@/components/react/PoiTooltip";
-import type { MapViewState } from "@deck.gl/core";
+import ClusterIconLayer from "./IconClusterLayer";
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -32,14 +31,14 @@ const MapView = () => {
   const track = useStore(trackStore);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
-  const favorites = useStore(favoritesStore);
-  const [hoverInfo, setHoverInfo] =
+  const [poiInfo, setPoiInfo] =
     useState<PickingInfo<PointOfInterest> | null>();
 
   const [viewState, setViewState] = useState<MapViewState>({
     longitude: -0.09,
     latitude: 51.505,
     zoom: 13,
+    maxZoom: 20,
     pitch: 0,
     bearing: 0,
   });
@@ -123,15 +122,18 @@ const MapView = () => {
           pickable: true,
         }),
       pois &&
-        new IconWithBackgroundLayer({
+        new ClusterIconLayer({
           id: "pois",
           data: pois.filter((d: PointOfInterest) => {
-            // Only show POIs for active resource categories
             const resource = resourceView[d.resourceId || ""];
             if (!resource || !resource.active) return false;
             const resourceCategory =
               resource.categories[d.resourceCategoryId || ""];
-            return resourceCategory?.active ?? false;
+            return (
+              (resourceCategory?.active &&
+                d.trackDistance <= resource.distance) ??
+              false
+            );
           }),
           getPosition: (d: PointOfInterest) => [d.lon, d.lat],
           getIcon: (d: PointOfInterest) => ({
@@ -148,43 +150,18 @@ const MapView = () => {
           getSize: 24,
           getColor: (d: PointOfInterest) => d.color || [255, 255, 255],
           pickable: true,
-          onClick: (info) => setHoverInfo(info),
-          //onHover: handleClick,
-          // props added by DataFilterExtension
           getFilterValue: (d: PointOfInterest) => d.trackDistance,
           filterRange: [
             0,
-            Math.max(...Object.values(resourceView).map((t) => t.distance)),
+            Object.values(resourceView).find((t) => t.active)?.distance || 0,
           ],
-          // Define extensions
           extensions: [new DataFilterExtension({ filterSize: 1 })],
-        }),
-      favorites &&
-        new IconWithBackgroundLayer({
-          id: "favorites",
-          data: favorites,
-          getPosition: (d: PointOfInterest) => [d.lon, d.lat],
-          getIcon: (d: PointOfInterest) => ({
-            url: getLucideSvgUrl(
-              resourceView[d.resourceId || ""].categories[
-                d.resourceCategoryId || ""
-                // @ts-ignore render error from lucide-react
-              ].icon.render.name,
-            ),
-            width: 256,
-            height: 256,
-            mask: true,
-          }),
-          getSize: 24,
-          getColor: [255, 255, 255],
-          getBackgroundColor: (d: PointOfInterest) =>
-            d.color || [255, 255, 255],
-          getBackgroundRadius: 20, // favourite circles are a bit bigger than the poi circles
-          pickable: true,
-          onClick: (info) => setHoverInfo(info),
+          clusterRadius: 40,
+          minZoom: 0,
+          maxZoom: 16,
         }),
     ],
-    [trackData, simpleTrackData, resourceAreas, pois, favorites, resourceView],
+    [trackData, simpleTrackData, resourceAreas, pois, resourceView],
   );
 
   return (
@@ -197,33 +174,37 @@ const MapView = () => {
         initialViewState={viewState}
         controller={true}
         layers={layers}
-        onViewStateChange={({ viewState: newViewState }) => {
-          setViewState(newViewState as MapViewState);
-        }}
+        onViewStateChange={() => setPoiInfo(null)}
         onClick={(info) => {
           if (info && info.object) {
-            setHoverInfo(info);
-          } else {
-            setHoverInfo(null);
+            if ("type" in info.object && info.object["type"] == "node") {
+              setPoiInfo(info);
+              return;
+            }
+            if (
+              "properties" in info.object &&
+              "cluster" in info.object["properties"] &&
+              info.object["properties"]["cluster"]
+            ) {
+              console.log("cluster:", info.object)
+              const clusterId = info.object.properties.cluster_id;
+              console.log("clusterId:",clusterId)
+            }
           }
+          setPoiInfo(null);
         }}
       >
         <Map
           mapStyle="https://tiles.stadiamaps.com/styles/outdoors.json"
           mapLib={maplibregl}
         />
-        {hoverInfo?.object &&
-          hoverInfo.viewport &&
-          (() => {
-            const poi = hoverInfo.object as PointOfInterest;
-            return (
-              <PoiTooltip
-                poi={poi}
-                viewport={hoverInfo.viewport}
-                onClose={() => setHoverInfo(null)}
-              />
-            );
-          })()}
+        {poiInfo?.object && (
+          <PoiTooltip
+            poi={poiInfo.object as PointOfInterest}
+            viewport={poiInfo.viewport}
+            onClose={() => setPoiInfo(null)}
+          />
+        )}
       </DeckGL>
       <MainControlsBar />
     </div>
