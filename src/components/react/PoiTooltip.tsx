@@ -61,7 +61,7 @@ export function PoiTooltip({
       if (isFavorited) {
         removeFavorite(poi.id.toString());
       } else {
-        addFavorite(poi);
+        addFavorite(poi.id.toString());
       }
       setIsFavorited(!isFavorited);
     };
