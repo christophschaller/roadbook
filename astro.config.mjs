@@ -12,5 +12,6 @@ export default defineConfig({
   integrations: [react(), tailwind({ applyBaseStyles: false })],
   site: "https://christophschaller.github.io",
   base: basePath,
+  output: "server",
   adapter: vercel(),
 });
