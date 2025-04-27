@@ -12,6 +12,7 @@ import { poiStore } from '@/stores/poiStore';
 import { useStore } from '@nanostores/react';
 import { type LineString, type Polygon } from 'geojson';
 import type { PointOfInterest } from '@/types';
+import { MainControls } from './MainControlsBar/MainControls';
 
 const MapView = () => {
     const mapRef = useRef(null);
@@ -137,6 +138,7 @@ const MapView = () => {
                     mapLib={maplibregl}
                 />
             </DeckGL>
+            <MainControls />
         </div>
     );
 };
