@@ -15,7 +15,7 @@ import { useStore } from "@nanostores/react";
 import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
-import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
+import { MainControls } from "./MainControlsBar/MainControls";
 import { PoiTooltip } from "@/components/react/PoiTooltip";
 import ClusterIconLayer from "./IconClusterLayer";
 import type { MapViewState } from "@deck.gl/core";
@@ -208,7 +208,7 @@ const MapView = () => {
           />
         )}
       </DeckGL>
-      <MainControlsBar />
+      <MainControls />
     </div>
   );
 };
