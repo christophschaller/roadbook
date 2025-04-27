@@ -117,6 +117,7 @@ export async function fetchOverPassPOIsAlongRoute({
     
     poiResults.flat().forEach(poi => {
       // Use a unique identifier for each POI (id or coordinates)
+      // TODO: rework fallback id or add additional identifier for all objects based on location and cat
       const poiId = poi.id ? String(poi.id) : `${poi.lat},${poi.lon}`;
       uniquePOIs.set(poiId, poi);
     });
