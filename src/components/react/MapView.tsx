@@ -10,13 +10,15 @@ import * as turf from "@turf/turf";
 import { trackStore } from "@/stores/trackStore";
 import { resourceViewStore } from "@/stores/resourceStore";
 import { poiStore } from "@/stores/poiStore";
+import { favoritesStore } from "@/stores/favoritesStore";
 import { useStore } from "@nanostores/react";
 import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
 import { MainControlsBar } from "@/components/react/MainControlsBar/MainControlsBar";
-import IconWithBackgroundLayer from "@/components/react/IconWithBackgroundLayer";
 import { PoiTooltip } from "@/components/react/PoiTooltip";
+import ClusterIconLayer from "./IconClusterLayer";
+import type { MapViewState } from "@deck.gl/core";
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -30,13 +32,15 @@ const MapView = () => {
   const track = useStore(trackStore);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
-  const [hoverInfo, setHoverInfo] =
+  const favorites = useStore(favoritesStore);
+  const [poiInfo, setPoiInfo] =
     useState<PickingInfo<PointOfInterest> | null>();
 
-  const [viewState, setViewState] = useState({
+  const [viewState, setViewState] = useState<MapViewState>({
     longitude: -0.09,
     latitude: 51.505,
     zoom: 13,
+    maxZoom: 20,
     pitch: 0,
     bearing: 0,
   });
@@ -62,7 +66,7 @@ const MapView = () => {
       // Set initial view to fit the track
       if (lineString.coordinates.length > 0) {
         const [minLng, minLat, maxLng, maxLat] = turf.bbox(lineString);
-        setViewState((prev) => ({
+        setViewState((prev: MapViewState) => ({
           ...prev,
           longitude: (minLng + maxLng) / 2,
           latitude: (minLat + maxLat) / 2,
@@ -120,43 +124,48 @@ const MapView = () => {
           pickable: true,
         }),
       pois &&
-        new IconWithBackgroundLayer({
+        new ClusterIconLayer({
           id: "pois",
           data: pois.filter((d: PointOfInterest) => {
-            // Only show POIs for active resource categories
+            if (favorites.some((f) => f.toString() === d.id.toString())) return true;
             const resource = resourceView[d.resourceId || ""];
             if (!resource || !resource.active) return false;
             const resourceCategory =
               resource.categories[d.resourceCategoryId || ""];
-            return resourceCategory?.active ?? false;
+            return (
+              (resourceCategory?.active && typeof d.trackDistance === "number" && d.trackDistance <= resource.distance) ??
+              false
+            );
           }),
           getPosition: (d: PointOfInterest) => [d.lon, d.lat],
           getIcon: (d: PointOfInterest) => ({
             url: getLucideSvgUrl(
               resourceView[d.resourceId || ""].categories[
                 d.resourceCategoryId || ""
-              ].icon.render.name,
-            ),
-            width: 256,
-            height: 256,
-            mask: true,
-          }),
-          getSize: 24,
-          getColor: (d: PointOfInterest) => d.color || [255, 255, 255],
-          pickable: true,
-          onClick: (info) => setHoverInfo(info),
-          //onHover: handleClick,
-          // props added by DataFilterExtension
-          getFilterValue: (d: PointOfInterest) => d.trackDistance,
-          filterRange: [
-            0,
-            Object.values(resourceView).find((t) => t.active)?.distance || 0,
-          ],
-          // Define extensions
-          extensions: [new DataFilterExtension({ filterSize: 1 })],
+                // @ts-ignore render error from lucide-react
+                ].icon.render.name,
+              ),
+              width: 256,
+              height: 256,
+              mask: true,
+              }),
+              getSize: 24,
+              getColor: (d: PointOfInterest) =>
+                favorites.some((f) => f.toString() === d.id.toString()) ? [255, 255, 255] : d.color,
+              getBackgroundRadius: (d: PointOfInterest) =>
+              favorites.some((f) => f.toString() === d.id.toString()) ? 20 : 16,
+              getBackgroundColor: (d: PointOfInterest) =>
+                favorites.some((f) => f.toString() === d.id.toString()) ? d.color : [255, 255, 255],
+              getLineColor: [255, 255, 255],
+              getLineWidth: (d: PointOfInterest) =>
+                favorites.some((f) => f.toString() === d.id.toString()) ? 4 : 0,
+              pickable: true,
+          clusterRadius: 40,
+          minZoom: 0,
+          maxZoom: 16,
         }),
     ],
-    [trackData, simpleTrackData, resourceAreas, pois, resourceView],
+    [trackData, simpleTrackData, resourceAreas, pois, resourceView, favorites],
   );
 
   return (
@@ -169,34 +178,35 @@ const MapView = () => {
         initialViewState={viewState}
         controller={true}
         layers={layers}
-        onViewStateChange={({ viewState }) => {
-          // Update viewport when map is moved
-          setViewState(viewState);
-        }}
+        onViewStateChange={() => setPoiInfo(null)}
         onClick={(info) => {
           if (info && info.object) {
-            setHoverInfo(info);
-          } else {
-            setHoverInfo(null);
+            if ("type" in info.object && info.object["type"] == "node") {
+              setPoiInfo(info);
+              return;
+            }
+            if (
+              "properties" in info.object &&
+              "cluster" in info.object["properties"] &&
+              info.object["properties"]["cluster"]
+            ) {
+              const clusterId = info.object.properties.cluster_id;
+            }
           }
+          setPoiInfo(null);
         }}
       >
         <Map
           mapStyle="https://tiles.stadiamaps.com/styles/outdoors.json"
           mapLib={maplibregl}
         />
-        {hoverInfo?.object &&
-          hoverInfo.viewport &&
-          (() => {
-            const poi = hoverInfo.object as PointOfInterest;
-            return (
-              <PoiTooltip
-                poi={poi}
-                viewport={hoverInfo.viewport}
-                onClose={() => setHoverInfo(null)}
-              />
-            );
-          })()}
+        {poiInfo?.object && (
+          <PoiTooltip
+            poi={poiInfo.object as PointOfInterest}
+            viewport={poiInfo.viewport}
+            onClose={() => setPoiInfo(null)}
+          />
+        )}
       </DeckGL>
       <MainControlsBar />
     </div>
