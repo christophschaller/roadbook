@@ -7,9 +7,7 @@ import { PathLayer, PolygonLayer, IconLayer } from "@deck.gl/layers";
 import { DataFilterExtension } from "@deck.gl/extensions";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
-import { trackStore } from "@/stores/trackStore";
-import { resourceViewStore } from "@/stores/resourceStore";
-import { poiStore } from "@/stores/poiStore";
+import { trackStore, resourceViewStore, poiStore, riderStore } from "@/stores";
 import { useStore } from "@nanostores/react";
 import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
@@ -30,8 +28,9 @@ const MapView = () => {
   const track = useStore(trackStore);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
-  const [poiInfo, setPoiInfo] =
-    useState<PickingInfo<PointOfInterest> | null>();
+  const riders = useStore(riderStore);
+  console.log(riders);
+  const [poiInfo, setPoiInfo] = useState<PickingInfo<PointOfInterest> | null>();
 
   const [viewState, setViewState] = useState({
     longitude: -0.09,
