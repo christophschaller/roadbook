@@ -9,3 +9,4 @@ export type {
   ResourceCategoryView,
   ResourceView,
 } from "./resource.types";
+export type { Rider } from "./rider.types";
