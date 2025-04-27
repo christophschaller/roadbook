@@ -122,7 +122,12 @@ export default class ClusterIconLayer<
     const { clusters } = this.state;
     if (!clusters || !Array.isArray(clusters)) return null;
 
-    const { getBackgroundRadius, getBackgroundColor, getLineColor, getLineWidth } = this.props;
+    const {
+      getBackgroundRadius,
+      getBackgroundColor,
+      getLineColor,
+      getLineWidth,
+    } = this.props;
 
     const nonClustered = clusters.filter((c) => !c.properties.cluster);
     const clustered = clusters.filter((c) => c.properties.cluster);
@@ -156,8 +161,9 @@ export default class ClusterIconLayer<
               const clusterId = cluster?.properties?.cluster_id;
               if (clusterId !== undefined && clusterId !== null) {
                 try {
-                  const expansionZoom =
-                    (this.state.superCluster as Supercluster<any>).getClusterExpansionZoom(clusterId);
+                  const expansionZoom = (
+                    this.state.superCluster as Supercluster<any>
+                  ).getClusterExpansionZoom(clusterId);
                   this.props.onClusterClick(info, expansionZoom);
                 } catch (e) {
                   // Optionally log or handle error

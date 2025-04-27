@@ -33,8 +33,7 @@ const MapView = () => {
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
   const favorites = useStore(favoritesStore);
-  const [poiInfo, setPoiInfo] =
-    useState<PickingInfo<PointOfInterest> | null>();
+  const [poiInfo, setPoiInfo] = useState<PickingInfo<PointOfInterest> | null>();
 
   const [viewState, setViewState] = useState<MapViewState>({
     longitude: -0.09,
@@ -127,13 +126,16 @@ const MapView = () => {
         new ClusterIconLayer({
           id: "pois",
           data: pois.filter((d: PointOfInterest) => {
-            if (favorites.some((f) => f.toString() === d.id.toString())) return true;
+            if (favorites.some((f) => f.toString() === d.id.toString()))
+              return true;
             const resource = resourceView[d.resourceId || ""];
             if (!resource || !resource.active) return false;
             const resourceCategory =
               resource.categories[d.resourceCategoryId || ""];
             return (
-              (resourceCategory?.active && typeof d.trackDistance === "number" && d.trackDistance <= resource.distance) ??
+              (resourceCategory?.active &&
+                typeof d.trackDistance === "number" &&
+                d.trackDistance <= resource.distance) ??
               false
             );
           }),
@@ -143,23 +145,27 @@ const MapView = () => {
               resourceView[d.resourceId || ""].categories[
                 d.resourceCategoryId || ""
                 // @ts-ignore render error from lucide-react
-                ].icon.render.name,
-              ),
-              width: 256,
-              height: 256,
-              mask: true,
-              }),
-              getSize: 24,
-              getColor: (d: PointOfInterest) =>
-                favorites.some((f) => f.toString() === d.id.toString()) ? [255, 255, 255] : d.color,
-              getBackgroundRadius: (d: PointOfInterest) =>
-              favorites.some((f) => f.toString() === d.id.toString()) ? 20 : 16,
-              getBackgroundColor: (d: PointOfInterest) =>
-                favorites.some((f) => f.toString() === d.id.toString()) ? d.color : [255, 255, 255],
-              getLineColor: [255, 255, 255],
-              getLineWidth: (d: PointOfInterest) =>
-                favorites.some((f) => f.toString() === d.id.toString()) ? 4 : 0,
-              pickable: true,
+              ].icon.render.name,
+            ),
+            width: 256,
+            height: 256,
+            mask: true,
+          }),
+          getSize: 24,
+          getColor: (d: PointOfInterest) =>
+            favorites.some((f) => f.toString() === d.id.toString())
+              ? [255, 255, 255]
+              : d.color,
+          getBackgroundRadius: (d: PointOfInterest) =>
+            favorites.some((f) => f.toString() === d.id.toString()) ? 20 : 16,
+          getBackgroundColor: (d: PointOfInterest) =>
+            favorites.some((f) => f.toString() === d.id.toString())
+              ? d.color
+              : [255, 255, 255],
+          getLineColor: [255, 255, 255],
+          getLineWidth: (d: PointOfInterest) =>
+            favorites.some((f) => f.toString() === d.id.toString()) ? 4 : 0,
+          pickable: true,
           clusterRadius: 40,
           minZoom: 0,
           maxZoom: 16,

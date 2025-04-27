@@ -4,7 +4,6 @@ import { trackStore } from "@/stores/trackStore";
 import type { LineString } from "geojson";
 import { POISectionMobile } from "./sections/POISectionMobile";
 
-
 export function MainControlsMobile() {
   const track = useStore(trackStore);
   const trackData = track.data

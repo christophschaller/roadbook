@@ -1,4 +1,3 @@
-
 import { Plus, RefreshCw } from "lucide-react";
 import { parseGPX } from "@we-gold/gpxjs";
 import { Button } from "@/components/ui/button";
@@ -8,11 +7,7 @@ import { resourceStore } from "@/stores/resourceStore";
 import { useStore } from "@nanostores/react";
 import { fetchOverPassPOIsAlongRoute } from "@/lib/dataFetching/fetchOverPassPOIsAlongRoute";
 
-function UploadButton({
-  className = "",
-}: {
-  className?: string;
-}) {
+function UploadButton({ className = "" }: { className?: string }) {
   const resources = useStore(resourceStore);
 
   const track = useStore(trackStore);

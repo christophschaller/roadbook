@@ -48,4 +48,4 @@ export const isFavorite = (poiId: string): boolean => {
   }
   const currentFavorites = favoritesStore.get();
   return currentFavorites.some((f) => f.toString() === poiId);
-}; 
+};
