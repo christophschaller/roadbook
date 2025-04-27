@@ -11,8 +11,10 @@ interface IconWithBackgroundProps extends CompositeLayerProps {
   getColor?: (d: any) => [number, number, number, number];
   getBackgroundRadius?: (d: any) => number;
   getBackgroundColor?: (d: any) => [number, number, number, number];
-  getFilterValue?: (d: any) => any;
-  filterRange?: (d: any) => any;
+  getLineColor?: any,
+  getLineWidth?: any,
+  // getFilterValue?: (d: any) => any;
+  // filterRange?: (d: any) => any;
 }
 
 export default class IconWithBackgroundLayer extends CompositeLayer<IconWithBackgroundProps> {
@@ -30,12 +32,14 @@ export default class IconWithBackgroundLayer extends CompositeLayer<IconWithBack
     getColor: { type: "accessor", value: [255, 255, 255] },
 
     // === DataFilterExtension Props (if used) ===
-    getFilterValue: { type: "accessor", value: (x: any) => x.filterValue },
-    filterRange: { type: "array", value: [0, 1] as [number, number] },
+    // getFilterValue: { type: "accessor", value: (x: any) => x.filterValue },
+    // filterRange: { type: "array", value: [0, 1] as [number, number] },
 
     // === Background Circle Props ===
     getBackgroundRadius: { type: "accessor", value: 16 },
     getBackgroundColor: { type: "accessor", value: [255, 255, 255] },
+    getLineColor: {type: "accessor", value: [255, 255, 255]},
+    getLineWidth: { type: "accessor", value: 0 },
   };
 
   renderLayers() {
@@ -46,12 +50,14 @@ export default class IconWithBackgroundLayer extends CompositeLayer<IconWithBack
       visible,
       getBackgroundRadius,
       getBackgroundColor,
+      getLineColor,
+      getLineWidth,
       getIcon,
       getSize,
       getColor,
       // Filter props
-      getFilterValue,
-      filterRange,
+      // getFilterValue,
+      // filterRange,
     } = this.props;
 
     // 1) White circle backgrounds
@@ -65,7 +71,10 @@ export default class IconWithBackgroundLayer extends CompositeLayer<IconWithBack
         getPosition,
         getRadius: getBackgroundRadius,
         getFillColor: getBackgroundColor,
-        stroked: false,
+        getLineColor: getLineColor,
+        getLineWidth: getLineWidth,
+        lineWidthUnits: "pixels",
+        stroked: true,
       }),
     );
 
@@ -80,8 +89,8 @@ export default class IconWithBackgroundLayer extends CompositeLayer<IconWithBack
         getIcon,
         getSize,
         getColor,
-        getFilterValue,
-        filterRange,
+        // getFilterValue,
+        // filterRange,
         // pass through any extensions or filters automatically
       }),
     );
