@@ -45,7 +45,7 @@ export function POISectionDesktop({
 }: {
   resources: Record<string, ResourceView>;
 }) {
-  const [activeResource, setActiveResource] = useState<string>("");
+  const [activeResource, setActiveResource] = useState<string>("water"); // TODO: set dynamically from resources
 
   const handleChange = (id: string) => {
     setActiveResource(id);
