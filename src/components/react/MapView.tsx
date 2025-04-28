@@ -42,7 +42,7 @@ const MapView = () => {
   const pois = useStore(poiStore);
   const favorites = useStore(favoritesStore);
   const riders = useStore(riderStore);
-  console.log(riders);
+  // console.log(riders);
 
   const [poiInfo, setPoiInfo] = useState<PickingInfo<PointOfInterest> | null>();
 
