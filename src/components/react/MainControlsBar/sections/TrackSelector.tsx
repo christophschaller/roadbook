@@ -1,4 +1,5 @@
-import { $selectedTrack } from "@/stores/trackStore";
+import { $selectedTrack, $trackStore } from "@/stores";
+import { useStore } from "@nanostores/react";
 import { MoveHorizontal, MoveUpRight } from "lucide-react";
 import TextToggle from "@/components/ui/textToggle";
 
@@ -6,6 +7,7 @@ export function TrackSelector() {
   const handleOnChange = (value: string) => {
     $selectedTrack.set(value);
   };
+  const { data: track, loading: trackLoading, error } = useStore($trackStore);
 
   return (
     <div className="space-y-2">
@@ -25,11 +27,11 @@ export function TrackSelector() {
       <div className="w-full flex justify-between p-1 rounded-xl">
         <div className="flex items-center space-x-2 text-gray-800">
           <MoveHorizontal className="w-5 h-5" />
-          <span className="text-gray-800 text-sm">1000 km</span>
+          <span className="text-gray-800 text-sm">{track?.distance} km</span>
         </div>
         <div className="flex items-center space-x-2 text-gray-800">
           <MoveUpRight className="w-5 h-5" />
-          <span className="text-gray-800 text-sm">16000 m</span>
+          <span className="text-gray-800 text-sm">{track?.altitude} m</span>
         </div>
       </div>
     </div>
