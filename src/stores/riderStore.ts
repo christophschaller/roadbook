@@ -8,5 +8,5 @@ export const [createFetcherStore] = nanoquery({
 export const riderStore = createFetcherStore<Rider>("/api/owntracks", {
   revalidateOnFocus: true,
   revalidateOnReconnect: true,
-  revalidateInterval: 60,
+  revalidateInterval: 60000,
 });
