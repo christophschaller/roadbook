@@ -2,10 +2,7 @@
   "name": "SHARDANA_2025_Mid",
   "distance": 870,
   "altitude": 11540,
-  "geometry": {
-    "type": "Feature",
-    "properties": {},
-    "geometry": {
+  "linestring": {
       "type": "LineString",
       "coordinates": [
         [
@@ -74334,5 +74331,4 @@
         ]
       ]
     }
-  }
 }
