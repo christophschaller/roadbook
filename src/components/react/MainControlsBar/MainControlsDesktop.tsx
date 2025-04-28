@@ -8,10 +8,7 @@ export function MainControlsDesktop() {
   return (
     <div className="absolute bottom-0 left-0 w-full md:w-64 md:left-[50px] md:top-[50px] md:h-[calc(100%-100px)] bg-white/80 backdrop-blur-md shadow-lg p-4 overflow-y-auto rounded-t-2xl md:rounded-2xl transition-transform duration-200">
       <div className="flex flex-col space-y-4">
-        <UploadSection />
-        {trackData && (
-          <TrackInformationSection track={track} trackData={trackData} />
-        )}
+        <TrackSelector />
         <POISectionDesktop resources={resourceView} />
       </div>
     </div>
