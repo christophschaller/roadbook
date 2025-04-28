@@ -1,5 +1,4 @@
 import { Slider } from "@/components/ui/slider";
-import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { resourceStateStore } from "@/stores/resourceStore";
 import type { ResourceCategory, ResourceView } from "@/types";
@@ -60,8 +59,7 @@ export function POISelectorContainer({
         />
         <Label className="text-base md:text-sm">Distance</Label>
       </div>
-      <Separator />
-      <div className="py-1">
+      <div className="py-2">
         {Object.entries(resource.categories).map(([id, cat]) => (
           <div className="flex items-center space-x-2 py-1" key={id}>
             <IconSwitch
