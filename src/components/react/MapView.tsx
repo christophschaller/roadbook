@@ -1,6 +1,10 @@
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useRef, useEffect, useState, useMemo } from "react";
 import maplibregl from "maplibre-gl";
-import { Map } from "react-map-gl/dist/es5/exports-maplibre.js";
+import {
+  Map,
+  AttributionControl,
+} from "react-map-gl/dist/es5/exports-maplibre.js";
 import DeckGL from "@deck.gl/react";
 import { type PickingInfo } from "@deck.gl/core";
 import { PathLayer, PolygonLayer, IconLayer } from "@deck.gl/layers";
@@ -31,6 +35,7 @@ const getLucideSvgUrl = (componentName: string) => {
 };
 
 const MapView = () => {
+  const isMobile = useIsMobile();
   const mapRef = useRef(null);
   const track = useStore(trackStore);
   const resourceView = useStore(resourceViewStore);
@@ -211,7 +216,13 @@ const MapView = () => {
         <Map
           mapStyle="https://tiles.stadiamaps.com/styles/outdoors.json"
           mapLib={maplibregl}
-        />
+          attributionControl={false}
+        >
+          <AttributionControl
+            position="bottom-right"
+            compact={true}
+          />
+        </Map>
         {poiInfo?.object && (
           <PoiTooltip
             poi={poiInfo.object as PointOfInterest}
