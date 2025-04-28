@@ -1,6 +1,8 @@
-import { type GeoJSON } from "@we-gold/gpxjs";
+import { type LineString } from "geojson";
 
 export interface Track {
   name: string;
-  data: GeoJSON | null;
+  distance: number;
+  altitude: number;
+  linestring: LineString
 }

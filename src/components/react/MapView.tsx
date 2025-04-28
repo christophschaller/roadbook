@@ -1,4 +1,3 @@
-import { useIsMobile } from "@/hooks/use-mobile";
 import { useRef, useEffect, useState, useMemo } from "react";
 import maplibregl from "maplibre-gl";
 import {
@@ -8,11 +7,10 @@ import {
 import DeckGL from "@deck.gl/react";
 import { type PickingInfo } from "@deck.gl/core";
 import { PathLayer, PolygonLayer, IconLayer } from "@deck.gl/layers";
-import { DataFilterExtension } from "@deck.gl/extensions";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
 import {
-  trackStore,
+  $trackStore,
   resourceViewStore,
   poiStore,
   riderStore,
@@ -35,9 +33,8 @@ const getLucideSvgUrl = (componentName: string) => {
 };
 
 const MapView = () => {
-  const isMobile = useIsMobile();
   const mapRef = useRef(null);
-  const track = useStore(trackStore);
+  const { data: track, loading: trackLoading, error } = useStore($trackStore);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
   const favorites = useStore(favoritesStore);
@@ -54,7 +51,6 @@ const MapView = () => {
     pitch: 0,
     bearing: 0,
   });
-  const [trackData, setTrackData] = useState<LineString | null>(null);
   const [simpleTrackData, setSimpleTrackData] = useState<LineString | null>(
     null,
   );
@@ -63,19 +59,16 @@ const MapView = () => {
   );
 
   useEffect(() => {
-    if (track.data) {
-      const lineString = track.data.features[0].geometry as LineString;
-      setTrackData(lineString);
-
-      const simpleLineString = turf.simplify(lineString, {
+    if (!trackLoading && track?.linestring) {
+      const simpleLineString = turf.simplify(track.linestring, {
         tolerance: 0.003,
         highQuality: false,
       });
       setSimpleTrackData(simpleLineString);
 
       // Set initial view to fit the track
-      if (lineString.coordinates.length > 0) {
-        const [minLng, minLat, maxLng, maxLat] = turf.bbox(lineString);
+      if (track.linestring.coordinates?.length > 0) {
+        const [minLng, minLat, maxLng, maxLat] = turf.bbox(track.linestring);
         setViewState((prev: MapViewState) => ({
           ...prev,
           longitude: (minLng + maxLng) / 2,
@@ -84,7 +77,7 @@ const MapView = () => {
         }));
       }
     }
-  }, [track]);
+  }, [track?.linestring]);
 
   useEffect(() => {
     if (simpleTrackData) {
@@ -106,12 +99,11 @@ const MapView = () => {
 
   const layers = useMemo(
     () => [
-      trackData &&
+      (!trackLoading && track) &&
         new PathLayer({
           id: "track",
-          data: trackData ? [{ path: trackData.coordinates }] : [],
-          getPath: (d: any) =>
-            d.path.map((coord: number[]) => [coord[0], coord[1]]), // Only use longitude and latitude
+          data: track ? [{ path: track.linestring.coordinates }] : [],
+          getPath: (d: number[]) => d,
           getColor: [0, 0, 0],
           getWidth: 3,
           widthMinPixels: 2,
@@ -182,7 +174,7 @@ const MapView = () => {
           maxZoom: 16,
         }),
     ],
-    [trackData, simpleTrackData, resourceAreas, pois, resourceView, favorites],
+    [track, simpleTrackData, resourceAreas, pois, resourceView, favorites],
   );
 
   return (

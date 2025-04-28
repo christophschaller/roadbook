@@ -1,12 +1,11 @@
-import type { trackStore } from "@/stores/trackStore";
-import type { useStore } from "@nanostores/react";
 import type { LineString } from "geojson";
+import type { Track } from "@/types";
 
 export function TrackInformationSection({
   track,
   trackData,
 }: {
-  track: ReturnType<typeof useStore<typeof trackStore>>;
+  track: Track;
   trackData: LineString;
 }) {
   return (

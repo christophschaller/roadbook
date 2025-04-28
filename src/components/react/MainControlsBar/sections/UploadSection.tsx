@@ -1,7 +1,7 @@
 import { Plus, RefreshCw } from "lucide-react";
 import { parseGPX } from "@we-gold/gpxjs";
 import { Button } from "@/components/ui/button";
-import { trackStore } from "@/stores/trackStore";
+import { $trackStore } from "@/stores";
 import { type LineString } from "geojson";
 import { resourceStore } from "@/stores/resourceStore";
 import { useStore } from "@nanostores/react";
@@ -9,8 +9,7 @@ import { fetchOverPassPOIsAlongRoute } from "@/lib/dataFetching/fetchOverPassPOI
 
 function UploadButton({ className = "" }: { className?: string }) {
   const resources = useStore(resourceStore);
-
-  const track = useStore(trackStore);
+  const track = useStore($trackStore);
 
   const handleFileUpload = (file: File) => {
     const reader = new FileReader();
@@ -21,9 +20,11 @@ function UploadButton({ className = "" }: { className?: string }) {
         const geojson = gpx?.toGeoJSON();
 
         if (geojson) {
-          trackStore.set({
+          $trackStore.set({
             name: geojson.properties.name || file.name,
-            data: geojson, // Store raw GPX or process into a desired format (e.g., GeoJSON)
+            distance: 0,
+            altitude: 0,
+            geometry: geojson.features[0].geometry,
           });
           fetchOverPassPOIsAlongRoute({
             resources,
@@ -77,7 +78,7 @@ function UploadButton({ className = "" }: { className?: string }) {
 }
 
 export function UploadSection() {
-  const track = useStore(trackStore);
+  const track = useStore($trackStore);
   return (
     <div className="space-y-4 md:mt-0">
       <div className="flex flex-col space-y-4">
