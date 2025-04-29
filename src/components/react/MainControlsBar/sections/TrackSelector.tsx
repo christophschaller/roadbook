@@ -4,6 +4,7 @@ import { MoveHorizontal, MoveUpRight } from "lucide-react";
 import TextToggle from "@/components/ui/textToggle";
 
 export function TrackSelector() {
+  const selectedTrack = useStore($selectedTrack);
   const handleOnChange = (value: string) => {
     $selectedTrack.set(value);
   };
@@ -20,7 +21,7 @@ export function TrackSelector() {
           ]}
           backgroundColor="#e5e7eb"
           toggleColor="#008000" // 0, 128, 0 -> sleep color
-          defaultSelected="yes"
+          defaultSelected={selectedTrack}
           onChange={handleOnChange}
         />
       </div>
