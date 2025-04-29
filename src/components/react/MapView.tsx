@@ -12,7 +12,7 @@ import * as turf from "@turf/turf";
 import {
   $trackStore,
   resourceViewStore,
-  poiStore,
+  $poiStore,
   riderStore,
   favoritesStore,
 } from "@/stores";
@@ -34,9 +34,9 @@ const getLucideSvgUrl = (componentName: string) => {
 
 const MapView = () => {
   const mapRef = useRef(null);
-  const { data: track, loading: trackLoading, error } = useStore($trackStore);
+  const { data: track, loading: trackLoading } = useStore($trackStore);
   const resourceView = useStore(resourceViewStore);
-  const pois = useStore(poiStore);
+  const { data: pois, loading: poisLoading } = useStore($poiStore);
   const favorites = useStore(favoritesStore);
   const riders = useStore(riderStore);
   // console.log(riders);
@@ -124,7 +124,7 @@ const MapView = () => {
           lineWidthMinPixels: 2,
           pickable: true,
         }),
-      pois &&
+      (!poisLoading && pois) &&
         new ClusterIconLayer({
           id: "pois",
           data: pois.filter((d: PointOfInterest) => {

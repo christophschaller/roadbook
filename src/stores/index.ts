@@ -1,4 +1,4 @@
-export { poiStore } from "./poiStore";
+export { $poiStore } from "./poiStore";
 export {
   resourceStore,
   resourceStateStore,

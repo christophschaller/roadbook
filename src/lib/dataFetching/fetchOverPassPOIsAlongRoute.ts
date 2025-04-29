@@ -3,7 +3,7 @@ import {
   createBoundingBox,
   constructOverpassQuery,
 } from "@/lib/overpass_helpers";
-import { poiStore } from "@/stores/poiStore";
+import { $poiStore } from "@/stores/poiStore";
 import type { PointOfInterest, Resource, ResourceCategory } from "@/types";
 import { type LineString, type Feature, type BBox } from "geojson";
 import * as turf from "@turf/turf";
@@ -170,7 +170,7 @@ export async function fetchOverPassPOIsAlongRoute({
     });
 
     // Update the store with all POIs
-    poiStore.set(Array.from(uniquePOIs.values()));
+    $poiStore.set(Array.from(uniquePOIs.values()));
   } catch (error) {
     const errorMessage = `Error fetching POIs: ${error}`;
     console.error(errorMessage);
