@@ -12,13 +12,7 @@ const Slider = React.forwardRef<
   }
 >(
   (
-    {
-      className,
-      color = [107, 114, 128],
-      value,
-      onValueChange,
-      ...props
-    },
+    { className, color = [107, 114, 128], value, onValueChange, ...props },
     ref,
   ) => {
     return (

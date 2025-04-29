@@ -7,5 +7,5 @@ export const [createFetcherStore] = nanoquery({
 
 export const $poiStore = createFetcherStore<PointOfInterest[]>([
   "",
-  "/data/pois/shardana.json"
+  "/data/pois/shardana.json",
 ]);

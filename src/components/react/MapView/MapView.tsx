@@ -131,7 +131,7 @@ const MapView = () => {
           getPolygon: (d: ResourceArea) => d.area.geometry.coordinates,
           getLineColor: (d: ResourceArea) => [
             ...resourceView[d.resourceId].color,
-            (resourceView[d.resourceId].active) ? 150 : 0,
+            resourceView[d.resourceId].active ? 150 : 0,
           ],
           getFillColor: (d: ResourceArea) => [
             ...resourceView[d.resourceId].color,
@@ -214,10 +214,7 @@ const MapView = () => {
   );
 
   return (
-    <div
-      style={{ width: "100%", height: "100vh" }}
-      className="relative"
-    >
+    <div style={{ width: "100%", height: "100vh" }} className="relative">
       <DeckGL
         initialViewState={viewState}
         controller={true}
@@ -250,7 +247,10 @@ const MapView = () => {
           mapLib={maplibregl}
           attributionControl={false}
         >
-          <AttributionControl position={isMobile ? "top-right" : "bottom-right"} compact={true} />
+          <AttributionControl
+            position={isMobile ? "top-right" : "bottom-right"}
+            compact={true}
+          />
         </Map>
         {poiInfo?.object && poiInfo.object["type"] === "node" && (
           <PoiTooltip

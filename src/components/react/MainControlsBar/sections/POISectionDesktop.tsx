@@ -44,7 +44,8 @@ export function POISectionDesktop({
 }: {
   resources: Record<string, ResourceView>;
 }) {
-  const activeResource = Object.values(resources).find(r => r.active)?.id || "";
+  const activeResource =
+    Object.values(resources).find((r) => r.active)?.id || "";
 
   return (
     <div className="space-y-4 md:mt-0">

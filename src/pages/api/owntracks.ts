@@ -30,7 +30,8 @@ export const GET: APIRoute = async () => {
   );
 
   if (!response.ok) {
-    return new Response(JSON.stringify(null), { // TODO: better error handling on client side
+    return new Response(JSON.stringify(null), {
+      // TODO: better error handling on client side
       status: 500,
     });
   }
