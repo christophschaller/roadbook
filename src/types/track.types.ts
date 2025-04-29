@@ -4,5 +4,5 @@ export interface Track {
   name: string;
   distance: number;
   altitude: number;
-  linestring: LineString
+  linestring: LineString;
 }
