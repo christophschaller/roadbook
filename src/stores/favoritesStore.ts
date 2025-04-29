@@ -1,23 +1,8 @@
-import { atom } from "nanostores";
-import type { PointOfInterest } from "@/types";
+import { persistentAtom } from "@nanostores/persistent";
 
-export const favoritesStore = atom<string[]>([]);
-
-// Load initial favorites from localStorage
-const loadFavorites = (): PointOfInterest[] => {
-  if (typeof window === "undefined") return [];
-  const stored = localStorage.getItem("favorites");
-  return stored ? JSON.parse(stored) : [];
-};
-
-// Create the store with initial value from localStorage
-// export const favoritesStore = atom<PointOfInterest[]>(loadFavorites());
-
-// Subscribe to changes and save to localStorage
-favoritesStore.subscribe((favorites) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }
+export const favoritesStore = persistentAtom<string[]>("favoritesStore", [], {
+  encode: JSON.stringify,
+  decode: JSON.parse,
 });
 
 // Helper functions to manage favorites
