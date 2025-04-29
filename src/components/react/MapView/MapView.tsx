@@ -250,7 +250,7 @@ const MapView = () => {
           mapLib={maplibregl}
           attributionControl={false}
         >
-          <AttributionControl position="bottom-right" compact={true} />
+          <AttributionControl position={isMobile ? "top-right" : "bottom-right"} compact={true} />
         </Map>
         {poiInfo?.object && poiInfo.object["type"] === "node" && (
           <PoiTooltip
