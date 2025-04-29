@@ -40,6 +40,7 @@ export const GET: APIRoute = async () => {
   data.forEach((item: any) => {
     const rider = riders[item.username];
     if (rider) {
+      item.type = "rider";
       item.display_name = rider.display_name;
       item.cap_number = rider.cap_number;
     }
