@@ -103,7 +103,6 @@ const MapView = () => {
         new PathLayer({
           id: "track",
           data: track ? [{ path: track.linestring.coordinates }] : [],
-          getPath: (d: number[]) => d,
           getColor: [0, 0, 0],
           getWidth: 3,
           widthMinPixels: 2,
