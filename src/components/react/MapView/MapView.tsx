@@ -6,24 +6,29 @@ import {
 } from "react-map-gl/dist/es5/exports-maplibre.js";
 import DeckGL from "@deck.gl/react";
 import { type PickingInfo } from "@deck.gl/core";
-import { PathLayer, PolygonLayer, IconLayer } from "@deck.gl/layers";
+import { PathLayer, PolygonLayer } from "@deck.gl/layers";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
 import {
   $trackStore,
   resourceViewStore,
   $poiStore,
-  riderStore,
+  $displayRiders,
+  $riderStore,
   favoritesStore,
 } from "@/stores";
 import { useStore } from "@nanostores/react";
-import { type LineString, type Polygon } from "geojson";
-import type { PointOfInterest } from "@/types";
+import { type LineString } from "geojson";
+import type { PointOfInterest, Rider } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
-import { MainControls } from "./MainControlsBar/MainControls";
-import { PoiTooltip } from "@/components/react/PoiTooltip";
-import ClusterIconLayer from "./IconClusterLayer";
+import { MainControls } from "@/components/react/MainControlsBar/MainControls";
+import { PoiTooltip } from "@/components/react/MapView/PoiTooltip";
+import ClusterIconLayer from "@/components/react/MapView/layers/IconClusterLayer";
 import type { MapViewState } from "@deck.gl/core";
+import { WebMercatorViewport, FlyToInterpolator } from "@deck.gl/core";
+import TextWithBackgroundLayer from "@/components/react/MapView/layers/TextWithBackgroundLayer";
+import { RiderTooltip } from "./RiderTooltip";
+import { getRiderColor } from "@/lib/utils";
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -37,15 +42,19 @@ const MapView = () => {
   const { data: track, loading: trackLoading } = useStore($trackStore);
   const resourceView = useStore(resourceViewStore);
   const { data: pois, loading: poisLoading } = useStore($poiStore);
+  const { data: riders, loading: ridersLoading } = useStore($riderStore);
+  const displayRiders = useStore($displayRiders);
   const favorites = useStore(favoritesStore);
-  const riders = useStore(riderStore);
-  // console.log(riders);
 
   const [poiInfo, setPoiInfo] = useState<PickingInfo<PointOfInterest> | null>();
 
+  const viewport = new WebMercatorViewport({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
   const [viewState, setViewState] = useState<MapViewState>({
-    longitude: -0.09,
-    latitude: 51.505,
+    longitude: 9.501,
+    latitude: 40.92,
     zoom: 13,
     maxZoom: 20,
     pitch: 0,
@@ -69,11 +78,16 @@ const MapView = () => {
       // Set initial view to fit the track
       if (track.linestring.coordinates?.length > 0) {
         const [minLng, minLat, maxLng, maxLat] = turf.bbox(track.linestring);
+        const { longitude, latitude, zoom } = viewport.fitBounds(
+          [[minLng, minLat], [maxLng, maxLat]],
+          { padding: 50 } // Optional: add padding around the bounds
+        );
         setViewState((prev: MapViewState) => ({
-          ...prev,
-          longitude: (minLng + maxLng) / 2,
-          latitude: (minLat + maxLat) / 2,
-          zoom: 12,
+          longitude,
+          latitude,
+          zoom,
+          transitionDuration: 1000, // Optional: animate the transition
+          transitionInterpolator: new FlyToInterpolator()
         }));
       }
     }
@@ -99,7 +113,8 @@ const MapView = () => {
 
   const layers = useMemo(
     () => [
-      (!trackLoading && track) &&
+      !trackLoading &&
+        track &&
         new PathLayer({
           id: "track",
           data: track ? [{ path: track.linestring.coordinates }] : [],
@@ -124,7 +139,8 @@ const MapView = () => {
           lineWidthMinPixels: 2,
           pickable: true,
         }),
-      (!poisLoading && pois) &&
+      !poisLoading &&
+        pois &&
         new ClusterIconLayer({
           id: "pois",
           data: pois.filter((d: PointOfInterest) => {
@@ -172,8 +188,32 @@ const MapView = () => {
           minZoom: 0,
           maxZoom: 16,
         }),
+      displayRiders &&
+        pois &&
+        new TextWithBackgroundLayer({
+          id: "riders",
+          data: riders,
+          getPosition: (d: Rider) => [d.lon, d.lat],
+          getText: (d: Rider) =>
+            d.cap_number !== "-" ? d.cap_number : d.display_name.charAt(0),
+          getBackgroundRadius: 16,
+          getSize: (d: Rider) => (d.cap_number !== "-" ? 16 : 20),
+          getBackgroundColor: (d: Rider) => getRiderColor(d.username || ""),
+          sizeUnits: "pixels",
+          getTextAnchor: "middle",
+          getAlignmentBaseline: "center",
+        }),
     ],
-    [track, simpleTrackData, resourceAreas, pois, resourceView, favorites],
+    [
+      track,
+      simpleTrackData,
+      resourceAreas,
+      pois,
+      resourceView,
+      favorites,
+      riders,
+      displayRiders,
+    ],
   );
 
   return (
@@ -188,11 +228,17 @@ const MapView = () => {
         layers={layers}
         onViewStateChange={() => setPoiInfo(null)}
         onClick={(info) => {
+          console.log(info);
           if (info && info.object) {
-            if ("type" in info.object && info.object["type"] == "node") {
+            if (
+              "type" in info.object &&
+              (info.object["type"] === "node" ||
+                info.object["type"] === "rider")
+            ) {
               setPoiInfo(info);
               return;
             }
+
             if (
               "properties" in info.object &&
               "cluster" in info.object["properties"] &&
@@ -209,14 +255,18 @@ const MapView = () => {
           mapLib={maplibregl}
           attributionControl={false}
         >
-          <AttributionControl
-            position="bottom-right"
-            compact={true}
-          />
+          <AttributionControl position="bottom-right" compact={true} />
         </Map>
-        {poiInfo?.object && (
+        {poiInfo?.object && poiInfo.object["type"] === "node" && (
           <PoiTooltip
             poi={poiInfo.object as PointOfInterest}
+            viewport={poiInfo.viewport}
+            onClose={() => setPoiInfo(null)}
+          />
+        )}
+        {poiInfo?.object && poiInfo.object["type"] === "rider" && (
+          <RiderTooltip
+            rider={poiInfo.object as Rider}
             viewport={poiInfo.viewport}
             onClose={() => setPoiInfo(null)}
           />
