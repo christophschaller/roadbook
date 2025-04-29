@@ -1,14 +1,14 @@
 ---
-import MapView from "@/components/react/MapView";
+import MapView from "@/components/react/MapView/MapView";
 ---
 
 <div id="map-container" class="h-full">
-    <MapView client:load />
+  <MapView client:only />
 </div>
 
 <style>
-    #map-container {
-        height: 100vh;
-        width: 100vw;
-    }
+  #map-container {
+    height: 100vh;
+    width: 100vw;
+  }
 </style>
