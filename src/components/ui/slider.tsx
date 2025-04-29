@@ -7,28 +7,20 @@ const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   Omit<React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>, "color"> & {
     color?: [number, number, number];
+    value: number[];
+    onValueChange: (val: number[]) => void;
   }
 >(
   (
     {
       className,
       color = [107, 114, 128],
-      value: controlledValue,
-      defaultValue,
+      value,
       onValueChange,
       ...props
     },
     ref,
   ) => {
-    const [value, setValue] = React.useState<number[]>(
-      controlledValue ?? defaultValue ?? [0],
-    );
-
-    const handleValueChange = (val: number[]) => {
-      setValue(val);
-      onValueChange?.(val);
-    };
-
     return (
       <SliderPrimitive.Root
         ref={ref}
@@ -36,9 +28,8 @@ const Slider = React.forwardRef<
           "relative flex w-full touch-none select-none items-center",
           className,
         )}
-        value={controlledValue ?? value}
-        defaultValue={defaultValue}
-        onValueChange={handleValueChange}
+        value={value}
+        onValueChange={onValueChange}
         {...props}
       >
         <SliderPrimitive.Track
@@ -68,6 +59,7 @@ const Slider = React.forwardRef<
     );
   },
 );
+
 Slider.displayName = SliderPrimitive.Root.displayName;
 
 export { Slider };

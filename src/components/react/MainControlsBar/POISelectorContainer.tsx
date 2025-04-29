@@ -43,12 +43,11 @@ export function POISelectorContainer({
       },
     });
   };
-
   return (
     <>
       <div className="flex items-center space-x-2">
         <Slider
-          defaultValue={[resource.distance]}
+          value={[resource.distance]}
           min={resource.minDistance}
           max={resource.maxDistance}
           step={stepDistance}
