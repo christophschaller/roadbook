@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState, useMemo } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useEffect, useState, useMemo } from "react";
 import maplibregl from "maplibre-gl";
 import {
   Map,
@@ -38,6 +39,7 @@ const getLucideSvgUrl = (componentName: string) => {
 };
 
 const MapView = () => {
+  const isMobile = useIsMobile();
   const { data: track, loading: trackLoading } = useStore($trackStore);
   const resourceView = useStore(resourceViewStore);
   const { data: pois, loading: poisLoading } = useStore($poiStore);
@@ -136,7 +138,7 @@ const MapView = () => {
           getPolygon: (d: ResourceArea) => d.area.geometry.coordinates,
           getLineColor: (d: ResourceArea) => [
             ...resourceView[d.resourceId].color,
-            150,
+            (!resourceView[d.resourceId].active && isMobile) ? 0 : 150,
           ],
           getFillColor: (d: ResourceArea) => [
             ...resourceView[d.resourceId].color,
