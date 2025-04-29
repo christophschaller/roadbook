@@ -38,7 +38,6 @@ const getLucideSvgUrl = (componentName: string) => {
 };
 
 const MapView = () => {
-  const mapRef = useRef(null);
   const { data: track, loading: trackLoading } = useStore($trackStore);
   const resourceView = useStore(resourceViewStore);
   const { data: pois, loading: poisLoading } = useStore($poiStore);
@@ -50,7 +49,7 @@ const MapView = () => {
 
   const viewport = new WebMercatorViewport({
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   });
   const [viewState, setViewState] = useState<MapViewState>({
     longitude: 9.501,
@@ -60,6 +59,11 @@ const MapView = () => {
     pitch: 0,
     bearing: 0,
   });
+
+  useEffect(() => {
+    setPoiInfo(null);
+  }, [viewState]);
+
   const [simpleTrackData, setSimpleTrackData] = useState<LineString | null>(
     null,
   );
@@ -79,15 +83,18 @@ const MapView = () => {
       if (track.linestring.coordinates?.length > 0) {
         const [minLng, minLat, maxLng, maxLat] = turf.bbox(track.linestring);
         const { longitude, latitude, zoom } = viewport.fitBounds(
-          [[minLng, minLat], [maxLng, maxLat]],
-          { padding: 50 } // Optional: add padding around the bounds
+          [
+            [minLng, minLat],
+            [maxLng, maxLat],
+          ],
+          { padding: 50 }, // Optional: add padding around the bounds
         );
         setViewState((prev: MapViewState) => ({
           longitude,
           latitude,
           zoom,
           transitionDuration: 1000, // Optional: animate the transition
-          transitionInterpolator: new FlyToInterpolator()
+          transitionInterpolator: new FlyToInterpolator(),
         }));
       }
     }
@@ -189,7 +196,7 @@ const MapView = () => {
           maxZoom: 16,
         }),
       displayRiders &&
-        pois &&
+        riders &&
         new TextWithBackgroundLayer({
           id: "riders",
           data: riders,
@@ -218,7 +225,6 @@ const MapView = () => {
 
   return (
     <div
-      ref={mapRef}
       style={{ width: "100%", height: "100vh" }}
       className="relative"
     >
@@ -226,7 +232,6 @@ const MapView = () => {
         initialViewState={viewState}
         controller={true}
         layers={layers}
-        onViewStateChange={() => setPoiInfo(null)}
         onClick={(info) => {
           console.log(info);
           if (info && info.object) {
