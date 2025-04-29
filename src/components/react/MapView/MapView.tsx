@@ -131,7 +131,7 @@ const MapView = () => {
           getPolygon: (d: ResourceArea) => d.area.geometry.coordinates,
           getLineColor: (d: ResourceArea) => [
             ...resourceView[d.resourceId].color,
-            (!resourceView[d.resourceId].active && isMobile) ? 0 : 150,
+            (resourceView[d.resourceId].active) ? 150 : 0,
           ],
           getFillColor: (d: ResourceArea) => [
             ...resourceView[d.resourceId].color,
