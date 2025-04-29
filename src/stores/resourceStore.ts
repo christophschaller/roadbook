@@ -1,4 +1,5 @@
 import { atom, computed } from "nanostores";
+import { persistentAtom } from "@nanostores/persistent";
 import type { Resource, ResourceState, ResourceView } from "@/types";
 import { Resources, DefaultResourceState } from "@/lib/data";
 
@@ -6,8 +7,14 @@ export const resourceStore = atom<Record<string, Resource>>(
   Object.fromEntries(Resources.map((resource) => [resource.id, resource])),
 );
 
-export const resourceStateStore =
-  atom<Record<string, ResourceState>>(DefaultResourceState);
+export const resourceStateStore = persistentAtom<Record<string, ResourceState>>(
+  "resourceStateStore",
+  DefaultResourceState,
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  },
+);
 
 export const resourceViewStore = computed(
   [resourceStore, resourceStateStore],
