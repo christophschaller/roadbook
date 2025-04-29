@@ -1,6 +1,5 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { ResourceView } from "@/types";
-import { useState } from "react";
 import { handleResourceChange } from "@/components/react/MainControlsBar/utils/handleResourceChange";
 import { POISelectorContainer } from "../POISelectorContainer";
 
@@ -45,12 +44,7 @@ export function POISectionDesktop({
 }: {
   resources: Record<string, ResourceView>;
 }) {
-  const [activeResource, setActiveResource] = useState<string>("water"); // TODO: set dynamically from resources
-
-  const handleChange = (id: string) => {
-    setActiveResource(id);
-    handleResourceChange(id);
-  };
+  const activeResource = Object.values(resources).find(r => r.active)?.id || "";
 
   return (
     <div className="space-y-4 md:mt-0">
@@ -64,7 +58,7 @@ export function POISectionDesktop({
               key={resource.id}
               resource={resource}
               activeResource={activeResource}
-              onResourceChange={handleChange}
+              onResourceChange={handleResourceChange}
             />
           ))}
         </div>
