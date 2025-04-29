@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import type { Rider } from "@/types";
-import { X, Bike } from "lucide-react";
+import { X, Bike, Gauge, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getRiderColor } from "@/lib/utils";
 
@@ -27,6 +27,13 @@ export function RiderTooltip({
     }, []);
 
     const [x, y] = viewport.project([rider.lon, rider.lat]);
+    const lastSeen = new Date(rider.isotst).toLocaleString("en-UK", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    });
 
     return (
       <div
@@ -52,13 +59,32 @@ export function RiderTooltip({
             {rider.display_name != null && rider.display_name !== "" && (
               <div className="flex items-center justify-center gap-2">
                 {isMobile ? (
-                  <h5 className="font-bold text-lg">{rider.display_name}</h5>
+                  <>
+                    <h5 className="font-bold text-lg">{rider.display_name}</h5>
+                    <h5 className="font-medium text-lg">
+                      No. {rider.cap_number}
+                    </h5>
+                  </>
                 ) : (
-                  <p className="font-bold text-md">{rider.display_name}</p>
+                  <>
+                    <p className="font-bold text-md">{rider.display_name}</p>
+                    <p className="font-medium text-md">
+                      No. {rider.cap_number}
+                    </p>
+                  </>
                 )}
               </div>
             )}
-            <div className="flex items-center justify-center gap-2"></div>
+            <div className="flex items-center justify-center gap-2">
+              {/* <div className="flex items-center space-x-2 text-gray-800">
+                <Gauge className="w-5 h-5" />
+                <span className="text-gray-800 text-sm">{rider.vel} km/h</span>
+              </div> */}
+              <div className="flex items-center space-x-2 text-gray-800">
+                <Clock className="w-5 h-5" />
+                <span className="text-gray-800 text-sm">{lastSeen}</span>
+              </div>
+            </div>
           </div>
           <Button
             type="button"
