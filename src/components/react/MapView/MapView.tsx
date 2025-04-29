@@ -34,7 +34,7 @@ const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
     .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
     .toLowerCase();
-  return `https://unpkg.com/lucide-static@0.469.0/icons/${kebabCaseName}.svg`;
+  return `/icons/${kebabCaseName}.svg`;
 };
 
 const MapView = () => {
