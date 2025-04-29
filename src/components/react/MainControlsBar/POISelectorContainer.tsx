@@ -1,3 +1,4 @@
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { resourceStateStore } from "@/stores/resourceStore";
@@ -13,7 +14,8 @@ export function POISelectorContainer({
   onDistanceChange?: (distance: number) => void;
   onCategoryChange?: (categories: ResourceCategory[]) => void;
 }) {
-  const stepDistance = 50; // TODO: define in Resource
+  const isMobile = useIsMobile();
+  const stepDistance = isMobile ? 500 : 100;
   const handleSliderChange = (value: number) => {
     const distance = value;
     const currentStore = resourceStateStore.get();
