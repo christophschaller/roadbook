@@ -1,6 +1,6 @@
 import { CompositeLayer, type UpdateParameters } from "@deck.gl/core";
-import { TextLayer, ScatterplotLayer } from "@deck.gl/layers";
 import IconWithBackgroundLayer from "./IconWithBackgroundLayer";
+import TextWithBackgroundLayer from "./TextWithBackgroundLayer";
 import Supercluster from "supercluster";
 
 const DEFAULT_CLUSTER_RADIUS = 40;
@@ -21,8 +21,8 @@ interface ClusterFeature {
 interface IconClusterLayerProps {
   data: any[];
   getPosition: (d: any) => [number, number];
-  getBackgroundRadius?: (d: ClusterFeature) => number;
-  getBackgroundColor?: (d: ClusterFeature) => [number, number, number, number];
+  getBackgroundRadius?: (d: any) => number;
+  getBackgroundColor?: (d: any) => [number, number, number, number?];
   getLineColor?: any;
   getLineWidth?: any;
   onClusterClick?: (info: any, expansionZoom: number) => void;
@@ -136,58 +136,29 @@ export default class ClusterIconLayer<
       // Non-clustered points
       new IconWithBackgroundLayer(
         this.getSubLayerProps({
-          getPosition: (d) => d.geometry.coordinates,
           ...this.props,
           data: nonClustered.map((c) => c.properties),
         }),
       ),
 
-      // Cluster backgrounds (white circles)
-      new ScatterplotLayer(
-        this.getSubLayerProps({
-          id: "cluster-backgrounds",
-          data: clustered,
-          pickable: true,
-          getPosition: (d) => d.geometry.coordinates,
-          radiusUnits: "pixels",
-          getRadius: getBackgroundRadius,
-          getFillColor: getBackgroundColor,
-          // getLineColor: [0, 255, 255],
-          // getLineWidth: 30,
-          stroked: false,
-          onClick: (info) => {
-            if (this.props.onClusterClick) {
-              const cluster = info.object;
-              const clusterId = cluster?.properties?.cluster_id;
-              if (clusterId !== undefined && clusterId !== null) {
-                try {
-                  const expansionZoom = (
-                    this.state.superCluster as Supercluster<any>
-                  ).getClusterExpansionZoom(clusterId);
-                  this.props.onClusterClick(info, expansionZoom);
-                } catch (e) {
-                  // Optionally log or handle error
-                }
-              }
-            }
-          },
-        }),
-      ),
-
-      // Cluster numbers
-      new TextLayer(
-        this.getSubLayerProps({
-          id: "cluster-labels",
-          data: clustered,
-          getPosition: (d) => d.geometry.coordinates,
-          getText: (d) => String(d.properties.point_count),
-          getSize: this.props.clusterLabelSize,
-          sizeUnits: "pixels",
-          getTextAnchor: "middle",
-          getAlignmentBaseline: "center",
-          getPixelOffset: [0, 1],
-        }),
-      ),
+      new TextWithBackgroundLayer({
+        id: "clusters",
+        data: clustered,
+        getPosition: (d) => d.geometry.coordinates,
+        getText: (d) => String(d.properties.point_count),
+        getBackgroundRadius: getBackgroundRadius,
+        getSize: this.props.clusterLabelSize,
+        getBackgroundColor: getBackgroundColor,
+        sizeUnits: "pixels",
+        getTextAnchor: "middle",
+        getAlignmentBaseline: "center",
+        radiusUnits: "pixels",
+        pickable: true,
+        stroked: false,
+        getPixelOffset: [0, 1],
+        getColor: [0, 0, 0],
+        fontFamily: "Inter",
+      }),
     ];
   }
 }
