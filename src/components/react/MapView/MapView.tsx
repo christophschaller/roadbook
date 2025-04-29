@@ -31,13 +31,6 @@ import TextWithBackgroundLayer from "@/components/react/MapView/layers/TextWithB
 import { RiderTooltip } from "./RiderTooltip";
 import { getRiderColor } from "@/lib/utils";
 
-const getLucideSvgUrl = (componentName: string) => {
-  const kebabCaseName = componentName
-    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
-    .toLowerCase();
-  return `/icons/${kebabCaseName}.svg`;
-};
-
 const MapView = () => {
   const isMobile = useIsMobile();
   const { data: track, loading: trackLoading } = useStore($trackStore);
@@ -168,12 +161,7 @@ const MapView = () => {
           }),
           getPosition: (d: PointOfInterest) => [d.lon, d.lat],
           getIcon: (d: PointOfInterest) => ({
-            url: getLucideSvgUrl(
-              resourceView[d.resourceId || ""].categories[
-                d.resourceCategoryId || ""
-                // @ts-ignore render error from lucide-react
-              ].icon.render.name,
-            ),
+            url: `/icons/${d.icon}.svg`,
             width: 256,
             height: 256,
             mask: true,
