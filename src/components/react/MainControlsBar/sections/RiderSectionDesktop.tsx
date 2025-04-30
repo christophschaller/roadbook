@@ -1,18 +1,11 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useStore } from "@nanostores/react";
 import { Label } from "@/components/ui/label";
-import { $displayRiders, $riderStore } from "@/stores";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { $displayRiders, $riderStore, $focusRider } from "@/stores";
 import { IconSwitch } from "@/components/ui/IconSwitch";
 import { Bike } from "lucide-react";
 import type { Rider } from "@/types";
+import { getRiderColor, getRiderLastSeen } from "@/lib/utils";
 
 export function RiderSectionDesktop() {
   const displayRiders = useStore($displayRiders);
@@ -40,27 +33,30 @@ export function RiderSectionDesktop() {
           </div>
         </div>
         {riders && (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Number</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Last Update</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {riders &&
-                Object.values(riders).map((rider: Rider) => (
-                  <TableRow key={rider.tid}>
-                    <TableCell className="font-medium">
-                      {rider.cap_number}
-                    </TableCell>
-                    <TableCell>{rider.display_name}</TableCell>
-                    <TableCell>{rider.isotst}</TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
+          <div className="space-y-2">
+            {Object.values(riders).map((rider: Rider) => (
+              <div
+                key={rider.tid}
+                className="flex justify-between items-center p-2 rounded-xl bg-white/50"
+              >
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => $focusRider.set(rider)}
+                    className="w-10 h-10 rounded-full flex items-center justify-center hover:border-white/20 border"
+                    style={{
+                      backgroundColor: `rgb(${getRiderColor(rider.username).join(",")})`,
+                    }}
+                  >
+                    <span className="font-xs">{rider.cap_number}</span>
+                  </button>
+                  <span className="text-md">{rider.display_name}</span>
+                </div>
+                <span className="text-xs text-primary/60">
+                  {getRiderLastSeen(rider)}
+                </span>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </div>
