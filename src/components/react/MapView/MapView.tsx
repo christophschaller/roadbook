@@ -179,9 +179,12 @@ const MapView = () => {
         new PathLayer({
           id: "track",
           data: track ? [{ path: track.linestring.coordinates }] : [],
-          getColor: [0, 0, 0],
-          getWidth: 3,
+          getColor: [82, 38, 98],
+          getWidth: 5,
+          widthUnits: "meters",
           widthMinPixels: 2,
+          capRounded:true,
+          jointRounded:true,
         }),
       resourceAreas &&
         new PolygonLayer({
