@@ -27,7 +27,7 @@ export function RiderSectionDesktop() {
               checked={Boolean(riders && displayRiders)}
               onChange={(checked: boolean) => handleOnCheckedChange(checked)}
               icon={Bike}
-              color={[0, 0, 0]}
+              color={[82, 38, 98]}
             />
             <Label className="text-base md:text-sm">Show Riders</Label>
           </div>

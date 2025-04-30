@@ -69,7 +69,7 @@ function RidersContainer() {
           checked={Boolean(riders && displayRiders)}
           onChange={handleOnCheckedChange}
           icon={Bike}
-          color={[0, 0, 0]}
+          color={[82, 38, 98]}
         />
         <Label className="text-base">Show Riders</Label>
       </div>
