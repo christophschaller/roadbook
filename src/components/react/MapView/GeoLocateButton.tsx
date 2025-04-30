@@ -13,7 +13,7 @@ function GeoLocateButton({}) {
   return (
     <button
       onClick={toggleTracking}
-      className="fixed top-[5%] right-[5%] z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20 opacity-100 hover:bg-black/30"
+      className="fixed top-[60%] right-3 z-10 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20 opacity-100 hover:bg-black/30"
     >
       {!isTracking ? (
         <LocateOff className="h-6 w-6 text-white" />
