@@ -183,8 +183,8 @@ const MapView = () => {
           getWidth: 5,
           widthUnits: "meters",
           widthMinPixels: 2,
-          capRounded:true,
-          jointRounded:true,
+          capRounded: true,
+          jointRounded: true,
         }),
       resourceAreas &&
         new PolygonLayer({

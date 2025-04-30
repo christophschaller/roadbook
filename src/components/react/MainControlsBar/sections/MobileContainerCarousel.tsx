@@ -5,7 +5,12 @@ import { useStore } from "@nanostores/react";
 import type { ResourceView, Rider } from "@/types";
 import { handleResourceChange } from "@/components/react/MainControlsBar/utils/handleResourceChange";
 import { POISelectorContainer } from "../POISelectorContainer";
-import { $displayRiders, $riderStore, $focusRider, $mobileResourceIndex } from "@/stores";
+import {
+  $displayRiders,
+  $riderStore,
+  $focusRider,
+  $mobileResourceIndex,
+} from "@/stores";
 import { IconSwitch } from "@/components/ui/IconSwitch";
 import { Label } from "@/components/ui/label";
 import { getRiderLastSeen, getRiderColor } from "@/lib/utils";
@@ -106,10 +111,10 @@ function RidersContainer() {
           </div>
         )}
         {!riders && (
-        <div className="flex justify-center">
-          <span>Tracking not available!</span>
-        </div>
-      )}
+          <div className="flex justify-center">
+            <span>Tracking not available!</span>
+          </div>
+        )}
       </div>
     </div>
   );
