@@ -5,9 +5,25 @@ import { useStore } from "@nanostores/react";
 import type { ResourceView, Rider } from "@/types";
 import { handleResourceChange } from "@/components/react/MainControlsBar/utils/handleResourceChange";
 import { POISelectorContainer } from "../POISelectorContainer";
-import { $displayRiders, $riderStore } from "@/stores";
+import { $displayRiders, $riderStore, $focusRider } from "@/stores";
 import { IconSwitch } from "@/components/ui/IconSwitch";
 import { Label } from "@/components/ui/label";
+import { getRiderLastSeen, getRiderColor } from "@/lib/utils";
+import { TrackSelector } from "./TrackSelector";
+
+function TrackSelectContainer() {
+  return (
+    <div className="space-y-2">
+      <TrackSelector />
+      <p className="text text-primary/60">
+        Welcome to our little sideproject!
+        <br />
+        Explore points of interest along the Shardana route. Or track where
+        other riders currently are.
+      </p>
+    </div>
+  );
+}
 
 function ResourceContainer({ resource }: { resource: ResourceView }) {
   return (
@@ -39,8 +55,8 @@ function RidersContainer() {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center space-x-2 py-1">
+    <div className="flex flex-col w-full h-full space-y-2">
+      <div className="w-full items-center space-x-2 p-2 rounded-md hover:bg-white/50 transition-colors">
         <IconSwitch
           checked={Boolean(riders && displayRiders)}
           onChange={handleOnCheckedChange}
@@ -49,22 +65,34 @@ function RidersContainer() {
         />
         <Label className="text-base">Show Riders</Label>
       </div>
-      {riders && (
-        <div className="space-y-2">
-          {Object.values(riders).map((rider: Rider) => (
-            <div
-              key={rider.tid}
-              className="flex justify-between items-center p-2 rounded-md bg-white/50"
-            >
-              <div className="flex items-center space-x-2">
-                <span className="font-medium">{rider.cap_number}</span>
-                <span>{rider.display_name}</span>
+      <div className="max-h-full overflow-y-scroll rounded-lg">
+        {riders && (
+          <div className="space-y-2">
+            {Object.values(riders).map((rider: Rider) => (
+              <div
+                key={rider.tid}
+                className="flex justify-between items-center p-2 rounded-xl bg-white/50"
+              >
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => $focusRider.set(rider)}
+                    className="w-10 h-10 rounded-full flex items-center justify-center hover:border-white/20 border"
+                    style={{
+                      backgroundColor: `rgb(${getRiderColor(rider.username).join(",")})`,
+                    }}
+                  >
+                    <span className="font-xs">{rider.cap_number}</span>
+                  </button>
+                  <span>{rider.display_name}</span>
+                </div>
+                <span className="text-sm text-primary/60">
+                  {getRiderLastSeen(rider)}
+                </span>
               </div>
-              <span className="text-sm text-primary/60">{rider.isotst}</span>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -85,6 +113,8 @@ export function MobileContainerCarousel({
     setActiveIndex(activeIndex - 1);
     if (activeIndex > 1) {
       handleResourceChange(resources[activeIndex - 2].id);
+    } else {
+      handleResourceChange("");
     }
   };
 
@@ -98,10 +128,10 @@ export function MobileContainerCarousel({
   const chevronLeftButton = (
     <button
       onClick={handlePrevious}
-      disabled={activeIndex === 0}
+      disabled={activeIndex === -1}
       className={cn(
         "absolute left-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",
-        activeIndex === 0
+        activeIndex === -1
           ? "opacity-50 cursor-not-allowed"
           : "opacity-100 hover:bg-black/30",
       )}
@@ -128,9 +158,11 @@ export function MobileContainerCarousel({
   return (
     <>
       {chevronLeftButton}
-      <div className="w-full p-5 m-10 rounded-2xl bg-white/80 backdrop-blur-md">
-        {activeIndex === 0 ? (
+      <div className="h-full w-full p-5 m-10 rounded-2xl bg-white/80 backdrop-blur-md">
+        {activeIndex === -1 ? (
           <RidersContainer />
+        ) : activeIndex === 0 ? (
+          <TrackSelectContainer />
         ) : (
           <ResourceContainer resource={resources[activeIndex - 1]} />
         )}
