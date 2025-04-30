@@ -1,13 +1,13 @@
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import maplibregl from "maplibre-gl";
 import {
   Map,
   AttributionControl,
-} from "react-map-gl/dist/es5/exports-maplibre.js";
+} from 'react-map-gl/maplibre';
 import DeckGL from "@deck.gl/react";
 import { type PickingInfo } from "@deck.gl/core";
-import { PathLayer, PolygonLayer } from "@deck.gl/layers";
+import { PathLayer, PolygonLayer, ScatterplotLayer } from "@deck.gl/layers";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
 import {
@@ -18,6 +18,7 @@ import {
   $riderStore,
   $focusRider,
   favoritesStore,
+  $isTracking, $location,
 } from "@/stores";
 import { useStore } from "@nanostores/react";
 import { type LineString } from "geojson";
@@ -31,8 +32,10 @@ import { WebMercatorViewport, FlyToInterpolator } from "@deck.gl/core";
 import TextWithBackgroundLayer from "@/components/react/MapView/layers/TextWithBackgroundLayer";
 import { RiderTooltip } from "./RiderTooltip";
 import { getRiderColor } from "@/lib/utils";
+import GeoLocateButton from "./GeoLocateButton";
 
 const MapView = () => {
+  const mapRef = React.useRef(null);
   const isMobile = useIsMobile();
   const { data: track, loading: trackLoading } = useStore($trackStore);
   const resourceView = useStore(resourceViewStore);
@@ -41,6 +44,9 @@ const MapView = () => {
   const displayRiders = useStore($displayRiders);
   const focusRider = useStore($focusRider);
   const favorites = useStore(favoritesStore);
+  const isTracking = useStore($isTracking);
+  const location = useStore($location);
+  const isNewTracking = React.useRef(true);
 
   const [poiInfo, setPoiInfo] = useState<PickingInfo<PointOfInterest> | null>();
 
@@ -60,6 +66,26 @@ const MapView = () => {
   useEffect(() => {
     setPoiInfo(null);
   }, [viewState]);
+
+  useEffect(() => {
+    if (isTracking && location && location.latitude && location.longitude && isNewTracking.current) {
+      isNewTracking.current = false;
+      setViewState((prev: MapViewState) => ({
+        longitude: location.longitude,
+        latitude: location.latitude,
+        zoom: 15, // Adjust this value as needed for your specific use case
+        transitionDuration: 1000, // Optional: animate the transition
+        transitionInterpolator: new FlyToInterpolator(),
+      }));
+      console.log('First location received:', location);
+    }
+  }, [isTracking, location]);
+
+  useEffect(() => {
+    if (!isTracking) {
+      isNewTracking.current = true;
+    }
+  }, [isTracking]);
 
   const [simpleTrackData, setSimpleTrackData] = useState<LineString | null>(
     null,
@@ -213,6 +239,33 @@ const MapView = () => {
           getTextAnchor: "middle",
           getAlignmentBaseline: "center",
         }),
+        isTracking && location && new ScatterplotLayer({
+          id: "user-accuracy",
+          data: [location],
+          getPosition: (d) => [d.longitude, d.latitude],
+          getRadius: (d) => d.accuracy,
+          radiusUnits: "meters",
+          filled: false,
+          stroked: true,
+          lineWidthUnits: "pixels",
+          getLineWidth: 0.5,
+          getLineColor: [0, 166, 244],
+          pickable: false,
+        }),
+      isTracking && location && new ScatterplotLayer({
+        id: "user-location",
+        data: [location],
+        getPosition: (d) => [d.longitude, d.latitude],
+        getRadius: 5,
+        radiusUnits: "pixels",
+        stroked: true,
+        lineWidthUnits: "pixels",
+        getLineWidth: 2,
+        getFillColor: [0, 166, 244],
+        getLineColor: [255, 255, 255],
+        pickable: false,
+      }),
+      
     ],
     [
       track,
@@ -256,6 +309,7 @@ const MapView = () => {
         }}
       >
         <Map
+          ref={mapRef}
           mapStyle="https://tiles.stadiamaps.com/styles/outdoors.json"
           mapLib={maplibregl}
           attributionControl={false}
@@ -281,6 +335,7 @@ const MapView = () => {
         )}
       </DeckGL>
       <MainControls />
+      <GeoLocateButton/>
     </div>
   );
 };
