@@ -12,10 +12,18 @@ export function MainControlsDesktop() {
       <div className="flex flex-col h-full space-y-4">
         <TrackSelector />
         <Separator />
-        <div className="flex-1 space-y-4 overflow-y-auto rounded-md">
+        <div className="flex-1 flex flex-col space-y-4 overflow-y-auto rounded-md">
           <POISectionDesktop resources={resourceView} />
           <Separator />
           <RiderSectionDesktop />
+          <div className="h-full text-xs text-primary/40 text-right flex justify-center">
+            <a
+              href="/impressum"
+              className="mt-auto underline hover:text-primary/70"
+            >
+              Impressum
+            </a>
+          </div>
         </div>
       </div>
     </div>

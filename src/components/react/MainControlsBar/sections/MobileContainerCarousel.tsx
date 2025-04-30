@@ -15,12 +15,17 @@ function TrackSelectContainer() {
   return (
     <div className="space-y-2">
       <TrackSelector />
-      <p className="text text-primary/60">
+      <p className="text text-sm text-primary/60">
         Welcome to our little sideproject!
         <br />
         Explore points of interest along the Shardana route. Or track where
         other riders currently are.
       </p>
+      <div className="text-xs text-primary/40 text-right flex justify-center">
+        <a href="/impressum" className="underline hover:text-primary/70">
+          Impressum
+        </a>
+      </div>
     </div>
   );
 }
