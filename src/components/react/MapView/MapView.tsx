@@ -1,7 +1,7 @@
 import { useIsMobile } from "@/hooks/use-mobile";
 import React, { useEffect, useState, useMemo } from "react";
 import maplibregl from "maplibre-gl";
-import { Map, AttributionControl } from "react-map-gl/maplibre";
+import { Map, AttributionControl, ScaleControl } from "react-map-gl/maplibre";
 import DeckGL from "@deck.gl/react";
 import { type PickingInfo } from "@deck.gl/core";
 import { PathLayer, PolygonLayer, ScatterplotLayer } from "@deck.gl/layers";
@@ -97,21 +97,6 @@ const MapView = () => {
   const [resourceAreas, setResourceAreas] = useState<ResourceArea[] | null>(
     null,
   );
-
-  useEffect(() => {
-    if (mapRef.current) {
-      const map = mapRef.current.getMap();
-
-      // Create a new ScaleControl
-      const scaleControl = new maplibregl.ScaleControl({
-        maxWidth: 100,
-        unit: "metric",
-      });
-
-      // Add the ScaleControl to the top-left corner
-      map.addControl(scaleControl, isMobile ? "top-left" : "bottom-left");
-    }
-  }, []);
 
   useEffect(() => {
     if (!trackLoading && track?.linestring) {
@@ -353,6 +338,7 @@ const MapView = () => {
             position={isMobile ? "top-right" : "bottom-right"}
             compact={true}
           />
+          {!isMobile && <ScaleControl/>}
         </Map>
         {poiInfo?.object && poiInfo.object["type"] === "node" && (
           <PoiTooltip
