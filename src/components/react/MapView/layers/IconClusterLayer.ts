@@ -114,7 +114,30 @@ export default class ClusterIconLayer<
         zoom,
       );
 
-      this.setState({ clusters, viewport });
+      const clustersWithBBox = clusters.map((cluster) => {
+        if (cluster.properties.cluster) {
+          const leaves = superCluster.getLeaves(
+            cluster.properties.cluster_id,
+            Infinity,
+          );
+          const lats = leaves.map((leaf) => leaf.geometry.coordinates[1]);
+          const lngs = leaves.map((leaf) => leaf.geometry.coordinates[0]);
+          const bbox = [
+            [Math.min(...lngs), Math.min(...lats)],
+            [Math.max(...lngs), Math.max(...lats)],
+          ];
+          return {
+            ...cluster,
+            properties: {
+              ...cluster.properties,
+              bbox,
+            },
+          };
+        }
+        return cluster;
+      });
+
+      this.setState({ clusters: clustersWithBBox, viewport });
     }
   }
 
