@@ -95,6 +95,21 @@ const MapView = () => {
   );
 
   useEffect(() => {
+    if (mapRef.current) {
+      const map = mapRef.current.getMap();
+
+      // Create a new ScaleControl
+      const scaleControl = new maplibregl.ScaleControl({
+        maxWidth: 100,
+        unit: 'metric',
+      });
+
+      // Add the ScaleControl to the top-left corner
+      map.addControl(scaleControl, isMobile ? 'top-left':'bottom-left');
+    }
+  }, []);
+
+  useEffect(() => {
     if (!trackLoading && track?.linestring) {
       const simpleLineString = turf.simplify(track.linestring, {
         tolerance: 0.003,
