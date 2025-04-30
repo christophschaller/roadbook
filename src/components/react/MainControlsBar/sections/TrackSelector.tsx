@@ -19,8 +19,7 @@ export function TrackSelector() {
             { value: "shardana_full.json", label: "Long" },
             { value: "shardana_mid.json", label: "Short" },
           ]}
-          backgroundColor="#e5e7eb"
-          toggleColor="#008000" // 0, 128, 0 -> sleep color
+          toggleColor="#522662"
           defaultSelected={selectedTrack}
           onChange={handleOnChange}
         />

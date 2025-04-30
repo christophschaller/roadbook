@@ -35,8 +35,8 @@ export default function TextToggle({
   return (
     <>
       <div
-        className="relative flex items-center w-full max-w-md h-16 rounded-2xl cursor-pointer transition-all duration-200 group"
-        style={{ backgroundColor, padding: "0.5rem" }}
+        className="relative flex items-center w-full max-w-md h-16 rounded-2xl cursor-pointer transition-all duration-200 group bg-black/20 backdrop-blur-md border border-white/20 opacity-100 hover:bg-black/30"
+        style={{ padding: "0.5rem" }}
         onClick={handleToggle}
       >
         <div
