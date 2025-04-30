@@ -1,3 +1,4 @@
+import type { Rider } from "@/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -39,4 +40,14 @@ function hashStringToIndex(str: string, max: number): number {
 export function getRiderColor(userName: string): [number, number, number] {
   const index = hashStringToIndex(userName, colors.length);
   return colors[index];
+}
+
+export function getRiderLastSeen(rider: Rider): string {
+  return new Date(rider.isotst).toLocaleString("en-UK", {
+    //year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
 }
