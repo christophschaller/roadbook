@@ -58,6 +58,11 @@ export function RiderSectionDesktop() {
             ))}
           </div>
         )}
+        {!riders && (
+        <div className="flex justify-center">
+          <span>Tracking not available!</span>
+        </div>
+      )}
       </div>
     </div>
   );
