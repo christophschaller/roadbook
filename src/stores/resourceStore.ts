@@ -42,3 +42,12 @@ export const resourceViewStore = computed(
       }),
     ),
 );
+
+export const $mobileResourceIndex = persistentAtom<number>(
+  "mobileResourceIndex",
+  0,
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  },
+);

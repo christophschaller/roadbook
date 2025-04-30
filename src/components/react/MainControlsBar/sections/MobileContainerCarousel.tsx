@@ -5,7 +5,7 @@ import { useStore } from "@nanostores/react";
 import type { ResourceView, Rider } from "@/types";
 import { handleResourceChange } from "@/components/react/MainControlsBar/utils/handleResourceChange";
 import { POISelectorContainer } from "../POISelectorContainer";
-import { $displayRiders, $riderStore, $focusRider } from "@/stores";
+import { $displayRiders, $riderStore, $focusRider, $mobileResourceIndex } from "@/stores";
 import { IconSwitch } from "@/components/ui/IconSwitch";
 import { Label } from "@/components/ui/label";
 import { getRiderLastSeen, getRiderColor } from "@/lib/utils";
@@ -112,34 +112,34 @@ export function MobileContainerCarousel({
   resources: ResourceView[];
   showRiders?: boolean;
 }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const mobileResourceIndex = useStore($mobileResourceIndex);
   const items = showRiders
     ? [{ id: "riders", type: "riders" }, ...resources]
     : resources;
 
   const handlePrevious = () => {
-    setActiveIndex(activeIndex - 1);
-    if (activeIndex > 1) {
-      handleResourceChange(resources[activeIndex - 2].id);
+    $mobileResourceIndex.set(mobileResourceIndex - 1);
+    if (mobileResourceIndex > 1) {
+      handleResourceChange(resources[mobileResourceIndex - 2].id);
     } else {
       handleResourceChange("");
     }
   };
 
   const handleNext = () => {
-    setActiveIndex(activeIndex + 1);
-    if (activeIndex >= 0 && activeIndex < resources.length) {
-      handleResourceChange(resources[activeIndex].id);
+    $mobileResourceIndex.set(mobileResourceIndex + 1);
+    if (mobileResourceIndex >= 0 && mobileResourceIndex < resources.length) {
+      handleResourceChange(resources[mobileResourceIndex].id);
     }
   };
 
   const chevronLeftButton = (
     <button
       onClick={handlePrevious}
-      disabled={activeIndex === -1}
+      disabled={mobileResourceIndex === -1}
       className={cn(
         "absolute left-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",
-        activeIndex === -1
+        mobileResourceIndex === -1
           ? "opacity-50 cursor-not-allowed"
           : "opacity-100 hover:bg-black/30",
       )}
@@ -151,10 +151,10 @@ export function MobileContainerCarousel({
   const chevronRightButton = (
     <button
       onClick={handleNext}
-      disabled={activeIndex === items.length - 1}
+      disabled={mobileResourceIndex === items.length - 1}
       className={cn(
         "absolute right-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",
-        activeIndex === items.length - 1
+        mobileResourceIndex === items.length - 1
           ? "opacity-50 cursor-not-allowed"
           : "opacity-100 hover:bg-black/30",
       )}
@@ -167,12 +167,12 @@ export function MobileContainerCarousel({
     <>
       {chevronLeftButton}
       <div className="h-full w-full p-5 m-10 rounded-2xl bg-white/80 backdrop-blur-md">
-        {activeIndex === -1 ? (
+        {mobileResourceIndex === -1 ? (
           <RidersContainer />
-        ) : activeIndex === 0 ? (
+        ) : mobileResourceIndex === 0 ? (
           <TrackSelectContainer />
         ) : (
-          <ResourceContainer resource={resources[activeIndex - 1]} />
+          <ResourceContainer resource={resources[mobileResourceIndex - 1]} />
         )}
       </div>
       {chevronRightButton}
