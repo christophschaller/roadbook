@@ -1,7 +1,7 @@
-import { atom, onMount } from 'nanostores';
+import { atom, onMount } from "nanostores";
 
 export const $isTracking = atom(false); // User's tracking preference
-export const $location = atom(null);    // User's current location
+export const $location = atom(null); // User's current location
 
 onMount($location, () => {
   let watchId: number | undefined;
@@ -21,10 +21,10 @@ onMount($location, () => {
           enableHighAccuracy: true,
           timeout: 5000,
           maximumAge: 500,
-        }
+        },
       );
     } else {
-      console.error('Geolocation is not supported by this browser.');
+      console.error("Geolocation is not supported by this browser.");
     }
   };
 
@@ -33,7 +33,7 @@ onMount($location, () => {
       navigator.geolocation.clearWatch(watchId);
       watchId = undefined;
     }
-    $location.set(null)
+    $location.set(null);
   };
 
   const unsubscribe = $isTracking.listen((tracking) => {

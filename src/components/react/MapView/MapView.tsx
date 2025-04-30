@@ -1,10 +1,7 @@
 import { useIsMobile } from "@/hooks/use-mobile";
 import React, { useEffect, useState, useMemo } from "react";
 import maplibregl from "maplibre-gl";
-import {
-  Map,
-  AttributionControl,
-} from 'react-map-gl/maplibre';
+import { Map, AttributionControl } from "react-map-gl/maplibre";
 import DeckGL from "@deck.gl/react";
 import { type PickingInfo } from "@deck.gl/core";
 import { PathLayer, PolygonLayer, ScatterplotLayer } from "@deck.gl/layers";
@@ -18,7 +15,8 @@ import {
   $riderStore,
   $focusRider,
   favoritesStore,
-  $isTracking, $location,
+  $isTracking,
+  $location,
 } from "@/stores";
 import { useStore } from "@nanostores/react";
 import { type LineString } from "geojson";
@@ -68,7 +66,13 @@ const MapView = () => {
   }, [viewState]);
 
   useEffect(() => {
-    if (isTracking && location && location.latitude && location.longitude && isNewTracking.current) {
+    if (
+      isTracking &&
+      location &&
+      location.latitude &&
+      location.longitude &&
+      isNewTracking.current
+    ) {
       isNewTracking.current = false;
       setViewState((prev: MapViewState) => ({
         longitude: location.longitude,
@@ -77,7 +81,7 @@ const MapView = () => {
         transitionDuration: 1000, // Optional: animate the transition
         transitionInterpolator: new FlyToInterpolator(),
       }));
-      console.log('First location received:', location);
+      console.log("First location received:", location);
     }
   }, [isTracking, location]);
 
@@ -101,11 +105,11 @@ const MapView = () => {
       // Create a new ScaleControl
       const scaleControl = new maplibregl.ScaleControl({
         maxWidth: 100,
-        unit: 'metric',
+        unit: "metric",
       });
 
       // Add the ScaleControl to the top-left corner
-      map.addControl(scaleControl, isMobile ? 'top-left':'bottom-left');
+      map.addControl(scaleControl, isMobile ? "top-left" : "bottom-left");
     }
   }, []);
 
@@ -254,7 +258,9 @@ const MapView = () => {
           getTextAnchor: "middle",
           getAlignmentBaseline: "center",
         }),
-        isTracking && location && new ScatterplotLayer({
+      isTracking &&
+        location &&
+        new ScatterplotLayer({
           id: "user-accuracy",
           data: [location],
           getPosition: (d) => [d.longitude, d.latitude],
@@ -267,20 +273,21 @@ const MapView = () => {
           getLineColor: [0, 166, 244],
           pickable: false,
         }),
-      isTracking && location && new ScatterplotLayer({
-        id: "user-location",
-        data: [location],
-        getPosition: (d) => [d.longitude, d.latitude],
-        getRadius: 5,
-        radiusUnits: "pixels",
-        stroked: true,
-        lineWidthUnits: "pixels",
-        getLineWidth: 2,
-        getFillColor: [0, 166, 244],
-        getLineColor: [255, 255, 255],
-        pickable: false,
-      }),
-      
+      isTracking &&
+        location &&
+        new ScatterplotLayer({
+          id: "user-location",
+          data: [location],
+          getPosition: (d) => [d.longitude, d.latitude],
+          getRadius: 5,
+          radiusUnits: "pixels",
+          stroked: true,
+          lineWidthUnits: "pixels",
+          getLineWidth: 2,
+          getFillColor: [0, 166, 244],
+          getLineColor: [255, 255, 255],
+          pickable: false,
+        }),
     ],
     [
       track,
@@ -362,7 +369,7 @@ const MapView = () => {
         )}
       </DeckGL>
       <MainControls />
-      <GeoLocateButton/>
+      <GeoLocateButton />
     </div>
   );
 };
