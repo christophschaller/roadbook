@@ -173,6 +173,22 @@ const MapView = () => {
 
   const layers = useMemo(
     () => [
+      isTracking &&
+        location &&
+        new ScatterplotLayer({
+          id: "user-accuracy",
+          data: [location],
+          getPosition: (d) => [d.longitude, d.latitude],
+          getRadius: (d) => d.accuracy,
+          radiusUnits: "meters",
+          filled: true,
+          stroked: true,
+          lineWidthUnits: "pixels",
+          getLineWidth: 1,
+          getFillColor: [0, 166, 244, 20],
+          getLineColor: [0, 166, 244],
+          pickable: false,
+        }),
       !trackLoading &&
         track &&
         new PathLayer({
@@ -257,21 +273,6 @@ const MapView = () => {
           sizeUnits: "pixels",
           getTextAnchor: "middle",
           getAlignmentBaseline: "center",
-        }),
-      isTracking &&
-        location &&
-        new ScatterplotLayer({
-          id: "user-accuracy",
-          data: [location],
-          getPosition: (d) => [d.longitude, d.latitude],
-          getRadius: (d) => d.accuracy,
-          radiusUnits: "meters",
-          filled: false,
-          stroked: true,
-          lineWidthUnits: "pixels",
-          getLineWidth: 0.5,
-          getLineColor: [0, 166, 244],
-          pickable: false,
         }),
       isTracking &&
         location &&
