@@ -3,7 +3,7 @@ export {
   resourceStore,
   resourceStateStore,
   resourceViewStore,
-  $mobileResourceIndex
+  $mobileResourceIndex,
 } from "./resourceStore";
 export { $riderStore, $displayRiders, $focusRider } from "./riderStore";
 export { $trackStore, $selectedTrack } from "./trackStore";
