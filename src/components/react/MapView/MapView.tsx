@@ -338,7 +338,7 @@ const MapView = () => {
             position={isMobile ? "top-right" : "bottom-right"}
             compact={true}
           />
-          {!isMobile && <ScaleControl/>}
+          {!isMobile && <ScaleControl />}
         </Map>
         {poiInfo?.object && poiInfo.object["type"] === "node" && (
           <PoiTooltip
