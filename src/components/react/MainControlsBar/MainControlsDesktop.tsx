@@ -12,7 +12,7 @@ export function MainControlsDesktop() {
       <div className="flex flex-col h-full space-y-4">
         <TrackSelector />
         <Separator />
-        <div className="flex-1 space-y-4 overflow-y-auto">
+        <div className="flex-1 space-y-4 overflow-y-auto rounded-2xl">
           <POISectionDesktop resources={resourceView} />
           <Separator />
           <RiderSectionDesktop />
