@@ -26,7 +26,15 @@ function ResourceContainer({
             backgroundColor: `rgb(${resource.color.join(",")})`,
           }}
         >
-          <resource.icon className="w-5 h-5" color="white" />
+          {typeof resource.icon === "string" ? (
+            <img
+              src={`/icons/${resource.icon}`}
+              alt={resource.name}
+              className="w-5 h-5"
+            />
+          ) : (
+            <resource.icon className="w-5 h-5" color="white" />
+          )}
         </div>
         <span className="text-base md:text text-primary">{resource.name}</span>
       </button>

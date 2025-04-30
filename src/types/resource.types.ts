@@ -13,7 +13,7 @@ export interface ResourceCategory {
 export interface Resource {
   name: string;
   id: string;
-  icon: LucideIcon;
+  icon: LucideIcon | string;
   color: [number, number, number];
   // active: boolean;
   // distance: number;
