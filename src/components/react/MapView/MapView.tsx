@@ -291,6 +291,8 @@ const MapView = () => {
       favorites,
       riders,
       displayRiders,
+      isTracking,
+      location,
     ],
   );
 
