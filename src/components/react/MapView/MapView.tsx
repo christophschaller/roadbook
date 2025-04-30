@@ -16,6 +16,7 @@ import {
   $poiStore,
   $displayRiders,
   $riderStore,
+  $focusRider,
   favoritesStore,
 } from "@/stores";
 import { useStore } from "@nanostores/react";
@@ -38,6 +39,7 @@ const MapView = () => {
   const { data: pois, loading: poisLoading } = useStore($poiStore);
   const { data: riders, loading: ridersLoading } = useStore($riderStore);
   const displayRiders = useStore($displayRiders);
+  const focusRider = useStore($focusRider);
   const favorites = useStore(favoritesStore);
 
   const [poiInfo, setPoiInfo] = useState<PickingInfo<PointOfInterest> | null>();
@@ -94,6 +96,17 @@ const MapView = () => {
       }
     }
   }, [track?.linestring]);
+
+  useEffect(() => {
+    focusRider &&
+      setViewState((prev: MapViewState) => ({
+        longitude: focusRider?.lon,
+        latitude: focusRider?.lat,
+        zoom: 15, // Adjust this value as needed for your specific use case
+        transitionDuration: 1000, // Optional: animate the transition
+        transitionInterpolator: new FlyToInterpolator(),
+      }));
+  }, [focusRider]);
 
   useEffect(() => {
     if (simpleTrackData) {
