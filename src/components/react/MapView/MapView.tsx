@@ -317,7 +317,17 @@ const MapView = () => {
               "cluster" in info.object["properties"] &&
               info.object["properties"]["cluster"]
             ) {
-              const clusterId = info.object.properties.cluster_id;
+              const { longitude, latitude, zoom } = viewport.fitBounds(
+                info.object.properties.bbox,
+                { padding: 100 },
+              );
+              setViewState((prev: MapViewState) => ({
+                longitude,
+                latitude,
+                zoom,
+                transitionDuration: 1000, // Optional: animate the transition
+                transitionInterpolator: new FlyToInterpolator(),
+              }));
             }
           }
           setPoiInfo(null);
