@@ -8,13 +8,15 @@ import { Separator } from "@/components/ui/separator";
 export function MainControlsDesktop() {
   const resourceView = useStore(resourceViewStore);
   return (
-    <div className="absolute bottom-0 left-0 w-full md:w-64 md:left-[50px] md:top-[50px] md:h-[calc(100%-100px)] bg-white/80 backdrop-blur-md shadow-lg p-4 overflow-y-auto rounded-t-2xl md:rounded-2xl transition-transform duration-200">
-      <div className="flex flex-col space-y-4">
+    <div className="flex flex-col absolute bottom-0 left-0 w-full z-50 md:w-64 md:left-[50px] md:top-[50px] md:h-[calc(100%-100px)] bg-white/80 backdrop-blur-md shadow-lg p-4 rounded-t-2xl md:rounded-2xl transition-transform duration-200">
+      <div className="flex flex-col h-full space-y-4">
         <TrackSelector />
         <Separator />
-        <POISectionDesktop resources={resourceView} />
-        <Separator />
-        <RiderSectionDesktop />
+        <div className="flex-1 space-y-4 overflow-y-auto">
+          <POISectionDesktop resources={resourceView} />
+          <Separator />
+          <RiderSectionDesktop />
+        </div>
       </div>
     </div>
   );
