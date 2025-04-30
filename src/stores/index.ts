@@ -4,6 +4,6 @@ export {
   resourceStateStore,
   resourceViewStore,
 } from "./resourceStore";
-export { $riderStore, $displayRiders } from "./riderStore";
+export { $riderStore, $displayRiders, $focusRider } from "./riderStore";
 export { $trackStore, $selectedTrack } from "./trackStore";
 export { favoritesStore } from "./favoritesStore";
