@@ -271,6 +271,7 @@ const MapView = () => {
           sizeUnits: "pixels",
           getTextAnchor: "middle",
           getAlignmentBaseline: "center",
+          getPixelOffset: [0,1],
         }),
       isTracking &&
         location &&
