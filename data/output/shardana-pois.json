@@ -1,0 +1,2939 @@
+[
+  {
+    "id": 1,
+    "lat": 40.9223341,
+    "lon": 9.1912549,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "culture"
+    },
+    "type": "culture",
+    "name": "Museo del Sughero Calangianus",
+    "icon": "landmark",
+    "color": [
+      150,
+      0,
+      150
+    ],
+    "address": "Via San Francesco,3",
+    "phone": "+39 3463693859",
+    "trackDistance": 0,
+    "resourceId": "shardana-0",
+    "resourceCategoryId": "shardana-culture"
+  },
+  {
+    "id": 2,
+    "lat": 39.3584846,
+    "lon": 9.0038478,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "La vecchia Posta",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Unione, 14",
+    "phone": "+39 3478229545",
+    "trackDistance": 0,
+    "resourceId": "shardana-1",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 4,
+    "lat": 39.2170892,
+    "lon": 9.1118046,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "L'Antico Caffè della Piazza",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via Goffredo Mameli, 2",
+    "phone": "+39 3498962438",
+    "trackDistance": 0,
+    "resourceId": "shardana-3",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 5,
+    "lat": 40.3185176,
+    "lon": 9.3156797,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Caffetteria Gusto Cafè",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via Olbia, 2a",
+    "phone": "+39 3479307489",
+    "trackDistance": 0,
+    "resourceId": "shardana-4",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 7,
+    "lat": 40.5586773,
+    "lon": 8.3156116,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Bar centrale",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Vittorio Emanuele, 1",
+    "phone": "+39 3480630866",
+    "trackDistance": 0,
+    "resourceId": "shardana-6",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 8,
+    "lat": 40.5587476,
+    "lon": 8.3157656,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Liccarissu",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Vittorio Emanuele, 5",
+    "phone": "+39 351 7597123",
+    "trackDistance": 0,
+    "resourceId": "shardana-7",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 10,
+    "lat": 40.379751,
+    "lon": 9.6954881,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Lu Rizzatu",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Piazza del Popolo",
+    "phone": "+39 3401138502",
+    "trackDistance": 0,
+    "resourceId": "shardana-9",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 11,
+    "lat": 39.2157756,
+    "lon": 9.116017,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Biagio Bar",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via Giuseppe Mazzini, 1",
+    "phone": "+39 3284169912",
+    "trackDistance": 0,
+    "resourceId": "shardana-10",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 13,
+    "lat": 39.4403091,
+    "lon": 9.5386979,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Home Sweet Home",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Michelangelo,12",
+    "phone": "+39 3402261380",
+    "trackDistance": 0,
+    "resourceId": "shardana-12",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 14,
+    "lat": 40.55964,
+    "lon": 8.3177421,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "La Gastronomia della Carne",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Vittorio Emanuele, 29",
+    "phone": "+39 3493285710​",
+    "trackDistance": 0,
+    "resourceId": "shardana-13",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 16,
+    "lat": 40.9225959,
+    "lon": 9.194148,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food"
+    },
+    "type": "food",
+    "name": "Panificio Pasella",
+    "icon": "hamburger",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via G. Mariotti, 50",
+    "phone": "+39 079660512",
+    "trackDistance": 0,
+    "resourceId": "shardana-15",
+    "resourceCategoryId": "shardana-food"
+  },
+  {
+    "id": 17,
+    "lat": 40.0912813,
+    "lon": 9.0305773,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "check point"
+    },
+    "type": "check point",
+    "name": "Altare rupestre",
+    "icon": "flag-checkered",
+    "color": [
+      255,
+      0,
+      0
+    ],
+    "address": "",
+    "trackDistance": 0,
+    "resourceId": "shardana-16",
+    "resourceCategoryId": "shardana-check point"
+  },
+  {
+    "id": 18,
+    "lat": 40.8296042,
+    "lon": 8.4036568,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "CasaDina Apartment",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Migheli",
+    "trackDistance": 0,
+    "resourceId": "shardana-17",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 19,
+    "lat": 39.6137137,
+    "lon": 8.821312,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Su Masellu",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Vicolo Umberto I",
+    "phone": "+39 3773923674",
+    "trackDistance": 0,
+    "resourceId": "shardana-18",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 20,
+    "lat": 39.1434061,
+    "lon": 8.3039561,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Borgo Santo Stefano",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via XXIV Maggio, 25",
+    "trackDistance": 0,
+    "resourceId": "shardana-19",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 21,
+    "lat": 39.3586026,
+    "lon": 9.0013907,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Olaspri B&B",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Umberto, 15",
+    "phone": "+39 3295412504",
+    "trackDistance": 0,
+    "resourceId": "shardana-20",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 22,
+    "lat": 40.7208989,
+    "lon": 8.5584768,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Villa Teresa",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Viale Italia, 30",
+    "trackDistance": 0,
+    "resourceId": "shardana-21",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 23,
+    "lat": 39.9206382,
+    "lon": 8.6283658,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "camp area"
+    },
+    "type": "camp area",
+    "name": "Zona Camp 1",
+    "icon": "campground",
+    "color": [
+      100,
+      50,
+      0
+    ],
+    "address": "Campo Sportivo Comunale",
+    "trackDistance": 0,
+    "resourceId": "shardana-22",
+    "resourceCategoryId": "shardana-camp area"
+  },
+  {
+    "id": 24,
+    "lat": 40.0914502,
+    "lon": 8.6527316,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Sas Damas B&B Chiaramonti",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Località Sas Piras",
+    "phone": "+39 3403246420",
+    "trackDistance": 0,
+    "resourceId": "shardana-23",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 25,
+    "lat": 40.902356,
+    "lon": 9.1028826,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "grocery"
+    },
+    "type": "grocery",
+    "name": "Eden Market - Coop",
+    "icon": "shopping-bag",
+    "color": [
+      0,
+      150,
+      150
+    ],
+    "address": "Via Alfonso Lamarmora, 1",
+    "phone": "+39 079569427",
+    "trackDistance": 0,
+    "resourceId": "shardana-24",
+    "resourceCategoryId": "shardana-grocery"
+  },
+  {
+    "id": 26,
+    "lat": 40.9214866,
+    "lon": 9.195099,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "camp area"
+    },
+    "type": "camp area",
+    "name": "Zona Camp 2",
+    "icon": "campground",
+    "color": [
+      100,
+      50,
+      0
+    ],
+    "address": "Chiesa Santa Giusta",
+    "trackDistance": 0,
+    "resourceId": "shardana-25",
+    "resourceCategoryId": "shardana-camp area"
+  },
+  {
+    "id": 27,
+    "lat": 40.928434,
+    "lon": 9.4648334,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Pizzeria d'asporto L'arco",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via S. Matteo",
+    "phone": "+39 3404885812",
+    "trackDistance": 0,
+    "resourceId": "shardana-26",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 28,
+    "lat": 39.2437607,
+    "lon": 9.1342472,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "grocery"
+    },
+    "type": "grocery",
+    "name": "Sidis - Coda Market",
+    "icon": "shopping-bag",
+    "color": [
+      0,
+      150,
+      150
+    ],
+    "address": "Via della Resistenza, 16",
+    "phone": "+39 079569715",
+    "trackDistance": 0,
+    "resourceId": "shardana-27",
+    "resourceCategoryId": "shardana-grocery"
+  },
+  {
+    "id": 29,
+    "lat": 40.928434,
+    "lon": 9.4648334,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Bed And Breakfast Mattea",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via S. Matteo, 11",
+    "phone": "+39 3938889624",
+    "trackDistance": 0,
+    "resourceId": "shardana-28",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 30,
+    "lat": 40.7490691,
+    "lon": 8.8299018,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Ristorante Pizzeria Cincinnato",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Capitano Amadio, 7b",
+    "phone": "+39 3533430279",
+    "trackDistance": 0,
+    "resourceId": "shardana-29",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 31,
+    "lat": 40.928434,
+    "lon": 9.4648334,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Nicole's Bar",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via S. Matteo, 23",
+    "phone": "",
+    "trackDistance": 0,
+    "resourceId": "shardana-30",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 35,
+    "lat": 40.7238518,
+    "lon": 8.5615762,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "The Room",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Emiciclo Garibaldi, 13",
+    "phone": "+39 3500022620",
+    "trackDistance": 0,
+    "resourceId": "shardana-34",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 36,
+    "lat": 40.9437909,
+    "lon": 8.2261493,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Hotel Cala Reale",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Via Cala di Rena, 1",
+    "phone": "+39 079523127",
+    "trackDistance": 0,
+    "resourceId": "shardana-35",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 38,
+    "lat": 39.2173392,
+    "lon": 9.1108382,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Green Guest House Alghero",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Sassari, 90",
+    "trackDistance": 0,
+    "resourceId": "shardana-37",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 39,
+    "lat": 40.5546231,
+    "lon": 8.319796,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "bike service"
+    },
+    "type": "bike service",
+    "name": "Ciclofficina Dueppi",
+    "icon": "bicycle",
+    "color": [
+      0,
+      150,
+      0
+    ],
+    "address": "Via Manzoni, 63B",
+    "phone": "+39 3496405618",
+    "trackDistance": 0,
+    "resourceId": "shardana-38",
+    "resourceCategoryId": "shardana-bike service"
+  },
+  {
+    "id": 40,
+    "lat": 40.5580815,
+    "lon": 8.3140987,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "San Francesco Heritage Hotel",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Ambrogio Machin, 2",
+    "trackDistance": 0,
+    "resourceId": "shardana-39",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 41,
+    "lat": 40.558084,
+    "lon": 8.3151306,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Lu Bàtil B&B",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Ambrogio Machin, 61",
+    "trackDistance": 0,
+    "resourceId": "shardana-40",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 43,
+    "lat": 40.2982913,
+    "lon": 8.484889,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Marinella Gastronomia",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Viale Riviera del corallo",
+    "trackDistance": 0,
+    "resourceId": "shardana-42",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 46,
+    "lat": 40.0912813,
+    "lon": 9.0305773,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "camp area"
+    },
+    "type": "camp area",
+    "name": "Camping S'Abba Druche",
+    "icon": "campground",
+    "color": [
+      100,
+      50,
+      0
+    ],
+    "address": "",
+    "phone": "+39 0785776161",
+    "trackDistance": 0,
+    "resourceId": "shardana-45",
+    "resourceCategoryId": "shardana-camp area"
+  },
+  {
+    "id": 47,
+    "lat": 40.7950422,
+    "lon": 8.5776252,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation",
+      "premium": "yes"
+    },
+    "type": "accommodation",
+    "name": "Hotel Diffuso Aquaesinis",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via C. Battisti, 44",
+    "phone": "+39 07831856050",
+    "trackDistance": 0,
+    "resourceId": "shardana-46",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 48,
+    "lat": 39.2138748,
+    "lon": 9.1189935,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Artista",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Lanusei",
+    "phone": "+39 3400015259",
+    "trackDistance": 0,
+    "resourceId": "shardana-47",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 49,
+    "lat": 40.9260034,
+    "lon": 9.483261,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Sa Reposada",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Bellini, 43",
+    "phone": "+39 3495659364",
+    "trackDistance": 0,
+    "resourceId": "shardana-48",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 50,
+    "lat": 40.9253058,
+    "lon": 9.4960313,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Agriturismo Pinuccia",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Diaz, 42",
+    "phone": "+39 3494170921",
+    "trackDistance": 0,
+    "resourceId": "shardana-49",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 51,
+    "lat": 39.9297821,
+    "lon": 8.5265646,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Domo La Laguna",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "P.za Stagno",
+    "phone": "+39 3477027648",
+    "trackDistance": 0,
+    "resourceId": "shardana-50",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 52,
+    "lat": 39.2065382,
+    "lon": 9.1322845,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Su Stai",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Firenze, 5",
+    "phone": "+39 3711342111",
+    "trackDistance": 0,
+    "resourceId": "shardana-51",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 54,
+    "lat": 39.9048999,
+    "lon": 8.5906371,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Divino",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Salvator Angelo de Castro, 125",
+    "phone": "+39 3939383573",
+    "trackDistance": 0,
+    "resourceId": "shardana-53",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 55,
+    "lat": 39.2167213,
+    "lon": 9.1103873,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Torremana",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Sassari, 37",
+    "phone": "+39 3463056104",
+    "trackDistance": 0,
+    "resourceId": "shardana-54",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 56,
+    "lat": 39.216591,
+    "lon": 9.1077154,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B S'apprigu",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Roma, 34",
+    "phone": "+39 3475565246",
+    "trackDistance": 0,
+    "resourceId": "shardana-55",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 57,
+    "lat": 40.7950422,
+    "lon": 8.5776252,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Limòlo House",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via C. Battisti, 56",
+    "phone": "+39 3924812458",
+    "trackDistance": 0,
+    "resourceId": "shardana-56",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 58,
+    "lat": 39.6675717,
+    "lon": 8.7297076,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Agriturismo Su Livariu",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Località San Pietro",
+    "phone": "+39 0783 34099",
+    "trackDistance": 0,
+    "resourceId": "shardana-57",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 59,
+    "lat": 40.7238682,
+    "lon": 8.565192,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food"
+    },
+    "type": "food",
+    "name": "Panetteria Ortofrutta Pan d'Oro",
+    "icon": "hamburger",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Roma, 45",
+    "trackDistance": 0,
+    "resourceId": "shardana-58",
+    "resourceCategoryId": "shardana-food"
+  },
+  {
+    "id": 60,
+    "lat": 40.5509591,
+    "lon": 8.322127,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food"
+    },
+    "type": "food",
+    "name": "Pasticceria Artigianale Follia Dolce",
+    "icon": "hamburger",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Antonio Segni, 4",
+    "trackDistance": 0,
+    "resourceId": "shardana-59",
+    "resourceCategoryId": "shardana-food"
+  },
+  {
+    "id": 61,
+    "lat": 39.575498,
+    "lon": 8.4674745,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Dany's Cafe",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Portu Maga",
+    "phone": "+39 3501498886",
+    "trackDistance": 0,
+    "resourceId": "shardana-60",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 62,
+    "lat": 39.5283385,
+    "lon": 8.6039331,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Hotel Meridiana",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via repubblica, 172",
+    "phone": "+39 0709758283",
+    "trackDistance": 0,
+    "resourceId": "shardana-61",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 63,
+    "lat": 39.3058152,
+    "lon": 8.5411372,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "check point"
+    },
+    "type": "check point",
+    "name": "/CAMP AREAPublic park with WC & Shower",
+    "icon": "flag-checkered",
+    "color": [
+      255,
+      0,
+      0
+    ],
+    "address": "Parco comunale",
+    "trackDistance": 0,
+    "resourceId": "shardana-62",
+    "resourceCategoryId": "shardana-check point"
+  },
+  {
+    "id": 64,
+    "lat": 39.7384207,
+    "lon": 9.1069911,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Su Poeta Affittacamere",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via garibaldi, 40",
+    "phone": "+39 3293260693",
+    "trackDistance": 0,
+    "resourceId": "shardana-63",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 65,
+    "lat": 39.4614976,
+    "lon": 8.7422439,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food"
+    },
+    "type": "food",
+    "name": "Gransole Bakery",
+    "icon": "hamburger",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Nazionale, 53",
+    "phone": "+39 0709314274",
+    "trackDistance": 0,
+    "resourceId": "shardana-64",
+    "resourceCategoryId": "shardana-food"
+  },
+  {
+    "id": 66,
+    "lat": 39.2143557,
+    "lon": 9.1119963,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Ristorante Pizzeria Giovanna e Vittorio",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Roma, 109",
+    "phone": "+39 0709329287",
+    "trackDistance": 0,
+    "resourceId": "shardana-65",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 67,
+    "lat": 40.3799331,
+    "lon": 9.6969624,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation",
+      "premium": "yes"
+    },
+    "type": "accommodation",
+    "name": "DomoRooms",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via San Gavino, 32",
+    "phone": "+39 3925762362",
+    "trackDistance": 0,
+    "resourceId": "shardana-66",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 68,
+    "lat": 39.2153389,
+    "lon": 9.1162951,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Caffè Norbio",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Torino, 4",
+    "phone": "",
+    "trackDistance": 0,
+    "resourceId": "shardana-67",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 69,
+    "lat": 39.5466097,
+    "lon": 8.7927732,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "bike service"
+    },
+    "type": "bike service",
+    "name": "Athena Sport",
+    "icon": "bicycle",
+    "color": [
+      0,
+      150,
+      0
+    ],
+    "address": "Via San Gavino, 39",
+    "phone": "+39 3478899591",
+    "trackDistance": 0,
+    "resourceId": "shardana-68",
+    "resourceCategoryId": "shardana-bike service"
+  },
+  {
+    "id": 70,
+    "lat": 39.4594146,
+    "lon": 8.7298644,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation",
+      "premium": "yes"
+    },
+    "type": "accommodation",
+    "name": "La Panoramica B&B",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Pineta, 138",
+    "phone": "+39 3483901022",
+    "trackDistance": 0,
+    "resourceId": "shardana-69",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 71,
+    "lat": 39.4557014,
+    "lon": 8.7455168,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Enoteca la vecchia botte",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Nazionale 207",
+    "phone": "+39 700936735",
+    "trackDistance": 0,
+    "resourceId": "shardana-70",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 72,
+    "lat": 39.4635095,
+    "lon": 8.7398869,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Ristorante Pizzeria La Taverna Romana",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Gonnosfanadiga, 13",
+    "phone": "+39 0709316587",
+    "trackDistance": 0,
+    "resourceId": "shardana-71",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 73,
+    "lat": 40.3225076,
+    "lon": 9.3285422,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "La Tavernetta",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Trieste, 19",
+    "phone": "+39 3402741319",
+    "trackDistance": 0,
+    "resourceId": "shardana-72",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 75,
+    "lat": 39.2122938,
+    "lon": 9.1175241,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Cogotti Luigia",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via XX Settembre, 7",
+    "phone": "+39 3288386292",
+    "trackDistance": 0,
+    "resourceId": "shardana-74",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 76,
+    "lat": 39.5500805,
+    "lon": 8.7926057,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Saviano Raffaele",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Q. Sella, 48",
+    "phone": "+39 3312507791",
+    "trackDistance": 0,
+    "resourceId": "shardana-75",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 77,
+    "lat": 39.2125283,
+    "lon": 9.1151967,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Agriturismo Sogno Sulcitano",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Roma, 1",
+    "phone": "+39 3486554284",
+    "trackDistance": 0,
+    "resourceId": "shardana-76",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 80,
+    "lat": 39.5500805,
+    "lon": 8.7926057,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Tanchis Michele",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Q. Sella, 10",
+    "phone": "+39 3406299406",
+    "trackDistance": 0,
+    "resourceId": "shardana-79",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 81,
+    "lat": 39.3575463,
+    "lon": 9.0108569,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Boi Valentina",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Papa Giovanni XXIII, 20/22",
+    "phone": "+39 3287915553",
+    "trackDistance": 0,
+    "resourceId": "shardana-80",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 82,
+    "lat": 40.0285927,
+    "lon": 9.6657389,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Open Space nel Sulcis",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Quintino Sella, 48",
+    "phone": "+39 3312507791",
+    "trackDistance": 0,
+    "resourceId": "shardana-81",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 84,
+    "lat": 40.7239728,
+    "lon": 8.5674855,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Angioni Marco",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Emilio Lussu",
+    "phone": "+39 3312507791",
+    "trackDistance": 0,
+    "resourceId": "shardana-83",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 85,
+    "lat": 39.9072602,
+    "lon": 8.590533,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Kitehomes",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Tirso, 55",
+    "phone": "+39 3288291543",
+    "trackDistance": 0,
+    "resourceId": "shardana-84",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 86,
+    "lat": 39.4415081,
+    "lon": 9.5428695,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Plus Caffè Park",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Nazionale, 127",
+    "phone": "+39 3488952756",
+    "trackDistance": 0,
+    "resourceId": "shardana-85",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 87,
+    "lat": 40.7791653,
+    "lon": 8.4678937,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Le Stelle di San Lorenzo",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Antonio Ballero, 7",
+    "phone": "+39 3207225626",
+    "trackDistance": 0,
+    "resourceId": "shardana-86",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 88,
+    "lat": 40.8351235,
+    "lon": 8.4059928,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food"
+    },
+    "type": "food",
+    "name": "Peccati di Gola",
+    "icon": "hamburger",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Satta, 16",
+    "phone": "+39 3282820828",
+    "trackDistance": 0,
+    "resourceId": "shardana-87",
+    "resourceCategoryId": "shardana-food"
+  },
+  {
+    "id": 89,
+    "lat": 40.9029829,
+    "lon": 9.1031785,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Homea",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Parrocchia, 5",
+    "phone": "+39 3456998998",
+    "trackDistance": 0,
+    "resourceId": "shardana-88",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 90,
+    "lat": 40.5875265,
+    "lon": 9.0035584,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Roberta Bar",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via Dante, 4",
+    "phone": "+39 3451358949",
+    "trackDistance": 0,
+    "resourceId": "shardana-89",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 91,
+    "lat": 39.9294532,
+    "lon": 8.5374749,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food"
+    },
+    "type": "food",
+    "name": "L'orto degli ulivi",
+    "icon": "hamburger",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Corso Umberto, 134",
+    "phone": "+39 3358164644",
+    "trackDistance": 0,
+    "resourceId": "shardana-90",
+    "resourceCategoryId": "shardana-food"
+  },
+  {
+    "id": 92,
+    "lat": 39.2300426,
+    "lon": 9.1130428,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Domu Bella",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Trentino, 15",
+    "phone": "+39 3456998998",
+    "trackDistance": 0,
+    "resourceId": "shardana-91",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 93,
+    "lat": 40.9208635,
+    "lon": 9.4997681,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food"
+    },
+    "type": "food",
+    "name": "Ci pensa Marco",
+    "icon": "hamburger",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Regina Elena, 117",
+    "phone": "+39 3405771499",
+    "trackDistance": 0,
+    "resourceId": "shardana-92",
+    "resourceCategoryId": "shardana-food"
+  },
+  {
+    "id": 94,
+    "lat": 39.4274709,
+    "lon": 8.9143545,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Donnicalia",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Viale Matteotti, 8a",
+    "trackDistance": 0,
+    "resourceId": "shardana-93",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 95,
+    "lat": 39.230014,
+    "lon": 9.0985356,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Domu Noa",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Isonzo, 4",
+    "trackDistance": 0,
+    "resourceId": "shardana-94",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 96,
+    "lat": 39.4261318,
+    "lon": 8.9226748,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Isola del gusto",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Viale Sant’Ignazio, 27",
+    "trackDistance": 0,
+    "resourceId": "shardana-95",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 97,
+    "lat": 40.9232784,
+    "lon": 9.4999756,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Yoddu",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Piazza Matteotti, 10",
+    "trackDistance": 0,
+    "resourceId": "shardana-96",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 98,
+    "lat": 40.9229663,
+    "lon": 9.499814,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Wine House",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Piazza Matteotti, 4",
+    "trackDistance": 0,
+    "resourceId": "shardana-97",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 99,
+    "lat": 39.4214626,
+    "lon": 9.5782755,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Casa Ohana",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Ungaretti, 11",
+    "trackDistance": 0,
+    "resourceId": "shardana-98",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 100,
+    "lat": 39.2230951,
+    "lon": 9.1271833,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Domus Petrarca",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Francesco Petrarca, 9",
+    "trackDistance": 0,
+    "resourceId": "shardana-99",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 101,
+    "lat": 40.832625,
+    "lon": 8.4180412,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Nostradomus",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via della Rinascita, 8",
+    "trackDistance": 0,
+    "resourceId": "shardana-100",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 102,
+    "lat": 39.4228599,
+    "lon": 8.9237002,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Adler Bierstube",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via Serra, 104",
+    "trackDistance": 0,
+    "resourceId": "shardana-101",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 103,
+    "lat": 40.3228867,
+    "lon": 9.3277067,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Casa Rifa",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Trento, 18",
+    "trackDistance": 0,
+    "resourceId": "shardana-102",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 104,
+    "lat": 39.4222163,
+    "lon": 8.9194041,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "L’Oleandro",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via San Leonardo, 38",
+    "trackDistance": 0,
+    "resourceId": "shardana-103",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 105,
+    "lat": 39.5262655,
+    "lon": 8.5921203,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Cafe culturale Domenica Fiaba",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Rinascita, 60",
+    "trackDistance": 0,
+    "resourceId": "shardana-104",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 106,
+    "lat": 40.7280152,
+    "lon": 8.5542132,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Kiosko Pineta",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via XXV Aprile, 11/B",
+    "trackDistance": 0,
+    "resourceId": "shardana-105",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 107,
+    "lat": 40.7149161,
+    "lon": 8.5789187,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "bike service"
+    },
+    "type": "bike service",
+    "name": "CentralMoto",
+    "icon": "bicycle",
+    "color": [
+      0,
+      150,
+      0
+    ],
+    "address": "Via Carlo Felice, 33",
+    "trackDistance": 0,
+    "resourceId": "shardana-106",
+    "resourceCategoryId": "shardana-bike service"
+  },
+  {
+    "id": 109,
+    "lat": 39.5616341,
+    "lon": 8.8993158,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "New Centralbar",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Carlo Felice, 250",
+    "trackDistance": 0,
+    "resourceId": "shardana-108",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 110,
+    "lat": 40.5025731,
+    "lon": 8.4725633,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Hotel Piccolo Feudo ***",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Umberto I, 42",
+    "trackDistance": 0,
+    "resourceId": "shardana-109",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 111,
+    "lat": 39.5557717,
+    "lon": 8.9057226,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "La Bodeguita",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Carlo Felice, 80",
+    "trackDistance": 0,
+    "resourceId": "shardana-110",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 112,
+    "lat": 39.5426207,
+    "lon": 8.9206654,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Ristorante Bar Pizzeria Rosy",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Carlo Felice, 432",
+    "trackDistance": 0,
+    "resourceId": "shardana-111",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 113,
+    "lat": 39.5612015,
+    "lon": 8.8993853,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Pizzeria Trattoria Lollo's",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Carlo Felice, 199",
+    "trackDistance": 0,
+    "resourceId": "shardana-112",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 114,
+    "lat": 39.4594146,
+    "lon": 8.7298644,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Domus de Jara B&B",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Pineta, 138",
+    "phone": "+39 3408311753",
+    "trackDistance": 0,
+    "resourceId": "shardana-113",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 115,
+    "lat": 40.7242829,
+    "lon": 8.5647553,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Casa Vintage",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Roma, 19",
+    "trackDistance": 0,
+    "resourceId": "shardana-114",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 116,
+    "lat": 39.3427231,
+    "lon": 9.3596504,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "culture"
+    },
+    "type": "culture",
+    "name": "Ex Convento dei Frati Minori Osservanti",
+    "icon": "landmark",
+    "color": [
+      150,
+      0,
+      150
+    ],
+    "address": "Via Turati",
+    "phone": "+39 3391676863",
+    "trackDistance": 0,
+    "resourceId": "shardana-115",
+    "resourceCategoryId": "shardana-culture"
+  },
+  {
+    "id": 118,
+    "lat": 39.245069,
+    "lon": 9.1288667,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "culture"
+    },
+    "type": "culture",
+    "name": "Museo Civico del Cavallino della Giara",
+    "icon": "landmark",
+    "color": [
+      150,
+      0,
+      150
+    ],
+    "address": "Via Chiesa, 7",
+    "phone": "+39 3391676863",
+    "trackDistance": 0,
+    "resourceId": "shardana-117",
+    "resourceCategoryId": "shardana-culture"
+  },
+  {
+    "id": 119,
+    "lat": 40.3232294,
+    "lon": 9.3018217,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Villa Sveva",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Aldo Moro, 16",
+    "phone": "+39 3311697500",
+    "trackDistance": 0,
+    "resourceId": "shardana-118",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 122,
+    "lat": 39.356421,
+    "lon": 9.0090464,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Pizzeria Su Stunnu",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Papa Giovanni XXIII, 2",
+    "phone": "+39 0782869818",
+    "trackDistance": 0,
+    "resourceId": "shardana-121",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 123,
+    "lat": 40.3214699,
+    "lon": 9.3350891,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food"
+    },
+    "type": "food",
+    "name": "Pasticceria Fulghesu",
+    "icon": "hamburger",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Corso Garibaldi, 38",
+    "phone": "+39 0782869644",
+    "trackDistance": 0,
+    "resourceId": "shardana-122",
+    "resourceCategoryId": "shardana-food"
+  },
+  {
+    "id": 124,
+    "lat": 39.8544798,
+    "lon": 9.0522513,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "museum"
+    },
+    "type": "museum",
+    "name": "Menhir Museum",
+    "icon": "university",
+    "color": [
+      150,
+      0,
+      150
+    ],
+    "address": "Piazza Marconi, 10",
+    "phone": "+39 0782693238",
+    "trackDistance": 0,
+    "resourceId": "shardana-123",
+    "resourceCategoryId": "shardana-museum"
+  },
+  {
+    "id": 127,
+    "lat": 39.3734117,
+    "lon": 9.1610803,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "La Maisonette",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Don Minzoni, 32",
+    "phone": "+39 3518305081",
+    "trackDistance": 0,
+    "resourceId": "shardana-126",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 128,
+    "lat": 40.3211046,
+    "lon": 9.3320514,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Sa Spillunca",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Corso Garibaldi, 120",
+    "phone": "+39 0782869632",
+    "trackDistance": 0,
+    "resourceId": "shardana-127",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 129,
+    "lat": 40.3017534,
+    "lon": 9.1094502,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Liquorificio artigianale Lugas Rosa",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via G. Mazzini, 24",
+    "phone": "+39 3487556159",
+    "trackDistance": 0,
+    "resourceId": "shardana-128",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 131,
+    "lat": 39.2132577,
+    "lon": 9.115548,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "De Ajala",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Cavour, 3",
+    "phone": "+39 3518305081",
+    "trackDistance": 0,
+    "resourceId": "shardana-130",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 132,
+    "lat": 39.8511826,
+    "lon": 9.0500597,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Pizzeria La Cascata",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Corso Gramsci, 34",
+    "phone": "+39 3312383219",
+    "trackDistance": 0,
+    "resourceId": "shardana-131",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 134,
+    "lat": 39.2507615,
+    "lon": 9.1265902,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Cantina Gennamanna",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via Maggiore, 7",
+    "phone": "+39 3331849430",
+    "trackDistance": 0,
+    "resourceId": "shardana-133",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 138,
+    "lat": 39.8957478,
+    "lon": 8.604086,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Antonio Maccioni",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Olbia, 20",
+    "phone": "+39 3497577843",
+    "trackDistance": 0,
+    "resourceId": "shardana-137",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 142,
+    "lat": 39.7246598,
+    "lon": 8.7965207,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Sa Nuche",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "P.zza San Sebastiano, 5",
+    "phone": "+39 3396857352",
+    "trackDistance": 0,
+    "resourceId": "shardana-141",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 144,
+    "lat": 39.2118739,
+    "lon": 9.121052,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "S'incontru",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Nuoro, 46",
+    "phone": "+39 07841825073",
+    "trackDistance": 0,
+    "resourceId": "shardana-143",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 145,
+    "lat": 39.438806,
+    "lon": 9.5792874,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Illegale",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Cairoli, 3",
+    "phone": "+39 3343486566",
+    "trackDistance": 0,
+    "resourceId": "shardana-144",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 146,
+    "lat": 39.3762809,
+    "lon": 9.1766532,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Sa Rosada",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "P.zza Europa, 2",
+    "phone": "+39 078456713",
+    "trackDistance": 0,
+    "resourceId": "shardana-145",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 147,
+    "lat": 39.213165,
+    "lon": 9.1155606,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Domus Deiana",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Cavour, 4",
+    "phone": "+39 3495698037",
+    "trackDistance": 0,
+    "resourceId": "shardana-146",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 148,
+    "lat": 40.3215282,
+    "lon": 9.3362854,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Su hantaru vetzu",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Tola, 14",
+    "phone": "+39 3200795781",
+    "trackDistance": 0,
+    "resourceId": "shardana-147",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 149,
+    "lat": 39.5651646,
+    "lon": 8.9505104,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Il Ritrovo",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "C.so Vittorio Emanuele III, 101",
+    "phone": "+39 3885683057",
+    "trackDistance": 0,
+    "resourceId": "shardana-148",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 150,
+    "lat": 39.5643322,
+    "lon": 8.9473887,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Abbamele",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "C.so Vittorio Emanuele III, 59",
+    "phone": "+39 07841821324",
+    "trackDistance": 0,
+    "resourceId": "shardana-149",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 151,
+    "lat": 40.7195305,
+    "lon": 8.5604186,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Su Tapiu",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Sardegna, 7b",
+    "phone": "+39 3484014622",
+    "trackDistance": 0,
+    "resourceId": "shardana-150",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 152,
+    "lat": 39.2307799,
+    "lon": 9.0973793,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Abbanive",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Tagliamento, 17",
+    "phone": "+39 3479236329",
+    "trackDistance": 0,
+    "resourceId": "shardana-151",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 153,
+    "lat": 39.9287104,
+    "lon": 9.6592277,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "drinks"
+    },
+    "type": "drinks",
+    "name": "Cantina Sedilesu",
+    "icon": "glass-martini",
+    "color": [
+      255,
+      50,
+      0
+    ],
+    "address": "Via Vittorio Emanuele II, 64",
+    "phone": "+39 078456791",
+    "trackDistance": 0,
+    "resourceId": "shardana-152",
+    "resourceCategoryId": "shardana-drinks"
+  },
+  {
+    "id": 154,
+    "lat": 40.9470597,
+    "lon": 8.2242208,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "La Rossa Enoteca",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Vittorio Emanuele II, 5",
+    "phone": "+39 3493921671",
+    "trackDistance": 0,
+    "resourceId": "shardana-153",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 156,
+    "lat": 39.2185512,
+    "lon": 9.1056402,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "check point"
+    },
+    "type": "check point",
+    "name": "Comune",
+    "icon": "flag-checkered",
+    "color": [
+      255,
+      0,
+      0
+    ],
+    "address": "Via Roma, 74",
+    "phone": "+39 0797239010",
+    "trackDistance": 0,
+    "resourceId": "shardana-155",
+    "resourceCategoryId": "shardana-check point"
+  },
+  {
+    "id": 157,
+    "lat": 39.7779329,
+    "lon": 9.0369454,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B Carrera Manna",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Umberto",
+    "phone": "+39 3773237178",
+    "trackDistance": 0,
+    "resourceId": "shardana-156",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 158,
+    "lat": 40.7240813,
+    "lon": 8.5649703,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Pizzeria da Simone",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Roma, 31",
+    "phone": "+39 3490874454",
+    "trackDistance": 0,
+    "resourceId": "shardana-157",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 159,
+    "lat": 39.1442861,
+    "lon": 9.5182394,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "Casa vacanze Santa Croce",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Umberto, 65",
+    "phone": "+39 3386130163",
+    "trackDistance": 0,
+    "resourceId": "shardana-158",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 160,
+    "lat": 39.5646588,
+    "lon": 8.9064303,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Ristorante pizzeria civico21",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Europa, 21A",
+    "phone": "+39 3512433405",
+    "trackDistance": 0,
+    "resourceId": "shardana-159",
+    "resourceCategoryId": "shardana-food-drinks"
+  },
+  {
+    "id": 161,
+    "lat": 39.215836,
+    "lon": 9.1092798,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "accommodation"
+    },
+    "type": "accommodation",
+    "name": "B&B da Gigi",
+    "icon": "bed",
+    "color": [
+      0,
+      100,
+      255
+    ],
+    "address": "Via Roma, 163",
+    "phone": "+39 377 2645374",
+    "trackDistance": 0,
+    "resourceId": "shardana-160",
+    "resourceCategoryId": "shardana-accommodation"
+  },
+  {
+    "id": 162,
+    "lat": 40.7211328,
+    "lon": 8.5681602,
+    "tags": {
+      "shardana": "yes",
+      "sardinia": "yes",
+      "type": "food-drinks"
+    },
+    "type": "food-drinks",
+    "name": "Pizzeria da giannone",
+    "icon": "utensils",
+    "color": [
+      255,
+      100,
+      0
+    ],
+    "address": "Via Roma, 73",
+    "phone": "+39 3493323890",
+    "trackDistance": 0,
+    "resourceId": "shardana-161",
+    "resourceCategoryId": "shardana-food-drinks"
+  }
+]

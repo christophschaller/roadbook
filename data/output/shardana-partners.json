@@ -1,0 +1,1099 @@
+[
+  {
+    "type": "CULTURE",
+    "name": "Museo del Sughero Calangianus",
+    "address": "Via San Francesco,3",
+    "phone": "+39 3463693859",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "La vecchia Posta",
+    "address": "Via Unione, 14",
+    "phone": "+39 3478229545",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Sweet C&C",
+    "address": "Via N. Ferracciu, 54",
+    "phone": "+39 3477756315",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "L'Antico Caffè della Piazza",
+    "address": "Via Goffredo Mameli, 2",
+    "phone": "+39 3498962438",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Caffetteria Gusto Cafè",
+    "address": "Via Olbia, 2a",
+    "phone": "+39 3479307489",
+    "isPremium": false
+  },
+  {
+    "type": "ARTISTRY",
+    "name": "Artigianato Pasella dal 1972",
+    "address": "Località Ignazioni",
+    "phone": "+39 079661381",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Bar centrale",
+    "address": "Via Vittorio Emanuele, 1",
+    "phone": "+39 3480630866",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Liccarissu",
+    "address": "Via Vittorio Emanuele, 5",
+    "phone": "+39 351 7597123",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Ecolodge La Grande Quercia",
+    "address": "Loc. Chiesa Madonna delle Grazie",
+    "phone": "+39 3470580548",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Lu Rizzatu",
+    "address": "Piazza del Popolo",
+    "phone": "+39 3401138502",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Biagio Bar",
+    "address": "Via Giuseppe Mazzini, 1",
+    "phone": "+39 3284169912",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Guest House - Gallurà",
+    "address": "Vicolo N. Racciu, 9",
+    "phone": "+39 3288028172",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Home Sweet Home",
+    "address": "Via Michelangelo,12",
+    "phone": "+39 3402261380",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "La Gastronomia della Carne",
+    "address": "Via Vittorio Emanuele, 29",
+    "phone": "+39 3493285710​",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "El Vejo Barrio",
+    "address": "Via n. Ferracciu, 78",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "Panificio Pasella",
+    "address": "Via G. Mariotti, 50",
+    "phone": "+39 079660512",
+    "isPremium": false
+  },
+  {
+    "type": "CHECK POINT",
+    "name": "Altare rupestre",
+    "address": "",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "CasaDina Apartment",
+    "address": "Via Migheli",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Su Masellu",
+    "address": "Vicolo Umberto I",
+    "phone": "+39 3773923674",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Borgo Santo Stefano",
+    "address": "Via XXIV Maggio, 25",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Olaspri B&B",
+    "address": "Via Umberto, 15",
+    "phone": "+39 3295412504",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Villa Teresa",
+    "address": "Viale Italia, 30",
+    "isPremium": false
+  },
+  {
+    "type": "CAMP AREA",
+    "name": "Zona Camp 1",
+    "address": "Campo Sportivo Comunale",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Sas Damas B&B Chiaramonti",
+    "address": "Località Sas Piras",
+    "phone": "+39 3403246420",
+    "isPremium": false
+  },
+  {
+    "type": "GROCERY",
+    "name": "Eden Market - Coop",
+    "address": "Via Alfonso Lamarmora, 1",
+    "phone": "+39 079569427",
+    "isPremium": false
+  },
+  {
+    "type": "CAMP AREA",
+    "name": "Zona Camp 2",
+    "address": "Chiesa Santa Giusta",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Pizzeria d'asporto L'arco",
+    "address": "Via S. Matteo",
+    "phone": "+39 3404885812",
+    "isPremium": false
+  },
+  {
+    "type": "GROCERY",
+    "name": "Sidis - Coda Market",
+    "address": "Via della Resistenza, 16",
+    "phone": "+39 079569715",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Bed And Breakfast Mattea",
+    "address": "Via S. Matteo, 11",
+    "phone": "+39 3938889624",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Ristorante Pizzeria Cincinnato",
+    "address": "Via Capitano Amadio, 7b",
+    "phone": "+39 3533430279",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Nicole's Bar",
+    "address": "Via S. Matteo, 23",
+    "phone": "",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Lumen House Guesthouse",
+    "address": "Via Baldininca, 35/o",
+    "phone": "+39 3473758590",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "La Bottega della Pizza",
+    "address": "P.zza Cav. De Honestis, 4",
+    "phone": "+39 3473730789",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Albanella Chiosco sul Mare",
+    "address": "Ezzi Mannu c/o Stagno di Pilo",
+    "phone": "+39 3669563441",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "The Room",
+    "address": "Emiciclo Garibaldi, 13",
+    "phone": "+39 3500022620",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Hotel Cala Reale",
+    "address": "Via Via Cala di Rena, 1",
+    "phone": "+39 079523127",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Hotel Angedras",
+    "address": "Via G. Frank, 2",
+    "phone": "+39 799735034",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Green Guest House Alghero",
+    "address": "Via Sassari, 90",
+    "isPremium": false
+  },
+  {
+    "type": "BIKE SERVICE",
+    "name": "Ciclofficina Dueppi",
+    "address": "Via Manzoni, 63B",
+    "phone": "+39 3496405618",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "San Francesco Heritage Hotel",
+    "address": "Via Ambrogio Machin, 2",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Lu Bàtil B&B",
+    "address": "Via Ambrogio Machin, 61",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Little Flower",
+    "address": "Via Barcellonetta, 16",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Marinella Gastronomia",
+    "address": "Viale Riviera del corallo",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Su Recreu e Mare Guesthouse",
+    "address": "Via C. Colombo 106 Bosa Marina",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Giardini Malaspina",
+    "address": "Loc. S'Abbadolzeddu",
+    "phone": "+39 3200315896",
+    "isPremium": true
+  },
+  {
+    "type": "CAMP AREA",
+    "name": "Camping S'Abba Druche",
+    "address": "",
+    "phone": "+39 0785776161",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Hotel Diffuso Aquaesinis",
+    "address": "Via C. Battisti, 44",
+    "phone": "+39 07831856050",
+    "isPremium": true
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Artista",
+    "address": "Via Lanusei",
+    "phone": "+39 3400015259",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Sa Reposada",
+    "address": "Via Bellini, 43",
+    "phone": "+39 3495659364",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Agriturismo Pinuccia",
+    "address": "Via Diaz, 42",
+    "phone": "+39 3494170921",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Domo La Laguna",
+    "address": "P.za Stagno",
+    "phone": "+39 3477027648",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Su Stai",
+    "address": "Via Firenze, 5",
+    "phone": "+39 3711342111",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Sa Bettua",
+    "address": "Via G. D'Annunzio, 2",
+    "phone": "+39 3496653105",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Divino",
+    "address": "Via Salvator Angelo de Castro, 125",
+    "phone": "+39 3939383573",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Torremana",
+    "address": "Via Sassari, 37",
+    "phone": "+39 3463056104",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B S'apprigu",
+    "address": "Via Roma, 34",
+    "phone": "+39 3475565246",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Limòlo House",
+    "address": "Via C. Battisti, 56",
+    "phone": "+39 3924812458",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Agriturismo Su Livariu",
+    "address": "Località San Pietro",
+    "phone": "+39 0783 34099",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "Panetteria Ortofrutta Pan d'Oro",
+    "address": "Via Roma, 45",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "Pasticceria Artigianale Follia Dolce",
+    "address": "Via Antonio Segni, 4",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Dany's Cafe",
+    "address": "Portu Maga",
+    "phone": "+39 3501498886",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Hotel Meridiana",
+    "address": "Via repubblica, 172",
+    "phone": "+39 0709758283",
+    "isPremium": false
+  },
+  {
+    "type": "CHECK POINT",
+    "name": "/CAMP AREAPublic park with WC & Shower",
+    "address": "Parco comunale",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Su Poeta Affittacamere",
+    "address": "Via garibaldi, 40",
+    "phone": "+39 3293260693",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "Gransole Bakery",
+    "address": "Via Nazionale, 53",
+    "phone": "+39 0709314274",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Ristorante Pizzeria Giovanna e Vittorio",
+    "address": "Via Roma, 109",
+    "phone": "+39 0709329287",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "DomoRooms",
+    "address": "Via San Gavino, 32",
+    "phone": "+39 3925762362",
+    "isPremium": true
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Caffè Norbio",
+    "address": "Via Torino, 4",
+    "phone": "",
+    "isPremium": false
+  },
+  {
+    "type": "BIKE SERVICE",
+    "name": "Athena Sport",
+    "address": "Via San Gavino, 39",
+    "phone": "+39 3478899591",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "La Panoramica B&B",
+    "address": "Via Pineta, 138",
+    "phone": "+39 3483901022",
+    "isPremium": true
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Enoteca la vecchia botte",
+    "address": "Via Nazionale 207",
+    "phone": "+39 700936735",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Ristorante Pizzeria La Taverna Romana",
+    "address": "Via Gonnosfanadiga, 13",
+    "phone": "+39 0709316587",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "La Tavernetta",
+    "address": "Via Trieste, 19",
+    "phone": "+39 3402741319",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Is Cogas",
+    "address": "Via Quintino Sella, 44",
+    "phone": "+39 3487289642",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Cogotti Luigia",
+    "address": "Via XX Settembre, 7",
+    "phone": "+39 3288386292",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Saviano Raffaele",
+    "address": "Via Q. Sella, 48",
+    "phone": "+39 3312507791",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Agriturismo Sogno Sulcitano",
+    "address": "Via Roma, 1",
+    "phone": "+39 3486554284",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Agriturismo Is Solinas",
+    "address": "Loc. Is Solinas",
+    "phone": "+39 3459546319",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Innocenti Mauro",
+    "address": "Loc. Is Lois 1/a",
+    "phone": "+39 3285340375",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Tanchis Michele",
+    "address": "Via Q. Sella, 10",
+    "phone": "+39 3406299406",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Boi Valentina",
+    "address": "Via Papa Giovanni XXIII, 20/22",
+    "phone": "+39 3287915553",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Open Space nel Sulcis",
+    "address": "Via Quintino Sella, 48",
+    "phone": "+39 3312507791",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Pittoni Francesco",
+    "address": "Via Is lais, 33",
+    "phone": "+39 3385996460",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Angioni Marco",
+    "address": "Via Emilio Lussu",
+    "phone": "+39 3312507791",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Kitehomes",
+    "address": "Via Tirso, 55",
+    "phone": "+39 3288291543",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Plus Caffè Park",
+    "address": "Via Nazionale, 127",
+    "phone": "+39 3488952756",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Le Stelle di San Lorenzo",
+    "address": "Via Antonio Ballero, 7",
+    "phone": "+39 3207225626",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "Peccati di Gola",
+    "address": "Via Satta, 16",
+    "phone": "+39 3282820828",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Homea",
+    "address": "Via Parrocchia, 5",
+    "phone": "+39 3456998998",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Roberta Bar",
+    "address": "Via Dante, 4",
+    "phone": "+39 3451358949",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "L'orto degli ulivi",
+    "address": "Corso Umberto, 134",
+    "phone": "+39 3358164644",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Domu Bella",
+    "address": "Via Trentino, 15",
+    "phone": "+39 3456998998",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "Ci pensa Marco",
+    "address": "Via Regina Elena, 117",
+    "phone": "+39 3405771499",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Donnicalia",
+    "address": "Viale Matteotti, 8a",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Domu Noa",
+    "address": "Via Isonzo, 4",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Isola del gusto",
+    "address": "Viale Sant’Ignazio, 27",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Yoddu",
+    "address": "Piazza Matteotti, 10",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Wine House",
+    "address": "Piazza Matteotti, 4",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Casa Ohana",
+    "address": "Via Ungaretti, 11",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Domus Petrarca",
+    "address": "Via Francesco Petrarca, 9",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Nostradomus",
+    "address": "Via della Rinascita, 8",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Adler Bierstube",
+    "address": "Via Serra, 104",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Casa Rifa",
+    "address": "Via Trento, 18",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "L’Oleandro",
+    "address": "Via San Leonardo, 38",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Cafe culturale Domenica Fiaba",
+    "address": "Via Rinascita, 60",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Kiosko Pineta",
+    "address": "Via XXV Aprile, 11/B",
+    "isPremium": false
+  },
+  {
+    "type": "BIKE SERVICE",
+    "name": "CentralMoto",
+    "address": "Via Carlo Felice, 33",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Free Times Pub",
+    "address": "Via Porta Nova",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "New Centralbar",
+    "address": "Via Carlo Felice, 250",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Hotel Piccolo Feudo ***",
+    "address": "Via Umberto I, 42",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "La Bodeguita",
+    "address": "Via Carlo Felice, 80",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Ristorante Bar Pizzeria Rosy",
+    "address": "Via Carlo Felice, 432",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Pizzeria Trattoria Lollo's",
+    "address": "Via Carlo Felice, 199",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Domus de Jara B&B",
+    "address": "Via Pineta, 138",
+    "phone": "+39 3408311753",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Casa Vintage",
+    "address": "Via Roma, 19",
+    "isPremium": false
+  },
+  {
+    "type": "CULTURE",
+    "name": "Ex Convento dei Frati Minori Osservanti",
+    "address": "Via Turati",
+    "phone": "+39 3391676863",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Agriturismo Cuaddus e Tellas",
+    "address": "Sp 16-bis Località Priluzza",
+    "phone": "+39 3476510485",
+    "isPremium": false
+  },
+  {
+    "type": "CULTURE",
+    "name": "Museo Civico del Cavallino della Giara",
+    "address": "Via Chiesa, 7",
+    "phone": "+39 3391676863",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Villa Sveva",
+    "address": "Via Aldo Moro, 16",
+    "phone": "+39 3311697500",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Su Pittiolu",
+    "address": "Loc. Su Caccaeddu",
+    "phone": "+39 3284272072",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Oasi Francescana",
+    "address": "Loc. Cuccuru de Monte",
+    "phone": "+39 3317393002",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Pizzeria Su Stunnu",
+    "address": "Via Papa Giovanni XXIII, 2",
+    "phone": "+39 0782869818",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "Pasticceria Fulghesu",
+    "address": "Corso Garibaldi, 38",
+    "phone": "+39 0782869644",
+    "isPremium": false
+  },
+  {
+    "type": "MUSEUM",
+    "name": "Menhir Museum",
+    "address": "Piazza Marconi, 10",
+    "phone": "+39 0782693238",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Baita Maore",
+    "address": "Loc. Funtana Maore",
+    "phone": "+39 3392156270",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Il cachi e la palma",
+    "address": "Vira Roma, 25",
+    "phone": "+39 3392940363",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "La Maisonette",
+    "address": "Via Don Minzoni, 32",
+    "phone": "+39 3518305081",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Sa Spillunca",
+    "address": "Corso Garibaldi, 120",
+    "phone": "+39 0782869632",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Liquorificio artigianale Lugas Rosa",
+    "address": "Via G. Mazzini, 24",
+    "phone": "+39 3487556159",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Treballu Rural Coliving Coworking Space",
+    "address": "Via Vico II Garibaldi, 8",
+    "phone": "+39 3493847937",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "De Ajala",
+    "address": "Via Cavour, 3",
+    "phone": "+39 3518305081",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Pizzeria La Cascata",
+    "address": "Corso Gramsci, 34",
+    "phone": "+39 3312383219",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "L'isola dei sapori",
+    "address": "Borgata S. Sofia",
+    "phone": "+39 3515268835",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Cantina Gennamanna",
+    "address": "Via Maggiore, 7",
+    "phone": "+39 3331849430",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Agriturismo Perughe",
+    "address": "loc Perughe",
+    "phone": "+39 3475240724",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "Panificio Carasau di Sardegna",
+    "address": "Zona Artigianale Ghiliddoe",
+    "phone": "+39 07841831749",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Agriturismo Badu e e Honne",
+    "address": "loc Badu e Honne",
+    "phone": "+39 078454103",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Antonio Maccioni",
+    "address": "Via Olbia, 20",
+    "phone": "+39 3497577843",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Welcome To Fonni",
+    "address": "(BOOKING SERVICE)​",
+    "phone": "+39 3469565511",
+    "isPremium": false
+  },
+  {
+    "type": "BIKE SERVICE",
+    "name": "Officina Mobile VeloHub",
+    "address": "Itinerant",
+    "phone": "+39 3479890167",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Destinazione Barbagia",
+    "address": "Booking service",
+    "phone": "+39 3274239304",
+    "isPremium": true
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Sa Nuche",
+    "address": "P.zza San Sebastiano, 5",
+    "phone": "+39 3396857352",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Le Rose di Santina",
+    "address": "Via F.lli Bandiera, 10",
+    "phone": "+39 3774372855",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "S'incontru",
+    "address": "Via Nuoro, 46",
+    "phone": "+39 07841825073",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Illegale",
+    "address": "Via Cairoli, 3",
+    "phone": "+39 3343486566",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Sa Rosada",
+    "address": "P.zza Europa, 2",
+    "phone": "+39 078456713",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Domus Deiana",
+    "address": "Via Cavour, 4",
+    "phone": "+39 3495698037",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Su hantaru vetzu",
+    "address": "Via Tola, 14",
+    "phone": "+39 3200795781",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Il Ritrovo",
+    "address": "C.so Vittorio Emanuele III, 101",
+    "phone": "+39 3885683057",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Abbamele",
+    "address": "C.so Vittorio Emanuele III, 59",
+    "phone": "+39 07841821324",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Su Tapiu",
+    "address": "Via Sardegna, 7b",
+    "phone": "+39 3484014622",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Abbanive",
+    "address": "Via Tagliamento, 17",
+    "phone": "+39 3479236329",
+    "isPremium": false
+  },
+  {
+    "type": "DRINKS",
+    "name": "Cantina Sedilesu",
+    "address": "Via Vittorio Emanuele II, 64",
+    "phone": "+39 078456791",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "La Rossa Enoteca",
+    "address": "Via Vittorio Emanuele II, 5",
+    "phone": "+39 3493921671",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD",
+    "name": "Assantiha",
+    "address": "Via Padre Marchesi, 5",
+    "phone": "+39 3897937791",
+    "isPremium": false
+  },
+  {
+    "type": "CHECK POINT",
+    "name": "Comune",
+    "address": "Via Roma, 74",
+    "phone": "+39 0797239010",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B Carrera Manna",
+    "address": "Via Umberto",
+    "phone": "+39 3773237178",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Pizzeria da Simone",
+    "address": "Via Roma, 31",
+    "phone": "+39 3490874454",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "Casa vacanze Santa Croce",
+    "address": "Via Umberto, 65",
+    "phone": "+39 3386130163",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Ristorante pizzeria civico21",
+    "address": "Via Europa, 21A",
+    "phone": "+39 3512433405",
+    "isPremium": false
+  },
+  {
+    "type": "ACCOMMODATION",
+    "name": "B&B da Gigi",
+    "address": "Via Roma, 163",
+    "phone": "+39 377 2645374",
+    "isPremium": false
+  },
+  {
+    "type": "FOOD/DRINKS",
+    "name": "Pizzeria da giannone",
+    "address": "Via Roma, 73",
+    "phone": "+39 3493323890",
+    "isPremium": false
+  }
+]
