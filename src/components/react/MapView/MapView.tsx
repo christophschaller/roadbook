@@ -213,6 +213,15 @@ const MapView = () => {
               return true;
             const resource = resourceView[d.resourceId || ""];
             if (!resource || !resource.active) return false;
+            if (resource.id === "shardana") {
+              return (
+                (Array.isArray(d.resourceCategoryIdList) &&
+                  d.resourceCategoryIdList.some(
+                    (id) => resource.categories[id]?.active,
+                  )) ??
+                false
+              );
+            }
             const resourceCategory =
               resource.categories[d.resourceCategoryId || ""];
             return (
