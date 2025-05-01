@@ -9,6 +9,10 @@ import {
   Tent,
   House,
   Bed,
+  Goal,
+  Wine,
+  Wrench,
+  Amphora,
 } from "lucide-react";
 import type {
   ResourceCategory,
@@ -79,7 +83,7 @@ const foodCategories: { [key: string]: ResourceCategory } = {
     name: "Food Markets",
     id: "supermarket",
     icon: ShoppingCart,
-    description: "This place sells a variety of foods.",
+    description: "This place should sell a variety of foods.",
     osmTags: [
       ["shop", "supermarket"],
       ["shop", "grocery"],
@@ -100,7 +104,7 @@ const foodCategories: { [key: string]: ResourceCategory } = {
     name: "Quick Bites",
     id: "eat",
     icon: Utensils,
-    description: "The right place to get a fresh meal or snack.",
+    description: "They probably have a fresh meal or snack.",
     osmTags: [
       ["amenity", "restaurant"],
       ["amenity", "fast_food"],
@@ -150,7 +154,7 @@ const sleepCategories: { [key: string]: ResourceCategory } = {
     name: "Campgrounds",
     id: "campground",
     icon: Tent,
-    description: "A comfy place to pitch your tent.",
+    description: "A place to pitch your tent.",
     osmTags: [
       ["amenity", "campground"],
       ["amenity", "camp_site"],
@@ -162,7 +166,7 @@ const sleepCategories: { [key: string]: ResourceCategory } = {
     id: "shelter",
     icon: House,
     description:
-      "It looks like there is some kind of shelter here. Make sure your are allowed to sleep in it!",
+      "Looks like some kind of shelter. Make sure your are allowed to sleep in it!",
     osmTags: [
       ["amenity", "shelter"],
       ["tourism", "wilderness_hut"],
@@ -170,7 +174,75 @@ const sleepCategories: { [key: string]: ResourceCategory } = {
   },
 };
 
+const shardanaCategories: { [key: string]: ResourceCategory } = {
+  // checkpoint: {
+  //   name: "Checkpoints",
+  //   id: "checkpoint",
+  //   icon: Goal,
+  //   description: "A place of wonder!",
+  //   osmTags: [],
+  // },
+  restaurant: {
+    name: "Restaurants",
+    id: "restaurant",
+    icon: Utensils,
+    description: "Tasted by Sascha personally!",
+    osmTags: [],
+  },
+  bar: {
+    name: "Bars",
+    id: "bar",
+    icon: Wine,
+    description: "David enjoyed this too much!",
+    osmTags: [],
+  },
+  accomodation: {
+    name: "Accomodation",
+    id: "accomodation",
+    icon: Bed,
+    description: "A restful night awaits you!",
+    osmTags: [],
+  },
+  campground: {
+    name: "Campground",
+    id: "campground",
+    icon: Tent,
+    description: "A night under the stars!",
+    osmTags: [],
+  },
+  culture: {
+    name: "Culture",
+    id: "culture",
+    icon: Amphora,
+    description: "You will enjoy this!",
+    osmTags: [],
+  },
+  repair: {
+    name: "Bike Service",
+    id: "repair",
+    icon: Wrench,
+    description: "Salvation!",
+    osmTags: [],
+  },
+  // supermarket: {
+  //   name: "Convenience",
+  //   id: "supermarket",
+  //   icon: Store,
+  //   description: "They should have food!",
+  //   osmTags: [],
+  // },
+};
+
 export const Resources: Resource[] = [
+  {
+    name: "Shardana",
+    id: "shardana",
+    icon: "shardana.svg",
+    color: [82, 38, 98],
+    minDistance: 500,
+    maxDistance: 5000,
+    categories: shardanaCategories,
+  },
   {
     name: "Water",
     id: "water",
@@ -210,7 +282,7 @@ export const DefaultResourceState: Record<string, ResourceState> = {
         active: true,
       },
       filter: {
-        active: true,
+        active: false,
       },
       risky: {
         active: false,
@@ -245,6 +317,36 @@ export const DefaultResourceState: Record<string, ResourceState> = {
       shelter: {
         active: false,
       },
+    },
+  },
+  shardana: {
+    active: false,
+    distance: 800,
+    categoryStates: {
+      // checkpoint: {
+      //   active: true,
+      // },
+      restaurant: {
+        active: true,
+      },
+      bar: {
+        active: true,
+      },
+      accomodation: {
+        active: true,
+      },
+      campground: {
+        active: true,
+      },
+      repair: {
+        active: true,
+      },
+      culture: {
+        active: true,
+      },
+      // supermarket: {
+      //   active: true,
+      // },
     },
   },
 };
