@@ -141,14 +141,16 @@ const MapView = () => {
     if (simpleTrackData) {
       const buffers: ResourceArea[] = [];
       Object.entries(resourceView).forEach(([id, resource]) => {
-        const buffered = turf.buffer(simpleTrackData, resource.distance, {
-          units: "meters",
-        });
-        if (buffered) {
-          buffers.push({
-            resourceId: id,
-            area: buffered,
+        if (id != "shardana") {
+          const buffered = turf.buffer(simpleTrackData, resource.distance, {
+            units: "meters",
           });
+          if (buffered) {
+            buffers.push({
+              resourceId: id,
+              area: buffered,
+            });
+          }
         }
       });
       setResourceAreas(buffers);
