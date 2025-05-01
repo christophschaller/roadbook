@@ -1,0 +1,353 @@
+Geocoded 1/162: Museo del Sughero Calangianus
+Geocoded 2/162: La vecchia Posta
+Failed to geocode 3/162: Sweet C&C
+Geocoded 4/162: L'Antico Caffè della Piazza
+Geocoded 5/162: Caffetteria Gusto Cafè
+Failed to geocode 6/162: Artigianato Pasella dal 1972
+Geocoded 7/162: Bar centrale
+Geocoded 8/162: Liccarissu
+Failed to geocode 9/162: Ecolodge La Grande Quercia
+Geocoded 10/162: Lu Rizzatu
+Geocoded 11/162: Biagio Bar
+Failed to geocode 12/162: Guest House - Gallurà
+Geocoded 13/162: Home Sweet Home
+Geocoded 14/162: La Gastronomia della Carne
+Failed to geocode 15/162: El Vejo Barrio
+Geocoded 16/162: Panificio Pasella
+Geocoded 17/162: Altare rupestre
+Geocoded 18/162: CasaDina Apartment
+Geocoded 19/162: Su Masellu
+Geocoded 20/162: Borgo Santo Stefano
+Geocoded 21/162: Olaspri B&B
+Geocoded 22/162: Villa Teresa
+Geocoded 23/162: Zona Camp 1
+Geocoded 24/162: Sas Damas B&B Chiaramonti
+Geocoded 25/162: Eden Market - Coop
+Geocoded 26/162: Zona Camp 2
+Geocoded 27/162: Pizzeria d'asporto L'arco
+Geocoded 28/162: Sidis - Coda Market
+Geocoded 29/162: Bed And Breakfast Mattea
+Geocoded 30/162: Ristorante Pizzeria Cincinnato
+Geocoded 31/162: Nicole's Bar
+Failed to geocode 32/162: Lumen House Guesthouse
+Failed to geocode 33/162: La Bottega della Pizza
+Failed to geocode 34/162: Albanella Chiosco sul Mare
+Geocoded 35/162: The Room
+Geocoded 36/162: Hotel Cala Reale
+Failed to geocode 37/162: Hotel Angedras
+Geocoded 38/162: Green Guest House Alghero
+Geocoded 39/162: Ciclofficina Dueppi
+Geocoded 40/162: San Francesco Heritage Hotel
+Geocoded 41/162: Lu Bàtil B&B
+Failed to geocode 42/162: Little Flower
+Geocoded 43/162: Marinella Gastronomia
+Failed to geocode 44/162: Su Recreu e Mare Guesthouse
+Failed to geocode 45/162: Giardini Malaspina
+Geocoded 46/162: Camping S'Abba Druche
+Geocoded 47/162: Hotel Diffuso Aquaesinis
+Geocoded 48/162: B&B Artista
+Geocoded 49/162: B&B Sa Reposada
+Geocoded 50/162: Agriturismo Pinuccia
+Geocoded 51/162: B&B Domo La Laguna
+Geocoded 52/162: B&B Su Stai
+Failed to geocode 53/162: B&B Sa Bettua
+Geocoded 54/162: B&B Divino
+Geocoded 55/162: B&B Torremana
+Geocoded 56/162: B&B S'apprigu
+Geocoded 57/162: Limòlo House
+Geocoded 58/162: Agriturismo Su Livariu
+Geocoded 59/162: Panetteria Ortofrutta Pan d'Oro
+Geocoded 60/162: Pasticceria Artigianale Follia Dolce
+Geocoded 61/162: Dany's Cafe
+Geocoded 62/162: Hotel Meridiana
+Geocoded 63/162: /CAMP AREAPublic park with WC & Shower
+Geocoded 64/162: Su Poeta Affittacamere
+Geocoded 65/162: Gransole Bakery
+Geocoded 66/162: Ristorante Pizzeria Giovanna e Vittorio
+Geocoded 67/162: DomoRooms
+Geocoded 68/162: Caffè Norbio
+Geocoded 69/162: Athena Sport
+Geocoded 70/162: La Panoramica B&B
+Geocoded 71/162: Enoteca la vecchia botte
+Geocoded 72/162: Ristorante Pizzeria La Taverna Romana
+Geocoded 73/162: La Tavernetta
+Error geocoding address: Via Quintino Sella, 44 AxiosError: connect ETIMEDOUT 140.211.167.100:443
+    at Function.AxiosError.from (/Users/david/Documents/projects/roadbook/node_modules/axios/lib/core/AxiosError.js:92:14)
+    at RedirectableRequest.handleRequestError (/Users/david/Documents/projects/roadbook/node_modules/axios/lib/adapters/http.js:620:25)
+    at RedirectableRequest.emit (node:events:517:28)
+    at RedirectableRequest.emit (node:domain:489:12)
+    at ClientRequest.eventHandlers.<computed> (/Users/david/Documents/projects/roadbook/node_modules/follow-redirects/index.js:49:24)
+    at ClientRequest.emit (node:events:517:28)
+    at ClientRequest.emit (node:domain:489:12)
+    at TLSSocket.socketErrorListener (node:_http_client:501:9)
+    at TLSSocket.emit (node:events:517:28)
+    at TLSSocket.emit (node:domain:489:12)
+    at Axios.request (/Users/david/Documents/projects/roadbook/node_modules/axios/lib/core/Axios.js:45:41)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async geocodeAddress (/Users/david/Documents/projects/roadbook/data/geocode-partners.ts:52:22)
+    at async main (/Users/david/Documents/projects/roadbook/data/geocode-partners.ts:113:24) {
+  port: 443,
+  address: '140.211.167.100',
+  syscall: 'connect',
+  code: 'ETIMEDOUT',
+  errno: -60,
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      'User-Agent': 'Shardana-Partners-Geocoder/1.0',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'get',
+    url: 'https://nominatim.openstreetmap.org/search?format=json&q=Via%20Quintino%20Sella%2C%2044%2C%20Sardinia%2C%20Italy',
+    allowAbsoluteUrls: true,
+    data: undefined
+  },
+  request: <ref *1> Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      afterWriteTickInfo: null,
+      buffered: [],
+      bufferedIndex: 0,
+      allBuffers: true,
+      allNoop: true,
+      pendingcb: 0,
+      constructed: true,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: true,
+      errored: null,
+      closed: false,
+      closeEmitted: false,
+      [Symbol(kOnFinished)]: []
+    },
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError],
+      socket: [Function: handleRequestSocket]
+    },
+    _eventsCount: 3,
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'https:',
+      path: '/search?format=json&q=Via%20Quintino%20Sella%2C%2044%2C%20Sardinia%2C%20Italy',
+      method: 'GET',
+      headers: [Object: null prototype],
+      agents: [Object],
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: [Object],
+      hostname: 'nominatim.openstreetmap.org',
+      port: '',
+      agent: undefined,
+      nativeProtocols: [Object],
+      pathname: '/search',
+      search: '?format=json&q=Via%20Quintino%20Sella%2C%2044%2C%20Sardinia%2C%20Italy'
+    },
+    _ended: true,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 0,
+    _requestBodyBuffers: [],
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: [TLSSocket],
+      _header: 'GET /search?format=json&q=Via%20Quintino%20Sella%2C%2044%2C%20Sardinia%2C%20Italy HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: Shardana-Partners-Geocoder/1.0\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: nominatim.openstreetmap.org\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/search?format=json&q=Via%20Quintino%20Sella%2C%2044%2C%20Sardinia%2C%20Italy',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'nominatim.openstreetmap.org',
+      protocol: 'https:',
+      _redirectable: [Circular *1],
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    _currentUrl: 'https://nominatim.openstreetmap.org/search?format=json&q=Via%20Quintino%20Sella%2C%2044%2C%20Sardinia%2C%20Italy',
+    [Symbol(kCapture)]: false
+  },
+  cause: Error: connect ETIMEDOUT 140.211.167.100:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+    errno: -60,
+    code: 'ETIMEDOUT',
+    syscall: 'connect',
+    address: '140.211.167.100',
+    port: 443
+  }
+}
+Failed to geocode 74/162: Is Cogas
+Geocoded 75/162: Cogotti Luigia
+Geocoded 76/162: Saviano Raffaele
+Geocoded 77/162: Agriturismo Sogno Sulcitano
+Failed to geocode 78/162: Agriturismo Is Solinas
+Failed to geocode 79/162: Innocenti Mauro
+Geocoded 80/162: Tanchis Michele
+Geocoded 81/162: Boi Valentina
+Geocoded 82/162: Open Space nel Sulcis
+Failed to geocode 83/162: Pittoni Francesco
+Geocoded 84/162: Angioni Marco
+Geocoded 85/162: Kitehomes
+Geocoded 86/162: Plus Caffè Park
+Geocoded 87/162: Le Stelle di San Lorenzo
+Geocoded 88/162: Peccati di Gola
+Geocoded 89/162: Homea
+Geocoded 90/162: Roberta Bar
+Geocoded 91/162: L'orto degli ulivi
+Geocoded 92/162: Domu Bella
+Geocoded 93/162: Ci pensa Marco
+Geocoded 94/162: Donnicalia
+Geocoded 95/162: Domu Noa
+Geocoded 96/162: Isola del gusto
+Geocoded 97/162: Yoddu
+Geocoded 98/162: Wine House
+Geocoded 99/162: Casa Ohana
+Geocoded 100/162: Domus Petrarca
+Geocoded 101/162: Nostradomus
+Geocoded 102/162: Adler Bierstube
+Geocoded 103/162: Casa Rifa
+Geocoded 104/162: L’Oleandro
+Geocoded 105/162: Cafe culturale Domenica Fiaba
+Geocoded 106/162: Kiosko Pineta
+Geocoded 107/162: CentralMoto
+Failed to geocode 108/162: Free Times Pub
+Geocoded 109/162: New Centralbar
+Geocoded 110/162: Hotel Piccolo Feudo ***
+Geocoded 111/162: La Bodeguita
+Geocoded 112/162: Ristorante Bar Pizzeria Rosy
+Geocoded 113/162: Pizzeria Trattoria Lollo's
+Geocoded 114/162: Domus de Jara B&B
+Geocoded 115/162: B&B Casa Vintage
+Geocoded 116/162: Ex Convento dei Frati Minori Osservanti
+Failed to geocode 117/162: Agriturismo Cuaddus e Tellas
+Geocoded 118/162: Museo Civico del Cavallino della Giara
+Geocoded 119/162: Villa Sveva
+Failed to geocode 120/162: Su Pittiolu
+Failed to geocode 121/162: Oasi Francescana
+Geocoded 122/162: Pizzeria Su Stunnu
+Geocoded 123/162: Pasticceria Fulghesu
+Geocoded 124/162: Menhir Museum
+Failed to geocode 125/162: Baita Maore
+Failed to geocode 126/162: Il cachi e la palma
+Geocoded 127/162: La Maisonette
+Geocoded 128/162: Sa Spillunca
+Geocoded 129/162: Liquorificio artigianale Lugas Rosa
+Failed to geocode 130/162: Treballu Rural Coliving Coworking Space
+Geocoded 131/162: De Ajala
+Geocoded 132/162: Pizzeria La Cascata
+Failed to geocode 133/162: L'isola dei sapori
+Geocoded 134/162: Cantina Gennamanna
+Failed to geocode 135/162: Agriturismo Perughe
+Failed to geocode 136/162: Panificio Carasau di Sardegna
+Failed to geocode 137/162: Agriturismo Badu e e Honne
+Geocoded 138/162: B&B Antonio Maccioni
+Failed to geocode 139/162: Welcome To Fonni
+Failed to geocode 140/162: Officina Mobile VeloHub
+Failed to geocode 141/162: Destinazione Barbagia
+Geocoded 142/162: B&B Sa Nuche
+Failed to geocode 143/162: Le Rose di Santina
+Geocoded 144/162: S'incontru
+Geocoded 145/162: Illegale
+Geocoded 146/162: Sa Rosada
+Geocoded 147/162: B&B Domus Deiana
+Geocoded 148/162: Su hantaru vetzu
+Geocoded 149/162: Il Ritrovo
+Geocoded 150/162: Abbamele
+Geocoded 151/162: Su Tapiu
+Geocoded 152/162: Abbanive
+Geocoded 153/162: Cantina Sedilesu
+Geocoded 154/162: La Rossa Enoteca
+Failed to geocode 155/162: Assantiha
+Geocoded 156/162: Comune
+Geocoded 157/162: B&B Carrera Manna
+Geocoded 158/162: Pizzeria da Simone
+Geocoded 159/162: Casa vacanze Santa Croce
+Geocoded 160/162: Ristorante pizzeria civico21
+Geocoded 161/162: B&B da Gigi
+Geocoded 162/162: Pizzeria da giannone
