@@ -47,7 +47,7 @@ export function RiderSectionDesktop() {
                       backgroundColor: `rgb(${getRiderColor(rider.username).join(",")})`,
                     }}
                   >
-                    <span className="font-xs">{rider.cap_number}</span>
+                    <span className="font-xs text-white">{rider.cap_number}</span>
                   </button>
                   <span className="text-md">{rider.display_name}</span>
                 </div>

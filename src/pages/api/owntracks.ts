@@ -46,6 +46,14 @@ export const GET: APIRoute = async () => {
       item.cap_number = rider.cap_number;
     }
   });
+  const allowedFields = ["tid", "acc", "alt", "vel","lat", "lon", "tst", "type", "display_name", "cap_number", "username", "isotst"];
+  for (let i = 0; i < data.length; i++) {
+    Object.keys(data[i]).forEach((key) => {
+      if (!allowedFields.includes(key)) {
+        delete data[i][key];
+      }
+    });
+  }
 
   return new Response(JSON.stringify(data), {
     status: 200,
