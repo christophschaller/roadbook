@@ -45,7 +45,19 @@ export function PoiTooltip({
     }, []);
 
     const resource = resourceView[poi.resourceId];
-    const resourceCategory = resource.categories[poi.resourceCategoryId];
+    let resourceCategory;
+    if (poi.resourceCategoryId) {
+      resourceCategory = resource.categories[poi.resourceCategoryId];
+    } else if (Array.isArray(poi.resourceCategoryIdList)) {
+      // Find the first active category from the list
+      for (const id of poi.resourceCategoryIdList) {
+      const category = resource.categories[id];
+      if (category && category.active) {
+        resourceCategory = category;
+        break;
+      }
+      }
+    }
 
     const IconComponent = (LucideIcons as any)[
       // @ts-ignore render error from lucide-react
