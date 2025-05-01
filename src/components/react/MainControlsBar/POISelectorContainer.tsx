@@ -47,19 +47,21 @@ export function POISelectorContainer({
   };
   return (
     <>
-      <div className="flex items-center space-x-2">
-        <Slider
-          value={[resource.distance]}
-          min={resource.minDistance}
-          max={resource.maxDistance}
-          step={stepDistance}
-          color={resource.color}
-          onValueChange={(value) => {
-            handleSliderChange(value[0]);
-          }}
-        />
-        <Label className="text-base md:text-sm">Distance</Label>
-      </div>
+      {resource.id !== "shardana" && (
+        <div className="flex items-center space-x-2">
+          <Slider
+            value={[resource.distance]}
+            min={resource.minDistance}
+            max={resource.maxDistance}
+            step={stepDistance}
+            color={resource.color}
+            onValueChange={(value) => {
+              handleSliderChange(value[0]);
+            }}
+          />
+          <Label className="text-base md:text-sm">Distance</Label>
+        </div>
+      )}
       <div className="py-2">
         {Object.entries(resource.categories).map(([id, cat]) => (
           <div className="flex items-center space-x-2 py-1" key={id}>
