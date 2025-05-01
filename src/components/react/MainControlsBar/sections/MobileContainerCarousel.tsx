@@ -37,7 +37,7 @@ function TrackSelectContainer() {
 
 function ResourceContainer({ resource }: { resource: ResourceView }) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 flex flex-col h-full">
       <div className="w-full flex items-center space-x-2 p-2 rounded-md hover:bg-white/50 transition-colors">
         <div
           className="w-8 h-8 rounded-full flex items-center justify-center"
@@ -57,7 +57,7 @@ function ResourceContainer({ resource }: { resource: ResourceView }) {
         </div>
         <span className="text-lg text-primary">{resource.name}</span>
       </div>
-      <div className="ml-4">
+      <div className="ml-4 h-full overflow-y-auto py-1">
         <POISelectorContainer resource={resource} />
       </div>
     </div>
