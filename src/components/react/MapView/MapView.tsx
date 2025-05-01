@@ -266,7 +266,7 @@ const MapView = () => {
           getText: (d: Rider) =>
             d.cap_number !== "-" ? d.cap_number : d.display_name.charAt(0),
           getBackgroundRadius: 16,
-          getSize: (d: Rider) => (d.cap_number !== "-" ? 16 : 20),
+          getSize: (d: Rider) => (d.cap_number !== "-" ? 15 :20),
           getBackgroundColor: (d: Rider) => getRiderColor(d.username || ""),
           sizeUnits: "pixels",
           getTextAnchor: "middle",
