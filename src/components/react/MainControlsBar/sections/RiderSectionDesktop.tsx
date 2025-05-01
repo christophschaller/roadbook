@@ -47,7 +47,7 @@ export function RiderSectionDesktop() {
                       backgroundColor: `rgb(${getRiderColor(rider.username).join(",")})`,
                     }}
                   >
-                    <span className="font-xs text-white">{rider.cap_number}</span>
+                    <span className="font-xs text-white">{rider.cap_number !== "-" ? rider.cap_number : rider.display_name.charAt(0)}</span>
                   </button>
                   <span className="text-md">{rider.display_name}</span>
                 </div>
