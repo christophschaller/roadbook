@@ -16,8 +16,8 @@ export function TrackSelector() {
       <div className="pt-2">
         <TextToggle
           options={[
-            { value: "shardana_full.json", label: "Long" },
-            { value: "shardana_mid.json", label: "Short" },
+            { value: "shardana_partner_full.json", label: "Long" },
+            { value: "shardana_partner_mid.json", label: "Short" },
           ]}
           toggleColor="#522662"
           defaultSelected={selectedTrack}
