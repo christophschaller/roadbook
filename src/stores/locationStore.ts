@@ -11,7 +11,6 @@ onMount($location, () => {
       watchId = navigator.geolocation.watchPosition(
         (position) => {
           const { latitude, longitude, accuracy } = position.coords;
-          console.log(latitude, longitude, accuracy);
           $location.set({ latitude, longitude, accuracy });
         },
         (error) => {

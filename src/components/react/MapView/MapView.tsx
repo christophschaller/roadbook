@@ -81,7 +81,6 @@ const MapView = () => {
         transitionDuration: 1000, // Optional: animate the transition
         transitionInterpolator: new FlyToInterpolator(),
       }));
-      console.log("First location received:", location);
     }
   }, [isTracking, location]);
 
@@ -299,7 +298,6 @@ const MapView = () => {
         controller={true}
         layers={layers}
         onClick={(info) => {
-          console.log(info);
           if (info && info.object) {
             if (
               "type" in info.object &&
