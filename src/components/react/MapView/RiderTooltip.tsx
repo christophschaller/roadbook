@@ -61,16 +61,20 @@ export function RiderTooltip({
                 {isMobile ? (
                   <>
                     <h5 className="font-bold text-lg">{rider.display_name}</h5>
-                    <h5 className="font-medium text-lg">
-                      No. {rider.cap_number}
-                    </h5>
+                    {rider.cap_number !== "-" && (
+                      <h5 className="font-medium text-lg">
+                        No. {rider.cap_number}
+                      </h5>
+                    )}
                   </>
                 ) : (
                   <>
                     <p className="font-bold text-md">{rider.display_name}</p>
-                    <p className="font-medium text-md">
-                      No. {rider.cap_number}
-                    </p>
+                    {rider.cap_number !== "-" && (
+                      <p className="font-medium text-md">
+                        No. {rider.cap_number}
+                      </p>
+                    )}
                   </>
                 )}
               </div>
