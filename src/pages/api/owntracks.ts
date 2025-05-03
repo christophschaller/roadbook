@@ -39,7 +39,8 @@ export const GET: APIRoute = async () => {
   const data = await response.json();
   const riders = await riderData;
   data.forEach((item: any) => {
-    const rider = riders[item.username];
+    const username = item.topic?.split("/")[1];
+    const rider = riders[username];
     if (rider) {
       item.type = "rider";
       item.display_name = rider.display_name;
