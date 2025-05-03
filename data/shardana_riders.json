@@ -4,28 +4,28 @@
     "username": "chris",
     "devicename": "phone",
     "display_name": "Chris S.",
-    "cap_number": "-"
+    "cap_number": "57"
   },
   "david": {
     "tid": "x1",
     "username": "david",
     "devicename": "phone",
     "display_name": "David B.",
-    "cap_number": "-"
+    "cap_number": "58"
   },
   "moritz": {
     "tid": "x2",
     "username": "moritz",
     "devicename": "phone",
     "display_name": "Moritz S.",
-    "cap_number": "-"
+    "cap_number": "175"
   },
   "max": {
     "tid": "x3",
     "username": "max",
     "devicename": "phone",
     "display_name": "Max M.",
-    "cap_number": "-"
+    "cap_number": "82"
   },
   "philip": {
     "tid": "x4",
@@ -39,7 +39,7 @@
     "username": "lukas",
     "devicename": "phone",
     "display_name": "Lukas G.",
-    "cap_number": "-"
+    "cap_number": "90"
   },
   "mario": {
     "tid": "x6",
@@ -81,1805 +81,1805 @@
     "username": "guido",
     "devicename": "phone",
     "display_name": "Guido S.",
-    "cap_number": "-"
+    "cap_number": "153"
   },
   "ryan": {
     "tid": "y2",
     "username": "ryan",
     "devicename": "phone",
     "display_name": "Ryan C.",
-    "cap_number": "-"
+    "cap_number": "150"
   },
   "cap_0": {
     "tid": "00",
     "username": "cap_0",
     "devicename": "phone",
-    "display_name": "Cap 0",
+    "display_name": "Rider 0",
     "cap_number": "0"
   },
   "cap_1": {
     "tid": "01",
     "username": "cap_1",
     "devicename": "phone",
-    "display_name": "Cap 1",
+    "display_name": "Rider 1",
     "cap_number": "1"
   },
   "cap_2": {
     "tid": "02",
     "username": "cap_2",
     "devicename": "phone",
-    "display_name": "Cap 2",
+    "display_name": "Rider 2",
     "cap_number": "2"
   },
   "cap_3": {
     "tid": "03",
     "username": "cap_3",
     "devicename": "phone",
-    "display_name": "Cap 3",
+    "display_name": "Rider 3",
     "cap_number": "3"
   },
   "cap_4": {
     "tid": "04",
     "username": "cap_4",
     "devicename": "phone",
-    "display_name": "Cap 4",
+    "display_name": "Rider 4",
     "cap_number": "4"
   },
   "cap_5": {
     "tid": "05",
     "username": "cap_5",
     "devicename": "phone",
-    "display_name": "Cap 5",
+    "display_name": "Rider 5",
     "cap_number": "5"
   },
   "cap_6": {
     "tid": "06",
     "username": "cap_6",
     "devicename": "phone",
-    "display_name": "Cap 6",
+    "display_name": "Rider 6",
     "cap_number": "6"
   },
   "cap_7": {
     "tid": "07",
     "username": "cap_7",
     "devicename": "phone",
-    "display_name": "Cap 7",
+    "display_name": "Rider 7",
     "cap_number": "7"
   },
   "cap_8": {
     "tid": "08",
     "username": "cap_8",
     "devicename": "phone",
-    "display_name": "Cap 8",
+    "display_name": "Rider 8",
     "cap_number": "8"
   },
   "cap_9": {
     "tid": "09",
     "username": "cap_9",
     "devicename": "phone",
-    "display_name": "Cap 9",
+    "display_name": "Rider 9",
     "cap_number": "9"
   },
   "cap_10": {
     "tid": "0a",
     "username": "cap_10",
     "devicename": "phone",
-    "display_name": "Cap 10",
+    "display_name": "Rider 10",
     "cap_number": "10"
   },
   "cap_11": {
     "tid": "0b",
     "username": "cap_11",
     "devicename": "phone",
-    "display_name": "Cap 11",
+    "display_name": "Rider 11",
     "cap_number": "11"
   },
   "cap_12": {
     "tid": "0c",
     "username": "cap_12",
     "devicename": "phone",
-    "display_name": "Cap 12",
+    "display_name": "Rider 12",
     "cap_number": "12"
   },
   "cap_13": {
     "tid": "0d",
     "username": "cap_13",
     "devicename": "phone",
-    "display_name": "Cap 13",
+    "display_name": "Rider 13",
     "cap_number": "13"
   },
   "cap_14": {
     "tid": "0e",
     "username": "cap_14",
     "devicename": "phone",
-    "display_name": "Cap 14",
+    "display_name": "Rider 14",
     "cap_number": "14"
   },
   "cap_15": {
     "tid": "0f",
     "username": "cap_15",
     "devicename": "phone",
-    "display_name": "Cap 15",
+    "display_name": "Rider 15",
     "cap_number": "15"
   },
   "cap_16": {
     "tid": "10",
     "username": "cap_16",
     "devicename": "phone",
-    "display_name": "Cap 16",
+    "display_name": "Rider 16",
     "cap_number": "16"
   },
   "cap_17": {
     "tid": "11",
     "username": "cap_17",
     "devicename": "phone",
-    "display_name": "Cap 17",
+    "display_name": "Rider 17",
     "cap_number": "17"
   },
   "cap_18": {
     "tid": "12",
     "username": "cap_18",
     "devicename": "phone",
-    "display_name": "Cap 18",
+    "display_name": "Rider 18",
     "cap_number": "18"
   },
   "cap_19": {
     "tid": "13",
     "username": "cap_19",
     "devicename": "phone",
-    "display_name": "Cap 19",
+    "display_name": "Rider 19",
     "cap_number": "19"
   },
   "cap_20": {
     "tid": "14",
     "username": "cap_20",
     "devicename": "phone",
-    "display_name": "Cap 20",
+    "display_name": "Rider 20",
     "cap_number": "20"
   },
   "cap_21": {
     "tid": "15",
     "username": "cap_21",
     "devicename": "phone",
-    "display_name": "Cap 21",
+    "display_name": "Rider 21",
     "cap_number": "21"
   },
   "cap_22": {
     "tid": "16",
     "username": "cap_22",
     "devicename": "phone",
-    "display_name": "Cap 22",
+    "display_name": "Rider 22",
     "cap_number": "22"
   },
   "cap_23": {
     "tid": "17",
     "username": "cap_23",
     "devicename": "phone",
-    "display_name": "Cap 23",
+    "display_name": "Rider 23",
     "cap_number": "23"
   },
   "cap_24": {
     "tid": "18",
     "username": "cap_24",
     "devicename": "phone",
-    "display_name": "Cap 24",
+    "display_name": "Rider 24",
     "cap_number": "24"
   },
   "cap_25": {
     "tid": "19",
     "username": "cap_25",
     "devicename": "phone",
-    "display_name": "Cap 25",
+    "display_name": "Rider 25",
     "cap_number": "25"
   },
   "cap_26": {
     "tid": "1a",
     "username": "cap_26",
     "devicename": "phone",
-    "display_name": "Cap 26",
+    "display_name": "Rider 26",
     "cap_number": "26"
   },
   "cap_27": {
     "tid": "1b",
     "username": "cap_27",
     "devicename": "phone",
-    "display_name": "Cap 27",
+    "display_name": "Rider 27",
     "cap_number": "27"
   },
   "cap_28": {
     "tid": "1c",
     "username": "cap_28",
     "devicename": "phone",
-    "display_name": "Cap 28",
+    "display_name": "Rider 28",
     "cap_number": "28"
   },
   "cap_29": {
     "tid": "1d",
     "username": "cap_29",
     "devicename": "phone",
-    "display_name": "Cap 29",
+    "display_name": "Rider 29",
     "cap_number": "29"
   },
   "cap_30": {
     "tid": "1e",
     "username": "cap_30",
     "devicename": "phone",
-    "display_name": "Cap 30",
+    "display_name": "Rider 30",
     "cap_number": "30"
   },
   "cap_31": {
     "tid": "1f",
     "username": "cap_31",
     "devicename": "phone",
-    "display_name": "Cap 31",
+    "display_name": "Rider 31",
     "cap_number": "31"
   },
   "cap_32": {
     "tid": "20",
     "username": "cap_32",
     "devicename": "phone",
-    "display_name": "Cap 32",
+    "display_name": "Rider 32",
     "cap_number": "32"
   },
   "cap_33": {
     "tid": "21",
     "username": "cap_33",
     "devicename": "phone",
-    "display_name": "Cap 33",
+    "display_name": "Rider 33",
     "cap_number": "33"
   },
   "cap_34": {
     "tid": "22",
     "username": "cap_34",
     "devicename": "phone",
-    "display_name": "Cap 34",
+    "display_name": "Rider 34",
     "cap_number": "34"
   },
   "cap_35": {
     "tid": "23",
     "username": "cap_35",
     "devicename": "phone",
-    "display_name": "Cap 35",
+    "display_name": "Rider 35",
     "cap_number": "35"
   },
   "cap_36": {
     "tid": "24",
     "username": "cap_36",
     "devicename": "phone",
-    "display_name": "Cap 36",
+    "display_name": "Rider 36",
     "cap_number": "36"
   },
   "cap_37": {
     "tid": "25",
     "username": "cap_37",
     "devicename": "phone",
-    "display_name": "Cap 37",
+    "display_name": "Rider 37",
     "cap_number": "37"
   },
   "cap_38": {
     "tid": "26",
     "username": "cap_38",
     "devicename": "phone",
-    "display_name": "Cap 38",
+    "display_name": "Rider 38",
     "cap_number": "38"
   },
   "cap_39": {
     "tid": "27",
     "username": "cap_39",
     "devicename": "phone",
-    "display_name": "Cap 39",
+    "display_name": "Rider 39",
     "cap_number": "39"
   },
   "cap_40": {
     "tid": "28",
     "username": "cap_40",
     "devicename": "phone",
-    "display_name": "Cap 40",
+    "display_name": "Rider 40",
     "cap_number": "40"
   },
   "cap_41": {
     "tid": "29",
     "username": "cap_41",
     "devicename": "phone",
-    "display_name": "Cap 41",
+    "display_name": "Rider 41",
     "cap_number": "41"
   },
   "cap_42": {
     "tid": "2a",
     "username": "cap_42",
     "devicename": "phone",
-    "display_name": "Cap 42",
+    "display_name": "Rider 42",
     "cap_number": "42"
   },
   "cap_43": {
     "tid": "2b",
     "username": "cap_43",
     "devicename": "phone",
-    "display_name": "Cap 43",
+    "display_name": "Rider 43",
     "cap_number": "43"
   },
   "cap_44": {
     "tid": "2c",
     "username": "cap_44",
     "devicename": "phone",
-    "display_name": "Cap 44",
+    "display_name": "Rider 44",
     "cap_number": "44"
   },
   "cap_45": {
     "tid": "2d",
     "username": "cap_45",
     "devicename": "phone",
-    "display_name": "Cap 45",
+    "display_name": "Rider 45",
     "cap_number": "45"
   },
   "cap_46": {
     "tid": "2e",
     "username": "cap_46",
     "devicename": "phone",
-    "display_name": "Cap 46",
+    "display_name": "Rider 46",
     "cap_number": "46"
   },
   "cap_47": {
     "tid": "2f",
     "username": "cap_47",
     "devicename": "phone",
-    "display_name": "Cap 47",
+    "display_name": "Rider 47",
     "cap_number": "47"
   },
   "cap_48": {
     "tid": "30",
     "username": "cap_48",
     "devicename": "phone",
-    "display_name": "Cap 48",
+    "display_name": "Rider 48",
     "cap_number": "48"
   },
   "cap_49": {
     "tid": "31",
     "username": "cap_49",
     "devicename": "phone",
-    "display_name": "Cap 49",
+    "display_name": "Rider 49",
     "cap_number": "49"
   },
   "cap_50": {
     "tid": "32",
     "username": "cap_50",
     "devicename": "phone",
-    "display_name": "Cap 50",
+    "display_name": "Rider 50",
     "cap_number": "50"
   },
   "cap_51": {
     "tid": "33",
     "username": "cap_51",
     "devicename": "phone",
-    "display_name": "Cap 51",
+    "display_name": "Rider 51",
     "cap_number": "51"
   },
   "cap_52": {
     "tid": "34",
     "username": "cap_52",
     "devicename": "phone",
-    "display_name": "Cap 52",
+    "display_name": "Sandor",
     "cap_number": "52"
   },
   "cap_53": {
     "tid": "35",
     "username": "cap_53",
     "devicename": "phone",
-    "display_name": "Cap 53",
+    "display_name": "Rider 53",
     "cap_number": "53"
   },
   "cap_54": {
     "tid": "36",
     "username": "cap_54",
     "devicename": "phone",
-    "display_name": "Cap 54",
+    "display_name": "Rider 54",
     "cap_number": "54"
   },
   "cap_55": {
     "tid": "37",
     "username": "cap_55",
     "devicename": "phone",
-    "display_name": "Cap 55",
+    "display_name": "Rider 55",
     "cap_number": "55"
   },
   "cap_56": {
     "tid": "38",
     "username": "cap_56",
     "devicename": "phone",
-    "display_name": "Cap 56",
+    "display_name": "Rider 56",
     "cap_number": "56"
   },
   "cap_57": {
     "tid": "39",
     "username": "cap_57",
     "devicename": "phone",
-    "display_name": "Cap 57",
+    "display_name": "Rider 57",
     "cap_number": "57"
   },
   "cap_58": {
     "tid": "3a",
     "username": "cap_58",
     "devicename": "phone",
-    "display_name": "Cap 58",
+    "display_name": "Rider 58",
     "cap_number": "58"
   },
   "cap_59": {
     "tid": "3b",
     "username": "cap_59",
     "devicename": "phone",
-    "display_name": "Cap 59",
+    "display_name": "Rider 59",
     "cap_number": "59"
   },
   "cap_60": {
     "tid": "3c",
     "username": "cap_60",
     "devicename": "phone",
-    "display_name": "Cap 60",
+    "display_name": "Rider 60",
     "cap_number": "60"
   },
   "cap_61": {
     "tid": "3d",
     "username": "cap_61",
     "devicename": "phone",
-    "display_name": "Cap 61",
+    "display_name": "Rider 61",
     "cap_number": "61"
   },
   "cap_62": {
     "tid": "3e",
     "username": "cap_62",
     "devicename": "phone",
-    "display_name": "Cap 62",
+    "display_name": "Rider 62",
     "cap_number": "62"
   },
   "cap_63": {
     "tid": "3f",
     "username": "cap_63",
     "devicename": "phone",
-    "display_name": "Cap 63",
+    "display_name": "Rider 63",
     "cap_number": "63"
   },
   "cap_64": {
     "tid": "40",
     "username": "cap_64",
     "devicename": "phone",
-    "display_name": "Cap 64",
+    "display_name": "Rider 64",
     "cap_number": "64"
   },
   "cap_65": {
     "tid": "41",
     "username": "cap_65",
     "devicename": "phone",
-    "display_name": "Cap 65",
+    "display_name": "Rider 65",
     "cap_number": "65"
   },
   "cap_66": {
     "tid": "42",
     "username": "cap_66",
     "devicename": "phone",
-    "display_name": "Cap 66",
+    "display_name": "Rider 66",
     "cap_number": "66"
   },
   "cap_67": {
     "tid": "43",
     "username": "cap_67",
     "devicename": "phone",
-    "display_name": "Cap 67",
+    "display_name": "Rider 67",
     "cap_number": "67"
   },
   "cap_68": {
     "tid": "44",
     "username": "cap_68",
     "devicename": "phone",
-    "display_name": "Cap 68",
+    "display_name": "Rider 68",
     "cap_number": "68"
   },
   "cap_69": {
     "tid": "45",
     "username": "cap_69",
     "devicename": "phone",
-    "display_name": "Cap 69",
+    "display_name": "Rider 69",
     "cap_number": "69"
   },
   "cap_70": {
     "tid": "46",
     "username": "cap_70",
     "devicename": "phone",
-    "display_name": "Cap 70",
+    "display_name": "Rider 70",
     "cap_number": "70"
   },
   "cap_71": {
     "tid": "47",
     "username": "cap_71",
     "devicename": "phone",
-    "display_name": "Cap 71",
+    "display_name": "Rider 71",
     "cap_number": "71"
   },
   "cap_72": {
     "tid": "48",
     "username": "cap_72",
     "devicename": "phone",
-    "display_name": "Cap 72",
+    "display_name": "Rider 72",
     "cap_number": "72"
   },
   "cap_73": {
     "tid": "49",
     "username": "cap_73",
     "devicename": "phone",
-    "display_name": "Cap 73",
+    "display_name": "Rider 73",
     "cap_number": "73"
   },
   "cap_74": {
     "tid": "4a",
     "username": "cap_74",
     "devicename": "phone",
-    "display_name": "Cap 74",
+    "display_name": "Rider 74",
     "cap_number": "74"
   },
   "cap_75": {
     "tid": "4b",
     "username": "cap_75",
     "devicename": "phone",
-    "display_name": "Cap 75",
+    "display_name": "Rider 75",
     "cap_number": "75"
   },
   "cap_76": {
     "tid": "4c",
     "username": "cap_76",
     "devicename": "phone",
-    "display_name": "Cap 76",
+    "display_name": "Rider 76",
     "cap_number": "76"
   },
   "cap_77": {
     "tid": "4d",
     "username": "cap_77",
     "devicename": "phone",
-    "display_name": "Cap 77",
+    "display_name": "Rider 77",
     "cap_number": "77"
   },
   "cap_78": {
     "tid": "4e",
     "username": "cap_78",
     "devicename": "phone",
-    "display_name": "Cap 78",
+    "display_name": "Rider 78",
     "cap_number": "78"
   },
   "cap_79": {
     "tid": "4f",
     "username": "cap_79",
     "devicename": "phone",
-    "display_name": "Cap 79",
+    "display_name": "Rider 79",
     "cap_number": "79"
   },
   "cap_80": {
     "tid": "50",
     "username": "cap_80",
     "devicename": "phone",
-    "display_name": "Cap 80",
+    "display_name": "Rider 80",
     "cap_number": "80"
   },
   "cap_81": {
     "tid": "51",
     "username": "cap_81",
     "devicename": "phone",
-    "display_name": "Cap 81",
+    "display_name": "Rider 81",
     "cap_number": "81"
   },
   "cap_82": {
     "tid": "52",
     "username": "cap_82",
     "devicename": "phone",
-    "display_name": "Cap 82",
+    "display_name": "Rider 82",
     "cap_number": "82"
   },
   "cap_83": {
     "tid": "53",
     "username": "cap_83",
     "devicename": "phone",
-    "display_name": "Cap 83",
+    "display_name": "Rider 83",
     "cap_number": "83"
   },
   "cap_84": {
     "tid": "54",
     "username": "cap_84",
     "devicename": "phone",
-    "display_name": "Cap 84",
+    "display_name": "Rider 84",
     "cap_number": "84"
   },
   "cap_85": {
     "tid": "55",
     "username": "cap_85",
     "devicename": "phone",
-    "display_name": "Cap 85",
+    "display_name": "Rider 85",
     "cap_number": "85"
   },
   "cap_86": {
     "tid": "56",
     "username": "cap_86",
     "devicename": "phone",
-    "display_name": "Cap 86",
+    "display_name": "Robert K.",
     "cap_number": "86"
   },
   "cap_87": {
     "tid": "57",
     "username": "cap_87",
     "devicename": "phone",
-    "display_name": "Cap 87",
+    "display_name": "Rider 87",
     "cap_number": "87"
   },
   "cap_88": {
     "tid": "58",
     "username": "cap_88",
     "devicename": "phone",
-    "display_name": "Cap 88",
+    "display_name": "Rider 88",
     "cap_number": "88"
   },
   "cap_89": {
     "tid": "59",
     "username": "cap_89",
     "devicename": "phone",
-    "display_name": "Cap 89",
+    "display_name": "Rider 89",
     "cap_number": "89"
   },
   "cap_90": {
     "tid": "5a",
     "username": "cap_90",
     "devicename": "phone",
-    "display_name": "Cap 90",
+    "display_name": "Rider 90",
     "cap_number": "90"
   },
   "cap_91": {
     "tid": "5b",
     "username": "cap_91",
     "devicename": "phone",
-    "display_name": "Cap 91",
+    "display_name": "Rider 91",
     "cap_number": "91"
   },
   "cap_92": {
     "tid": "5c",
     "username": "cap_92",
     "devicename": "phone",
-    "display_name": "Cap 92",
+    "display_name": "Rider 92",
     "cap_number": "92"
   },
   "cap_93": {
     "tid": "5d",
     "username": "cap_93",
     "devicename": "phone",
-    "display_name": "Cap 93",
+    "display_name": "Rider 93",
     "cap_number": "93"
   },
   "cap_94": {
     "tid": "5e",
     "username": "cap_94",
     "devicename": "phone",
-    "display_name": "Cap 94",
+    "display_name": "Rider 94",
     "cap_number": "94"
   },
   "cap_95": {
     "tid": "5f",
     "username": "cap_95",
     "devicename": "phone",
-    "display_name": "Cap 95",
+    "display_name": "Rider 95",
     "cap_number": "95"
   },
   "cap_96": {
     "tid": "60",
     "username": "cap_96",
     "devicename": "phone",
-    "display_name": "Cap 96",
+    "display_name": "Rider 96",
     "cap_number": "96"
   },
   "cap_97": {
     "tid": "61",
     "username": "cap_97",
     "devicename": "phone",
-    "display_name": "Cap 97",
+    "display_name": "Rider 97",
     "cap_number": "97"
   },
   "cap_98": {
     "tid": "62",
     "username": "cap_98",
     "devicename": "phone",
-    "display_name": "Cap 98",
+    "display_name": "Rider 98",
     "cap_number": "98"
   },
   "cap_99": {
     "tid": "63",
     "username": "cap_99",
     "devicename": "phone",
-    "display_name": "Cap 99",
+    "display_name": "Rider 99",
     "cap_number": "99"
   },
   "cap_100": {
     "tid": "64",
     "username": "cap_100",
     "devicename": "phone",
-    "display_name": "Cap 100",
+    "display_name": "Rider 100",
     "cap_number": "100"
   },
   "cap_101": {
     "tid": "65",
     "username": "cap_101",
     "devicename": "phone",
-    "display_name": "Cap 101",
+    "display_name": "Rider 101",
     "cap_number": "101"
   },
   "cap_102": {
     "tid": "66",
     "username": "cap_102",
     "devicename": "phone",
-    "display_name": "Cap 102",
+    "display_name": "Rider 102",
     "cap_number": "102"
   },
   "cap_103": {
     "tid": "67",
     "username": "cap_103",
     "devicename": "phone",
-    "display_name": "Cap 103",
+    "display_name": "Rider 103",
     "cap_number": "103"
   },
   "cap_104": {
     "tid": "68",
     "username": "cap_104",
     "devicename": "phone",
-    "display_name": "Cap 104",
+    "display_name": "Rider 104",
     "cap_number": "104"
   },
   "cap_105": {
     "tid": "69",
     "username": "cap_105",
     "devicename": "phone",
-    "display_name": "Cap 105",
+    "display_name": "Rider 105",
     "cap_number": "105"
   },
   "cap_106": {
     "tid": "6a",
     "username": "cap_106",
     "devicename": "phone",
-    "display_name": "Cap 106",
+    "display_name": "Rider 106",
     "cap_number": "106"
   },
   "cap_107": {
     "tid": "6b",
     "username": "cap_107",
     "devicename": "phone",
-    "display_name": "Cap 107",
+    "display_name": "Rider 107",
     "cap_number": "107"
   },
   "cap_108": {
     "tid": "6c",
     "username": "cap_108",
     "devicename": "phone",
-    "display_name": "Cap 108",
+    "display_name": "Rider 108",
     "cap_number": "108"
   },
   "cap_109": {
     "tid": "6d",
     "username": "cap_109",
     "devicename": "phone",
-    "display_name": "Cap 109",
+    "display_name": "Rider 109",
     "cap_number": "109"
   },
   "cap_110": {
     "tid": "6e",
     "username": "cap_110",
     "devicename": "phone",
-    "display_name": "Cap 110",
+    "display_name": "Rider 110",
     "cap_number": "110"
   },
   "cap_111": {
     "tid": "6f",
     "username": "cap_111",
     "devicename": "phone",
-    "display_name": "Cap 111",
+    "display_name": "Rider 111",
     "cap_number": "111"
   },
   "cap_112": {
     "tid": "70",
     "username": "cap_112",
     "devicename": "phone",
-    "display_name": "Cap 112",
+    "display_name": "Rider 112",
     "cap_number": "112"
   },
   "cap_113": {
     "tid": "71",
     "username": "cap_113",
     "devicename": "phone",
-    "display_name": "Cap 113",
+    "display_name": "Rider 113",
     "cap_number": "113"
   },
   "cap_114": {
     "tid": "72",
     "username": "cap_114",
     "devicename": "phone",
-    "display_name": "Cap 114",
+    "display_name": "Rider 114",
     "cap_number": "114"
   },
   "cap_115": {
     "tid": "73",
     "username": "cap_115",
     "devicename": "phone",
-    "display_name": "Cap 115",
+    "display_name": "Rider 115",
     "cap_number": "115"
   },
   "cap_116": {
     "tid": "74",
     "username": "cap_116",
     "devicename": "phone",
-    "display_name": "Cap 116",
+    "display_name": "Rider 116",
     "cap_number": "116"
   },
   "cap_117": {
     "tid": "75",
     "username": "cap_117",
     "devicename": "phone",
-    "display_name": "Cap 117",
+    "display_name": "Rider 117",
     "cap_number": "117"
   },
   "cap_118": {
     "tid": "76",
     "username": "cap_118",
     "devicename": "phone",
-    "display_name": "Cap 118",
+    "display_name": "Rider 118",
     "cap_number": "118"
   },
   "cap_119": {
     "tid": "77",
     "username": "cap_119",
     "devicename": "phone",
-    "display_name": "Cap 119",
+    "display_name": "Rider 119",
     "cap_number": "119"
   },
   "cap_120": {
     "tid": "78",
     "username": "cap_120",
     "devicename": "phone",
-    "display_name": "Cap 120",
+    "display_name": "Rider 120",
     "cap_number": "120"
   },
   "cap_121": {
     "tid": "79",
     "username": "cap_121",
     "devicename": "phone",
-    "display_name": "Cap 121",
+    "display_name": "Rider 121",
     "cap_number": "121"
   },
   "cap_122": {
     "tid": "7a",
     "username": "cap_122",
     "devicename": "phone",
-    "display_name": "Cap 122",
+    "display_name": "Rider 122",
     "cap_number": "122"
   },
   "cap_123": {
     "tid": "7b",
     "username": "cap_123",
     "devicename": "phone",
-    "display_name": "Cap 123",
+    "display_name": "Rider 123",
     "cap_number": "123"
   },
   "cap_124": {
     "tid": "7c",
     "username": "cap_124",
     "devicename": "phone",
-    "display_name": "Cap 124",
+    "display_name": "Rider 124",
     "cap_number": "124"
   },
   "cap_125": {
     "tid": "7d",
     "username": "cap_125",
     "devicename": "phone",
-    "display_name": "Cap 125",
+    "display_name": "Rider 125",
     "cap_number": "125"
   },
   "cap_126": {
     "tid": "7e",
     "username": "cap_126",
     "devicename": "phone",
-    "display_name": "Cap 126",
+    "display_name": "Patrick",
     "cap_number": "126"
   },
   "cap_127": {
     "tid": "7f",
     "username": "cap_127",
     "devicename": "phone",
-    "display_name": "Cap 127",
+    "display_name": "Rider 127",
     "cap_number": "127"
   },
   "cap_128": {
     "tid": "80",
     "username": "cap_128",
     "devicename": "phone",
-    "display_name": "Cap 128",
+    "display_name": "Rider 128",
     "cap_number": "128"
   },
   "cap_129": {
     "tid": "81",
     "username": "cap_129",
     "devicename": "phone",
-    "display_name": "Cap 129",
+    "display_name": "Rider 129",
     "cap_number": "129"
   },
   "cap_130": {
     "tid": "82",
     "username": "cap_130",
     "devicename": "phone",
-    "display_name": "Cap 130",
+    "display_name": "Rider 130",
     "cap_number": "130"
   },
   "cap_131": {
     "tid": "83",
     "username": "cap_131",
     "devicename": "phone",
-    "display_name": "Cap 131",
+    "display_name": "Rider 131",
     "cap_number": "131"
   },
   "cap_132": {
     "tid": "84",
     "username": "cap_132",
     "devicename": "phone",
-    "display_name": "Cap 132",
+    "display_name": "Rider 132",
     "cap_number": "132"
   },
   "cap_133": {
     "tid": "85",
     "username": "cap_133",
     "devicename": "phone",
-    "display_name": "Cap 133",
+    "display_name": "Rider 133",
     "cap_number": "133"
   },
   "cap_134": {
     "tid": "86",
     "username": "cap_134",
     "devicename": "phone",
-    "display_name": "Cap 134",
+    "display_name": "Rider 134",
     "cap_number": "134"
   },
   "cap_135": {
     "tid": "87",
     "username": "cap_135",
     "devicename": "phone",
-    "display_name": "Cap 135",
+    "display_name": "Rider 135",
     "cap_number": "135"
   },
   "cap_136": {
     "tid": "88",
     "username": "cap_136",
     "devicename": "phone",
-    "display_name": "Cap 136",
+    "display_name": "Rider 136",
     "cap_number": "136"
   },
   "cap_137": {
     "tid": "89",
     "username": "cap_137",
     "devicename": "phone",
-    "display_name": "Cap 137",
+    "display_name": "Rider 137",
     "cap_number": "137"
   },
   "cap_138": {
     "tid": "8a",
     "username": "cap_138",
     "devicename": "phone",
-    "display_name": "Cap 138",
+    "display_name": "Rider 138",
     "cap_number": "138"
   },
   "cap_139": {
     "tid": "8b",
     "username": "cap_139",
     "devicename": "phone",
-    "display_name": "Cap 139",
+    "display_name": "Rider 139",
     "cap_number": "139"
   },
   "cap_140": {
     "tid": "8c",
     "username": "cap_140",
     "devicename": "phone",
-    "display_name": "Cap 140",
+    "display_name": "Rider 140",
     "cap_number": "140"
   },
   "cap_141": {
     "tid": "8d",
     "username": "cap_141",
     "devicename": "phone",
-    "display_name": "Cap 141",
+    "display_name": "Rider 141",
     "cap_number": "141"
   },
   "cap_142": {
     "tid": "8e",
     "username": "cap_142",
     "devicename": "phone",
-    "display_name": "Cap 142",
+    "display_name": "Rider 142",
     "cap_number": "142"
   },
   "cap_143": {
     "tid": "8f",
     "username": "cap_143",
     "devicename": "phone",
-    "display_name": "Cap 143",
+    "display_name": "Rider 143",
     "cap_number": "143"
   },
   "cap_144": {
     "tid": "90",
     "username": "cap_144",
     "devicename": "phone",
-    "display_name": "Cap 144",
+    "display_name": "Rider 144",
     "cap_number": "144"
   },
   "cap_145": {
     "tid": "91",
     "username": "cap_145",
     "devicename": "phone",
-    "display_name": "Cap 145",
+    "display_name": "Rider 145",
     "cap_number": "145"
   },
   "cap_146": {
     "tid": "92",
     "username": "cap_146",
     "devicename": "phone",
-    "display_name": "Cap 146",
+    "display_name": "Rider 146",
     "cap_number": "146"
   },
   "cap_147": {
     "tid": "93",
     "username": "cap_147",
     "devicename": "phone",
-    "display_name": "Cap 147",
+    "display_name": "Rider 147",
     "cap_number": "147"
   },
   "cap_148": {
     "tid": "94",
     "username": "cap_148",
     "devicename": "phone",
-    "display_name": "Cap 148",
+    "display_name": "Rider 148",
     "cap_number": "148"
   },
   "cap_149": {
     "tid": "95",
     "username": "cap_149",
     "devicename": "phone",
-    "display_name": "Cap 149",
+    "display_name": "Rider 149",
     "cap_number": "149"
   },
   "cap_150": {
     "tid": "96",
     "username": "cap_150",
     "devicename": "phone",
-    "display_name": "Cap 150",
+    "display_name": "Rider 150",
     "cap_number": "150"
   },
   "cap_151": {
     "tid": "97",
     "username": "cap_151",
     "devicename": "phone",
-    "display_name": "Cap 151",
+    "display_name": "Rider 151",
     "cap_number": "151"
   },
   "cap_152": {
     "tid": "98",
     "username": "cap_152",
     "devicename": "phone",
-    "display_name": "Cap 152",
+    "display_name": "Rider 152",
     "cap_number": "152"
   },
   "cap_153": {
     "tid": "99",
     "username": "cap_153",
     "devicename": "phone",
-    "display_name": "Cap 153",
+    "display_name": "Rider 153",
     "cap_number": "153"
   },
   "cap_154": {
     "tid": "9a",
     "username": "cap_154",
     "devicename": "phone",
-    "display_name": "Cap 154",
+    "display_name": "Rider 154",
     "cap_number": "154"
   },
   "cap_155": {
     "tid": "9b",
     "username": "cap_155",
     "devicename": "phone",
-    "display_name": "Cap 155",
+    "display_name": "Rider 155",
     "cap_number": "155"
   },
   "cap_156": {
     "tid": "9c",
     "username": "cap_156",
     "devicename": "phone",
-    "display_name": "Cap 156",
+    "display_name": "Rider 156",
     "cap_number": "156"
   },
   "cap_157": {
     "tid": "9d",
     "username": "cap_157",
     "devicename": "phone",
-    "display_name": "Cap 157",
+    "display_name": "Rider 157",
     "cap_number": "157"
   },
   "cap_158": {
     "tid": "9e",
     "username": "cap_158",
     "devicename": "phone",
-    "display_name": "Cap 158",
+    "display_name": "Rider 158",
     "cap_number": "158"
   },
   "cap_159": {
     "tid": "9f",
     "username": "cap_159",
     "devicename": "phone",
-    "display_name": "Cap 159",
+    "display_name": "Rider 159",
     "cap_number": "159"
   },
   "cap_160": {
     "tid": "a0",
     "username": "cap_160",
     "devicename": "phone",
-    "display_name": "Cap 160",
+    "display_name": "Rider 160",
     "cap_number": "160"
   },
   "cap_161": {
     "tid": "a1",
     "username": "cap_161",
     "devicename": "phone",
-    "display_name": "Cap 161",
+    "display_name": "Rider 161",
     "cap_number": "161"
   },
   "cap_162": {
     "tid": "a2",
     "username": "cap_162",
     "devicename": "phone",
-    "display_name": "Cap 162",
+    "display_name": "Rider 162",
     "cap_number": "162"
   },
   "cap_163": {
     "tid": "a3",
     "username": "cap_163",
     "devicename": "phone",
-    "display_name": "Cap 163",
+    "display_name": "Rider 163",
     "cap_number": "163"
   },
   "cap_164": {
     "tid": "a4",
     "username": "cap_164",
     "devicename": "phone",
-    "display_name": "Cap 164",
+    "display_name": "Rider 164",
     "cap_number": "164"
   },
   "cap_165": {
     "tid": "a5",
     "username": "cap_165",
     "devicename": "phone",
-    "display_name": "Cap 165",
+    "display_name": "Rider 165",
     "cap_number": "165"
   },
   "cap_166": {
     "tid": "a6",
     "username": "cap_166",
     "devicename": "phone",
-    "display_name": "Cap 166",
+    "display_name": "Rider 166",
     "cap_number": "166"
   },
   "cap_167": {
     "tid": "a7",
     "username": "cap_167",
     "devicename": "phone",
-    "display_name": "Cap 167",
+    "display_name": "Rider 167",
     "cap_number": "167"
   },
   "cap_168": {
     "tid": "a8",
     "username": "cap_168",
     "devicename": "phone",
-    "display_name": "Cap 168",
+    "display_name": "Rider 168",
     "cap_number": "168"
   },
   "cap_169": {
     "tid": "a9",
     "username": "cap_169",
     "devicename": "phone",
-    "display_name": "Cap 169",
+    "display_name": "Rider 169",
     "cap_number": "169"
   },
   "cap_170": {
     "tid": "aa",
     "username": "cap_170",
     "devicename": "phone",
-    "display_name": "Cap 170",
+    "display_name": "Rider 170",
     "cap_number": "170"
   },
   "cap_171": {
     "tid": "ab",
     "username": "cap_171",
     "devicename": "phone",
-    "display_name": "Cap 171",
+    "display_name": "Rider 171",
     "cap_number": "171"
   },
   "cap_172": {
     "tid": "ac",
     "username": "cap_172",
     "devicename": "phone",
-    "display_name": "Cap 172",
+    "display_name": "Rider 172",
     "cap_number": "172"
   },
   "cap_173": {
     "tid": "ad",
     "username": "cap_173",
     "devicename": "phone",
-    "display_name": "Cap 173",
+    "display_name": "Rider 173",
     "cap_number": "173"
   },
   "cap_174": {
     "tid": "ae",
     "username": "cap_174",
     "devicename": "phone",
-    "display_name": "Cap 174",
+    "display_name": "Rider 174",
     "cap_number": "174"
   },
   "cap_175": {
     "tid": "af",
     "username": "cap_175",
     "devicename": "phone",
-    "display_name": "Cap 175",
+    "display_name": "Rider 175",
     "cap_number": "175"
   },
   "cap_176": {
     "tid": "b0",
     "username": "cap_176",
     "devicename": "phone",
-    "display_name": "Cap 176",
+    "display_name": "Rider 176",
     "cap_number": "176"
   },
   "cap_177": {
     "tid": "b1",
     "username": "cap_177",
     "devicename": "phone",
-    "display_name": "Cap 177",
+    "display_name": "Rider 177",
     "cap_number": "177"
   },
   "cap_178": {
     "tid": "b2",
     "username": "cap_178",
     "devicename": "phone",
-    "display_name": "Cap 178",
+    "display_name": "Rider 178",
     "cap_number": "178"
   },
   "cap_179": {
     "tid": "b3",
     "username": "cap_179",
     "devicename": "phone",
-    "display_name": "Cap 179",
+    "display_name": "Rider 179",
     "cap_number": "179"
   },
   "cap_180": {
     "tid": "b4",
     "username": "cap_180",
     "devicename": "phone",
-    "display_name": "Cap 180",
+    "display_name": "Rider 180",
     "cap_number": "180"
   },
   "cap_181": {
     "tid": "b5",
     "username": "cap_181",
     "devicename": "phone",
-    "display_name": "Cap 181",
+    "display_name": "Rider 181",
     "cap_number": "181"
   },
   "cap_182": {
     "tid": "b6",
     "username": "cap_182",
     "devicename": "phone",
-    "display_name": "Cap 182",
+    "display_name": "Rider 182",
     "cap_number": "182"
   },
   "cap_183": {
     "tid": "b7",
     "username": "cap_183",
     "devicename": "phone",
-    "display_name": "Cap 183",
+    "display_name": "Rider 183",
     "cap_number": "183"
   },
   "cap_184": {
     "tid": "b8",
     "username": "cap_184",
     "devicename": "phone",
-    "display_name": "Cap 184",
+    "display_name": "Rider 184",
     "cap_number": "184"
   },
   "cap_185": {
     "tid": "b9",
     "username": "cap_185",
     "devicename": "phone",
-    "display_name": "Cap 185",
+    "display_name": "Rider 185",
     "cap_number": "185"
   },
   "cap_186": {
     "tid": "ba",
     "username": "cap_186",
     "devicename": "phone",
-    "display_name": "Cap 186",
+    "display_name": "Rider 186",
     "cap_number": "186"
   },
   "cap_187": {
     "tid": "bb",
     "username": "cap_187",
     "devicename": "phone",
-    "display_name": "Cap 187",
+    "display_name": "Rider 187",
     "cap_number": "187"
   },
   "cap_188": {
     "tid": "bc",
     "username": "cap_188",
     "devicename": "phone",
-    "display_name": "Cap 188",
+    "display_name": "Rider 188",
     "cap_number": "188"
   },
   "cap_189": {
     "tid": "bd",
     "username": "cap_189",
     "devicename": "phone",
-    "display_name": "Cap 189",
+    "display_name": "Martin F.",
     "cap_number": "189"
   },
   "cap_190": {
     "tid": "be",
     "username": "cap_190",
     "devicename": "phone",
-    "display_name": "Cap 190",
+    "display_name": "Rider 190",
     "cap_number": "190"
   },
   "cap_191": {
     "tid": "bf",
     "username": "cap_191",
     "devicename": "phone",
-    "display_name": "Cap 191",
+    "display_name": "Rider 191",
     "cap_number": "191"
   },
   "cap_192": {
     "tid": "c0",
     "username": "cap_192",
     "devicename": "phone",
-    "display_name": "Cap 192",
+    "display_name": "Rider 192",
     "cap_number": "192"
   },
   "cap_193": {
     "tid": "c1",
     "username": "cap_193",
     "devicename": "phone",
-    "display_name": "Cap 193",
+    "display_name": "Rider 193",
     "cap_number": "193"
   },
   "cap_194": {
     "tid": "c2",
     "username": "cap_194",
     "devicename": "phone",
-    "display_name": "Cap 194",
+    "display_name": "Rider 194",
     "cap_number": "194"
   },
   "cap_195": {
     "tid": "c3",
     "username": "cap_195",
     "devicename": "phone",
-    "display_name": "Cap 195",
+    "display_name": "Sandra",
     "cap_number": "195"
   },
   "cap_196": {
     "tid": "c4",
     "username": "cap_196",
     "devicename": "phone",
-    "display_name": "Cap 196",
+    "display_name": "Rider 196",
     "cap_number": "196"
   },
   "cap_197": {
     "tid": "c5",
     "username": "cap_197",
     "devicename": "phone",
-    "display_name": "Cap 197",
+    "display_name": "Rider 197",
     "cap_number": "197"
   },
   "cap_198": {
     "tid": "c6",
     "username": "cap_198",
     "devicename": "phone",
-    "display_name": "Cap 198",
+    "display_name": "Rider 198",
     "cap_number": "198"
   },
   "cap_199": {
     "tid": "c7",
     "username": "cap_199",
     "devicename": "phone",
-    "display_name": "Cap 199",
+    "display_name": "Rider 199",
     "cap_number": "199"
   },
   "cap_200a": {
     "tid": "c8",
     "username": "cap_200a",
     "devicename": "phone",
-    "display_name": "Cap 200a",
+    "display_name": "Rider 200a",
     "cap_number": "200a"
   },
   "cap_200b": {
     "tid": "c9",
     "username": "cap_200b",
     "devicename": "phone",
-    "display_name": "Cap 200b",
+    "display_name": "Rider 200b",
     "cap_number": "200b"
   },
   "cap_201a": {
     "tid": "ca",
     "username": "cap_201a",
     "devicename": "phone",
-    "display_name": "Cap 201a",
+    "display_name": "Rider 201a",
     "cap_number": "201a"
   },
   "cap_201b": {
     "tid": "cb",
     "username": "cap_201b",
     "devicename": "phone",
-    "display_name": "Cap 201b",
+    "display_name": "Rider 201b",
     "cap_number": "201b"
   },
   "cap_202a": {
     "tid": "cc",
     "username": "cap_202a",
     "devicename": "phone",
-    "display_name": "Cap 202a",
+    "display_name": "Rider 202a",
     "cap_number": "202a"
   },
   "cap_202b": {
     "tid": "cd",
     "username": "cap_202b",
     "devicename": "phone",
-    "display_name": "Cap 202b",
+    "display_name": "Rider 202b",
     "cap_number": "202b"
   },
   "cap_203a": {
     "tid": "ce",
     "username": "cap_203a",
     "devicename": "phone",
-    "display_name": "Cap 203a",
+    "display_name": "Rider 203a",
     "cap_number": "203a"
   },
   "cap_203b": {
     "tid": "cf",
     "username": "cap_203b",
     "devicename": "phone",
-    "display_name": "Cap 203b",
+    "display_name": "Rider 203b",
     "cap_number": "203b"
   },
   "cap_204a": {
     "tid": "d0",
     "username": "cap_204a",
     "devicename": "phone",
-    "display_name": "Cap 204a",
+    "display_name": "Rider 204a",
     "cap_number": "204a"
   },
   "cap_204b": {
     "tid": "d1",
     "username": "cap_204b",
     "devicename": "phone",
-    "display_name": "Cap 204b",
+    "display_name": "Rider 204b",
     "cap_number": "204b"
   },
   "cap_205a": {
     "tid": "d2",
     "username": "cap_205a",
     "devicename": "phone",
-    "display_name": "Cap 205a",
+    "display_name": "Rider 205a",
     "cap_number": "205a"
   },
   "cap_205b": {
     "tid": "d3",
     "username": "cap_205b",
     "devicename": "phone",
-    "display_name": "Cap 205b",
+    "display_name": "Rider 205b",
     "cap_number": "205b"
   },
   "cap_206a": {
     "tid": "d4",
     "username": "cap_206a",
     "devicename": "phone",
-    "display_name": "Cap 206a",
+    "display_name": "Rider 206a",
     "cap_number": "206a"
   },
   "cap_206b": {
     "tid": "d5",
     "username": "cap_206b",
     "devicename": "phone",
-    "display_name": "Cap 206b",
+    "display_name": "Rider 206b",
     "cap_number": "206b"
   },
   "cap_207a": {
     "tid": "d6",
     "username": "cap_207a",
     "devicename": "phone",
-    "display_name": "Cap 207a",
+    "display_name": "Rider 207a",
     "cap_number": "207a"
   },
   "cap_207b": {
     "tid": "d7",
     "username": "cap_207b",
     "devicename": "phone",
-    "display_name": "Cap 207b",
+    "display_name": "Rider 207b",
     "cap_number": "207b"
   },
   "cap_208a": {
     "tid": "d8",
     "username": "cap_208a",
     "devicename": "phone",
-    "display_name": "Cap 208a",
+    "display_name": "Rider 208a",
     "cap_number": "208a"
   },
   "cap_208b": {
     "tid": "d9",
     "username": "cap_208b",
     "devicename": "phone",
-    "display_name": "Cap 208b",
+    "display_name": "Rider 208b",
     "cap_number": "208b"
   },
   "cap_209a": {
     "tid": "da",
     "username": "cap_209a",
     "devicename": "phone",
-    "display_name": "Cap 209a",
+    "display_name": "Rider 209a",
     "cap_number": "209a"
   },
   "cap_209b": {
     "tid": "db",
     "username": "cap_209b",
     "devicename": "phone",
-    "display_name": "Cap 209b",
+    "display_name": "Rider 209b",
     "cap_number": "209b"
   },
   "cap_210a": {
     "tid": "dc",
     "username": "cap_210a",
     "devicename": "phone",
-    "display_name": "Cap 210a",
+    "display_name": "Rider 210a",
     "cap_number": "210a"
   },
   "cap_210b": {
     "tid": "dd",
     "username": "cap_210b",
     "devicename": "phone",
-    "display_name": "Cap 210b",
+    "display_name": "Rider 210b",
     "cap_number": "210b"
   },
   "cap_211a": {
     "tid": "de",
     "username": "cap_211a",
     "devicename": "phone",
-    "display_name": "Cap 211a",
+    "display_name": "Rider 211a",
     "cap_number": "211a"
   },
   "cap_211b": {
     "tid": "df",
     "username": "cap_211b",
     "devicename": "phone",
-    "display_name": "Cap 211b",
+    "display_name": "Rider 211b",
     "cap_number": "211b"
   },
   "cap_212a": {
     "tid": "e0",
     "username": "cap_212a",
     "devicename": "phone",
-    "display_name": "Cap 212a",
+    "display_name": "Rider 212a",
     "cap_number": "212a"
   },
   "cap_212b": {
     "tid": "e1",
     "username": "cap_212b",
     "devicename": "phone",
-    "display_name": "Cap 212b",
+    "display_name": "Rider 212b",
     "cap_number": "212b"
   },
   "cap_213a": {
     "tid": "e2",
     "username": "cap_213a",
     "devicename": "phone",
-    "display_name": "Cap 213a",
+    "display_name": "Rider 213a",
     "cap_number": "213a"
   },
   "cap_213b": {
     "tid": "e3",
     "username": "cap_213b",
     "devicename": "phone",
-    "display_name": "Cap 213b",
+    "display_name": "Rider 213b",
     "cap_number": "213b"
   },
   "cap_214a": {
     "tid": "e4",
     "username": "cap_214a",
     "devicename": "phone",
-    "display_name": "Cap 214a",
+    "display_name": "Rider 214a",
     "cap_number": "214a"
   },
   "cap_214b": {
     "tid": "e5",
     "username": "cap_214b",
     "devicename": "phone",
-    "display_name": "Cap 214b",
+    "display_name": "Rider 214b",
     "cap_number": "214b"
   },
   "cap_215a": {
     "tid": "e6",
     "username": "cap_215a",
     "devicename": "phone",
-    "display_name": "Cap 215a",
+    "display_name": "Rider 215a",
     "cap_number": "215a"
   },
   "cap_215b": {
     "tid": "e7",
     "username": "cap_215b",
     "devicename": "phone",
-    "display_name": "Cap 215b",
+    "display_name": "Rider 215b",
     "cap_number": "215b"
   },
   "cap_216a": {
     "tid": "e8",
     "username": "cap_216a",
     "devicename": "phone",
-    "display_name": "Cap 216a",
+    "display_name": "Rider 216a",
     "cap_number": "216a"
   },
   "cap_216b": {
     "tid": "e9",
     "username": "cap_216b",
     "devicename": "phone",
-    "display_name": "Cap 216b",
+    "display_name": "Rider 216b",
     "cap_number": "216b"
   },
   "cap_217a": {
     "tid": "ea",
     "username": "cap_217a",
     "devicename": "phone",
-    "display_name": "Cap 217a",
+    "display_name": "Rider 217a",
     "cap_number": "217a"
   },
   "cap_217b": {
     "tid": "eb",
     "username": "cap_217b",
     "devicename": "phone",
-    "display_name": "Cap 217b",
+    "display_name": "Rider 217b",
     "cap_number": "217b"
   },
   "cap_218a": {
     "tid": "ec",
     "username": "cap_218a",
     "devicename": "phone",
-    "display_name": "Cap 218a",
+    "display_name": "Rider 218a",
     "cap_number": "218a"
   },
   "cap_218b": {
     "tid": "ed",
     "username": "cap_218b",
     "devicename": "phone",
-    "display_name": "Cap 218b",
+    "display_name": "Rider 218b",
     "cap_number": "218b"
   },
   "cap_219a": {
     "tid": "ee",
     "username": "cap_219a",
     "devicename": "phone",
-    "display_name": "Cap 219a",
+    "display_name": "Rider 219a",
     "cap_number": "219a"
   },
   "cap_219b": {
     "tid": "ef",
     "username": "cap_219b",
     "devicename": "phone",
-    "display_name": "Cap 219b",
+    "display_name": "Rider 219b",
     "cap_number": "219b"
   },
   "cap_220a": {
     "tid": "f0",
     "username": "cap_220a",
     "devicename": "phone",
-    "display_name": "Cap 220a",
+    "display_name": "Rider 220a",
     "cap_number": "220a"
   },
   "cap_220b": {
     "tid": "f1",
     "username": "cap_220b",
     "devicename": "phone",
-    "display_name": "Cap 220b",
+    "display_name": "Rider 220b",
     "cap_number": "220b"
   },
   "cap_221a": {
     "tid": "f2",
     "username": "cap_221a",
     "devicename": "phone",
-    "display_name": "Cap 221a",
+    "display_name": "Rider 221a",
     "cap_number": "221a"
   },
   "cap_221b": {
     "tid": "f3",
     "username": "cap_221b",
     "devicename": "phone",
-    "display_name": "Cap 221b",
+    "display_name": "Rider 221b",
     "cap_number": "221b"
   },
   "cap_222a": {
     "tid": "f4",
     "username": "cap_222a",
     "devicename": "phone",
-    "display_name": "Cap 222a",
+    "display_name": "Rider 222a",
     "cap_number": "222a"
   },
   "cap_222b": {
     "tid": "f5",
     "username": "cap_222b",
     "devicename": "phone",
-    "display_name": "Cap 222b",
+    "display_name": "Rider 222b",
     "cap_number": "222b"
   },
   "cap_223a": {
     "tid": "f6",
     "username": "cap_223a",
     "devicename": "phone",
-    "display_name": "Cap 223a",
+    "display_name": "Rider 223a",
     "cap_number": "223a"
   },
   "cap_223b": {
     "tid": "f7",
     "username": "cap_223b",
     "devicename": "phone",
-    "display_name": "Cap 223b",
+    "display_name": "Rider 223b",
     "cap_number": "223b"
   },
   "cap_224a": {
     "tid": "f8",
     "username": "cap_224a",
     "devicename": "phone",
-    "display_name": "Cap 224a",
+    "display_name": "Rider 224a",
     "cap_number": "224a"
   },
   "cap_224b": {
     "tid": "f9",
     "username": "cap_224b",
     "devicename": "phone",
-    "display_name": "Cap 224b",
+    "display_name": "Rider 224b",
     "cap_number": "224b"
   },
   "cap_225a": {
     "tid": "fa",
     "username": "cap_225a",
     "devicename": "phone",
-    "display_name": "Cap 225a",
+    "display_name": "Rider 225a",
     "cap_number": "225a"
   },
   "cap_225b": {
     "tid": "fb",
     "username": "cap_225b",
     "devicename": "phone",
-    "display_name": "Cap 225b",
+    "display_name": "Rider 225b",
     "cap_number": "225b"
   },
   "cap_226a": {
     "tid": "fc",
     "username": "cap_226a",
     "devicename": "phone",
-    "display_name": "Cap 226a",
+    "display_name": "Rider 226a",
     "cap_number": "226a"
   },
   "cap_226b": {
     "tid": "fd",
     "username": "cap_226b",
     "devicename": "phone",
-    "display_name": "Cap 226b",
+    "display_name": "Rider 226b",
     "cap_number": "226b"
   },
   "cap_227a": {
     "tid": "fe",
     "username": "cap_227a",
     "devicename": "phone",
-    "display_name": "Cap 227a",
+    "display_name": "Rider 227a",
     "cap_number": "227a"
   },
   "cap_227b": {
     "tid": "ff",
     "username": "cap_227b",
     "devicename": "phone",
-    "display_name": "Cap 227b",
+    "display_name": "Rider 227b",
     "cap_number": "227b"
   }
 }
