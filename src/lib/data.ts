@@ -235,15 +235,6 @@ const shardanaCategories: { [key: string]: ResourceCategory } = {
 
 export const Resources: Resource[] = [
   {
-    name: "Shardana",
-    id: "shardana",
-    icon: "shardana.svg",
-    color: [82, 38, 98],
-    minDistance: 500,
-    maxDistance: 5000,
-    categories: shardanaCategories,
-  },
-  {
     name: "Water",
     id: "water",
     icon: Droplet,
