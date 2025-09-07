@@ -11,16 +11,14 @@ import {
   $trackStore,
   resourceViewStore,
   $poiStore,
-  $displayRiders,
-  $riderStore,
-  $focusRider,
+
   favoritesStore,
   $isTracking,
   $location,
 } from "@/stores";
 import { useStore } from "@nanostores/react";
 import { type LineString } from "geojson";
-import type { PointOfInterest, Rider } from "@/types";
+import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
 import { MainControls } from "@/components/react/MainControlsBar/MainControls";
 import { PoiTooltip } from "@/components/react/MapView/PoiTooltip";
@@ -28,8 +26,6 @@ import ClusterIconLayer from "@/components/react/MapView/layers/IconClusterLayer
 import type { MapViewState } from "@deck.gl/core";
 import { WebMercatorViewport, FlyToInterpolator } from "@deck.gl/core";
 import TextWithBackgroundLayer from "@/components/react/MapView/layers/TextWithBackgroundLayer";
-import { RiderTooltip } from "./RiderTooltip";
-import { getRiderColor } from "@/lib/utils";
 import GeoLocateButton from "./GeoLocateButton";
 
 const MapView = () => {
@@ -38,9 +34,6 @@ const MapView = () => {
   const { data: track, loading: trackLoading } = useStore($trackStore);
   const resourceView = useStore(resourceViewStore);
   const { data: pois, loading: poisLoading } = useStore($poiStore);
-  const { data: riders, loading: ridersLoading } = useStore($riderStore);
-  const displayRiders = useStore($displayRiders);
-  const focusRider = useStore($focusRider);
   const favorites = useStore(favoritesStore);
   const isTracking = useStore($isTracking);
   const location = useStore($location);
@@ -126,17 +119,7 @@ const MapView = () => {
     }
   }, [track?.linestring]);
 
-  useEffect(() => {
-    focusRider &&
-      setViewState((prev: MapViewState) => ({
-        longitude: focusRider?.lon,
-        latitude: focusRider?.lat,
-        zoom: 15, // Adjust this value as needed for your specific use case
-        transitionDuration: 1000, // Optional: animate the transition
-        transitionInterpolator: new FlyToInterpolator(),
-      }));
-  }, [focusRider]);
-
+  
   useEffect(() => {
     if (simpleTrackData) {
       const buffers: ResourceArea[] = [];
@@ -257,37 +240,6 @@ const MapView = () => {
           minZoom: 0,
           maxZoom: 16,
         }),
-      displayRiders &&
-        riders &&
-        new TextWithBackgroundLayer({
-          id: "riders",
-          data: riders,
-          getPosition: (d: Rider) => [d.lon, d.lat],
-          getText: (d: Rider) =>
-            d.cap_number !== "-" ? d.cap_number : d.display_name.charAt(0),
-          getBackgroundRadius: 16,
-          getSize: (d: Rider) => (d.cap_number !== "-" ? 15 :20),
-          getBackgroundColor: (d: Rider) => getRiderColor(d.username || ""),
-          sizeUnits: "pixels",
-          getTextAnchor: "middle",
-          getAlignmentBaseline: "center",
-          getPixelOffset: [0,1],
-        }),
-      isTracking &&
-        location &&
-        new ScatterplotLayer({
-          id: "user-location",
-          data: [location],
-          getPosition: (d) => [d.longitude, d.latitude],
-          getRadius: 5,
-          radiusUnits: "pixels",
-          stroked: true,
-          lineWidthUnits: "pixels",
-          getLineWidth: 2,
-          getFillColor: [0, 166, 244],
-          getLineColor: [255, 255, 255],
-          pickable: false,
-        }),
     ],
     [
       track,
@@ -296,9 +248,6 @@ const MapView = () => {
       pois,
       resourceView,
       favorites,
-      riders,
-      displayRiders,
-      isTracking,
       location,
     ],
   );
@@ -360,13 +309,7 @@ const MapView = () => {
             onClose={() => setPoiInfo(null)}
           />
         )}
-        {poiInfo?.object && poiInfo.object["type"] === "rider" && (
-          <RiderTooltip
-            rider={poiInfo.object as Rider}
-            viewport={poiInfo.viewport}
-            onClose={() => setPoiInfo(null)}
-          />
-        )}
+        
       </DeckGL>
       <MainControls />
       <GeoLocateButton />

@@ -6,20 +6,13 @@ import type { ResourceView, Rider } from "@/types";
 import { handleResourceChange } from "@/components/react/MainControlsBar/utils/handleResourceChange";
 import { POISelectorContainer } from "../POISelectorContainer";
 import {
-  $displayRiders,
-  $riderStore,
-  $focusRider,
   $mobileResourceIndex,
 } from "@/stores";
-import { IconSwitch } from "@/components/ui/IconSwitch";
-import { Label } from "@/components/ui/label";
-import { getRiderLastSeen, getRiderColor } from "@/lib/utils";
-import { TrackSelector } from "./TrackSelector";
+
 
 function TrackSelectContainer() {
   return (
     <div className="space-y-2">
-      <TrackSelector />
       <p className="text text-sm text-primary/60">
         Welcome to our little sideproject!
         <br />
@@ -59,62 +52,6 @@ function ResourceContainer({ resource }: { resource: ResourceView }) {
       </div>
       <div className="ml-4 h-full overflow-y-auto py-1">
         <POISelectorContainer resource={resource} />
-      </div>
-    </div>
-  );
-}
-
-function RidersContainer() {
-  const displayRiders = useStore($displayRiders);
-  const { data: riders, loading: ridersLoading } = useStore($riderStore);
-
-  const handleOnCheckedChange = (checked: boolean) => {
-    $displayRiders.set(checked);
-  };
-
-  return (
-    <div className="flex flex-col w-full h-full space-y-2">
-      <div className="w-full items-center space-x-2 p-2 rounded-md hover:bg-white/50 transition-colors">
-        <IconSwitch
-          checked={Boolean(riders && displayRiders)}
-          onChange={handleOnCheckedChange}
-          icon={Bike}
-          color={[82, 38, 98]}
-        />
-        <Label className="text-base">Show Riders</Label>
-      </div>
-      <div className="max-h-full overflow-y-scroll rounded-lg">
-        {riders && (
-          <div className="space-y-2">
-            {Object.values(riders).map((rider: Rider) => (
-              <div
-                key={rider.tid}
-                className="flex justify-between items-center p-2 rounded-xl bg-white/50"
-              >
-                <div className="flex items-center space-x-2">
-                  <button
-                    onClick={() => $focusRider.set(rider)}
-                    className="w-10 h-10 rounded-full flex items-center justify-center hover:border-white/20 border"
-                    style={{
-                      backgroundColor: `rgb(${getRiderColor(rider.username).join(",")})`,
-                    }}
-                  >
-                    <span className="font-xs text-white">{rider.cap_number !== "-" ? rider.cap_number : rider.display_name.charAt(0)}</span>
-                  </button>
-                  <span>{rider.display_name}</span>
-                </div>
-                <span className="text-sm text-primary/60">
-                  {getRiderLastSeen(rider)}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-        {!riders && (
-          <div className="flex justify-center">
-            <span>Tracking not available!</span>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -182,13 +119,7 @@ export function MobileContainerCarousel({
     <>
       {chevronLeftButton}
       <div className="h-full w-full p-5 m-10 rounded-2xl bg-white/80 backdrop-blur-md">
-        {mobileResourceIndex === -1 ? (
-          <RidersContainer />
-        ) : mobileResourceIndex === 0 ? (
-          <TrackSelectContainer />
-        ) : (
-          <ResourceContainer resource={resources[mobileResourceIndex - 1]} />
-        )}
+        <ResourceContainer resource={resources[mobileResourceIndex - 1]} />
       </div>
       {chevronRightButton}
     </>
