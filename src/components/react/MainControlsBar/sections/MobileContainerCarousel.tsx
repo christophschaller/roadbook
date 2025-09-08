@@ -65,9 +65,7 @@ export function MobileContainerCarousel({
   showRiders?: boolean;
 }) {
   const mobileResourceIndex = useStore($mobileResourceIndex);
-  const items = showRiders
-    ? [{ id: "riders", type: "riders" }, ...resources]
-    : resources;
+
 
   const handlePrevious = () => {
     $mobileResourceIndex.set(mobileResourceIndex - 1);
@@ -103,10 +101,10 @@ export function MobileContainerCarousel({
   const chevronRightButton = (
     <button
       onClick={handleNext}
-      disabled={mobileResourceIndex === items.length - 1}
+      disabled={mobileResourceIndex === resources.length - 1}
       className={cn(
         "absolute right-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",
-        mobileResourceIndex === items.length - 1
+        mobileResourceIndex === resources.length - 1
           ? "opacity-50 cursor-not-allowed"
           : "opacity-100 hover:bg-black/30",
       )}
