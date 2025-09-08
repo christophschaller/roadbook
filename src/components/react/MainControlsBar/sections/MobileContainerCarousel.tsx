@@ -5,10 +5,7 @@ import { useStore } from "@nanostores/react";
 import type { ResourceView, Rider } from "@/types";
 import { handleResourceChange } from "@/components/react/MainControlsBar/utils/handleResourceChange";
 import { POISelectorContainer } from "../POISelectorContainer";
-import {
-  $mobileResourceIndex,
-} from "@/stores";
-
+import { $mobileResourceIndex } from "@/stores";
 
 function TrackSelectContainer() {
   return (
@@ -66,30 +63,37 @@ export function MobileContainerCarousel({
 }) {
   const mobileResourceIndex = useStore($mobileResourceIndex);
 
+  const clampedIndex = Math.min(
+    Math.max(mobileResourceIndex, 0),
+    Math.max(resources.length - 1, 0),
+  );
 
   const handlePrevious = () => {
-    $mobileResourceIndex.set(mobileResourceIndex - 1);
-    if (mobileResourceIndex > 1) {
-      handleResourceChange(resources[mobileResourceIndex - 2].id);
-    } else {
-      handleResourceChange("");
+    const newIndex = Math.max(clampedIndex - 1, 0);
+    if (newIndex !== clampedIndex) {
+      $mobileResourceIndex.set(newIndex);
+      handleResourceChange(resources[newIndex].id);
     }
   };
 
   const handleNext = () => {
-    $mobileResourceIndex.set(mobileResourceIndex + 1);
-    if (mobileResourceIndex >= 0 && mobileResourceIndex < resources.length) {
-      handleResourceChange(resources[mobileResourceIndex].id);
+    const newIndex = Math.min(
+      clampedIndex + 1,
+      Math.max(resources.length - 1, 0),
+    );
+    if (newIndex !== clampedIndex) {
+      $mobileResourceIndex.set(newIndex);
+      handleResourceChange(resources[newIndex].id);
     }
   };
 
   const chevronLeftButton = (
     <button
       onClick={handlePrevious}
-      disabled={mobileResourceIndex === -1}
+      disabled={clampedIndex === 0}
       className={cn(
         "absolute left-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",
-        mobileResourceIndex === -1
+        clampedIndex === 0
           ? "opacity-50 cursor-not-allowed"
           : "opacity-100 hover:bg-black/30",
       )}
@@ -101,10 +105,10 @@ export function MobileContainerCarousel({
   const chevronRightButton = (
     <button
       onClick={handleNext}
-      disabled={mobileResourceIndex === resources.length - 1}
+      disabled={clampedIndex === resources.length - 1}
       className={cn(
         "absolute right-4 z-20 p-2 rounded-full bg-black/20 backdrop-blur-md border border-white/20",
-        mobileResourceIndex === resources.length - 1
+        clampedIndex === resources.length - 1
           ? "opacity-50 cursor-not-allowed"
           : "opacity-100 hover:bg-black/30",
       )}
@@ -117,7 +121,9 @@ export function MobileContainerCarousel({
     <>
       {chevronLeftButton}
       <div className="h-full w-full p-5 m-10 rounded-2xl bg-white/80 backdrop-blur-md">
-        <ResourceContainer resource={resources[mobileResourceIndex - 1]} />
+        {resources[clampedIndex] ? (
+          <ResourceContainer resource={resources[clampedIndex]} />
+        ) : null}
       </div>
       {chevronRightButton}
     </>
