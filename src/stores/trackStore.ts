@@ -1,54 +1,34 @@
 import { persistentAtom } from "@nanostores/persistent";
 import type { Track } from "@/types";
 import { nanoquery } from "@nanostores/query";
-import { parseGPX } from "@we-gold/gpxjs";
 import * as turf from "@turf/turf";
 import type { LineString } from "geojson";
 
 export const [createFetcherStore] = nanoquery({
   fetcher: async (...keys) => {
     const url = keys.join("");
-    if (url.toLowerCase().endsWith(".gpx")) {
+    // If requesting a single JSON track file, passthrough to JSON
+    if (url.toLowerCase().endsWith(".json")) {
       const res = await fetch(url);
-      const text = await res.text();
-      const [gpx, err] = parseGPX(text);
-      if (err || !gpx) throw err || new Error("Failed to parse GPX");
-      const geojson = gpx.toGeoJSON();
-      const feature = geojson?.features?.[0];
-      if (!feature || feature.geometry?.type !== "LineString") {
-        throw new Error("Expected LineString geometry in GPX GeoJSON");
-      }
-      const linestring = feature.geometry as LineString;
-      const distanceKm = turf.length(linestring as any, { units: "kilometers" });
-      const track: Track = {
-        name: geojson.properties?.name || url.split("/").pop() || "Track",
-        distance: Math.round(distanceKm * 10) / 10,
-        altitude: 0,
-        linestring,
-      };
-      return track;
+      return res.json();
     }
 
     // If requesting the tracks base path, load and merge all sections into one track
     if (url.endsWith("/data/tracks/") || url.endsWith("/data/tracks")) {
       const sections = [
-        "Alps Divide ULTRA 2025 Section 1.gpx",
-        "Alps Divide ULTRA 2025 Section 2.gpx",
-        "Alps Divide ULTRA 2025 Section 3.gpx",
-        "Alps Divide ULTRA 2025 Section 4.gpx",
-        "Alps Divide ULTRA 2025 Section 5.gpx",
+        "Alps Divide ULTRA 2025 Section 1.json",
+        "Alps Divide ULTRA 2025 Section 2.json",
+        "Alps Divide ULTRA 2025 Section 3.json",
+        "Alps Divide ULTRA 2025 Section 4.json",
+        "Alps Divide ULTRA 2025 Section 5.json",
       ];
 
       const features: LineString[] = [];
       for (const file of sections) {
         const res = await fetch(`${url.endsWith("/") ? url : url + "/"}${file}`);
-        const text = await res.text();
-        const [gpx, err] = parseGPX(text);
-        if (err || !gpx) continue;
-        const geojson = gpx.toGeoJSON();
-        const feature = geojson?.features?.[0];
-        if (feature && feature.geometry?.type === "LineString") {
-          features.push(feature.geometry as LineString);
+        const trackJson: Track = await res.json();
+        if (trackJson?.linestring?.type === "LineString") {
+          features.push(trackJson.linestring as LineString);
         }
       }
 
@@ -75,7 +55,7 @@ export const [createFetcherStore] = nanoquery({
 
 export const $selectedTrack = persistentAtom<string>(
   "selectedTrack",
-  "Alps Divide ULTRA 2025 Section 1.gpx",
+  "Alps Divide ULTRA 2025 Section 1.json",
 );
 
 export const $trackStore = createFetcherStore<Track>(["", "/data/tracks/"]); 
