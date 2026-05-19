@@ -35,6 +35,14 @@ jobs:
           # fullPath is e.g. "/roadbook" or "/roadbook/dev" or "/roadbook/feature/foo"
           echo "fullPath=${GITHUB_ROOT_PATH}${SUFFIX}" >> $GITHUB_OUTPUT
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate and build route data
+        run: |
+          npm run routes:validate
+          npm run routes:build
+
       - name: Install & build with Astro
         env:
           PUBLIC_BASE_PATH: ${{ steps.set-path.outputs.fullPath }}

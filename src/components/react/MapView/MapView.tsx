@@ -11,7 +11,7 @@ import {
   $trackStore,
   resourceViewStore,
   $poiStore,
-
+  initRouteStores,
   favoritesStore,
   $isTracking,
   $location,
@@ -28,9 +28,18 @@ import { WebMercatorViewport, FlyToInterpolator } from "@deck.gl/core";
 import TextWithBackgroundLayer from "@/components/react/MapView/layers/TextWithBackgroundLayer";
 import GeoLocateButton from "./GeoLocateButton";
 
-const MapView = () => {
+interface MapViewProps {
+  routeSlug: string;
+}
+
+const MapView = ({ routeSlug }: MapViewProps) => {
   const mapRef = React.useRef(null);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    initRouteStores(routeSlug);
+  }, [routeSlug]);
+
   const { data: track, loading: trackLoading } = useStore($trackStore);
   const resourceView = useStore(resourceViewStore);
   const { data: pois, loading: poisLoading } = useStore($poiStore);

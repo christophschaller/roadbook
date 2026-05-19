@@ -7,7 +7,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "routes:validate": "tsx scripts/validate-routes.ts",
+    "routes:build": "tsx scripts/build-routes.ts",
+    "prebuild": "npm run routes:validate && npm run routes:build"
   },
   "dependencies": {
     "@astrojs/react": "^4.0.0",
@@ -51,6 +54,9 @@
   },
   "devDependencies": {
     "@types/supercluster": "^7.1.3",
-    "prettier": "^3.5.3"
+    "@xmldom/xmldom": "^0.9.8",
+    "ajv": "^8.17.1",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.4"
   }
 }

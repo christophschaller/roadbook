@@ -1,0 +1,52 @@
+---
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import Layout from "@/layouts/Layout.astro";
+
+interface RoutesIndex {
+  routes: { slug: string; displayName: string }[];
+}
+
+const indexPath = path.join(process.cwd(), "public/data/routes-index.json");
+const index: RoutesIndex = JSON.parse(readFileSync(indexPath, "utf8"));
+const base = import.meta.env.BASE_URL;
+const routesBase = base.endsWith("/") ? `${base}routes/` : `${base}/routes/`;
+---
+
+<Layout title="Routes">
+  <main class="routes-index">
+    <h1>Routes</h1>
+    <ul>
+      {
+        index.routes.map((route) => (
+          <li>
+            <a href={`${routesBase}${route.slug}`}>{route.displayName}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  .routes-index {
+    max-width: 40rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font-family: system-ui, sans-serif;
+  }
+  .routes-index h1 {
+    margin-bottom: 1rem;
+  }
+  .routes-index ul {
+    list-style: none;
+    padding: 0;
+  }
+  .routes-index li {
+    margin-bottom: 0.5rem;
+  }
+  .routes-index a {
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>

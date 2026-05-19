@@ -1,0 +1,26 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["lat", "lon", "resourceId", "resourceCategoryId"],
+    "additionalProperties": true,
+    "properties": {
+      "id": {
+        "oneOf": [{ "type": "string" }, { "type": "number" }]
+      },
+      "lat": { "type": "number" },
+      "lon": { "type": "number" },
+      "name": { "type": "string" },
+      "resourceId": { "type": "string" },
+      "resourceCategoryId": { "type": "string" },
+      "website": { "type": "string" },
+      "phone": { "type": "string" },
+      "address": { "type": "string" },
+      "type": { "type": "string" },
+      "tags": {
+        "type": "object",
+        "additionalProperties": { "type": "string" }
+      }
+    }
+  }
+}

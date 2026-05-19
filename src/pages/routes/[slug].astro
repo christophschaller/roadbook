@@ -1,0 +1,30 @@
+---
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import Map from "@/components/astro/Map.astro";
+import Layout from "@/layouts/Layout.astro";
+
+interface RoutesIndex {
+  routes: { slug: string; displayName: string }[];
+}
+
+export function getStaticPaths() {
+  const indexPath = path.join(process.cwd(), "public/data/routes-index.json");
+  const index: RoutesIndex = JSON.parse(readFileSync(indexPath, "utf8"));
+  return index.routes.map((route) => ({
+    params: { slug: route.slug },
+    props: { displayName: route.displayName },
+  }));
+}
+
+interface Props {
+  displayName: string;
+}
+
+const { slug } = Astro.params;
+const { displayName } = Astro.props;
+---
+
+<Layout title={displayName}>
+  <Map routeSlug={slug!} />
+</Layout>

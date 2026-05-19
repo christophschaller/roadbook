@@ -1,9 +1,15 @@
 ---
 import MapView from "@/components/react/MapView/MapView";
+
+interface Props {
+  routeSlug: string;
+}
+
+const { routeSlug } = Astro.props;
 ---
 
 <div id="map-container" class="h-full">
-  <MapView client:only />
+  <MapView client:only routeSlug={routeSlug} />
 </div>
 
 <style>
