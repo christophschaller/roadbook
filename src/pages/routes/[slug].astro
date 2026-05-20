@@ -1,0 +1,19 @@
+---
+import "@/styles/globals.css";
+import Map from "@/components/astro/Map.astro";
+import Layout from "@/layouts/Layout.astro";
+import routesIndex from "../../../public/data/routes-index.json";
+
+export function getStaticPaths() {
+	return routesIndex.routes.map((route) => ({
+		params: { slug: route.slug },
+		props: { slug: route.slug, displayName: route.displayName },
+	}));
+}
+
+const { slug, displayName } = Astro.props;
+---
+
+<Layout title={`${displayName} · Roadbook`}>
+	<Map slug={slug} showUpload={false} />
+</Layout>

@@ -4,7 +4,11 @@ import { trackStore } from "@/stores/trackStore";
 import type { LineString } from "geojson";
 import { POISectionMobile } from "./sections/POISectionMobile";
 
-export function MainControlsMobile() {
+export function MainControlsMobile({
+  showUpload = true,
+}: {
+  showUpload?: boolean;
+}) {
   const track = useStore(trackStore);
   const trackData = track.data
     ? (track.data.features[0].geometry as LineString)
@@ -12,7 +16,7 @@ export function MainControlsMobile() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 h-1/3 overflow-hidden flex items-center justify-center">
-      {trackData ? (
+      {trackData || !showUpload ? (
         <POISectionMobile />
       ) : (
         <div className="w-full p-5 m-10 rounded-2xl bg-white/80 backdrop-blur-md">

@@ -19,6 +19,19 @@ import { MainControls } from "./MainControlsBar/MainControls";
 import { PoiTooltip } from "@/components/react/PoiTooltip";
 import ClusterIconLayer from "./IconClusterLayer";
 import type { MapViewState } from "@deck.gl/core";
+import type { Track } from "@/types";
+
+interface RouteManifest {
+  slug: string;
+  displayName: string;
+  track: string;
+  pois: string;
+}
+
+interface MapViewProps {
+  slug?: string;
+  showUpload?: boolean;
+}
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -27,9 +40,11 @@ const getLucideSvgUrl = (componentName: string) => {
   return `https://unpkg.com/lucide-static@0.469.0/icons/${kebabCaseName}.svg`;
 };
 
-const MapView = () => {
+const MapView = ({ slug, showUpload = true }: MapViewProps) => {
   const mapRef = useRef(null);
   const track = useStore(trackStore);
+  const [routeReady, setRouteReady] = useState(!slug);
+  const [routeError, setRouteError] = useState<string | null>(null);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
   const favorites = useStore(favoritesStore);
@@ -50,6 +65,50 @@ const MapView = () => {
   const [resourceAreas, setResourceAreas] = useState<ResourceArea[] | null>(
     null,
   );
+
+  useEffect(() => {
+    if (!slug) {
+      return;
+    }
+
+    const base = import.meta.env.BASE_URL;
+    const routeBase = `${base}data/routes/${slug}/`;
+
+    async function loadRoute() {
+      try {
+        const manifestRes = await fetch(`${routeBase}manifest.json`);
+        if (!manifestRes.ok) {
+          throw new Error(`Failed to load manifest (${manifestRes.status})`);
+        }
+
+        const manifest = (await manifestRes.json()) as RouteManifest;
+        const [trackRes, poisRes] = await Promise.all([
+          fetch(`${routeBase}${manifest.track}`),
+          fetch(`${routeBase}${manifest.pois}`),
+        ]);
+
+        if (!trackRes.ok || !poisRes.ok) {
+          throw new Error("Failed to load route data");
+        }
+
+        const trackJson = (await trackRes.json()) as Track;
+        const poisJson = (await poisRes.json()) as PointOfInterest[];
+
+        trackStore.set({
+          name: trackJson.name,
+          data: trackJson.data,
+        });
+        poiStore.set(poisJson);
+        setRouteReady(true);
+      } catch (error) {
+        setRouteError(
+          error instanceof Error ? error.message : "Failed to load route",
+        );
+      }
+    }
+
+    loadRoute();
+  }, [slug]);
 
   useEffect(() => {
     if (track.data) {
@@ -174,6 +233,22 @@ const MapView = () => {
     [trackData, simpleTrackData, resourceAreas, pois, resourceView, favorites],
   );
 
+  if (routeError) {
+    return (
+      <div className="flex h-screen items-center justify-center p-8 text-center text-red-600">
+        {routeError}
+      </div>
+    );
+  }
+
+  if (!routeReady) {
+    return (
+      <div className="flex h-screen items-center justify-center p-8 text-center text-muted-foreground">
+        Loading route…
+      </div>
+    );
+  }
+
   return (
     <div
       ref={mapRef}
@@ -214,7 +289,7 @@ const MapView = () => {
           />
         )}
       </DeckGL>
-      <MainControls />
+      <MainControls showUpload={showUpload} />
     </div>
   );
 };

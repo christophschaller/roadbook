@@ -1,14 +1,21 @@
 ---
 import MapView from "@/components/react/MapView";
+
+interface Props {
+	slug?: string;
+	showUpload?: boolean;
+}
+
+const { slug, showUpload = true } = Astro.props;
 ---
 
 <div id="map-container" class="h-full">
-    <MapView client:load />
+	<MapView slug={slug} showUpload={showUpload} client:load />
 </div>
 
 <style>
-    #map-container {
-        height: 100vh;
-        width: 100vw;
-    }
+	#map-container {
+		height: 100vh;
+		width: 100vw;
+	}
 </style>
