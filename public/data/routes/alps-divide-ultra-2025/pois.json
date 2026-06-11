@@ -2917,7 +2917,7 @@
       "operator": "Manuel MICOLI & Raphaëlle HERRMANN",
       "phone": "+41 24 481 11 83",
       "tourism": "guest_house",
-      "website": "http://www.le-grammont.ch/"
+      "website": "https://le-grammont.ch/"
     },
     "trackDistance": 8168.588338988018,
     "resourceId": "sleep",
@@ -2929,7 +2929,7 @@
       0
     ],
     "name": "Refuge du Grammont",
-    "website": "http://www.le-grammont.ch/",
+    "website": "https://le-grammont.ch/",
     "phone": "+41 24 481 11 83",
     "address": "Chemin du Lac 1, 1896 Vouvry"
   },
@@ -5932,9 +5932,11 @@
     "lat": 44.3343235,
     "lon": 7.456905,
     "tags": {
+      "air_conditioning": "yes",
       "name": "Hotel Le Lanterne",
       "stars": "3",
-      "tourism": "hotel"
+      "tourism": "hotel",
+      "website": "https://lelanternehotel.com/"
     },
     "trackDistance": 22016.058240156744,
     "resourceId": "sleep",
@@ -5946,6 +5948,7 @@
       0
     ],
     "name": "Hotel Le Lanterne",
+    "website": "https://lelanternehotel.com/",
     "address": ""
   },
   {
@@ -6348,7 +6351,7 @@
     "lat": 45.8185146,
     "lon": 6.9636531,
     "tags": {
-      "name": "Vallée Blanche",
+      "name": "La Vallée Blanche",
       "phone": "+39 0165 547992",
       "tourism": "hostel",
       "website": "https://www.hotelvalleeblanche.com/"
@@ -6362,7 +6365,7 @@
       128,
       0
     ],
-    "name": "Vallée Blanche",
+    "name": "La Vallée Blanche",
     "website": "https://www.hotelvalleeblanche.com/",
     "phone": "+39 0165 547992",
     "address": ""
@@ -10492,13 +10495,13 @@
   {
     "type": "node",
     "id": 1328087421,
-    "lat": 46.096733,
-    "lon": 7.081947,
+    "lat": 46.0969571,
+    "lon": 7.0818123,
     "tags": {
       "amenity": "shelter",
       "name": "Couvert d'Octodure"
     },
-    "trackDistance": 5640.923117538082,
+    "trackDistance": 5623.355853988448,
     "resourceId": "sleep",
     "resourceCategoryId": "shelter",
     "icon": "house",
@@ -11407,9 +11410,12 @@
     "lon": 6.8546373,
     "tags": {
       "check_date": "2025-04-21",
+      "email": "chamonix@hifrance.org",
       "name": "Auberge de jeunesse de Chamonix",
+      "phone": "+334 50 53 14 52",
       "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011",
       "tourism": "hostel",
+      "website": "https://www.hifrance.org/auberges-de-jeunesse/chamonix-mont-blanc/",
       "wheelchair": "yes"
     },
     "trackDistance": 760.3607666867016,
@@ -11422,6 +11428,8 @@
       0
     ],
     "name": "Auberge de jeunesse de Chamonix",
+    "website": "https://www.hifrance.org/auberges-de-jeunesse/chamonix-mont-blanc/",
+    "phone": "+334 50 53 14 52",
     "address": ""
   },
   {
@@ -13435,14 +13443,14 @@
   {
     "type": "node",
     "id": 1610956701,
-    "lat": 45.7833339,
-    "lon": 7.5802221,
+    "lat": 45.7833002,
+    "lon": 7.5801014,
     "tags": {
       "amenity": "shelter",
       "name": "Barma Berzin",
       "shelter_type": "Barma"
     },
-    "trackDistance": 55260.994517707266,
+    "trackDistance": 55253.94662425036,
     "resourceId": "sleep",
     "resourceCategoryId": "shelter",
     "icon": "house",
@@ -17178,29 +17186,6 @@
     ],
     "name": "Bivacco Gino Gandolfo - Franco Giuliano",
     "website": "https://www.caicvl.eu/index.php/i-rifugi/val-d-ala/bivacco-gino-gandolfo",
-    "address": ""
-  },
-  {
-    "type": "node",
-    "id": 1855307188,
-    "lat": 45.4401689,
-    "lon": 7.4679598,
-    "tags": {
-      "amenity": "shelter",
-      "capacity": "6",
-      "ele": "1965",
-      "name": "Bivacco Blessent Redentore"
-    },
-    "trackDistance": 59486.95456125845,
-    "resourceId": "sleep",
-    "resourceCategoryId": "shelter",
-    "icon": "house",
-    "color": [
-      0,
-      128,
-      0
-    ],
-    "name": "Bivacco Blessent Redentore",
     "address": ""
   },
   {
@@ -22763,33 +22748,13 @@
   {
     "type": "node",
     "id": 2473539640,
-    "lat": 46.2678824,
-    "lon": 6.8403712,
+    "lat": 46.2678551,
+    "lon": 6.840567,
     "tags": {
       "amenity": "shelter",
       "shelter_type": "public_transport"
     },
-    "trackDistance": 5328.965760484129,
-    "resourceId": "sleep",
-    "resourceCategoryId": "shelter",
-    "icon": "house",
-    "color": [
-      0,
-      128,
-      0
-    ],
-    "address": ""
-  },
-  {
-    "type": "node",
-    "id": 2473539641,
-    "lat": 46.267885,
-    "lon": 6.8403352,
-    "tags": {
-      "amenity": "shelter",
-      "shelter_type": "public_transport"
-    },
-    "trackDistance": 5326.573646551427,
+    "trackDistance": 5341.372613127812,
     "resourceId": "sleep",
     "resourceCategoryId": "shelter",
     "icon": "house",
@@ -28231,7 +28196,7 @@
       "phone": "+33 4 92 37 25 21",
       "ref:refuges.info": "2874",
       "tourism": "guest_house",
-      "website": "http://gite-la-chambrette.fr/"
+      "website": "https://gite-la-chambrette.fr/"
     },
     "trackDistance": 53665.00628815622,
     "resourceId": "sleep",
@@ -28243,7 +28208,7 @@
       0
     ],
     "name": "Gîte la Chambrette",
-    "website": "http://gite-la-chambrette.fr/",
+    "website": "https://gite-la-chambrette.fr/",
     "phone": "+33 4 92 37 25 21",
     "address": ""
   },
@@ -31092,6 +31057,7 @@
       "addr:hamlet": "Chantemerle",
       "addr:housenumber": "19",
       "addr:street": "Rue du Centre",
+      "check_date": "2026-05-31",
       "email": "resa@gite-lepassemontagne.com",
       "name": "Le Passe Montagne",
       "phone": "+33 4 92 24 06 66",
@@ -33367,6 +33333,7 @@
     "tags": {
       "addr:city": "Crots",
       "addr:postcode": "05200",
+      "check_date": "2026-05-28",
       "internet_access": "yes",
       "name": "Château de Picomtal",
       "phone": "+33 4 92 43 07 77",
@@ -37288,36 +37255,6 @@
   },
   {
     "type": "node",
-    "id": 4587841790,
-    "lat": 44.9467884,
-    "lon": 6.5505571,
-    "tags": {
-      "addr:city": "La Salle Les Alpes",
-      "addr:postcode": "05240",
-      "addr:street": "Le Bez",
-      "brand": "Club Med",
-      "brand:wikidata": "Q1076645",
-      "brand:wikipedia": "en:Club Med",
-      "internet_access": "wlan",
-      "name": "Club Med Serre-Chevalier",
-      "tourism": "hotel",
-      "website": "https://www.clubmed.fr/"
-    },
-    "trackDistance": 8568.026397027244,
-    "resourceId": "sleep",
-    "resourceCategoryId": "hotel",
-    "icon": "hotel",
-    "color": [
-      0,
-      128,
-      0
-    ],
-    "name": "Club Med Serre-Chevalier",
-    "website": "https://www.clubmed.fr/",
-    "address": "Le Bez, 05240 La Salle Les Alpes"
-  },
-  {
-    "type": "node",
     "id": 4590357589,
     "lat": 45.998233,
     "lon": 6.9369083,
@@ -40644,8 +40581,9 @@
     "lat": 44.943461,
     "lon": 6.5651313,
     "tags": {
+      "addr:housenumber": "133",
+      "addr:place": "Place de l'Aravet",
       "addr:postcode": "05240",
-      "addr:street": "Place de l'Aravet",
       "contact:facebook": "https://www.facebook.com/HotelLeRockNoir/",
       "email": "contact@rocknoir.fr",
       "internet_access": "wlan",
@@ -40668,7 +40606,7 @@
     "name": "Rock Noir & spa",
     "website": "https://www.rocknoir.fr/",
     "phone": "+33 4 92 25 54 90",
-    "address": "Place de l'Aravet, 05240"
+    "address": ""
   },
   {
     "type": "node",
@@ -41881,7 +41819,7 @@
     "lon": 7.632074,
     "tags": {
       "internet_access": "wlan",
-      "name:en": "Hotel Astoria",
+      "name": "Hotel Astoria",
       "tourism": "hotel",
       "website": "https://www.astoriacervinia.com/",
       "wheelchair": "yes"
@@ -41895,6 +41833,7 @@
       128,
       0
     ],
+    "name": "Hotel Astoria",
     "website": "https://www.astoriacervinia.com/",
     "address": ""
   },
@@ -50826,8 +50765,8 @@
     "lat": 44.9446687,
     "lon": 6.5625225,
     "tags": {
-      "addr:housenumber": "1",
-      "addr:street": "Chemin de l'Envers",
+      "addr:housenumber": "1879",
+      "addr:street": "Route de Briançon",
       "check_date": "2026-01-27",
       "email": "hotelmonthabor@wanadoo.fr",
       "name": "Hôtel Mont Thabor",
@@ -50849,7 +50788,7 @@
     "name": "Hôtel Mont Thabor",
     "website": "https://www.mont-thabor.com/",
     "phone": "+33 4 92 24 74 41",
-    "address": "Chemin de l'Envers 1"
+    "address": "Route de Briançon 1879"
   },
   {
     "type": "node",
@@ -51685,12 +51624,13 @@
   {
     "type": "node",
     "id": 5999984453,
-    "lat": 44.9429801,
-    "lon": 6.5648754,
+    "lat": 44.9429867,
+    "lon": 6.5649451,
     "tags": {
       "addr:city": "La Salle-les-Alpes",
+      "addr:housenumber": "14",
       "addr:postcode": "05240",
-      "addr:street": "Place de l'Aravet",
+      "addr:street": "Allée des Peytavines",
       "internet_access": "wlan",
       "internet_access:fee": "no",
       "name": "Le Serre Chevalier",
@@ -51699,7 +51639,7 @@
       "tourism": "hotel",
       "website": "http://www.leserrechevalier.com/"
     },
-    "trackDistance": 7490.635888680861,
+    "trackDistance": 7487.215326819694,
     "resourceId": "sleep",
     "resourceCategoryId": "hotel",
     "icon": "hotel",
@@ -51711,7 +51651,7 @@
     "name": "Le Serre Chevalier",
     "website": "http://www.leserrechevalier.com/",
     "phone": "+33 4 92 24 86 12",
-    "address": "Place de l'Aravet, 05240 La Salle-les-Alpes"
+    "address": "Allée des Peytavines 14, 05240 La Salle-les-Alpes"
   },
   {
     "type": "node",
@@ -52337,10 +52277,11 @@
   {
     "type": "node",
     "id": 6210544666,
-    "lat": 44.944967,
-    "lon": 6.5528478,
+    "lat": 44.9449509,
+    "lon": 6.5529377,
     "tags": {
       "addr:hamlet": "Le Bez",
+      "addr:housenumber": "54",
       "addr:street": "Chemin du Cavaillou",
       "city": "La Salle les Alpes",
       "description:FR": "Hôtel 4* à Serre Chevalier.",
@@ -52356,7 +52297,7 @@
       "website": "https://www.hotelgrandaigle.com/",
       "wikidata": "Q111391231"
     },
-    "trackDistance": 8338.50437311269,
+    "trackDistance": 8331.975559037272,
     "resourceId": "sleep",
     "resourceCategoryId": "hotel",
     "icon": "hotel",
@@ -52368,7 +52309,7 @@
     "name": "Le Grand Aigle Hôtel & Spa",
     "website": "https://www.hotelgrandaigle.com/",
     "phone": "+33 4 92 40 00 90",
-    "address": "Chemin du Cavaillou"
+    "address": "Chemin du Cavaillou 54"
   },
   {
     "type": "node",
@@ -52433,7 +52374,7 @@
     "lat": 44.9421094,
     "lon": 6.5699503,
     "tags": {
-      "addr:housenumber": "15 bis",
+      "addr:housenumber": "159",
       "addr:street": "Chemin du Plan du Duc",
       "contact:facebook": "https://fr-fr.facebook.com/lecerfche.chambredhotes.serrechevalier/",
       "email": "leblanc.sabine@neuf.fr",
@@ -52454,7 +52395,7 @@
     "name": "Le Cerf Che",
     "website": "http://www.chambre-lecerfche-serrechevalier.com/",
     "phone": "+33 6 74 00 24 60",
-    "address": "Chemin du Plan du Duc 15 bis"
+    "address": "Chemin du Plan du Duc 159"
   },
   {
     "type": "node",
@@ -52569,11 +52510,11 @@
   {
     "type": "node",
     "id": 6216075300,
-    "lat": 44.9433624,
-    "lon": 6.5535378,
+    "lat": 44.9433491,
+    "lon": 6.553523,
     "tags": {
       "addr:hamlet": "Le Bez",
-      "addr:housenumber": "4",
+      "addr:housenumber": "39",
       "addr:street": "Passage du Sate",
       "email": "maisonvallon@yahoo.fr",
       "name": "Maison Vallon",
@@ -52581,7 +52522,7 @@
       "tourism": "chalet",
       "website": "http://www.maisonvallon.com/"
     },
-    "trackDistance": 8181.529956665169,
+    "trackDistance": 8181.470642805054,
     "resourceId": "sleep",
     "resourceCategoryId": "hotel",
     "icon": "hotel",
@@ -52593,7 +52534,7 @@
     "name": "Maison Vallon",
     "website": "http://www.maisonvallon.com/",
     "phone": "+33 4 92 24 92 03",
-    "address": "Passage du Sate 4"
+    "address": "Passage du Sate 39"
   },
   {
     "type": "node",
@@ -53524,8 +53465,8 @@
   {
     "type": "node",
     "id": 6372966556,
-    "lat": 43.8508673,
-    "lon": 7.6244314,
+    "lat": 43.8508449,
+    "lon": 7.6243669,
     "tags": {
       "addr:city": "Dolceacqua",
       "addr:housenumber": "20",
@@ -53537,7 +53478,7 @@
       "tourism": "apartment",
       "website": "https://www.agriturismostecado.it/suites/caste/"
     },
-    "trackDistance": 737.5989329823155,
+    "trackDistance": 733.6316246438577,
     "resourceId": "sleep",
     "resourceCategoryId": "hotel",
     "icon": "hotel",
@@ -60218,7 +60159,7 @@
       "operator": "Nathalie Faudou;Pascal Faudou",
       "phone": "+33 6 85 59 11 92",
       "tourism": "chalet",
-      "website": "http://www.gite-escales.com/"
+      "website": "https://www.gite-escales.com/"
     },
     "trackDistance": 64267.31517857083,
     "resourceId": "sleep",
@@ -60230,7 +60171,7 @@
       0
     ],
     "name": "Gîte l'Escalès",
-    "website": "http://www.gite-escales.com/",
+    "website": "https://www.gite-escales.com/",
     "phone": "+33 6 85 59 11 92",
     "address": ""
   },
@@ -60645,9 +60586,8 @@
       "capacity:persons": "31",
       "capacity:rooms": "6",
       "check_date": "2024-02-10",
-      "contact:email": "aubergedupontdenant@gmail.com",
-      "contact:facebook": "https://www.facebook.com/pontdenant/",
       "ele": "1253",
+      "email": "info@pontdenant.ch",
       "name": "Auberge et Restaurant du Pont de Nant",
       "old_name": "Auberge Communale du Pont de Nant",
       "opening_hours": "May 10-31 We-Su 09:00-22:00; Jun 01-Sep 21 09:00-22:00; Sep 22-Nov 02 Th-Su 09:00-22:00; Dec 27-Mar 08 We-Fr off",
@@ -60656,7 +60596,7 @@
       "ref:refuges.info": "3608",
       "shower": "yes",
       "tourism": "alpine_hut",
-      "website": "https://aubergedupontdenant.ch/"
+      "website": "https://www.pontdenant.ch/"
     },
     "trackDistance": 8827.328266231354,
     "resourceId": "sleep",
@@ -60668,7 +60608,7 @@
       0
     ],
     "name": "Auberge et Restaurant du Pont de Nant",
-    "website": "https://aubergedupontdenant.ch/",
+    "website": "https://www.pontdenant.ch/",
     "phone": "+41 24 498 14 95",
     "address": "Route du Pont-de-Nant 10, 1880 Les Plans-sur-Bex"
   },
@@ -70491,8 +70431,13 @@
       "addr:postcode": "10072",
       "addr:province": "Torino",
       "addr:street": "Via della Zecca",
+      "description": "Jet Hotel è l'albergo più vicino all'aeroporto di Torino Caselle. Nel contesto del Monastero Antica Zecca offre camere con ogni confort, ristorante e palestra.",
+      "internet_access": "yes",
+      "internet_access:fee": "no",
       "name": "Jet Hotel",
-      "tourism": "hotel"
+      "phone": "+39 011 9913733",
+      "tourism": "hotel",
+      "website": "https://www.jet-hotel.com/"
     },
     "trackDistance": 62596.66189773964,
     "resourceId": "sleep",
@@ -70504,6 +70449,8 @@
       0
     ],
     "name": "Jet Hotel",
+    "website": "https://www.jet-hotel.com/",
+    "phone": "+39 011 9913733",
     "address": "Via della Zecca 9, 10072 Caselle Torinese"
   },
   {
@@ -77288,7 +77235,7 @@
       "ref:refuges.info": "5376",
       "rooms": "14",
       "tourism": "alpine_hut",
-      "website": "http://www.rifugiovulpot.com",
+      "website": "https://www.rifugiovulpot.com/",
       "wheelchair": "limited",
       "wikidata": "Q3935677",
       "wikipedia": "it:Rifugio Vulpot"
@@ -77303,7 +77250,7 @@
       0
     ],
     "name": "Rifugio Escursionistico Vulpot",
-    "website": "http://www.rifugiovulpot.com",
+    "website": "https://www.rifugiovulpot.com/",
     "phone": "+39 0123 83771",
     "address": ""
   },
@@ -95356,6 +95303,126 @@
     ],
     "name": "Les Mottets",
     "website": "http://www.hotel-lesmottets.com/",
+    "address": ""
+  },
+  {
+    "type": "node",
+    "id": 13871707701,
+    "lat": 46.2718983,
+    "lon": 6.7251207,
+    "tags": {
+      "addr:housenumber": "46",
+      "addr:postcode": "74360",
+      "addr:street": "Chemin du Fayet",
+      "contact:instagram": "Chaletdespraz_Abondance",
+      "internet_access": "wlan",
+      "name": "Chalet des Praz",
+      "tourism": "chalet",
+      "website": "https://www.chaletdesprazabondance.com/"
+    },
+    "trackDistance": 33.873383925327005,
+    "resourceId": "sleep",
+    "resourceCategoryId": "hotel",
+    "icon": "hotel",
+    "color": [
+      0,
+      128,
+      0
+    ],
+    "name": "Chalet des Praz",
+    "website": "https://www.chaletdesprazabondance.com/",
+    "address": "Chemin du Fayet 46, 74360"
+  },
+  {
+    "type": "node",
+    "id": 13874006538,
+    "lat": 45.1600797,
+    "lon": 7.7208472,
+    "tags": {
+      "guest_house": "agritourism",
+      "name": "Agriturismo I Camini",
+      "phone": "+39 011 9980653",
+      "tourism": "guest_house",
+      "website": "https://www.agriturismoicamini.com/"
+    },
+    "trackDistance": 68795.96430674517,
+    "resourceId": "sleep",
+    "resourceCategoryId": "hotel",
+    "icon": "hotel",
+    "color": [
+      0,
+      128,
+      0
+    ],
+    "name": "Agriturismo I Camini",
+    "website": "https://www.agriturismoicamini.com/",
+    "phone": "+39 011 9980653",
+    "address": ""
+  },
+  {
+    "type": "node",
+    "id": 13877382169,
+    "lat": 45.0448338,
+    "lon": 7.4702904,
+    "tags": {
+      "amenity": "shelter",
+      "name": "Gazebo Casa Mogliotti",
+      "shelter_type": "gazebo"
+    },
+    "trackDistance": 50039.29421443774,
+    "resourceId": "sleep",
+    "resourceCategoryId": "shelter",
+    "icon": "house",
+    "color": [
+      0,
+      128,
+      0
+    ],
+    "name": "Gazebo Casa Mogliotti",
+    "address": ""
+  },
+  {
+    "type": "node",
+    "id": 13897426369,
+    "lat": 45.0467308,
+    "lon": 7.474708,
+    "tags": {
+      "amenity": "shelter",
+      "shelter_type": "gazebo"
+    },
+    "trackDistance": 50391.2446834094,
+    "resourceId": "sleep",
+    "resourceCategoryId": "shelter",
+    "icon": "house",
+    "color": [
+      0,
+      128,
+      0
+    ],
+    "address": ""
+  },
+  {
+    "type": "node",
+    "id": 13901942307,
+    "lat": 44.538427,
+    "lon": 7.3497933,
+    "tags": {
+      "contact:email": "casachiotmartin@gmail.com",
+      "name": "Casa Chiot Martin",
+      "tourism": "hotel",
+      "website": "https://www.reisagriturismo.it/"
+    },
+    "trackDistance": 45275.316738884794,
+    "resourceId": "sleep",
+    "resourceCategoryId": "hotel",
+    "icon": "hotel",
+    "color": [
+      0,
+      128,
+      0
+    ],
+    "name": "Casa Chiot Martin",
+    "website": "https://www.reisagriturismo.it/",
     "address": ""
   }
 ]
