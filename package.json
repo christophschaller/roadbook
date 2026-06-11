@@ -10,7 +10,9 @@
     "prettier": "prettier --write .",
     "validate:routes": "tsx scripts/validate-routes.ts",
     "build:routes": "tsx scripts/build-routes.ts",
-    "test:slug": "tsx --test scripts/lib/slug.test.ts",
+    "build:routes:missing": "BUILD_ROUTES_ONLY_MISSING=1 tsx scripts/build-routes.ts",
+    "build:routes:force": "BUILD_ROUTES_FORCE=1 tsx scripts/build-routes.ts",
+    "test:slug": "tsx --test scripts/lib/slug.test.ts scripts/lib/routeBuildState.test.ts",
     "prebuild": "npm run validate:routes && npm run build:routes"
   },
   "dependencies": {

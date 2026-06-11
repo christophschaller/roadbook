@@ -161,6 +161,18 @@ Array of `PointOfInterest` with `resourceId`, `resourceCategoryId`, `trackDistan
 
 **Note:** Overpass in CI — use polite rate limiting, clear User-Agent, retries on timeout. Consider caching responses under `routes/.overpass-cache/` (gitignored) for local dev only.
 
+**Incremental builds (opt-in):**
+
+| Command | Behavior |
+|---------|----------|
+| `npm run build:routes` | Full rebuild of every route in config |
+| `npm run build:routes:missing` | Skip routes that already have `track.json`, `pois.json`, and `manifest.json` under `public/data/routes/<slug>/` |
+| `npm run build:routes:force` | Full rebuild (overrides missing-only when both env vars are set) |
+
+`routes-index.json` and stale-output cleanup always run. CI sets `BUILD_ROUTES_ONLY_MISSING=1` with `SKIP_OVERPASS=1` so only new slugs without committed artifacts are processed.
+
+If GPX or `manual-pois.json` change for an existing route, run `npm run build:routes:force` or delete `public/data/routes/<slug>/` before `build:routes:missing`.
+
 ---
 
 ### Phase 3 — Static pages
@@ -249,7 +261,7 @@ Array of `PointOfInterest` with `resourceId`, `resourceCategoryId`, `trackDistan
 
 1. Create `routes/<folder>/gpx/*.gpx` + `manual-pois.json` (`[]` if empty).
 2. Add entry to `routes/config.json`.
-3. Run `npm run validate:routes && npm run build:routes` locally (or open PR).
+3. Run `npm run validate:routes && npm run build:routes:missing` locally when adding a route (or full `build:routes` / `build:routes:force` after input changes).
 4. Commit inputs + generated `public/data/**`.
 5. Merge; CI deploys. Canonical URL on `main`: `https://christophschaller.github.io/roadbook/routes/<slug>/`.
 

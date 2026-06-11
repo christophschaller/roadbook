@@ -41,6 +41,7 @@ jobs:
       - name: Validate and build routes
         env:
           SKIP_OVERPASS: "1"
+          BUILD_ROUTES_ONLY_MISSING: "1"
         run: npm run validate:routes && npm run build:routes
 
       - name: Install & build with Astro

@@ -11,6 +11,7 @@ import {
   buildPoisForRoute,
   type ManualPoiInput,
 } from "./lib/buildPois.js";
+import { isRouteBuilt } from "./lib/routeBuildState.js";
 
 const PUBLIC_DATA = path.join(PROJECT_ROOT, "public", "data");
 const ROUTES_OUTPUT = path.join(PUBLIC_DATA, "routes");
@@ -39,11 +40,22 @@ async function main(): Promise<void> {
   const config = await loadRoutesConfig();
   const routes = withSlugs(config.routes);
   const skipOverpass = process.env.SKIP_OVERPASS === "1";
+  const onlyMissing = process.env.BUILD_ROUTES_ONLY_MISSING === "1";
+  const force = process.env.BUILD_ROUTES_FORCE === "1";
+  const incremental = onlyMissing && !force;
 
   await fs.mkdir(ROUTES_OUTPUT, { recursive: true });
   await removeStaleRouteOutputs(new Set(routes.map((route) => route.slug)));
 
+  let built = 0;
+  let skipped = 0;
+
   for (const route of routes) {
+    if (incremental && (await isRouteBuilt(ROUTES_OUTPUT, route.slug))) {
+      console.log(`Skip (already built): ${route.slug}`);
+      skipped++;
+      continue;
+    }
     const routeInputDir = path.join(ROUTES_ROOT, route.folder);
     const gpxDir = path.join(routeInputDir, "gpx");
     const manualPoisPath = path.join(routeInputDir, "manual-pois.json");
@@ -109,6 +121,7 @@ async function main(): Promise<void> {
     );
 
     console.log(`Built route: ${route.slug}`);
+    built++;
   }
 
   await fs.writeFile(
@@ -122,7 +135,9 @@ async function main(): Promise<void> {
     ),
   );
 
-  console.log(`Wrote ${routes.length} route(s) to public/data/`);
+  console.log(
+    `Done: ${built} built, ${skipped} skipped, ${routes.length} total — public/data/`,
+  );
 }
 
 main().catch((error) => {
