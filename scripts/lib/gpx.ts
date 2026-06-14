@@ -65,7 +65,7 @@ export async function mergeGpxDirectory(
     ],
   };
 
-  const distance = turf.length(lineString, { units: "kilometers" });
+  const distance = turf.length(geojson.features[0], { units: "kilometers" });
 
   return {
     lineString,

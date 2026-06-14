@@ -59,6 +59,9 @@ export function createBoundingBox(
     highQuality: false,
   });
   const buffered = buffer(simpleLineString, bufferMeters, { units: "meters" });
+  if (!buffered) {
+    return bbox(simpleLineString);
+  }
   return bbox(buffered);
 }
 

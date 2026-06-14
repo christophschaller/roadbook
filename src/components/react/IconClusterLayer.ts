@@ -16,8 +16,10 @@ type ClusterFeature = Supercluster.ClusterFeature<unknown>;
 interface IconClusterLayerProps {
   data: any[];
   getPosition: (d: any) => [number, number];
-  getBackgroundRadius?: (d: ClusterFeature) => number;
-  getBackgroundColor?: (d: ClusterFeature) => [number, number, number, number];
+  getClusterBackgroundRadius?: (d: ClusterFeature) => number;
+  getClusterBackgroundColor?: (
+    d: ClusterFeature,
+  ) => [number, number, number, number];
   getLineColor?: any;
   getLineWidth?: any;
   onClusterClick?: (info: any, expansionZoom: number) => void;
@@ -44,6 +46,11 @@ export default class ClusterIconLayer<
     ...IconWithBackgroundLayer.defaultProps,
     onClusterClick: { type: "function", value: null },
     clusterLabelSize: 16,
+    getClusterBackgroundRadius: { type: "accessor", value: 20 },
+    getClusterBackgroundColor: {
+      type: "accessor",
+      value: [255, 255, 255, 255],
+    },
   };
 
   initializeState() {
@@ -117,7 +124,8 @@ export default class ClusterIconLayer<
     const { clusters } = this.state;
     if (!clusters || !Array.isArray(clusters)) return null;
 
-    const { getBackgroundRadius, getBackgroundColor } = this.props;
+    const { getClusterBackgroundRadius, getClusterBackgroundColor } =
+      this.props;
 
     const nonClustered = clusters.filter((c) => !c.properties.cluster);
     const clustered = clusters.filter(
@@ -141,8 +149,8 @@ export default class ClusterIconLayer<
           pickable: true,
           getPosition: (d: ClusterFeature) => d.geometry.coordinates,
           radiusUnits: "pixels",
-          getRadius: getBackgroundRadius,
-          getFillColor: getBackgroundColor,
+          getRadius: getClusterBackgroundRadius,
+          getFillColor: getClusterBackgroundColor,
           // getLineColor: [0, 255, 255],
           // getLineWidth: 30,
           stroked: false,

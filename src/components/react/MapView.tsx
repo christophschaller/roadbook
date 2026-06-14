@@ -3,7 +3,7 @@ import maplibregl from "maplibre-gl";
 import { Map } from "react-map-gl/dist/es5/exports-maplibre.js";
 import DeckGL from "@deck.gl/react";
 import { type PickingInfo } from "@deck.gl/core";
-import { PathLayer, PolygonLayer, IconLayer } from "@deck.gl/layers";
+import { PathLayer, PolygonLayer, ScatterplotLayer } from "@deck.gl/layers";
 import { DataFilterExtension } from "@deck.gl/extensions";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
@@ -16,6 +16,7 @@ import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
 import { MainControls } from "./MainControlsBar/MainControls";
+import { LocateButton } from "@/components/react/LocateButton";
 import { PoiTooltip } from "@/components/react/PoiTooltip";
 import ClusterIconLayer from "./IconClusterLayer";
 import type { MapViewState } from "@deck.gl/core";
@@ -65,6 +66,10 @@ const MapView = ({ slug, showUpload = true }: MapViewProps) => {
   const [resourceAreas, setResourceAreas] = useState<ResourceArea[] | null>(
     null,
   );
+  const [userLocation, setUserLocation] = useState<{
+    longitude: number;
+    latitude: number;
+  } | null>(null);
 
   useEffect(() => {
     if (!slug) {
@@ -229,8 +234,41 @@ const MapView = ({ slug, showUpload = true }: MapViewProps) => {
           minZoom: 0,
           maxZoom: 16,
         }),
+      userLocation &&
+        new ScatterplotLayer({
+          id: "user-location-halo",
+          data: [userLocation],
+          getPosition: (d) => [d.longitude, d.latitude],
+          getFillColor: [66, 133, 244, 48],
+          getRadius: 14,
+          radiusMinPixels: 14,
+          radiusMaxPixels: 14,
+          pickable: false,
+        }),
+      userLocation &&
+        new ScatterplotLayer({
+          id: "user-location",
+          data: [userLocation],
+          getPosition: (d) => [d.longitude, d.latitude],
+          getFillColor: [26, 115, 232, 255],
+          getLineColor: [255, 255, 255, 255],
+          getRadius: 7,
+          radiusMinPixels: 7,
+          radiusMaxPixels: 7,
+          lineWidthMinPixels: 2,
+          stroked: true,
+          pickable: false,
+        }),
     ],
-    [trackData, simpleTrackData, resourceAreas, pois, resourceView, favorites],
+    [
+      trackData,
+      simpleTrackData,
+      resourceAreas,
+      pois,
+      resourceView,
+      favorites,
+      userLocation,
+    ],
   );
 
   if (routeError) {
@@ -255,11 +293,26 @@ const MapView = ({ slug, showUpload = true }: MapViewProps) => {
       style={{ width: "100%", height: "100vh" }}
       className="relative"
     >
+      <LocateButton
+        onLocate={({ longitude, latitude }) => {
+          setUserLocation({ longitude, latitude });
+          setViewState((prev) => ({
+            ...prev,
+            longitude,
+            latitude,
+            zoom: Math.max(prev.zoom, 14),
+            transitionDuration: 500,
+          }));
+        }}
+      />
       <DeckGL
-        initialViewState={viewState}
+        viewState={viewState}
         controller={true}
         layers={layers}
-        onViewStateChange={() => setPoiInfo(null)}
+        onViewStateChange={({ viewState: nextViewState }) => {
+          setViewState(nextViewState as MapViewState);
+          setPoiInfo(null);
+        }}
         onClick={(info) => {
           if (info && info.object) {
             if ("type" in info.object && info.object["type"] == "node") {
