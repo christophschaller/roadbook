@@ -1,7 +1,6 @@
-import queryOverpass from "@derhuerst/query-overpass";
 import {
   createBoundingBox,
-  constructOverpassQuery,
+  fetchPoisForResourceCategories,
 } from "@/lib/overpass_helpers";
 import { poiStore } from "@/stores/poiStore";
 import type { PointOfInterest, Resource, ResourceCategory } from "@/types";
@@ -102,14 +101,7 @@ async function fetchPOIsForResource(
   resource: Resource,
 ): Promise<PointOfInterest[]> {
   try {
-    // Extract selectors from the resource
-    const selectors = Object.values(resource.categories)
-      .flatMap((category) => category.osmTags)
-      .map((selector) => [selector[0], selector[1]]);
-
-    // Create and execute query
-    const query = constructOverpassQuery(bbox, selectors);
-    return queryOverpass(query);
+    return fetchPoisForResourceCategories(bbox, resource.categories);
   } catch (error) {
     const errorMessage = `Error fetching POIs for resource ${resourceId}: ${error}`;
     console.error(errorMessage);

@@ -7,6 +7,11 @@
     {
       "displayName": "ULTRA 500 - 2025",
       "folder": "ultra-500-2025"
+    },
+    {
+      "displayName": "Veneto Trail - 2026",
+      "folder": "veneto-trail-2026",
+      "bufferMeters": 1500
     }
   ]
 }

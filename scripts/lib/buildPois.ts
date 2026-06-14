@@ -1,17 +1,26 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import queryOverpass from "@derhuerst/query-overpass";
 import * as turf from "@turf/turf";
 import type { Feature, LineString, BBox } from "geojson";
 import { Resources } from "../../src/lib/data.js";
 import {
   createBoundingBox,
-  constructOverpassQuery,
+  fetchPoisForResourceCategories,
 } from "../../src/lib/overpass_helpers.js";
 import { formatPoiAddress } from "../../src/lib/dataFetching/fetchOverPassPOIsAlongRoute.js";
 import type { PointOfInterest, Resource } from "../../src/types/index.js";
 import { colorForResource, iconNameForCategory } from "./iconMap.js";
-import { PROJECT_ROOT } from "./config.js";
+import { DEFAULT_ROUTE_BUFFER_METERS, PROJECT_ROOT } from "./config.js";
+import {
+  categoryCacheDir,
+  clearCategoryCache,
+  isCacheComplete,
+  listCachedCategories,
+  readAllCategoryCaches,
+  readCategoryCache,
+  writeCategoryCache,
+  writeCompleteMarker,
+} from "./overpassCategoryCache.js";
 
 export interface ManualPoiInput {
   lat: number;
@@ -23,6 +32,21 @@ export interface ManualPoiInput {
   phone?: string;
   address?: string;
   description?: string;
+}
+
+export async function loadManualPois(
+  manualPoisPath: string,
+): Promise<ManualPoiInput[]> {
+  try {
+    return JSON.parse(
+      await fs.readFile(manualPoisPath, "utf-8"),
+    ) as ManualPoiInput[];
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+      return [];
+    }
+    throw error;
+  }
 }
 
 export interface SerializedPoi {
@@ -86,56 +110,86 @@ function enrichPoi(
   };
 }
 
-async function fetchPoisForResource(
-  bbox: BBox,
-  resourceId: string,
-  resource: Resource,
-): Promise<PointOfInterest[]> {
-  const selectors = Object.values(resource.categories)
-    .flatMap((category) => category.osmTags)
-    .map((selector) => [selector[0], selector[1]] as [string, string]);
-
-  const query = constructOverpassQuery(bbox, selectors);
-  return queryOverpass(query);
+function legacyMonolithicCachePath(slug: string, bufferMeters: number): string {
+  return path.join(
+    PROJECT_ROOT,
+    "routes",
+    ".overpass-cache",
+    `${slug}-${bufferMeters}m.json`,
+  );
 }
 
-async function fetchWithRetries<T>(
-  fn: () => Promise<T>,
-  attempts = 3,
-): Promise<T> {
-  let lastError: unknown;
-
-  for (let attempt = 1; attempt <= attempts; attempt++) {
-    try {
-      return await fn();
-    } catch (error) {
-      lastError = error;
-      if (attempt < attempts) {
-        await new Promise((resolve) => setTimeout(resolve, attempt * 2000));
-      }
-    }
-  }
-
-  throw lastError;
-}
-
-function cachePath(slug: string): string {
-  return path.join(PROJECT_ROOT, "routes", ".overpass-cache", `${slug}.json`);
-}
-
-async function readOverpassCache(slug: string): Promise<SerializedPoi[] | null> {
+async function readLegacyMonolithicCache(
+  slug: string,
+  bufferMeters: number,
+): Promise<SerializedPoi[] | null> {
   try {
-    const raw = await fs.readFile(cachePath(slug), "utf-8");
+    const raw = await fs.readFile(
+      legacyMonolithicCachePath(slug, bufferMeters),
+      "utf-8",
+    );
     return JSON.parse(raw) as SerializedPoi[];
   } catch {
     return null;
   }
 }
 
-async function writeOverpassCache(slug: string, pois: SerializedPoi[]): Promise<void> {
-  const filePath = cachePath(slug);
-  await fs.mkdir(path.dirname(filePath), { recursive: true });
-  await fs.writeFile(filePath, JSON.stringify(pois));
+function enrichRawPois(
+  rawPois: PointOfInterest[],
+  linestring2d: Feature<LineString>,
+  resources: Record<string, Resource>,
+): SerializedPoi[] {
+  const enriched: SerializedPoi[] = [];
+
+  for (const [resourceId, resource] of Object.entries(resources)) {
+    for (const poi of rawPois) {
+      const matchesResource = Object.values(resource.categories).some((category) =>
+        category.osmTags.some(([key, value]) => poi.tags[key] === value),
+      );
+      if (matchesResource) {
+        enriched.push(enrichPoi(poi, linestring2d, resourceId, resource));
+      }
+    }
+  }
+
+  return enriched;
+}
+
+async function fetchPoisForResource(
+  bbox: BBox,
+  resourceId: string,
+  resource: Resource,
+  slug: string,
+  bufferMeters: number,
+): Promise<PointOfInterest[]> {
+  return fetchPoisForResourceCategories(bbox, resource.categories, {
+    onCategoryStart: (categoryId) => {
+      console.log(`  Overpass: ${resourceId}/${categoryId}`);
+    },
+    loadCategoryCache: (categoryId) =>
+      readCategoryCache(slug, bufferMeters, resourceId, categoryId),
+    saveCategoryCache: (categoryId, pois) =>
+      writeCategoryCache(slug, bufferMeters, resourceId, categoryId, pois),
+  });
+}
+
+async function loadOsmPoisFromCache(
+  slug: string,
+  bufferMeters: number,
+  linestring2d: Feature<LineString>,
+  resources: Record<string, Resource>,
+): Promise<SerializedPoi[] | null> {
+  if (!(await isCacheComplete(slug, bufferMeters))) {
+    return null;
+  }
+
+  const cachedCategories = await listCachedCategories(slug, bufferMeters);
+  if (cachedCategories.size > 0) {
+    const rawPois = await readAllCategoryCaches(slug, bufferMeters);
+    return enrichRawPois(rawPois, linestring2d, resources);
+  }
+
+  return readLegacyMonolithicCache(slug, bufferMeters);
 }
 
 function manualToSerialized(
@@ -187,47 +241,77 @@ export async function buildPoisForRoute({
   slug,
   lineString,
   manualPois,
+  bufferMeters = DEFAULT_ROUTE_BUFFER_METERS,
   skipOverpass = false,
+  forceRefresh = false,
 }: {
   slug: string;
   lineString: LineString;
   manualPois: ManualPoiInput[];
+  bufferMeters?: number;
   skipOverpass?: boolean;
+  forceRefresh?: boolean;
 }): Promise<SerializedPoi[]> {
   const linestring2d = create2DLineString(lineString);
   const resources = Object.fromEntries(Resources.map((r) => [r.id, r]));
-  const bbox = createBoundingBox(lineString, 2500);
+  const bbox = createBoundingBox(lineString, bufferMeters);
 
   let osmPois: SerializedPoi[] = [];
 
   if (skipOverpass) {
-    const cached = await readOverpassCache(slug);
+    const cached = await loadOsmPoisFromCache(
+      slug,
+      bufferMeters,
+      linestring2d,
+      resources,
+    );
     if (cached) {
       osmPois = cached;
     }
+  } else if (forceRefresh) {
+    await clearCategoryCache(slug, bufferMeters);
   }
 
   if (!skipOverpass) {
-    const cached = await readOverpassCache(slug);
+    const cached =
+      !forceRefresh
+        ? await loadOsmPoisFromCache(
+            slug,
+            bufferMeters,
+            linestring2d,
+            resources,
+          )
+        : null;
+
     if (cached) {
       osmPois = cached;
     } else {
-      const results = await fetchWithRetries(async () => {
-        const poiPromises = Object.entries(resources).map(
-          async ([resourceId, resource]) => {
-            const pois = await fetchPoisForResource(bbox, resourceId, resource);
-            return pois.map((poi) => enrichPoi(poi, linestring2d, resourceId, resource));
-          },
+      const allRaw: PointOfInterest[] = [];
+
+      for (const [resourceId, resource] of Object.entries(resources)) {
+        console.log(`Fetching ${resourceId} POIs…`);
+        const pois = await fetchPoisForResource(
+          bbox,
+          resourceId,
+          resource,
+          slug,
+          bufferMeters,
         );
-        return (await Promise.all(poiPromises)).flat();
-      });
+        allRaw.push(...pois);
+      }
+
+      osmPois = enrichRawPois(allRaw, linestring2d, resources);
 
       const unique = new Map<string, SerializedPoi>();
-      for (const poi of results) {
+      for (const poi of osmPois) {
         unique.set(poiKey(poi), poi);
       }
       osmPois = Array.from(unique.values());
-      await writeOverpassCache(slug, osmPois);
+
+      await writeCompleteMarker(slug, bufferMeters);
+      console.log(
+        `Cached ${(await listCachedCategories(slug, bufferMeters)).size} categories under ${categoryCacheDir(slug, bufferMeters)}`,
+      );
     }
   }
 

@@ -1,6 +1,8 @@
 export interface RouteConfigEntry {
   displayName: string;
   folder: string;
+  /** Overpass POI search buffer around the route in meters. Default: 2500. */
+  bufferMeters?: number;
 }
 
 export interface RouteWithSlug extends RouteConfigEntry {

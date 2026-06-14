@@ -68,8 +68,11 @@ async function main(): Promise<void> {
     let manualPoisRaw: unknown;
     try {
       manualPoisRaw = JSON.parse(await fs.readFile(manualPoisPath, "utf-8"));
-    } catch {
-      console.error(`Missing or invalid manual-pois.json for routes/${route.folder}`);
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+        continue;
+      }
+      console.error(`Invalid manual-pois.json for routes/${route.folder}`);
       process.exit(1);
     }
 

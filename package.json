@@ -8,11 +8,12 @@
     "preview": "astro preview",
     "astro": "astro",
     "prettier": "prettier --write .",
-    "validate:routes": "tsx scripts/validate-routes.ts",
-    "build:routes": "tsx scripts/build-routes.ts",
-    "build:routes:missing": "BUILD_ROUTES_ONLY_MISSING=1 tsx scripts/build-routes.ts",
-    "build:routes:force": "BUILD_ROUTES_FORCE=1 tsx scripts/build-routes.ts",
-    "test:slug": "tsx --test scripts/lib/slug.test.ts scripts/lib/routeBuildState.test.ts",
+    "validate:routes": "npx tsx scripts/validate-routes.ts",
+    "build:routes": "npx tsx scripts/build-routes.ts",
+    "build:routes:missing": "BUILD_ROUTES_ONLY_MISSING=1 npx tsx scripts/build-routes.ts",
+    "build:routes:force": "BUILD_ROUTES_FORCE=1 npx tsx scripts/build-routes.ts",
+    "build:routes:pois": "npx tsx scripts/build-routes.ts --pois-only",
+    "test:slug": "npx tsx --test scripts/lib/slug.test.ts scripts/lib/routeBuildState.test.ts scripts/lib/overpass_helpers.test.ts scripts/lib/overpassCategoryCache.test.ts",
     "prebuild": "npm run validate:routes && npm run build:routes"
   },
   "dependencies": {

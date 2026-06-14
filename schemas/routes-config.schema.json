@@ -16,6 +16,12 @@
             "type": "string",
             "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
             "description": "Directory name under routes/, not used in URLs"
+          },
+          "bufferMeters": {
+            "type": "number",
+            "minimum": 100,
+            "maximum": 25000,
+            "description": "Overpass POI search buffer around the route in meters (default: 2500)"
           }
         }
       }
