@@ -3,7 +3,7 @@ import maplibregl from "maplibre-gl";
 import { Map } from "react-map-gl/dist/es5/exports-maplibre.js";
 import DeckGL from "@deck.gl/react";
 import { type PickingInfo } from "@deck.gl/core";
-import { PathLayer, PolygonLayer, IconLayer } from "@deck.gl/layers";
+import { PathLayer, PolygonLayer, ScatterplotLayer } from "@deck.gl/layers";
 import { DataFilterExtension } from "@deck.gl/extensions";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
@@ -16,9 +16,23 @@ import { type LineString, type Polygon } from "geojson";
 import type { PointOfInterest } from "@/types";
 import type { ResourceArea } from "@/types/area.types";
 import { MainControls } from "./MainControlsBar/MainControls";
+import { LocateButton } from "@/components/react/LocateButton";
 import { PoiTooltip } from "@/components/react/PoiTooltip";
 import ClusterIconLayer from "./IconClusterLayer";
 import type { MapViewState } from "@deck.gl/core";
+import type { Track } from "@/types";
+
+interface RouteManifest {
+  slug: string;
+  displayName: string;
+  track: string;
+  pois: string;
+}
+
+interface MapViewProps {
+  slug?: string;
+  showUpload?: boolean;
+}
 
 const getLucideSvgUrl = (componentName: string) => {
   const kebabCaseName = componentName
@@ -27,9 +41,11 @@ const getLucideSvgUrl = (componentName: string) => {
   return `https://unpkg.com/lucide-static@0.469.0/icons/${kebabCaseName}.svg`;
 };
 
-const MapView = () => {
+const MapView = ({ slug, showUpload = true }: MapViewProps) => {
   const mapRef = useRef(null);
   const track = useStore(trackStore);
+  const [routeReady, setRouteReady] = useState(!slug);
+  const [routeError, setRouteError] = useState<string | null>(null);
   const resourceView = useStore(resourceViewStore);
   const pois = useStore(poiStore);
   const favorites = useStore(favoritesStore);
@@ -50,6 +66,54 @@ const MapView = () => {
   const [resourceAreas, setResourceAreas] = useState<ResourceArea[] | null>(
     null,
   );
+  const [userLocation, setUserLocation] = useState<{
+    longitude: number;
+    latitude: number;
+  } | null>(null);
+
+  useEffect(() => {
+    if (!slug) {
+      return;
+    }
+
+    const base = import.meta.env.BASE_URL;
+    const routeBase = `${base}data/routes/${slug}/`;
+
+    async function loadRoute() {
+      try {
+        const manifestRes = await fetch(`${routeBase}manifest.json`);
+        if (!manifestRes.ok) {
+          throw new Error(`Failed to load manifest (${manifestRes.status})`);
+        }
+
+        const manifest = (await manifestRes.json()) as RouteManifest;
+        const [trackRes, poisRes] = await Promise.all([
+          fetch(`${routeBase}${manifest.track}`),
+          fetch(`${routeBase}${manifest.pois}`),
+        ]);
+
+        if (!trackRes.ok || !poisRes.ok) {
+          throw new Error("Failed to load route data");
+        }
+
+        const trackJson = (await trackRes.json()) as Track;
+        const poisJson = (await poisRes.json()) as PointOfInterest[];
+
+        trackStore.set({
+          name: trackJson.name,
+          data: trackJson.data,
+        });
+        poiStore.set(poisJson);
+        setRouteReady(true);
+      } catch (error) {
+        setRouteError(
+          error instanceof Error ? error.message : "Failed to load route",
+        );
+      }
+    }
+
+    loadRoute();
+  }, [slug]);
 
   useEffect(() => {
     if (track.data) {
@@ -170,9 +234,58 @@ const MapView = () => {
           minZoom: 0,
           maxZoom: 16,
         }),
+      userLocation &&
+        new ScatterplotLayer({
+          id: "user-location-halo",
+          data: [userLocation],
+          getPosition: (d) => [d.longitude, d.latitude],
+          getFillColor: [66, 133, 244, 48],
+          getRadius: 14,
+          radiusMinPixels: 14,
+          radiusMaxPixels: 14,
+          pickable: false,
+        }),
+      userLocation &&
+        new ScatterplotLayer({
+          id: "user-location",
+          data: [userLocation],
+          getPosition: (d) => [d.longitude, d.latitude],
+          getFillColor: [26, 115, 232, 255],
+          getLineColor: [255, 255, 255, 255],
+          getRadius: 7,
+          radiusMinPixels: 7,
+          radiusMaxPixels: 7,
+          lineWidthMinPixels: 2,
+          stroked: true,
+          pickable: false,
+        }),
     ],
-    [trackData, simpleTrackData, resourceAreas, pois, resourceView, favorites],
+    [
+      trackData,
+      simpleTrackData,
+      resourceAreas,
+      pois,
+      resourceView,
+      favorites,
+      userLocation,
+    ],
   );
+
+  if (routeError) {
+    return (
+      <div className="flex h-screen items-center justify-center p-8 text-center text-red-600">
+        {routeError}
+      </div>
+    );
+  }
+
+  if (!routeReady) {
+    return (
+      <div className="flex h-screen items-center justify-center p-8 text-center text-muted-foreground">
+        Loading route…
+      </div>
+    );
+  }
 
   return (
     <div
@@ -180,11 +293,26 @@ const MapView = () => {
       style={{ width: "100%", height: "100vh" }}
       className="relative"
     >
+      <LocateButton
+        onLocate={({ longitude, latitude }) => {
+          setUserLocation({ longitude, latitude });
+          setViewState((prev) => ({
+            ...prev,
+            longitude,
+            latitude,
+            zoom: Math.max(prev.zoom, 14),
+            transitionDuration: 500,
+          }));
+        }}
+      />
       <DeckGL
-        initialViewState={viewState}
+        viewState={viewState}
         controller={true}
         layers={layers}
-        onViewStateChange={() => setPoiInfo(null)}
+        onViewStateChange={({ viewState: nextViewState }) => {
+          setViewState(nextViewState as MapViewState);
+          setPoiInfo(null);
+        }}
         onClick={(info) => {
           if (info && info.object) {
             if ("type" in info.object && info.object["type"] == "node") {
@@ -214,7 +342,7 @@ const MapView = () => {
           />
         )}
       </DeckGL>
-      <MainControls />
+      <MainControls showUpload={showUpload} />
     </div>
   );
 };

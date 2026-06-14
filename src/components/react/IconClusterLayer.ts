@@ -1,4 +1,8 @@
-import { CompositeLayer, type UpdateParameters } from "@deck.gl/core";
+import {
+  CompositeLayer,
+  type PickingInfo,
+  type UpdateParameters,
+} from "@deck.gl/core";
 import { TextLayer, ScatterplotLayer } from "@deck.gl/layers";
 import IconWithBackgroundLayer from "./IconWithBackgroundLayer";
 import Supercluster from "supercluster";
@@ -7,22 +11,15 @@ const DEFAULT_CLUSTER_RADIUS = 40;
 const DEFAULT_MIN_ZOOM = 0;
 const DEFAULT_MAX_ZOOM = 16;
 
-interface ClusterFeature {
-  type: "Feature";
-  geometry: { type: "Point"; coordinates: [number, number] };
-  properties: {
-    cluster?: boolean;
-    cluster_id?: number;
-    point_count?: number;
-    [key: string]: any;
-  };
-}
+type ClusterFeature = Supercluster.ClusterFeature<unknown>;
 
 interface IconClusterLayerProps {
   data: any[];
   getPosition: (d: any) => [number, number];
-  getBackgroundRadius?: (d: ClusterFeature) => number;
-  getBackgroundColor?: (d: ClusterFeature) => [number, number, number, number];
+  getClusterBackgroundRadius?: (d: ClusterFeature) => number;
+  getClusterBackgroundColor?: (
+    d: ClusterFeature,
+  ) => [number, number, number, number];
   getLineColor?: any;
   getLineWidth?: any;
   onClusterClick?: (info: any, expansionZoom: number) => void;
@@ -49,6 +46,11 @@ export default class ClusterIconLayer<
     ...IconWithBackgroundLayer.defaultProps,
     onClusterClick: { type: "function", value: null },
     clusterLabelSize: 16,
+    getClusterBackgroundRadius: { type: "accessor", value: 20 },
+    getClusterBackgroundColor: {
+      type: "accessor",
+      value: [255, 255, 255, 255],
+    },
   };
 
   initializeState() {
@@ -95,10 +97,10 @@ export default class ClusterIconLayer<
       this.setState({ superCluster });
     }
 
+    const prevViewport = this.state.viewport as { zoom: number } | null;
     const viewportChanged =
       changeFlags.viewportChanged ||
-      (this.state.viewport &&
-        this.state.viewport.zoom !== this.context.viewport.zoom);
+      (prevViewport && prevViewport.zoom !== this.context.viewport.zoom);
 
     if (rebuildIndex || viewportChanged) {
       const viewport = this.context.viewport;
@@ -122,21 +124,18 @@ export default class ClusterIconLayer<
     const { clusters } = this.state;
     if (!clusters || !Array.isArray(clusters)) return null;
 
-    const {
-      getBackgroundRadius,
-      getBackgroundColor,
-      getLineColor,
-      getLineWidth,
-    } = this.props;
+    const { getClusterBackgroundRadius, getClusterBackgroundColor } =
+      this.props;
 
     const nonClustered = clusters.filter((c) => !c.properties.cluster);
-    const clustered = clusters.filter((c) => c.properties.cluster);
+    const clustered = clusters.filter(
+      (c): c is ClusterFeature => c.properties.cluster === true,
+    );
 
     return [
       // Non-clustered points
       new IconWithBackgroundLayer(
         this.getSubLayerProps({
-          getPosition: (d) => d.geometry.coordinates,
           ...this.props,
           data: nonClustered.map((c) => c.properties),
         }),
@@ -148,14 +147,14 @@ export default class ClusterIconLayer<
           id: "cluster-backgrounds",
           data: clustered,
           pickable: true,
-          getPosition: (d) => d.geometry.coordinates,
+          getPosition: (d: ClusterFeature) => d.geometry.coordinates,
           radiusUnits: "pixels",
-          getRadius: getBackgroundRadius,
-          getFillColor: getBackgroundColor,
+          getRadius: getClusterBackgroundRadius,
+          getFillColor: getClusterBackgroundColor,
           // getLineColor: [0, 255, 255],
           // getLineWidth: 30,
           stroked: false,
-          onClick: (info) => {
+          onClick: (info: PickingInfo<ClusterFeature>) => {
             if (this.props.onClusterClick) {
               const cluster = info.object;
               const clusterId = cluster?.properties?.cluster_id;
@@ -179,8 +178,8 @@ export default class ClusterIconLayer<
         this.getSubLayerProps({
           id: "cluster-labels",
           data: clustered,
-          getPosition: (d) => d.geometry.coordinates,
-          getText: (d) => String(d.properties.point_count),
+          getPosition: (d: ClusterFeature) => d.geometry.coordinates,
+          getText: (d: ClusterFeature) => String(d.properties.point_count),
           getSize: this.props.clusterLabelSize,
           sizeUnits: "pixels",
           getTextAnchor: "middle",

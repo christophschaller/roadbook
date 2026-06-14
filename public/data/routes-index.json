@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "slug": "alps-divide-ultra-2025",
+      "displayName": "Alps Divide ULTRA 2025"
+    },
+    {
+      "slug": "ultra-500-2025",
+      "displayName": "ULTRA 500 - 2025"
+    },
+    {
+      "slug": "veneto-trail-2026",
+      "displayName": "Veneto Trail - 2026"
+    }
+  ]
+}
